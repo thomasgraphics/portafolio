@@ -8,9 +8,7 @@ portafolio/
 ├── content/data.json     ← TODO el contenido (lo edita el admin)
 ├── js/app.js · css/      ← lógica y diseño del sitio
 ├── admin/                ← panel de administración
-├── middleware.js         ← candado de /admin (Google o contraseña)
-├── api/                  ← funciones del servidor: login con Google y publicación segura
-├── login/                ← página de inicio de sesión con Google
+├── middleware.js         ← candado con usuario y contraseña para /admin
 ├── vercel.json           ← cabeceras de seguridad
 ├── assets/               ← imágenes, CV, video · assets/uploads = lo que subes desde el admin
 └── robots.txt · package.json · .gitignore
@@ -60,39 +58,15 @@ En `index.html`, reemplaza las 3 apariciones de `https://tudominio.com` por tu d
 
 ---
 
-## 3. Entrar al admin con Google (recomendado)
+## 3. Usar el admin
 
-Entras con tu cuenta de Google y publicas sin pegar ningún token: el token de GitHub vive guardado en Vercel (servidor), nunca en el navegador.
-
-### 3.1 Crear el "ID de cliente" de Google (una sola vez)
-1. Entra a **console.cloud.google.com** con tu cuenta de Google → arriba, **Seleccionar proyecto → Proyecto nuevo** → nombre `Portafolio admin` → Crear.
-2. Menú → **APIs y servicios → Pantalla de consentimiento de OAuth** (o *Google Auth Platform*) → **Comenzar**:
-   - Nombre de la app: `Admin Thomgraphics`, correo de asistencia: el tuyo.
-   - Público: **Externo** → correo de contacto → Aceptar → Crear.
-   - En **Público / Usuarios de prueba** agrega tu correo de Google.
-3. **Clientes → Crear cliente** → Tipo: **Aplicación web** → Nombre: `Admin`.
-   - **Orígenes autorizados de JavaScript** (agrega los 3):
-     `https://www.thomgraphics.com` · `https://thomgraphics.com` · `https://portafolio-ten-virid-47.vercel.app`
-   - No necesitas "URI de redireccionamiento".
-   - **Crear** → copia el **ID de cliente** (termina en `.apps.googleusercontent.com`).
-
-### 3.2 Token de GitHub para el servidor
-GitHub → Settings → Developer settings → **Fine-grained tokens → Generate new token**: solo el repo `portafolio`, **Contents: Read and write**, 90 días. Cópialo (solo lo pegarás en Vercel).
-
-### 3.3 Variables en Vercel (Settings → Environment Variables)
-| Variable | Valor |
-|---|---|
-| `GOOGLE_CLIENT_ID` | El ID de cliente del paso 3.1 |
-| `ADMIN_EMAILS` | Tu correo de Google (varios: separados por coma) |
-| `SESSION_SECRET` | Una clave aleatoria de **40+ caracteres** (genérala con un gestor de contraseñas) |
-| `GITHUB_TOKEN` | El token del paso 3.2 |
-
-Luego **Deployments → ⋯ → Redeploy**. Listo: `tudominio.com/admin` te lleva a **Iniciar sesión con Google**.
-
-> Mientras Google no esté configurado, el admin sigue pidiendo `ADMIN_USER` / `ADMIN_PASSWORD`. Cuando Google funcione, puedes borrar esas dos variables.
-
-### Cómo se usa
-Entra a `/admin` → Google → edita → **Guardar y publicar** → en 1–2 min está en línea. La sesión dura 8 horas.
+1. **Crea tu token de GitHub** (se hace una sola vez):
+   1. Ve a GitHub → tu foto → *Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → Generate new token*.
+   2. En *Repository access* elige **Only select repositories** y marca `portafolio`.
+   3. En *Permissions* busca **Contents** y ponle **Read and write**. No le des ningún otro permiso.
+   4. En *Expiration* pon 90 días. Cuando venza, creas otro.
+2. Entra a `tudominio.com/admin`, escribe tu usuario y contraseña, y luego tu usuario de GitHub, el repositorio y el token.
+3. Edita lo que quieras y haz clic en **Guardar y publicar**. Se crea un solo cambio en GitHub y Vercel actualiza el sitio en 1–2 minutos.
 
 **Qué puedes editar (todo el sitio):**
 - **General:** nombre, rol, fondo, enlaces de contacto, íconos del dock, notificación y nota adhesiva.
@@ -100,19 +74,21 @@ Entra a `/admin` → Google → edita → **Guardar y publicar** → en 1–2 mi
 - **Sobre mí** e **Intro.**
 - **Escritorio e íconos:** mini escritorio para acomodar los íconos arrastrándolos; agregar, quitar, cambiar tipo y color, o subir un ícono propio.
 - **Carpetas** y **Casos de estudio:** crear, editar y eliminar.
-- **SEO y compartir:** título, descripción, imagen al compartir el enlace y favicon.
-- **Diseño y apariencia:** tipografías (sube las tuyas o usa Google Fonts), colores, opacidades, esquinas, tamaños, fondo para celular y mostrar/ocultar elementos, con vista previa.
-- **Textos de la interfaz:** todos los botones y etiquetas en español e inglés.
+- **SEO y compartir:** título, descripción, imagen que aparece al compartir el enlace y favicon (se actualiza `index.html` automáticamente).
+- **Diseño y apariencia:** tipografías (sube las tuyas en WOFF2/WOFF/TTF/OTF o usa Google Fonts, para textos y títulos), grosor de títulos, todos los colores (acento, textos, ventanas, notas, barra de menú, dock), opacidades, esquinas, tamaño de íconos y dock, fondo para celular y mostrar/ocultar intro, notificación y nota, con vista previa en vivo y botón para restablecer.
+- **Textos de la interfaz:** todos los botones y etiquetas del sitio en español e inglés.
 
-**Límite de archivos con Google:** 3 MB por archivo (fotos se optimizan solas). Para PDFs o videos más pesados: comprímelos, o usa **Modo avanzado (token)** desde la barra lateral del admin (hasta 25 MB).
+Lo único que **no** se cambia desde el admin, por seguridad, es la contraseña del propio admin (va en Vercel → Environment Variables).
+
+Las fotos que subas se optimizan solas: se reducen a 2400 px como máximo y se guardan en JPG. Los íconos conservan la transparencia.
+
+---
 
 ## 4. Seguridad (qué te protege)
 
 | Capa | Qué hace |
 |---|---|
-| **Inicio con Google** (`middleware.js` + `/api`) | El servidor verifica con Google que la cuenta es tuya y que el correo está en `ADMIN_EMAILS`. Crea una sesión en una cookie firmada (HttpOnly, Secure) que dura 8 horas. Sin sesión válida, ningún archivo del admin se entrega. Si quitas un correo de la lista, pierde acceso al instante. |
-| **Token solo en el servidor** | `GITHUB_TOKEN` vive en Vercel. El navegador nunca lo ve. El puente `/api/github` solo acepta tu sesión, solo peticiones de tu propio dominio (anti-CSRF) y solo puede escribir `content/data.json`, `index.html` y `assets/uploads/`. Cada publicación queda firmada con tu correo en GitHub. |
-| **Respaldo con contraseña** | Si Google no está configurado, el admin pide `ADMIN_USER`/`ADMIN_PASSWORD` (con freno anti fuerza bruta). Si no hay nada configurado, queda bloqueado. |
+| **Candado de /admin** (`middleware.js`) | Pide usuario y contraseña en el servidor **antes** de entregar cualquier archivo del admin. Si falla, espera 1,2 s antes de responder para frenar ataques por fuerza bruta, y compara las claves en tiempo constante. Si faltan las variables, bloquea todo. |
 | **Token de GitHub limitado** | Solo puede tocar **ese** repositorio y **solo** sus archivos. No sirve para tu cuenta ni para otros repos. Vence solo. |
 | **Token fuera del código** | Nunca se sube al repositorio. Por defecto solo vive mientras el navegador está abierto. "Recordar" lo guarda en ese computador, así que úsalo solo en tu equipo. |
 | **Cierre por inactividad** | La sesión del admin se cierra tras 30 minutos sin uso. |
@@ -122,9 +98,8 @@ Entra a `/admin` → Google → edita → **Guardar y publicar** → en 1–2 mi
 | **Historial en GitHub** | Cada publicación queda registrada. Si algo sale mal, puedes volver a cualquier versión anterior. |
 
 **Si sospechas que alguien entró:**
-1. Cambia `SESSION_SECRET` en Vercel y haz *Redeploy*: todas las sesiones abiertas se cierran.
-2. Activa la verificación en dos pasos de tu cuenta de Google (myaccount.google.com → Seguridad).
-3. En GitHub, revoca el token (*Developer settings → Fine-grained tokens → Delete*), crea uno nuevo y ponlo en `GITHUB_TOKEN`.
+1. Cambia `ADMIN_PASSWORD` en Vercel y haz *Redeploy*.
+2. En GitHub, revoca el token (*Developer settings → Fine-grained tokens → Delete*) y crea uno nuevo.
 3. Revisa el historial de commits del repo y revierte lo que no reconozcas.
 
 **Hábitos:**
@@ -147,7 +122,7 @@ Para el admin en local, usa *Entrar sin GitHub (modo local)*. Puedes editar y de
 - [ ] Ningún `[TODO]` en los casos de estudio
 - [ ] WhatsApp, LinkedIn, Instagram y correo correctos
 - [ ] CV real (en *Escritorio*, ícono CV → Archivo PDF)
-- [ ] Variables `GOOGLE_CLIENT_ID`, `ADMIN_EMAILS`, `SESSION_SECRET` y `GITHUB_TOKEN` creadas en Vercel
+- [ ] Variables `ADMIN_USER` y `ADMIN_PASSWORD` creadas en Vercel
 - [ ] Verificación en dos pasos activa en GitHub y Vercel
 - [ ] Dominio conectado y cambiado en `index.html`
 - [ ] Probado en el celular y en una ventana de incógnito

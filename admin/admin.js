@@ -56,9 +56,7 @@
 
   // ---------- Estado ----------
   let D = null;           // contenido (data.json)
-  let mode = null;        // "server" (Google) | "github" (token) | "local"
-  let me = null;          // sesión de Google { email }
-  const canPublish = () => mode === "server" || mode === "github";
+  let mode = null;        // "github" | "local"
   let gh = null;          // { owner, repo, branch, token }
   let pending = {};       // archivos por subir: path -> { b64, url }
   let dirty = false;
@@ -91,7 +89,6 @@
     return opts.raw ? r.text() : r.json();
   }
 
-  async function loadFromServer() { return JSON.parse(await remote.getText("content/data.json")); }
   async function loadFromGitHub() {
     const raw = await api(`/contents/content/data.json?ref=${encodeURIComponent(gh.branch)}`, { accept: "application/vnd.github.raw+json", raw: true });
     return JSON.parse(raw);
@@ -138,34 +135,6 @@
     return html;
   }
 
-  // Operaciones remotas: por el servidor (Google) o directo a GitHub (token)
-  async function srv(body) {
-    const r = await fetch("/api/github", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-    const data = await r.json().catch(() => ({}));
-    if (r.status === 401) { setTimeout(() => location.replace("/login/"), 1500); }
-    if (!r.ok) throw new Error(data.error || `Error ${r.status}`);
-    return data;
-  }
-  const remote = {
-    async getText(path) {
-      if (mode === "server") return (await srv({ op: "get", path })).text;
-      return api(`/contents/${path}?ref=${encodeURIComponent(gh.branch)}`, { accept: "application/vnd.github.raw+json", raw: true });
-    },
-    async blob(content, encoding) {
-      if (mode === "server") return (await srv({ op: "blob", content, encoding })).sha;
-      return (await api("/git/blobs", { method: "POST", body: { content, encoding } })).sha;
-    },
-    async commit(files, message) {
-      if (mode === "server") return srv({ op: "commit", files, message });
-      const ref = await api(`/git/ref/heads/${encodeURIComponent(gh.branch)}`);
-      const baseSha = ref.object.sha;
-      const baseCommit = await api(`/git/commits/${baseSha}`);
-      const tree = await api("/git/trees", { method: "POST", body: { base_tree: baseCommit.tree.sha, tree: files.map((f) => ({ path: f.path, mode: "100644", type: "blob", sha: f.sha })) } });
-      const commit = await api("/git/commits", { method: "POST", body: { message, tree: tree.sha, parents: [baseSha] } });
-      await api(`/git/refs/heads/${encodeURIComponent(gh.branch)}`, { method: "PATCH", body: { sha: commit.sha } });
-    },
-  };
-
   async function publish(btn) {
     cleanup(D);
     const json = JSON.stringify(D, null, 2) + "\n";
@@ -177,15 +146,26 @@
     try {
       if (D.seo) {
         try {
-          const oldHtml = await remote.getText("index.html");
+          const oldHtml = await api(`/contents/index.html?ref=${encodeURIComponent(gh.branch)}`, { accept: "application/vnd.github.raw+json", raw: true });
           const newHtml = rewriteIndex(oldHtml);
           if (newHtml !== oldHtml) files.push({ path: "index.html", content: newHtml, encoding: "utf-8" });
         } catch { /* si no se puede leer index.html, se publica el resto */ }
       }
+      const ref = await api(`/git/ref/heads/${encodeURIComponent(gh.branch)}`);
+      const baseSha = ref.object.sha;
+      const baseCommit = await api(`/git/commits/${baseSha}`);
       const tree = [];
-      for (const f of files) tree.push({ path: f.path, sha: await remote.blob(f.content, f.encoding) });
+      for (const f of files) {
+        const blob = await api("/git/blobs", { method: "POST", body: { content: f.content, encoding: f.encoding } });
+        tree.push({ path: f.path, mode: "100644", type: "blob", sha: blob.sha });
+      }
+      const newTree = await api("/git/trees", { method: "POST", body: { base_tree: baseCommit.tree.sha, tree } });
       const uploads = files.filter((f) => f.encoding === "base64").length;
-      await remote.commit(tree, `Actualiza contenido desde el admin${uploads ? ` (+${uploads} archivo${uploads > 1 ? "s" : ""})` : ""}`);
+      const commit = await api("/git/commits", {
+        method: "POST",
+        body: { message: `Actualiza contenido desde el admin${uploads ? ` (+${uploads} archivo${uploads > 1 ? "s" : ""})` : ""}`, tree: newTree.sha, parents: [baseSha] },
+      });
+      await api(`/git/refs/heads/${encodeURIComponent(gh.branch)}`, { method: "PATCH", body: { sha: commit.sha } });
       pending = {};
       dirty = false;
       toast("¡Publicado! Tu sitio se actualiza en 1–2 minutos.");
@@ -207,7 +187,7 @@
 
   // ---------- Subida de archivos ----------
   async function upload(file, f) {
-    if (!canPublish()) { toast("Inicia sesión para subir archivos. En modo local escribe la ruta a mano.", "warn"); return null; }
+    if (mode !== "github") { toast("Conecta tu GitHub para subir archivos. En modo local escribe la ruta a mano.", "warn"); return null; }
     let blob = file;
     let ext = (file.name.split(".").pop() || "bin").toLowerCase();
     if (f.type === "image" && !f.keepFormat && /^image\/(jpeg|png|webp)$/.test(file.type)) {
@@ -224,7 +204,6 @@
       } catch { /* si falla, se sube el original */ }
     }
     if (blob.size > 25 * 1024 * 1024) { toast("El archivo pesa más de 25 MB. Comprímelo antes de subirlo.", "error"); return null; }
-    if (mode === "server" && blob.size > 3.2 * 1024 * 1024) { toast("Con el acceso de Google cada archivo puede pesar hasta 3 MB. Comprímelo (PDF/video) o usa «Modo avanzado con token» para archivos grandes.", "error"); return null; }
     const path = `assets/uploads/${stamp()}-${slug(file.name.replace(/\.[^.]+$/, "")) || "archivo"}.${ext}`;
     const b64 = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(",")[1]); r.onerror = rej; r.readAsDataURL(blob); });
     pending[path] = { b64, url: URL.createObjectURL(blob) };
@@ -793,7 +772,7 @@
     const app = $("#app");
     const sec = SECTIONS.find((s) => s.id === section) || SECTIONS[0];
     const side = h("aside", { class: "side", id: "side" },
-      h("div", { class: "side-head" }, h("span", { class: "mono", html: MONO }), h("span", {}, h("b", {}, "Admin del portafolio"), h("small", {}, mode === "server" ? me.email : mode === "github" ? `${gh.owner}/${gh.repo} · ${gh.branch}` : "Modo local"))),
+      h("div", { class: "side-head" }, h("span", { class: "mono", html: MONO }), h("span", {}, h("b", {}, "Admin del portafolio"), h("small", {}, mode === "github" ? `${gh.owner}/${gh.repo} · ${gh.branch}` : "Modo local"))),
       h("nav", { class: "nav" }, SECTIONS.map((s) => h("button", {
         type: "button", "aria-current": s.id === section,
         onclick: () => { section = s.id; store.set("section", s.id); render(); },
@@ -801,8 +780,7 @@
       h("div", { class: "side-foot" },
         h("a", { class: "btn", href: "/", target: "_blank", rel: "noopener" }, "Ver sitio ↗"),
         h("button", { class: "btn", type: "button", onclick: downloadJSON }, "Descargar copia (JSON)"),
-        mode === "server" ? h("button", { class: "btn ghost", type: "button", title: "Para subir archivos de más de 3 MB", onclick: () => { if (!dirty || window.confirm?.("Tienes cambios sin publicar. ¿Continuar?")) { dirty = false; renderLogin(); } } }, "Modo avanzado (token)") : null,
-        h("button", { class: "btn ghost", type: "button", onclick: logout }, mode === "server" ? "Cerrar sesión" : mode === "github" ? "Desconectar" : "Conectar GitHub")));
+        h("button", { class: "btn ghost", type: "button", onclick: logout }, mode === "github" ? "Desconectar" : "Conectar GitHub")));
 
     const content = h("div", { class: "content" }, h("div", { class: "inner" },
       mode === "local" ? h("div", { class: "banner" }, "Modo local: puedes editar y descargar el JSON, pero para subir imágenes y publicar con un clic conecta tu GitHub.") : null,
@@ -812,7 +790,7 @@
         h("button", { class: "btn sm menu-btn", type: "button", onclick: () => $("#side").classList.toggle("open") }, "☰"),
         h("h2", {}, sec.name),
         h("span", { class: "pill", id: "state" }),
-        canPublish() ? h("button", { class: "btn primary", id: "save", type: "button", onclick: (e) => publish(e.currentTarget) }, "Guardar y publicar")
+        mode === "github" ? h("button", { class: "btn primary", id: "save", type: "button", onclick: (e) => publish(e.currentTarget) }, "Guardar y publicar")
           : h("button", { class: "btn primary", id: "save", type: "button", onclick: downloadJSON }, "Descargar data.json")),
       content);
     app.replaceChildren(h("div", { class: "shell" }, side, main));
@@ -825,17 +803,11 @@
     const n = Object.keys(pending).length;
     pill.className = "pill " + (dirty ? "dirty" : justSaved ? "ok" : "");
     pill.textContent = dirty ? `Cambios sin publicar${n ? ` · ${n} archivo${n > 1 ? "s" : ""} nuevo${n > 1 ? "s" : ""}` : ""}` : justSaved ? "Publicado ✓" : "Todo publicado";
-    if (btn && canPublish()) { btn.disabled = !dirty; if (!btn.querySelector(".spin")) btn.textContent = "Guardar y publicar"; }
+    if (btn && mode === "github") { btn.disabled = !dirty; if (!btn.querySelector(".spin")) btn.textContent = "Guardar y publicar"; }
   }
 
-  async function logout() {
+  function logout() {
     if (dirty && !window.confirm?.("Tienes cambios sin publicar. ¿Salir igual?")) return;
-    if (mode === "server") {
-      dirty = false;
-      try { await fetch("/api/auth-session", { method: "POST", credentials: "same-origin" }); } catch { /* */ }
-      location.replace("/login/");
-      return;
-    }
     creds.clear();
     gh = null; mode = null; D = null; pending = {}; dirty = false;
     renderLogin();
@@ -854,8 +826,8 @@
 
     const form = h("form", { class: "login-card" },
       h("div", { class: "logo", html: MONO }),
-      h("h1", {}, "Modo avanzado"),
-      h("p", {}, "Conecta con un token de GitHub. Úsalo solo para archivos grandes o si el acceso con Google no está configurado."),
+      h("h1", {}, "Admin del portafolio"),
+      h("p", {}, "Conecta tu repositorio de GitHub para editar y publicar."),
       h("div", { class: "two" }, h("div", {}, h("label", {}, "Usuario de GitHub"), owner), h("div", {}, h("label", {}, "Repositorio"), repo)),
       h("label", {}, "Rama"), branch,
       h("label", {}, "Token de acceso"), token,
@@ -915,20 +887,6 @@
 
   // ---------- Inicio ----------
   (async () => {
-    try {
-      const r = await fetch("/api/auth-session", { credentials: "same-origin", cache: "no-store" });
-      if (r.ok) {
-        const info = await r.json();
-        if (info.authenticated && info.serverPublish) {
-          me = info; mode = "server";
-          try { D = await loadFromServer(); render(); return; }
-          catch (e) { mode = null; toast(e.message, "error"); }
-        } else if (info.authenticated) {
-          me = info;
-          toast("Falta GITHUB_TOKEN en Vercel para publicar. Mientras, puedes usar el modo avanzado con token.", "warn");
-        }
-      }
-    } catch { /* sin servidor (local): sigue con el modo token */ }
     const saved = creds.get();
     if (saved && saved.token) {
       gh = saved;
