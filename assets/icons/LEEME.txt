@@ -1,0 +1,2 @@
+Pon aquí tus íconos propios (PNG 512x512 con fondo transparente o SVG).
+Luego activa cada uno en js/data.js (dockIcons o icon en cada elemento del escritorio).

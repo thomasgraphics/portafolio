@@ -1,0 +1,7 @@
+# Nunca subas contraseñas ni tokens al repositorio
+.env
+.env.*
+.vercel
+node_modules
+.DS_Store
+Thumbs.db

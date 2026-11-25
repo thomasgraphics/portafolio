@@ -1,0 +1,767 @@
+/* =========================================================================
+   Thomgraphics · Portafolio — lógica del escritorio
+   No necesitas tocar este archivo: el contenido vive en content/data.json
+   y se edita desde el panel /admin.
+   ========================================================================= */
+(async () => {
+  "use strict";
+  let D;
+  try {
+    const r = await fetch("content/data.json", { cache: "no-cache" });
+    if (!r.ok) throw new Error(r.status);
+    D = await r.json();
+  } catch (err) {
+    document.body.innerHTML = `<div style="font:15px/1.6 -apple-system,Inter,sans-serif;max-width:520px;margin:15vh auto;padding:24px;background:#fff;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,.15)">
+      <b>No se pudo cargar el contenido (content/data.json).</b><br>
+      Si abriste el archivo con doble clic, ábrelo con un servidor local (Live Server en VS Code o <code>npx serve .</code>).</div>`;
+    return;
+  }
+  D.links = D.links || {};
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+  // ---------- Almacenamiento seguro ----------
+  const mkStore = (kind) => ({
+    get(k, d) { try { const v = window[kind].getItem("tg:" + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { window[kind].setItem("tg:" + k, JSON.stringify(v)); } catch { /* sin almacenamiento */ } },
+  });
+  const store = mkStore("localStorage");
+  const sess = mkStore("sessionStorage");
+
+  // ---------- Idioma ----------
+  let lang = store.get("lang", D.defaultLang || "es");
+  const t = (v) => (v == null ? "" : typeof v === "object" && !Array.isArray(v) ? v[lang] ?? v.es ?? v.en ?? "" : v);
+  const UI = {
+    es: {
+      info: "Info", skip: "Saltar intro", now: "ahora", all: "Todo", cases: "Casos", photos: "Fotos", videos: "Videos",
+      items: (n) => `${n} ${n === 1 ? "elemento" : "elementos"}`, caseBadge: "Caso de estudio", video: "Video",
+      close: "Cerrar", min: "Minimizar", max: "Maximizar", download: "Descargar", openTab: "Abrir en pestaña nueva",
+      client: "Cliente", role: "Rol", year: "Año", tools: "Herramientas", prev: "← Anterior", next: "Siguiente →",
+      pdfMobile: "Toca el botón para ver el PDF.", desktop: "Escritorio", contact: "Contacto",
+      whatsapp: "WhatsApp", instagram: "Instagram", linkedin: "LinkedIn", behance: "Behance", email: "Correo",
+      favorites: "Favoritos", more: "Más", about: "Sobre mí",
+    },
+    en: {
+      info: "Info", skip: "Skip intro", now: "now", all: "All", cases: "Cases", photos: "Photos", videos: "Videos",
+      items: (n) => `${n} ${n === 1 ? "item" : "items"}`, caseBadge: "Case study", video: "Video",
+      close: "Close", min: "Minimize", max: "Zoom", download: "Download", openTab: "Open in new tab",
+      client: "Client", role: "Role", year: "Year", tools: "Tools", prev: "← Previous", next: "Next →",
+      pdfMobile: "Tap the button to view the PDF.", desktop: "Desktop", contact: "Contact",
+      whatsapp: "WhatsApp", instagram: "Instagram", linkedin: "LinkedIn", behance: "Behance", email: "Email",
+      favorites: "Favorites", more: "More", about: "About me",
+    },
+  };
+  const ui = (k, ...a) => { const v = UI[lang][k]; return typeof v === "function" ? v(...a) : v; };
+
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const isMobile = () => matchMedia("(max-width: 760px)").matches;
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // =========================================================================
+  // Íconos SVG (genéricos, dibujados a mano)
+  // =========================================================================
+  // Colores de carpeta: [frente claro, frente oscuro, fondo claro, fondo oscuro]
+  const FOLDER_COLORS = {
+    blue: ["#b4e0ff", "#62b3f7", "#5aa6ec", "#3f8fdc"],
+    pink: ["#ffd0e2", "#f294bb", "#e889b0", "#d46c98"],
+    purple: ["#ddd2ff", "#a690f2", "#9a85ea", "#7d66d6"],
+    green: ["#cdf0c2", "#7cc96a", "#72bd60", "#56a447"],
+    orange: ["#ffdcb0", "#f7a752", "#f19c45", "#da822c"],
+    teal: ["#c4ece4", "#78c8b8", "#6dbcac", "#52a394"],
+    gray: ["#ececec", "#bcbcbc", "#b0b0b0", "#949494"],
+  };
+  let gid = 0;
+  const uid = () => "g" + gid++;
+  const svgFolder = (c = "blue") => {
+    const [f1, f2, b1, b2] = FOLDER_COLORS[c] || FOLDER_COLORS.blue;
+    const gb = uid(), gf = uid();
+    return `<svg viewBox="0 0 100 84" aria-hidden="true"><defs>
+      <linearGradient id="${gb}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${b1}"/><stop offset="1" stop-color="${b2}"/></linearGradient>
+      <linearGradient id="${gf}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${f1}"/><stop offset="1" stop-color="${f2}"/></linearGradient></defs>
+      <path d="M4 12a7 7 0 0 1 7-7h23.5a6 6 0 0 1 4.6 2.2L44 13h45a7 7 0 0 1 7 7v54a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6z" fill="url(#${gb})"/>
+      <path d="M4 30a7 7 0 0 1 7-7h78a7 7 0 0 1 7 7v44a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6z" fill="url(#${gf})"/>
+      <path d="M11 23.7h78" stroke="#fff" stroke-opacity=".75" stroke-width="1.3"/>
+      <path d="M4.5 74a5.5 5.5 0 0 0 5.5 5.5h80a5.5 5.5 0 0 0 5.5-5.5" fill="none" stroke="#000" stroke-opacity=".12"/></svg>`;
+  };
+  const svgNote = () => {
+    const gy = uid(), gp = uid();
+    return `<svg viewBox="0 0 100 84" aria-hidden="true"><defs>
+      <linearGradient id="${gy}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe27a"/><stop offset="1" stop-color="#f5c02f"/></linearGradient>
+      <linearGradient id="${gp}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f3f1ea"/></linearGradient></defs>
+      <rect x="20" y="2" width="60" height="80" rx="9" fill="url(#${gp})"/>
+      <path d="M20 11a9 9 0 0 1 9-9h42a9 9 0 0 1 9 9v10H20z" fill="url(#${gy})"/>
+      <g fill="#c99a12" opacity=".55">${[30, 40, 50, 60, 70].map((x) => `<circle cx="${x}" cy="21" r="1.3"/>`).join("")}</g>
+      <g stroke="#dcd8cc" stroke-width="1.6" stroke-linecap="round"><line x1="29" y1="37" x2="71" y2="37"/><line x1="29" y1="47" x2="71" y2="47"/><line x1="29" y1="57" x2="71" y2="57"/><line x1="29" y1="67" x2="56" y2="67"/></g>
+      <rect x="20.5" y="2.5" width="59" height="79" rx="8.5" fill="none" stroke="#000" stroke-opacity=".08"/></svg>`;
+  };
+  const svgPdf = () => {
+    const gp = uid();
+    return `<svg viewBox="0 0 100 84" aria-hidden="true"><defs><linearGradient id="${gp}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#f1f1f1"/></linearGradient></defs>
+      <path d="M26 2h34l20 20v56a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4z" fill="url(#${gp})" stroke="#000" stroke-opacity=".08"/>
+      <path d="M60 2v16a4 4 0 0 0 4 4h16z" fill="#dedede"/>
+      <circle cx="36" cy="18" r="6" fill="#d3b17a"/><g stroke="#cfcfcf" stroke-width="2" stroke-linecap="round"><line x1="46" y1="15" x2="54" y2="15"/><line x1="46" y1="21" x2="52" y2="21"/><line x1="31" y1="34" x2="71" y2="34"/><line x1="31" y1="41" x2="71" y2="41"/><line x1="31" y1="48" x2="64" y2="48"/><line x1="31" y1="55" x2="68" y2="55"/></g>
+      <rect x="30" y="63" width="26" height="12" rx="3" fill="#e5484d"/><text x="43" y="72" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff" font-family="-apple-system,Inter,Arial">PDF</text></svg>`;
+  };
+
+  // Íconos del dock: forma "squircle" con degradado y brillo, estilo macOS (dibujos originales)
+  const SQ = "M50 2C85 2 98 15 98 50S85 98 50 98 2 85 2 50 15 2 50 2Z";
+  const dockTile = (c1, c2, glyph) => {
+    const g = uid(), h = uid();
+    return `<svg viewBox="0 0 100 100" aria-hidden="true"><defs>
+      <linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient>
+      <linearGradient id="${h}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+      <path d="${SQ}" fill="url(#${g})"/><path d="${SQ}" fill="url(#${h})"/>${glyph}
+      <path d="${SQ}" fill="none" stroke="#000" stroke-opacity=".1"/></svg>`;
+  };
+  const DOCK_ICONS = {
+    whatsapp: () => dockTile("#86f3a0", "#1fb64c", `<ellipse cx="60" cy="38" rx="21" ry="16" fill="#fff" opacity=".5"/>
+      <path d="M42 33c-15 0-26 9.4-26 21 0 6.2 3.2 11.7 8.3 15.5L21.5 79l11.2-5.2c2.9.9 6 1.3 9.3 1.3 15 0 26-9.4 26-21S57 33 42 33z" fill="#fff"/>
+      <g fill="#2fc45c"><circle cx="31" cy="54" r="3.6"/><circle cx="42" cy="54" r="3.6"/><circle cx="53" cy="54" r="3.6"/></g>`),
+    instagram: () => dockTile("#ffb067", "#f2466f", `<rect x="21" y="33" width="58" height="42" rx="11" fill="#fff"/><rect x="38" y="25" width="22" height="12" rx="4" fill="#fff"/>
+      <circle cx="50" cy="54" r="14" fill="#f5677a"/><circle cx="50" cy="54" r="9" fill="#fff" opacity=".35"/><circle cx="68" cy="42" r="3" fill="#f5677a"/>`),
+    linkedin: () => dockTile("#6db6ff", "#1462d4", `<path d="M40 34v-5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v5" fill="none" stroke="#fff" stroke-width="5"/>
+      <rect x="19" y="33" width="62" height="42" rx="8" fill="#fff"/><rect x="19" y="49" width="62" height="5" fill="#cfe3ff"/><rect x="45" y="46" width="10" height="11" rx="2" fill="#1f6fde"/>`),
+    behance: () => dockTile("#5a5a5f", "#1c1c1e", `<g fill="#fff"><rect x="24" y="24" width="23" height="23" rx="5"/><rect x="53" y="24" width="23" height="23" rx="5" opacity=".8"/><rect x="24" y="53" width="23" height="23" rx="5" opacity=".8"/><rect x="53" y="53" width="23" height="23" rx="5" opacity=".5"/></g>`),
+    email: () => dockTile("#7fd0ff", "#1878ee", `<rect x="18" y="29" width="64" height="44" rx="7" fill="#fff"/><path d="M21 33l29 22 29-22" fill="none" stroke="#9cc8f5" stroke-width="4" stroke-linejoin="round"/>`),
+  };
+  const WIFI_SVG = `<svg viewBox="0 0 20 14" width="17" height="12" fill="currentColor" aria-hidden="true"><path d="M10 13.2l2.4-2.8a3.4 3.4 0 0 0-4.8 0z"/><path d="M5.3 8.2l1.3 1.4a4.8 4.8 0 0 1 6.8 0l1.3-1.4a6.7 6.7 0 0 0-9.4 0z"/><path d="M2.6 5.3 3.9 6.7a8.6 8.6 0 0 1 12.2 0l1.3-1.4a10.5 10.5 0 0 0-14.8 0z"/><path d="M0 2.4l1.3 1.4a12.3 12.3 0 0 1 17.4 0L20 2.4A14.2 14.2 0 0 0 0 2.4z"/></svg>`;
+  const BATT_SVG = `<svg viewBox="0 0 27 12" width="25" height="12" aria-hidden="true"><rect x=".5" y=".5" width="23" height="11" rx="3" fill="none" stroke="currentColor" stroke-opacity=".55"/><rect x="2" y="2" width="17" height="8" rx="1.6" fill="currentColor"/><path d="M25 4v4a2 2 0 0 0 0-4z" fill="currentColor" fill-opacity=".55"/></svg>`;
+  const MONO_SVG = `<svg viewBox="0 0 64 64" width="15" height="15" aria-hidden="true"><path d="M14 16h36v9H36.5v25h-9V25H14z" fill="currentColor"/><circle cx="48" cy="46" r="5" fill="currentColor"/></svg>`;
+  const SB_FOLDER = `<svg viewBox="0 0 20 16" aria-hidden="true"><path d="M1.5 3.2c0-.9.7-1.7 1.7-1.7h4.2c.4 0 .8.2 1.1.5l1.2 1.3h7.1c.9 0 1.7.7 1.7 1.7v8.3c0 .9-.7 1.7-1.7 1.7H3.2c-.9 0-1.7-.7-1.7-1.7z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 6h17" stroke="currentColor" stroke-width="1.2"/></svg>`;
+  const SB_DOC = `<svg viewBox="0 0 20 16" aria-hidden="true"><path d="M5 1.5h6.5l3.5 3.5v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-11.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 8h6M7 11h4" stroke="currentColor" stroke-width="1.2"/></svg>`;
+  const X_SVG = `<svg viewBox="0 0 10 10"><path d="M2.5 2.5l5 5M7.5 2.5l-5 5"/></svg>`;
+  const MIN_SVG = `<svg viewBox="0 0 10 10"><path d="M2 5h6"/></svg>`;
+  const MAX_SVG = `<svg viewBox="0 0 10 10"><path d="M3 7V3h4M7 3v4H3" /></svg>`;
+
+  // =========================================================================
+  // Barra de menú y reloj
+  // =========================================================================
+  const menubar = $("#menubar");
+  function renderMenubar() {
+    menubar.innerHTML = `
+      <button class="mb-item mb-logo" data-open="about" aria-label="${esc(D.brand)}">${MONO_SVG}</button>
+      <button class="mb-item mb-brand" data-open="about">${esc(D.brand)}</button>
+      <span class="mb-item mb-app mb-hide-sm" id="mb-app"></span>
+      <button class="mb-item mb-hide-sm" data-open="about">${ui("info")}</button>
+      ${D.links.instagram ? `<a class="mb-item mb-hide-sm" href="${esc(D.links.instagram)}" target="_blank" rel="noopener">Instagram</a>` : ""}
+      <span class="mb-spacer"></span>
+      <span class="mb-lang">
+        <button data-lang="es" aria-pressed="${lang === "es"}"><span class="long">Español</span><span class="short">ES</span></button>/
+        <button data-lang="en" aria-pressed="${lang === "en"}"><span class="long">English</span><span class="short">EN</span></button>
+      </span>
+      <span class="mb-status" aria-hidden="true">${BATT_SVG}${WIFI_SVG}</span>
+      <span class="mb-clock" id="clock"></span>`;
+    updateAppName();
+    tick();
+  }
+  menubar.addEventListener("click", (e) => {
+    const o = e.target.closest("[data-open]");
+    if (o) openItem(o.dataset.open, o);
+    const l = e.target.closest("[data-lang]");
+    if (l) setLang(l.dataset.lang);
+  });
+  function tick() {
+    const el = $("#clock");
+    if (!el) return;
+    const d = new Date();
+    const loc = lang === "es" ? "es-CO" : "en-US";
+    const clean = (s) => s.replace(/\./g, "").replace(",", "");
+    const wd = clean(d.toLocaleDateString(loc, { weekday: "short" }));
+    const mon = clean(d.toLocaleDateString(loc, { month: "short" }));
+    const time = d.toLocaleTimeString(loc, { hour: "2-digit", minute: "2-digit", hour12: false });
+    el.textContent = isMobile() ? time : lang === "es" ? `${wd} ${d.getDate()} ${mon} ${time}` : `${wd} ${mon} ${d.getDate()} ${time}`;
+  }
+  setInterval(tick, 15000);
+
+  // =========================================================================
+  // Íconos del escritorio (arrastrables)
+  // =========================================================================
+  const iconsEl = $("#icons");
+  const positions = store.get("positions", {});
+  const itemById = (id) => D.desktop.find((d) => d.id === id);
+
+  function iconArt(item) {
+    if (item.icon) return `<img class="icon-img" src="${esc(item.icon)}" alt="" draggable="false">`;
+    switch (item.type) {
+      case "folder": return svgFolder(item.color);
+      case "note": return svgNote();
+      case "pdf": return svgPdf();
+      case "photo": return `<span class="thumb-photo"><img src="${esc(item.src)}" alt="" loading="lazy" draggable="false"></span>`;
+      case "video": return `<span class="thumb-video">${item.poster ? `<img src="${esc(item.poster)}" alt="" draggable="false">` : ""}</span>`;
+      default: return svgNote();
+    }
+  }
+  function renderIcons() {
+    iconsEl.innerHTML = D.desktop.map((item, i) => {
+      const p = positions[item.id] || item;
+      return `<button class="icon" data-id="${esc(item.id)}" style="--x:${p.x};--y:${p.y};--i:${i}">
+        <span class="icon-art">${iconArt(item)}</span><span class="icon-label">${esc(t(item.label))}</span></button>`;
+    }).join("");
+  }
+  function relabelIcons() {
+    $$(".icon", iconsEl).forEach((el) => { $(".icon-label", el).textContent = t(itemById(el.dataset.id).label); });
+  }
+  const select = (el) => { $$(".icon.selected").forEach((i) => i !== el && i.classList.remove("selected")); el && el.classList.add("selected"); };
+
+  let drag = null, lastTap = { id: null, time: 0 }, pointerType = "mouse";
+  iconsEl.addEventListener("pointerdown", (e) => {
+    const el = e.target.closest(".icon");
+    if (!el) return;
+    pointerType = e.pointerType;
+    select(el);
+    if (isMobile() || e.button !== 0) return;
+    const rect = $("#desktop").getBoundingClientRect();
+    drag = { el, id: el.dataset.id, sx: e.clientX, sy: e.clientY, ox: parseFloat(el.style.getPropertyValue("--x")), oy: parseFloat(el.style.getPropertyValue("--y")), w: rect.width, h: rect.height, moved: false };
+    el.setPointerCapture(e.pointerId);
+  });
+  iconsEl.addEventListener("pointermove", (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+    if (!drag.moved && Math.hypot(dx, dy) < 5) return;
+    drag.moved = true;
+    drag.el.classList.add("dragging");
+    const x = Math.min(96, Math.max(4, drag.ox + (dx / drag.w) * 100));
+    const y = Math.min(90, Math.max(5, drag.oy + (dy / drag.h) * 100));
+    drag.el.style.setProperty("--x", x.toFixed(2));
+    drag.el.style.setProperty("--y", y.toFixed(2));
+  });
+  const endDrag = () => {
+    if (!drag) return;
+    if (drag.moved) {
+      drag.el.classList.remove("dragging");
+      positions[drag.id] = { x: +drag.el.style.getPropertyValue("--x"), y: +drag.el.style.getPropertyValue("--y") };
+      store.set("positions", positions);
+      const moved = drag.el;
+      moved.dataset.justDragged = "1";
+      setTimeout(() => delete moved.dataset.justDragged, 60);
+    }
+    drag = null;
+  };
+  iconsEl.addEventListener("pointerup", endDrag);
+  iconsEl.addEventListener("pointercancel", endDrag);
+  iconsEl.addEventListener("click", (e) => {
+    const el = e.target.closest(".icon");
+    if (!el || el.dataset.justDragged) { if (el) delete el.dataset.justDragged; return; }
+    const now = Date.now();
+    const isDouble = lastTap.id === el.dataset.id && now - lastTap.time < 450;
+    lastTap = { id: el.dataset.id, time: now };
+    // Móvil / táctil: un toque abre. Mouse: doble clic abre (como en un computador).
+    if (isMobile() || pointerType === "touch" || isDouble || e.detail === 0) { openItem(el.dataset.id, el); lastTap.id = null; }
+  });
+  $("#desktop").addEventListener("pointerdown", (e) => { if (!e.target.closest(".icon")) select(null); });
+
+  // =========================================================================
+  // Ventanas
+  // =========================================================================
+  const layer = $("#windows");
+  const notif = $("#notification");
+  const wins = new Map();
+  let zTop = 100;
+
+  function openWindow(key, opts) {
+    if (wins.has(key)) {
+      const w = wins.get(key);
+      Object.assign(w, opts);
+      paint(w);
+      focusWin(key);
+      return w;
+    }
+    const el = document.createElement("section");
+    el.className = "win " + (opts.cls || "");
+    el.setAttribute("role", "dialog");
+    el.innerHTML = `
+      <div class="win-bar">
+        <div class="traffic">
+          <button class="t-close" data-act="close"><span>${X_SVG}</span></button>
+          <button class="t-min" data-act="close"><span>${MIN_SVG}</span></button>
+          <button class="t-max" data-act="max"><span>${MAX_SVG}</span></button>
+        </div>
+        <div class="win-title"></div>
+        <div class="win-actions"></div>
+      </div>
+      <div class="win-body"></div>`;
+
+    const vw = layer.clientWidth, vh = layer.clientHeight;
+    const width = Math.min(opts.w || 860, vw - 40);
+    const height = Math.min(opts.h || 600, vh - 150);
+    const n = wins.size % 6;
+    const left = Math.max(20, (vw - width) / 2 + n * 26 - 13 * Math.min(wins.size, 5));
+    const top = Math.max(14, Math.min((vh - 100 - height) / 2 + n * 22, vh - 96 - height));
+    Object.assign(el.style, { width: width + "px", height: height + "px", left: left + "px", top: top + "px" });
+
+    // La ventana "crece" desde el ícono que la abrió
+    if (opts.origin && opts.origin.getBoundingClientRect) {
+      const r = opts.origin.getBoundingClientRect(), lr = layer.getBoundingClientRect();
+      el.style.setProperty("--ox", r.left + r.width / 2 - lr.left - left + "px");
+      el.style.setProperty("--oy", r.top + r.height / 2 - lr.top - top + "px");
+    }
+
+    const w = { key, el, ...opts };
+    wins.set(key, w);
+    layer.appendChild(el);
+    paint(w);
+    bindWindow(w);
+    focusWin(key);
+    document.body.classList.add("has-window");
+    if (!notif.hidden) dismissNotif();
+    updateDock();
+    return w;
+  }
+
+  function paint(w) {
+    const title = typeof w.title === "function" ? w.title() : t(w.title);
+    $(".win-title", w.el).textContent = title;
+    w.el.setAttribute("aria-label", title);
+    $(".t-close", w.el).setAttribute("aria-label", ui("close"));
+    $(".t-min", w.el).setAttribute("aria-label", ui("min"));
+    $(".t-max", w.el).setAttribute("aria-label", ui("max"));
+    $(".win-actions", w.el).innerHTML = w.actions ? w.actions() : "";
+    const body = $(".win-body", w.el);
+    w.render(body, w);
+    if (w.resetScroll) { body.scrollTop = 0; w.resetScroll = false; }
+  }
+
+  function focusWin(key) {
+    const w = wins.get(key);
+    if (!w) return;
+    w.el.style.zIndex = ++zTop;
+    wins.forEach((o) => o.el.classList.toggle("inactive", o !== w));
+    updateAppName();
+    setHash(w.hash || "");
+  }
+  function topWin() {
+    let best = null;
+    wins.forEach((w) => { if (!best || +w.el.style.zIndex > +best.el.style.zIndex) best = w; });
+    return best;
+  }
+  function closeWin(key) {
+    const w = wins.get(key);
+    if (!w) return;
+    wins.delete(key);
+    $$("video", w.el).forEach((v) => v.pause());
+    w.el.classList.add("closing");
+    const rm = () => w.el.remove();
+    w.el.addEventListener("animationend", rm, { once: true });
+    setTimeout(rm, 400);
+    const next = topWin();
+    if (next) focusWin(next.key);
+    else { document.body.classList.remove("has-window"); updateAppName(); setHash(""); }
+    updateDock();
+  }
+
+  function bindWindow(w) {
+    const el = w.el, bar = $(".win-bar", el);
+    el.addEventListener("pointerdown", () => focusWin(w.key));
+    bar.addEventListener("click", (e) => {
+      const a = e.target.closest("[data-act]");
+      if (!a) return;
+      if (a.dataset.act === "close") closeWin(w.key);
+      if (a.dataset.act === "max") el.classList.toggle("maximized");
+    });
+    bar.addEventListener("dblclick", (e) => { if (!e.target.closest("button,a")) el.classList.toggle("maximized"); });
+    let d = null;
+    bar.addEventListener("pointerdown", (e) => {
+      if (isMobile() || e.target.closest("button,a") || el.classList.contains("maximized")) return;
+      d = { sx: e.clientX, sy: e.clientY, l: el.offsetLeft, t: el.offsetTop };
+      bar.setPointerCapture(e.pointerId);
+    });
+    bar.addEventListener("pointermove", (e) => {
+      if (!d) return;
+      const maxL = layer.clientWidth - 80, maxT = layer.clientHeight - 60;
+      el.style.left = Math.min(maxL, Math.max(80 - el.offsetWidth, d.l + e.clientX - d.sx)) + "px";
+      el.style.top = Math.min(maxT, Math.max(0, d.t + e.clientY - d.sy)) + "px";
+    });
+    const stop = () => (d = null);
+    bar.addEventListener("pointerup", stop);
+    bar.addEventListener("pointercancel", stop);
+  }
+
+  function updateAppName() {
+    const el = $("#mb-app");
+    if (!el) return;
+    const w = topWin();
+    el.textContent = w ? (typeof w.title === "function" ? w.title() : t(w.title)) : "";
+  }
+
+  // ---------- URL compartible (#/ux, #/case/hunter-track, #/about) ----------
+  let routing = false;
+  function setHash(h) {
+    if (routing) return;
+    const target = h ? "#/" + h : " ";
+    if (location.hash.replace(/^#\/?/, "") === h) return;
+    try { history.replaceState(null, "", h ? target : location.pathname + location.search); } catch { /* file:// */ }
+  }
+  function openFromHash() {
+    const h = decodeURIComponent(location.hash.replace(/^#\/?/, ""));
+    if (!h) return false;
+    routing = true;
+    const [kind, id] = h.split("/");
+    if (kind === "case" && D.cases[id]) openCase(id);
+    else if (itemById(kind)) openItem(kind);
+    else if (D.folders[kind]) openFolder(kind);
+    routing = false;
+    const top = topWin();
+    if (top) setHash(top.hash);
+    return !!top;
+  }
+
+  // =========================================================================
+  // Tipos de ventana
+  // =========================================================================
+  function openItem(id, origin) {
+    const item = itemById(id);
+    if (!item) { if (D.folders[id]) openFolder(id, origin); return; }
+    const label = item.label;
+    switch (item.type) {
+      case "folder": return openFolder(id, origin);
+      case "note": return openAbout(origin);
+      case "pdf": return openPdf(item, origin);
+      case "photo": return openImage(item.src, label, origin, id);
+      case "video": return openVideo(item.src, label, item.poster, origin, id);
+      case "link": return window.open(item.href, "_blank", "noopener");
+    }
+  }
+
+  function openFolder(id, origin) {
+    if (!D.folders[id]) return;
+    const startKey = "folder:" + id;
+    if (wins.has(startKey)) return focusWin(startKey);
+    const state = { id, filter: "all" };
+    const kindOf = (it) => (it.type === "case" ? "case" : it.type === "video" ? "video" : "image");
+    const folderIds = D.desktop.filter((d) => d.type === "folder" && D.folders[d.id]).map((d) => d.id);
+    openWindow(startKey, {
+      state, origin, w: 1000, h: 650, hash: id, cls: "finder",
+      title: () => t(D.folders[state.id].title),
+      render(body, w) {
+        const f = D.folders[state.id];
+        const kinds = [...new Set(f.items.map(kindOf))];
+        const list = f.items.filter((it) => state.filter === "all" || kindOf(it) === state.filter);
+        const labels = { case: ui("cases"), image: ui("photos"), video: ui("videos") };
+        const extras = D.desktop.filter((d) => d.type === "note" || d.type === "pdf");
+        body.innerHTML = `
+          <aside class="sidebar">
+            <div class="sb-h">${ui("favorites")}</div>
+            ${folderIds.map((fid) => `<button class="sb-item" data-folder="${esc(fid)}" aria-current="${fid === state.id}">${SB_FOLDER}<span>${esc(t(D.folders[fid].title))}</span></button>`).join("")}
+            <div class="sb-h">${ui("more")}</div>
+            ${extras.map((x) => `<button class="sb-item" data-open="${esc(x.id)}">${SB_DOC}<span>${esc(t(x.label))}</span></button>`).join("")}
+          </aside>
+          <div class="main">
+            <div class="folder-head">
+              <h1>${esc(t(f.title))}</h1>
+              <p>${esc(t(f.intro))}</p>
+              <div class="filters">
+                ${kinds.length > 1 ? `<div class="seg" role="group">${["all", ...kinds].map((k) => `<button data-filter="${k}" aria-pressed="${state.filter === k}">${k === "all" ? ui("all") : labels[k]}</button>`).join("")}</div>` : ""}
+                <span class="count">${ui("items", list.length)}</span>
+              </div>
+            </div>
+            <div class="grid">${list.map((it, i) => tile(it, i)).join("")}</div>
+          </div>`;
+        body.onclick = (e) => {
+          const nav = e.target.closest("[data-folder]");
+          if (nav) {
+            const fid = nav.dataset.folder, nk = "folder:" + fid;
+            if (fid === state.id) return;
+            if (wins.has(nk)) { focusWin(nk); return; }
+            wins.delete(w.key); w.key = nk; wins.set(nk, w);
+            state.id = fid; state.filter = "all"; w.hash = fid;
+            paint(w); focusWin(nk); updateDock();
+            return;
+          }
+          const ex = e.target.closest("[data-open]");
+          if (ex) { openItem(ex.dataset.open, ex); return; }
+          const fb = e.target.closest("[data-filter]");
+          if (fb) { state.filter = fb.dataset.filter; w.render(body, w); return; }
+          const tEl = e.target.closest(".tile");
+          if (!tEl) return;
+          const it = list[+tEl.dataset.idx];
+          if (it.type === "case") openCase(it.case, tEl, f.items.filter((x) => x.type === "case").map((x) => x.case));
+          else if (it.type === "video") openVideo(it.src, it.title, it.poster, tEl);
+          else openImage(it.src, it.title, tEl);
+        };
+      },
+    });
+  }
+
+  function tile(it, i) {
+    if (it.type === "case") {
+      const c = D.cases[it.case];
+      if (!c) return "";
+      return `<button class="tile is-case" data-idx="${i}" style="--i:${i}">
+        <img src="${esc(c.cover)}" alt="${esc(c.title)}" loading="lazy" draggable="false">
+        <span class="badge">${ui("caseBadge")}</span>
+        <span class="cap"><strong>${esc(c.title)}</strong><span>${esc(t(c.subtitle))}</span></span></button>`;
+    }
+    const src = it.type === "video" ? it.poster : it.src;
+    return `<button class="tile" data-idx="${i}" style="--i:${i}">
+      <img src="${esc(src)}" alt="${esc(t(it.title))}" loading="lazy" draggable="false">
+      ${it.type === "video" ? `<span class="badge">${ui("video")}</span>` : ""}</button>`;
+  }
+
+  function openCase(id, origin, list) {
+    const order = list && list.length ? list : Object.keys(D.cases);
+    const existing = wins.get("case");
+    const state = existing ? existing.state : { id, order };
+    state.id = id; state.order = order;
+    openWindow("case", {
+      state, origin, w: 900, h: 700, resetScroll: true,
+      get hash() { return "case/" + state.id; },
+      title: () => D.cases[state.id].title,
+      render(body) {
+        const c = D.cases[state.id];
+        const m = c.meta || {};
+        const idx = state.order.indexOf(state.id);
+        const prev = state.order[(idx - 1 + state.order.length) % state.order.length];
+        const next = state.order[(idx + 1) % state.order.length];
+        body.innerHTML = `
+          <article class="case">
+            <img class="case-cover" src="${esc(c.cover)}" alt="${esc(c.title)}">
+            <div class="case-inner">
+              <div class="case-tags">${(c.tags || []).map((g) => `<span class="chip">${esc(t(g))}</span>`).join("")}</div>
+              <h1>${esc(c.title)}</h1>
+              <p class="sub">${esc(t(c.subtitle))}</p>
+              <dl class="case-meta">
+                ${["client", "role", "year", "tools"].filter((k) => m[k]).map((k) => `<div><dt>${ui(k)}</dt><dd>${esc(t(m[k]))}</dd></div>`).join("")}
+              </dl>
+              ${(c.sections || []).map((s) => `
+                <section>
+                  ${s.h ? `<h2>${esc(t(s.h))}</h2>` : ""}
+                  ${s.p ? `<p>${esc(t(s.p))}</p>` : ""}
+                  ${s.img ? `<img src="${esc(s.img)}" alt="${esc(t(s.h))}" loading="lazy" data-zoom>` : ""}
+                </section>`).join("")}
+              ${state.order.length > 1 ? `<nav class="case-nav">
+                <button data-go="${esc(prev)}">${ui("prev")} ${esc(D.cases[prev].title)}</button>
+                <button data-go="${esc(next)}">${esc(D.cases[next].title)} ${ui("next")}</button></nav>` : ""}
+            </div>
+          </article>`;
+        body.onclick = (e) => {
+          const go = e.target.closest("[data-go]");
+          if (go) { openCase(go.dataset.go, null, state.order); return; }
+          const z = e.target.closest("[data-zoom]");
+          if (z) openImage(z.getAttribute("src"), z.alt, z);
+        };
+      },
+    });
+  }
+
+  function openAbout(origin) {
+    const a = D.about;
+    openWindow("about", {
+      title: { es: "Sobre mí", en: "About me" }, origin, w: 580, h: 560, hash: "about",
+      render(body) {
+        body.innerHTML = `<div class="note">
+          <div class="date">${esc(t(a.date))}</div>
+          ${(Array.isArray(a.paragraphs) ? a.paragraphs.map(t) : t(a.paragraphs) || []).map((p) => `<p>${esc(p)}</p>`).join("")}
+          <div class="skills">${(a.skills || []).map((s) => `<span class="chip">${esc(s)}</span>`).join("")}</div></div>`;
+      },
+    });
+  }
+
+  function openPdf(item, origin) {
+    openWindow("pdf:" + item.id, {
+      title: item.label, origin, w: 780, h: 760, hash: item.id,
+      actions: () => `<a href="${esc(item.src)}" download>${ui("download")}</a>`,
+      render(body) {
+        body.style.overflow = "hidden";
+        body.innerHTML = isMobile()
+          ? `<div class="pdf-fallback">${ui("pdfMobile")}<br><a class="btn" href="${esc(item.src)}" target="_blank" rel="noopener">${ui("openTab")}</a></div>`
+          : `<iframe class="pdf-frame" src="${esc(item.src)}#view=FitH" title="${esc(t(item.label))}"></iframe>`;
+      },
+    });
+  }
+
+  function fitSize(nw, nh, maxW = Math.min(900, layer.clientWidth - 40), maxH = Math.min(760, layer.clientHeight - 150)) {
+    const s = Math.min(maxW / nw, (maxH - 38) / nh, 1.2);
+    return { w: Math.round(nw * s), h: Math.round(nh * s) + 38 };
+  }
+  function openImage(src, title, origin, hashId) {
+    const key = "img:" + src;
+    if (wins.has(key)) return focusWin(key);
+    const img = new Image();
+    const go = () => {
+      const { w, h } = img.naturalWidth ? fitSize(img.naturalWidth, img.naturalHeight) : { w: 720, h: 560 };
+      openWindow(key, {
+        title: title || src.split("/").pop(), origin, w, h, hash: hashId || "",
+        render(body) { body.innerHTML = `<div class="viewer"><img src="${esc(src)}" alt="${esc(t(title))}" draggable="false"></div>`; },
+      });
+    };
+    img.onload = go; img.onerror = go; img.src = src;
+  }
+  function openVideo(src, title, poster, origin, hashId) {
+    openWindow("vid:" + src, {
+      title, origin, w: 880, h: 533, hash: hashId || "",
+      render(body) {
+        if ($("video", body)) return; // no reiniciar el video al cambiar idioma
+        body.innerHTML = `<div class="viewer"><video src="${esc(src)}" ${poster ? `poster="${esc(poster)}"` : ""} controls autoplay playsinline></video></div>`;
+      },
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { const w = topWin(); if (w) closeWin(w.key); }
+    if (e.key === "Enter" && e.target.classList?.contains("icon")) { e.preventDefault(); openItem(e.target.dataset.id, e.target); }
+  });
+
+  // =========================================================================
+  // Notificación, nota adhesiva y dock
+  // =========================================================================
+  function renderNotification() {
+    const n = D.notification;
+    if (!n) return;
+    notif.innerHTML = `
+      <button class="n-close" aria-label="${ui("close")}">✕</button>
+      <div class="n-head"><span class="n-app-icon"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.9 2 11.7c0 2.6 1.3 4.9 3.4 6.5L4.6 21.5l3.8-1.9c1.1.3 2.3.5 3.6.5 5.5 0 10-3.9 10-8.7S17.5 3 12 3z"/></svg></span>
+        <span>${esc(t(n.app))}</span><span class="n-time">${ui("now")}</span></div>
+      <div class="n-title">${esc(t(n.title))}</div>
+      <div class="n-body">${esc(t(n.body))}</div>`;
+  }
+  const dismissNotif = () => { notif.classList.remove("show"); setTimeout(() => (notif.hidden = true), 500); };
+  notif.addEventListener("click", (e) => {
+    if (e.target.closest(".n-close")) { e.stopPropagation(); dismissNotif(); return; }
+    if (D.notification.opens) openItem(D.notification.opens, notif);
+    dismissNotif();
+  });
+  notif.addEventListener("keydown", (e) => { if (e.key === "Enter") notif.click(); });
+
+  const sticky = $("#sticky");
+  let typing = null;
+  function renderSticky(animate) {
+    const s = D.sticky;
+    if (!s) { sticky.remove(); return; }
+    clearInterval(typing);
+    const full = t(s.text);
+    sticky.innerHTML = `<h2>${esc(t(s.title))}</h2><p><span class="txt"></span><span class="caret"></span></p>`;
+    const out = $(".txt", sticky);
+    if (!animate || reducedMotion) { out.textContent = full; return; }
+    let i = 0;
+    typing = setInterval(() => { out.textContent = full.slice(0, ++i); if (i >= full.length) clearInterval(typing); }, 55);
+  }
+  // La nota también se puede mover
+  (() => {
+    let d = null;
+    sticky.addEventListener("pointerdown", (e) => {
+      if (isMobile()) return;
+      d = { sx: e.clientX, sy: e.clientY, l: sticky.offsetLeft, t: sticky.offsetTop };
+      sticky.setPointerCapture(e.pointerId);
+    });
+    sticky.addEventListener("pointermove", (e) => {
+      if (!d) return;
+      sticky.style.left = d.l + e.clientX - d.sx + "px";
+      sticky.style.top = d.t + e.clientY - d.sy + "px";
+    });
+    sticky.addEventListener("pointerup", () => (d = null));
+  })();
+
+  const dock = $("#dock");
+  function renderDock() {
+    dock.setAttribute("aria-label", ui("contact"));
+    const links = ["whatsapp", "instagram", "linkedin", "behance", "email"].filter((k) => D.links[k]).map((k) => {
+      const href = D.links[k], ext = /^https?:/.test(href);
+      const custom = D.dockIcons && D.dockIcons[k];
+      return `<a class="dk${custom ? " custom" : ""}" href="${esc(href)}" ${ext ? 'target="_blank" rel="noopener"' : ""} aria-label="${ui(k)}">
+        ${custom ? `<img src="${esc(custom)}" alt="" draggable="false">` : DOCK_ICONS[k]()}<span class="tip">${ui(k)}</span></a>`;
+    });
+    const docs = D.desktop.filter((d) => d.type === "note" || d.type === "pdf").map((d) =>
+      `<button class="dk doc" data-open="${esc(d.id)}" data-win="${d.type === "note" ? "about" : "pdf:" + esc(d.id)}" aria-label="${esc(t(d.label))}">
+        ${d.type === "note" ? svgNote() : svgPdf()}<span class="tip">${esc(t(d.label))}</span><span class="dot"></span></button>`);
+    dock.innerHTML = links.join("") + (docs.length ? `<span class="sep" aria-hidden="true"></span>` + docs.join("") : "");
+    updateDock();
+  }
+  function updateDock() {
+    $$("[data-win]", dock).forEach((b) => b.classList.toggle("open", wins.has(b.dataset.win)));
+  }
+  dock.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-open]");
+    if (b) openItem(b.dataset.open, b);
+  });
+  // Magnificación del dock al pasar el mouse (como en macOS)
+  dock.addEventListener("mousemove", (e) => {
+    if (isMobile() || reducedMotion) return;
+    $$(".dk", dock).forEach((el) => {
+      const r = el.getBoundingClientRect();
+      const d = Math.abs(e.clientX - (r.left + r.width / 2));
+      const k = Math.max(0, 1 - d / 120);
+      el.style.setProperty("--mag", (1 + 0.5 * k * k).toFixed(3));
+    });
+  });
+  dock.addEventListener("mouseleave", () => $$(".dk", dock).forEach((el) => el.style.setProperty("--mag", 1)));
+
+  // =========================================================================
+  // Cambio de idioma
+  // =========================================================================
+  function setLang(l) {
+    if (l === lang || !UI[l]) return;
+    lang = l;
+    store.set("lang", l);
+    document.documentElement.lang = l;
+    renderMenubar();
+    relabelIcons();
+    renderNotification();
+    renderSticky(false);
+    renderDock();
+    const skip = $("#skip-intro");
+    if (skip) skip.textContent = ui("skip");
+    wins.forEach((w) => paint(w));
+  }
+
+  // =========================================================================
+  // Intro y arranque
+  // =========================================================================
+  function boot() {
+    document.body.classList.add("booted");
+    renderIcons();
+    const opened = openFromHash();
+    setTimeout(() => renderSticky(true), 700);
+    if (D.notification && !opened) {
+      setTimeout(() => { notif.hidden = false; requestAnimationFrame(() => notif.classList.add("show")); }, 1100);
+    }
+  }
+
+  function runIntro() {
+    const intro = $("#intro");
+    const stack = $("#intro-stack");
+    const skipBtn = $("#skip-intro");
+    skipBtn.textContent = ui("skip");
+    intro.style.backgroundImage = `url("${D.wallpaper}")`;
+    let finished = false;
+    const timers = [];
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      timers.forEach(clearTimeout);
+      sess.set("introSeen", true);
+      intro.classList.add("done");
+      setTimeout(() => intro.remove(), 800);
+      boot();
+    };
+    skipBtn.addEventListener("click", finish);
+
+    const photos = D.intro || [];
+    if (!photos.length || sess.get("introSeen", false) || reducedMotion || location.hash.length > 2) { intro.remove(); boot(); return; }
+
+    const offsets = [[-22, -64], [16, -18], [-10, 26], [8, 6], [-16, -30], [20, 30]];
+    photos.forEach((p, i) => { const im = new Image(); im.src = p.src; });
+    const start = 500, step = 650;
+    photos.forEach((p, i) => {
+      timers.push(setTimeout(() => {
+        const [dx, dy] = offsets[i % offsets.length];
+        const w = document.createElement("div");
+        w.className = "intro-win";
+        w.style.setProperty("--dx", dx + "px");
+        w.style.setProperty("--dy", dy + "px");
+        w.innerHTML = `<div class="bar"><i></i><i></i><i></i><span>${esc(p.name || "")}</span></div><img src="${esc(p.src)}" alt="">`;
+        stack.appendChild(w);
+      }, start + i * step));
+    });
+    timers.push(setTimeout(finish, start + photos.length * step + 900));
+  }
+
+  // ---------- Inicio ----------
+  document.documentElement.lang = lang;
+  $("#wallpaper").style.backgroundImage = `url("${D.wallpaper}")`;
+  renderMenubar();
+  renderNotification();
+  renderDock();
+  window.addEventListener("hashchange", openFromHash);
+  window.addEventListener("resize", tick);
+  runIntro();
+})();

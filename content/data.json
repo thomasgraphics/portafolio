@@ -1,0 +1,718 @@
+{
+  "brand": "Thomgraphics",
+  "fullName": "Thomas Felipe Hernández",
+  "role": {
+    "es": "Senior UX/UI · Product Designer",
+    "en": "Senior UX/UI · Product Designer"
+  },
+  "location": "Villavicencio, Colombia",
+  "defaultLang": "es",
+  "wallpaper": "assets/img/wallpaper.jpg",
+  "links": {
+    "whatsapp": "https://wa.me/57XXXXXXXXXX",
+    "instagram": "https://instagram.com/thomgraphics",
+    "linkedin": "https://www.linkedin.com/in/TU-USUARIO",
+    "behance": "",
+    "email": "mailto:hola@tudominio.com"
+  },
+  "dockIcons": {},
+  "intro": [
+    {
+      "src": "assets/img/intro/intro-1.jpg",
+      "name": "IMG_2041.jpg"
+    },
+    {
+      "src": "assets/img/intro/intro-2.jpg",
+      "name": "IMG_2077.jpg"
+    },
+    {
+      "src": "assets/img/intro/intro-3.jpg",
+      "name": "IMG_2113.jpg"
+    },
+    {
+      "src": "assets/img/intro/intro-4.jpg",
+      "name": "IMG_2190.jpg"
+    }
+  ],
+  "notification": {
+    "app": {
+      "es": "Mensajes",
+      "en": "Messages"
+    },
+    "title": {
+      "es": "¡Hola! 👋",
+      "en": "Hi there! 👋"
+    },
+    "body": {
+      "es": "Bienvenido a mi escritorio. Abre las carpetas para ver cómo diseño productos, marcas y experiencias.",
+      "en": "Welcome to my desktop. Open the folders to see how I design products, brands and experiences."
+    },
+    "opens": "about"
+  },
+  "sticky": {
+    "title": {
+      "es": "Recordatorio:",
+      "en": "Reminder:"
+    },
+    "text": {
+      "es": "Diseña para personas, no para Dribbble",
+      "en": "Design for people, not for Dribbble"
+    }
+  },
+  "desktop": [
+    {
+      "id": "ux",
+      "type": "folder",
+      "color": "blue",
+      "x": 47,
+      "y": 44,
+      "label": {
+        "es": "UX/UI & Producto",
+        "en": "UX/UI & Product"
+      }
+    },
+    {
+      "id": "branding",
+      "type": "folder",
+      "color": "pink",
+      "x": 18,
+      "y": 30,
+      "label": "Branding"
+    },
+    {
+      "id": "motion",
+      "type": "folder",
+      "color": "purple",
+      "x": 61,
+      "y": 56,
+      "label": {
+        "es": "Motion & Video",
+        "en": "Motion & Video"
+      }
+    },
+    {
+      "id": "foto",
+      "type": "folder",
+      "color": "teal",
+      "x": 28,
+      "y": 46,
+      "label": {
+        "es": "Fotografía",
+        "en": "Photography"
+      }
+    },
+    {
+      "id": "social",
+      "type": "folder",
+      "color": "orange",
+      "x": 73,
+      "y": 47,
+      "label": {
+        "es": "Redes sociales",
+        "en": "Social media"
+      }
+    },
+    {
+      "id": "about",
+      "type": "note",
+      "x": 54,
+      "y": 73,
+      "label": {
+        "es": "Sobre mí",
+        "en": "About me"
+      }
+    },
+    {
+      "id": "cv",
+      "type": "pdf",
+      "x": 58,
+      "y": 38,
+      "label": "CV",
+      "src": "assets/cv/CV-Thomas-Hernandez.pdf"
+    },
+    {
+      "id": "showreel",
+      "type": "video",
+      "x": 37,
+      "y": 31,
+      "label": "Showreel.mp4",
+      "src": "assets/video/showreel.mp4",
+      "poster": "assets/img/projects/motion/motion-01.jpg"
+    },
+    {
+      "id": "me1",
+      "type": "photo",
+      "x": 74,
+      "y": 29,
+      "label": "IMG_0418.jpg",
+      "src": "assets/img/me-01.jpg"
+    },
+    {
+      "id": "me2",
+      "type": "photo",
+      "x": 34,
+      "y": 64,
+      "label": "IMG_0552.jpg",
+      "src": "assets/img/me-02.jpg"
+    }
+  ],
+  "folders": {
+    "ux": {
+      "title": {
+        "es": "UX/UI & Producto",
+        "en": "UX/UI & Product"
+      },
+      "intro": {
+        "es": "Productos digitales diseñados de punta a punta: investigación, flujos de interacción, design systems y prototipos listos para desarrollo.",
+        "en": "Digital products designed end to end: research, interaction flows, design systems and dev-ready prototypes."
+      },
+      "items": [
+        {
+          "type": "case",
+          "case": "hunter-track"
+        },
+        {
+          "type": "case",
+          "case": "fergo"
+        }
+      ]
+    },
+    "branding": {
+      "title": "Branding",
+      "intro": {
+        "es": "Identidades que funcionan en el mundo real: sistemas visuales, manuales de marca y aplicaciones.",
+        "en": "Identities that work in the real world: visual systems, brand guidelines and applications."
+      },
+      "items": [
+        {
+          "type": "case",
+          "case": "monchef"
+        },
+        {
+          "type": "case",
+          "case": "nas-cellano"
+        },
+        {
+          "type": "case",
+          "case": "emsa"
+        },
+        {
+          "type": "case",
+          "case": "tesis"
+        }
+      ]
+    },
+    "motion": {
+      "title": {
+        "es": "Motion & Video",
+        "en": "Motion & Video"
+      },
+      "intro": {
+        "es": "Animación 2D, edición y producción audiovisual para marcas y plataformas digitales.",
+        "en": "2D animation, editing and audiovisual production for brands and digital platforms."
+      },
+      "items": [
+        {
+          "type": "video",
+          "src": "assets/video/showreel.mp4",
+          "poster": "assets/img/projects/motion/motion-01.jpg",
+          "title": "Showreel"
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/motion/motion-02.jpg",
+          "title": {
+            "es": "Animación 2D",
+            "en": "2D animation"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/motion/motion-03.jpg",
+          "title": {
+            "es": "Motion para redes",
+            "en": "Social motion"
+          }
+        }
+      ]
+    },
+    "foto": {
+      "title": {
+        "es": "Fotografía",
+        "en": "Photography"
+      },
+      "intro": {
+        "es": "Retrato, producto y ciudad.",
+        "en": "Portrait, product and city."
+      },
+      "items": [
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/foto-01.jpg",
+          "title": {
+            "es": "Fotografía 1",
+            "en": "Photo 1"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/foto-02.jpg",
+          "title": {
+            "es": "Fotografía 2",
+            "en": "Photo 2"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/foto-03.jpg",
+          "title": {
+            "es": "Fotografía 3",
+            "en": "Photo 3"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/foto-04.jpg",
+          "title": {
+            "es": "Fotografía 4",
+            "en": "Photo 4"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/foto-05.jpg",
+          "title": {
+            "es": "Fotografía 5",
+            "en": "Photo 5"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/foto-06.jpg",
+          "title": {
+            "es": "Fotografía 6",
+            "en": "Photo 6"
+          }
+        }
+      ]
+    },
+    "social": {
+      "title": {
+        "es": "Redes sociales",
+        "en": "Social media"
+      },
+      "intro": {
+        "es": "Estrategia y contenido para plataformas digitales, incluyendo la gestión de redes de un programa de emprendimiento.",
+        "en": "Strategy and content for digital platforms, including social media management for an entrepreneurship program."
+      },
+      "items": [
+        {
+          "type": "image",
+          "src": "assets/img/projects/social/post-01.jpg",
+          "title": "Post 1"
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/social/post-02.jpg",
+          "title": "Post 2"
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/social/post-03.jpg",
+          "title": "Post 3"
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/social/post-04.jpg",
+          "title": "Post 4"
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/social/post-05.jpg",
+          "title": "Post 5"
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/social/post-06.jpg",
+          "title": "Post 6"
+        }
+      ]
+    }
+  },
+  "cases": {
+    "hunter-track": {
+      "title": "Hunter Track",
+      "subtitle": {
+        "es": "Rediseño de app de monitoreo GPS",
+        "en": "GPS monitoring app redesign"
+      },
+      "cover": "assets/img/projects/hunter-track/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Cliente en República Dominicana",
+          "en": "Client in the Dominican Republic"
+        },
+        "role": {
+          "es": "Product Designer líder",
+          "en": "Lead Product Designer"
+        },
+        "year": "2025–2026",
+        "tools": "Figma · Prototyping · Design System"
+      },
+      "tags": [
+        "UX/UI",
+        "Mobile",
+        "Design System"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "El reto",
+            "en": "The challenge"
+          },
+          "p": {
+            "es": "Hunter Track permite monitorear vehículos y activos por GPS en tiempo real. [TODO: describe el problema principal de la versión anterior: navegación confusa, alertas poco claras, etc.]",
+            "en": "Hunter Track lets users monitor vehicles and assets via GPS in real time. [TODO: describe the main problem with the previous version.]"
+          }
+        },
+        {
+          "h": {
+            "es": "Proceso",
+            "en": "Process"
+          },
+          "p": {
+            "es": "Auditoría de la app actual, mapeo de flujos críticos (ubicar, alertar, reportar), wireframes, design system con tokens y prototipo interactivo en Figma.",
+            "en": "Audit of the current app, mapping of critical flows (locate, alert, report), wireframes, a token-based design system and an interactive Figma prototype."
+          },
+          "img": "assets/img/projects/hunter-track/01.jpg"
+        },
+        {
+          "h": {
+            "es": "Decisiones clave",
+            "en": "Key decisions"
+          },
+          "p": {
+            "es": "[TODO: 2–3 decisiones de diseño y por qué las tomaste.]",
+            "en": "[TODO: 2–3 design decisions and why.]"
+          },
+          "img": "assets/img/projects/hunter-track/02.jpg"
+        },
+        {
+          "h": {
+            "es": "Resultado",
+            "en": "Outcome"
+          },
+          "p": {
+            "es": "[TODO: métricas o impacto: tiempos de tarea, satisfacción, adopción.]",
+            "en": "[TODO: metrics or impact.]"
+          },
+          "img": "assets/img/projects/hunter-track/03.jpg"
+        }
+      ]
+    },
+    "fergo": {
+      "title": "Fergo Ingeniería",
+      "subtitle": {
+        "es": "Rediseño de landing page",
+        "en": "Landing page redesign"
+      },
+      "cover": "assets/img/projects/fergo/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Ingeniería y andamios · Villavicencio",
+          "en": "Engineering & scaffolding · Villavicencio"
+        },
+        "role": {
+          "es": "UX/UI Designer · Consultor",
+          "en": "UX/UI Designer · Consultant"
+        },
+        "year": "2026",
+        "tools": "Figma · IA generativa · Prototyping"
+      },
+      "tags": [
+        "Web",
+        "Responsive",
+        "AI"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Alcance",
+            "en": "Scope"
+          },
+          "p": {
+            "es": "Rediseño completo de la landing en Figma: mini design system, diseño responsive, renders fotorrealistas generados con IA a partir de planos técnicos, prototipo interactivo y handoff técnico.",
+            "en": "Full landing redesign in Figma: mini design system, responsive design, photorealistic AI renders generated from technical blueprints, interactive prototype and technical handoff."
+          },
+          "img": "assets/img/projects/fergo/01.jpg"
+        },
+        {
+          "h": {
+            "es": "IA en el proceso",
+            "en": "AI in the process"
+          },
+          "p": {
+            "es": "Los planos técnicos se convirtieron en renders fotorrealistas para mostrar las soluciones de la empresa sin depender de sesiones fotográficas.",
+            "en": "Technical blueprints were turned into photorealistic renders to showcase the company's solutions without relying on photo shoots."
+          },
+          "img": "assets/img/projects/fergo/02.jpg"
+        }
+      ]
+    },
+    "monchef": {
+      "title": "Monchef",
+      "subtitle": {
+        "es": "Branding gastronómico",
+        "en": "Gastronomic branding"
+      },
+      "cover": "assets/img/projects/monchef/cover.jpg",
+      "meta": {
+        "client": "Monchef",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "year": "2025–2026",
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Gastronomía",
+          "en": "Food"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Concepto",
+            "en": "Concept"
+          },
+          "p": {
+            "es": "[TODO: idea central de la marca.]",
+            "en": "[TODO: core brand idea.]"
+          },
+          "img": "assets/img/projects/monchef/01.jpg"
+        },
+        {
+          "h": {
+            "es": "Sistema visual",
+            "en": "Visual system"
+          },
+          "p": {
+            "es": "[TODO]",
+            "en": "[TODO]"
+          },
+          "img": "assets/img/projects/monchef/02.jpg"
+        },
+        {
+          "h": {
+            "es": "Aplicaciones",
+            "en": "Applications"
+          },
+          "p": {
+            "es": "[TODO]",
+            "en": "[TODO]"
+          },
+          "img": "assets/img/projects/monchef/03.jpg"
+        }
+      ]
+    },
+    "nas-cellano": {
+      "title": "Neil Armstrong School & Cellano",
+      "subtitle": {
+        "es": "Renovación del manual de marca",
+        "en": "Brand guidelines renewal"
+      },
+      "cover": "assets/img/projects/nas-cellano/cover.jpg",
+      "meta": {
+        "client": "NAS · Cellano",
+        "role": {
+          "es": "Brand consultant",
+          "en": "Brand consultant"
+        },
+        "year": "2026",
+        "tools": "Illustrator · InDesign · Figma"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Manual de marca",
+          "en": "Guidelines"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Alcance",
+            "en": "Scope"
+          },
+          "p": {
+            "es": "Elementos de identidad, tipografía, paletas de color, imagen, plantillas para redes sociales y aplicaciones de marca.",
+            "en": "Identity elements, typography, color palettes, imagery, social media templates and branded applications."
+          },
+          "img": "assets/img/projects/nas-cellano/01.jpg"
+        },
+        {
+          "h": {
+            "es": "Dirección creativa",
+            "en": "Creative direction"
+          },
+          "p": {
+            "es": "Una paleta secundaria con concepto global, con tonos rojos, en lugar de una estética regional.",
+            "en": "A secondary palette built around a global concept with red tones, rather than a regional aesthetic."
+          },
+          "img": "assets/img/projects/nas-cellano/02.jpg"
+        },
+        {
+          "h": {
+            "es": "Plantillas",
+            "en": "Templates"
+          },
+          "p": {
+            "es": "[TODO]",
+            "en": "[TODO]"
+          },
+          "img": "assets/img/projects/nas-cellano/03.jpg"
+        }
+      ]
+    },
+    "emsa": {
+      "title": "Olimpiadas EMSA 2025",
+      "subtitle": {
+        "es": "Logo y mascota",
+        "en": "Logo & mascot"
+      },
+      "cover": "assets/img/projects/emsa/cover.jpg",
+      "meta": {
+        "client": "EMSA",
+        "role": {
+          "es": "Diseñador gráfico senior",
+          "en": "Senior graphic designer"
+        },
+        "year": "2025",
+        "tools": "Illustrator"
+      },
+      "tags": [
+        {
+          "es": "Identidad",
+          "en": "Identity"
+        },
+        {
+          "es": "Ilustración",
+          "en": "Illustration"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Reto",
+            "en": "Challenge"
+          },
+          "p": {
+            "es": "Crear la identidad de las olimpiadas bajo el lema «Superando Barreras, Iluminando Caminos», respetando la línea gráfica de EMSA.",
+            "en": "Create the games' identity under the motto “Superando Barreras, Iluminando Caminos” while respecting EMSA's brand guidelines."
+          },
+          "img": "assets/img/projects/emsa/01.jpg"
+        },
+        {
+          "h": {
+            "es": "Mascota",
+            "en": "Mascot"
+          },
+          "p": {
+            "es": "[TODO]",
+            "en": "[TODO]"
+          },
+          "img": "assets/img/projects/emsa/02.jpg"
+        }
+      ]
+    },
+    "tesis": {
+      "title": "Capas de historia, la memoria te espera",
+      "subtitle": {
+        "es": "Investigación · patrimonio y memoria urbana",
+        "en": "Research · heritage and urban memory"
+      },
+      "cover": "assets/img/projects/tesis/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Proyecto académico",
+          "en": "Academic project"
+        },
+        "role": {
+          "es": "Investigador y diseñador",
+          "en": "Researcher & designer"
+        },
+        "year": "[TODO]",
+        "tools": "[TODO]"
+      },
+      "tags": [
+        {
+          "es": "Investigación",
+          "en": "Research"
+        },
+        "Villavicencio"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "De qué trata",
+            "en": "About"
+          },
+          "p": {
+            "es": "Tesis sobre el patrimonio arquitectónico y la memoria urbana de Villavicencio. [TODO: amplía el enfoque y el resultado.]",
+            "en": "Thesis on the architectural heritage and urban memory of Villavicencio. [TODO]"
+          },
+          "img": "assets/img/projects/tesis/01.jpg"
+        },
+        {
+          "h": {
+            "es": "Resultado",
+            "en": "Outcome"
+          },
+          "p": {
+            "es": "[TODO]",
+            "en": "[TODO]"
+          },
+          "img": "assets/img/projects/tesis/02.jpg"
+        }
+      ]
+    }
+  },
+  "about": {
+    "date": {
+      "es": "Noviembre de 2026",
+      "en": "November 2026"
+    },
+    "paragraphs": [
+      {
+        "es": "¡Hola, soy Thomas! Me conocen como Thomgraphics.",
+        "en": "Hi, I'm Thomas! People know me as Thomgraphics."
+      },
+      {
+        "es": "Soy diseñador UX/UI senior y productor multimedia en Villavicencio, Colombia. Llevo más de nueve años entre diseño gráfico, branding, animación 2D, edición de video y fotografía.",
+        "en": "I'm a senior UX/UI designer and multimedia producer based in Villavicencio, Colombia, with 9+ years across graphic design, branding, 2D animation, video editing and photography."
+      },
+      {
+        "es": "Hoy me enfoco en diseño de producto: experiencias memorables, flujos de interacción, design systems e integración de IA, siempre con el usuario en el centro.",
+        "en": "Today I focus on product design: memorable experiences, interaction flows, design systems and AI integration, always user-centered."
+      },
+      {
+        "es": "Trabajo como consultor independiente de marca y producto. Si tienes un proyecto en mente, escríbeme desde el dock 👇",
+        "en": "I work as an independent brand and product consultant. Got a project in mind? Reach me from the dock 👇"
+      }
+    ],
+    "skills": [
+      "Figma",
+      "Design Systems",
+      "Prototyping",
+      "UX Research",
+      "Branding",
+      "Motion 2D",
+      "Video",
+      "Fotografía / Photo",
+      "AI workflows"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "thomgraphics-portafolio",
+  "private": true,
+  "type": "module",
+  "description": "Portafolio estilo escritorio + panel /admin. Sitio estático: no requiere build."
+}
