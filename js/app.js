@@ -363,6 +363,7 @@
   function openWindow(key, opts) {
     if (wins.has(key)) {
       const w = wins.get(key);
+      if (w.minimized) restoreWin(key);
       Object.assign(w, opts);
       paint(w);
       focusWin(key);
@@ -375,7 +376,7 @@
       <div class="win-bar">
         <div class="traffic">
           <button class="t-close" data-act="close"><span>${X_SVG}</span></button>
-          <button class="t-min" data-act="close"><span>${MIN_SVG}</span></button>
+          <button class="t-min" data-act="min"><span>${MIN_SVG}</span></button>
           <button class="t-max" data-act="max"><span>${MAX_SVG}</span></button>
         </div>
         <div class="win-title"></div>
@@ -425,6 +426,7 @@
   function focusWin(key) {
     const w = wins.get(key);
     if (!w) return;
+    if (w.minimized) { restoreWin(key); return; }
     w.el.style.zIndex = ++zTop;
     wins.forEach((o) => o.el.classList.toggle("inactive", o !== w));
     updateAppName();
@@ -432,7 +434,7 @@
   }
   function topWin() {
     let best = null;
-    wins.forEach((w) => { if (!best || +w.el.style.zIndex > +best.el.style.zIndex) best = w; });
+    wins.forEach((w) => { if (!w.minimized && (!best || +w.el.style.zIndex > +best.el.style.zIndex)) best = w; });
     return best;
   }
   function closeWin(key) {
@@ -440,6 +442,8 @@
     if (!w) return;
     wins.delete(key);
     $$("video", w.el).forEach((v) => v.pause());
+    const tile = dock.querySelector(`.dk-min[data-restore="${CSS.escape(key)}"]`);
+    if (tile) { tile.remove(); renderMin(); }
     w.el.classList.add("closing");
     const rm = () => w.el.remove();
     w.el.addEventListener("animationend", rm, { once: true });
@@ -450,6 +454,73 @@
     updateDock();
   }
 
+  // ---------- Minimizar al Dock con efecto "genio" (como macOS) ----------
+  function genie(el, tile, reverse) {
+    const r = el.getBoundingClientRect(), t = tile.getBoundingClientRect();
+    const f = (n) => n.toFixed(2) + "%";
+    const p = ((t.left + t.width / 2) - r.left) / r.width * 100;
+    const half = (t.width / 2) / r.width * 100;
+    const dy = t.bottom - r.bottom, sY = Math.max(0.02, t.height / r.height);
+    const col = (a, b) => `polygon(${f(p - a)} 0%, ${f(p + a)} 0%, ${f(p + b)} 100%, ${f(p - b)} 100%)`;
+    const origin = `${f(p)} 100%`;
+    const frames = [
+      { offset: 0, clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", transform: "none", transformOrigin: origin, opacity: 1 },
+      { offset: 0.35, clipPath: `polygon(0% 0%, 100% 0%, ${f(p + half * 1.8)} 100%, ${f(p - half * 1.8)} 100%)`, transform: `translateY(${dy * 0.12}px) scaleY(0.94)`, transformOrigin: origin, opacity: 1 },
+      { offset: 0.7, clipPath: col(half * 3.2, half), transform: `translateY(${dy * 0.62}px) scaleY(${(1 + sY) / 2.2})`, transformOrigin: origin, opacity: 1 },
+      { offset: 1, clipPath: col(half, half), transform: `translateY(${dy}px) scaleY(${sY})`, transformOrigin: origin, opacity: 0.5 },
+    ];
+    return el.animate(frames, { duration: reducedMotion ? 1 : 620, easing: "cubic-bezier(0.5, 0, 0.3, 1)", direction: reverse ? "reverse" : "normal", fill: "none" });
+  }
+  function miniThumb(w) {
+    const img = [...w.el.querySelectorAll(".win-body img")].find((i) => i.complete && i.naturalWidth);
+    const vid = w.el.querySelector(".win-body video[poster]");
+    const src = img ? img.currentSrc || img.src : vid ? vid.getAttribute("poster") : "";
+    const title = typeof w.title === "function" ? w.title() : t(w.title);
+    return `<span class="mini"><i class="mini-bar"><b></b><b></b><b></b></i>${src ? `<img src="${esc(src)}" alt="" draggable="false">` : `<em>${esc(title)}</em>`}</span><span class="tip">${esc(title)}</span>`;
+  }
+  function renderMin() {
+    const tiles = $$(".dk-min", dock);
+    let sep = $(".min-sep", dock);
+    if (tiles.length && !sep) { sep = document.createElement("span"); sep.className = "sep min-sep"; dock.insertBefore(sep, tiles[0]); }
+    if (!tiles.length && sep) sep.remove();
+  }
+  function minimizeWin(key) {
+    const w = wins.get(key);
+    if (!w || w.minimized) return;
+    if (isMobile()) { closeWin(key); return; }
+    $$("video", w.el).forEach((v) => v.pause());
+    const title = typeof w.title === "function" ? w.title() : t(w.title);
+    const tile = document.createElement("button");
+    tile.className = "dk dk-min entering";
+    tile.dataset.restore = key;
+    tile.setAttribute("aria-label", (lang === "es" ? "Restaurar: " : "Restore: ") + title);
+    tile.innerHTML = miniThumb(w);
+    dock.appendChild(tile); renderMin();
+    w.minimized = true;
+    requestAnimationFrame(() => {
+      const anim = genie(w.el, tile, false);
+      anim.onfinish = () => { w.el.style.display = "none"; tile.classList.remove("entering"); };
+    });
+    const next = topWin();
+    if (next) focusWin(next.key);
+    else { document.body.classList.remove("has-window"); updateAppName(); setHash(""); }
+    track("open", { id: "min:" + key });
+  }
+  function restoreWin(key) {
+    const w = wins.get(key);
+    if (!w || !w.minimized) return;
+    const tile = dock.querySelector(`.dk-min[data-restore="${CSS.escape(key)}"]`);
+    w.minimized = false;
+    w.el.style.display = "";
+    document.body.classList.add("has-window");
+    focusWin(key);
+    if (tile) {
+      const anim = genie(w.el, tile, true);
+      tile.classList.add("leaving");
+      anim.onfinish = () => { tile.remove(); renderMin(); };
+    }
+  }
+
   function bindWindow(w) {
     const el = w.el, bar = $(".win-bar", el);
     el.addEventListener("pointerdown", () => focusWin(w.key));
@@ -457,6 +528,7 @@
       const a = e.target.closest("[data-act]");
       if (!a) return;
       if (a.dataset.act === "close") closeWin(w.key);
+      if (a.dataset.act === "min") minimizeWin(w.key);
       if (a.dataset.act === "max") el.classList.toggle("maximized");
     });
     bar.addEventListener("dblclick", (e) => { if (!e.target.closest("button,a")) el.classList.toggle("maximized"); });
@@ -810,13 +882,18 @@
       return `<a class="dk${custom ? " custom" : ""}" href="${esc(href)}" data-net="${k}" ${ext ? 'target="_blank" rel="noopener"' : ""} aria-label="${ui(k)}">
         ${custom ? `<img src="${esc(custom)}" alt="" draggable="false">` : DOCK_ICONS[k]()}<span class="tip">${ui(k)}</span></a>`;
     });
+    const mins = $$(".dk-min", dock);
     dock.innerHTML = links.join("");
+    mins.forEach((m) => dock.appendChild(m));
+    renderMin();
     updateDock();
   }
   function updateDock() {
     $$("[data-win]", dock).forEach((b) => b.classList.toggle("open", wins.has(b.dataset.win)));
   }
   dock.addEventListener("click", (e) => {
+    const m = e.target.closest("[data-restore]");
+    if (m) { restoreWin(m.dataset.restore); return; }
     const b = e.target.closest("[data-open]");
     if (b) openItem(b.dataset.open, b);
   });
