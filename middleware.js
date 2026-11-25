@@ -26,8 +26,9 @@ const SECURITY = {
 };
 
 export default async function middleware(request) {
-  const user = process.env.ADMIN_USER;
-  const pass = process.env.ADMIN_PASSWORD;
+  // .trim() elimina espacios o saltos de línea que se cuelan al copiar/pegar en Vercel
+  const user = (process.env.ADMIN_USER || "").trim();
+  const pass = (process.env.ADMIN_PASSWORD || "").trim();
   if (!user || !pass) {
     return new Response("Admin bloqueado: configura ADMIN_USER y ADMIN_PASSWORD en Vercel.", { status: 503, headers: SECURITY });
   }
@@ -35,10 +36,14 @@ export default async function middleware(request) {
   const header = request.headers.get("authorization") || "";
   if (header.startsWith("Basic ")) {
     let decoded = "";
-    try { decoded = atob(header.slice(6)); } catch { /* cabecera inválida */ }
+    try {
+      // Decodifica en UTF-8 para que funcionen tildes, ñ y símbolos
+      const bin = atob(header.slice(6).trim());
+      decoded = new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)));
+    } catch { /* cabecera inválida */ }
     const i = decoded.indexOf(":");
     if (i > -1) {
-      const okUser = safeEqual(decoded.slice(0, i), user);
+      const okUser = safeEqual(decoded.slice(0, i).trim(), user);
       const okPass = safeEqual(decoded.slice(i + 1), pass);
       if (okUser && okPass) return; // acceso concedido: sigue al archivo pedido
     }
