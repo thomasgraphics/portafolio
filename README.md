@@ -68,13 +68,17 @@ En `index.html`, reemplaza las 3 apariciones de `https://tudominio.com` por tu d
 2. Entra a `tudominio.com/admin`, escribe tu usuario y contraseña, y luego tu usuario de GitHub, el repositorio y el token.
 3. Edita lo que quieras y haz clic en **Guardar y publicar**. Se crea un solo cambio en GitHub y Vercel actualiza el sitio en 1–2 minutos.
 
-**Qué puedes editar:**
-- General: nombre, rol, fondo, enlaces de contacto, íconos del dock, notificación y nota adhesiva.
-- Sobre mí: párrafos y habilidades.
-- Intro: las fotos que aparecen al entrar.
-- Escritorio: agregar, quitar y ordenar íconos, cambiar el tipo, el color y la posición, o subir un ícono propio.
-- Carpetas: el contenido de cada una (casos, imágenes y videos).
-- Casos de estudio: crear, editar y eliminar casos, con portada, datos, etiquetas y secciones con imagen.
+**Qué puedes editar (todo el sitio):**
+- **General:** nombre, rol, fondo, enlaces de contacto, íconos del dock, notificación y nota adhesiva.
+- **CV y showreel:** subir y cambiar tu CV en PDF y tu video.
+- **Sobre mí** e **Intro.**
+- **Escritorio e íconos:** mini escritorio para acomodar los íconos arrastrándolos; agregar, quitar, cambiar tipo y color, o subir un ícono propio.
+- **Carpetas** y **Casos de estudio:** crear, editar y eliminar.
+- **SEO y compartir:** título, descripción, imagen que aparece al compartir el enlace y favicon (se actualiza `index.html` automáticamente).
+- **Apariencia:** color de acento, fondo para celular, mostrar u ocultar la intro, la notificación y la nota.
+- **Textos de la interfaz:** todos los botones y etiquetas del sitio en español e inglés.
+
+Lo único que **no** se cambia desde el admin, por seguridad, es la contraseña del propio admin (va en Vercel → Environment Variables).
 
 Las fotos que subas se optimizan solas: se reducen a 2400 px como máximo y se guardan en JPG. Los íconos conservan la transparencia.
 

@@ -162,3 +162,22 @@ details.case > .box { box-shadow: none; border-top: 0.5px solid var(--line); bor
   .content { padding: 16px 14px 80px; }
   .topbar { padding: 10px 14px; flex-wrap: wrap; }
 }
+
+/* Interruptor estilo macOS */
+.toggle { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; padding-top: 3px; }
+.switch { appearance: none; -webkit-appearance: none; width: 34px; height: 20px; border-radius: 999px; background: #d9d9de; position: relative; cursor: pointer; transition: background 0.2s; margin: 0; flex: none; }
+.switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); transition: transform 0.2s; }
+.switch:checked { background: #34c759; }
+.switch:checked::after { transform: translateX(14px); }
+
+/* Color */
+.colorrow { display: flex; gap: 8px; align-items: center; }
+.colorrow input[type="color"] { width: 42px; height: 30px; padding: 2px; border-radius: 7px; border: 0.5px solid rgba(0, 0, 0, 0.18); background: #fff; cursor: pointer; }
+.colorrow .path { max-width: 130px; }
+
+/* Mini escritorio */
+.stage { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #cfd2bf center / cover; box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.12), 0 8px 24px -10px rgba(0, 0, 0, 0.3); touch-action: none; }
+.stage::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4%; background: rgba(0, 0, 0, 0.12); }
+.stage .chip { position: absolute; transform: translate(-50%, -50%); padding: 4px 9px; border-radius: 7px; font-size: 11px; font-weight: 600; white-space: nowrap; background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(8px); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); cursor: grab; user-select: none; max-width: 30%; overflow: hidden; text-overflow: ellipsis; }
+.stage .chip.folder { background: rgba(214, 236, 255, 0.95); }
+.stage .chip.drag { cursor: grabbing; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); z-index: 2; outline: 2px solid var(--accent); }

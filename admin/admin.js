@@ -103,7 +103,36 @@
     // Quita campos opcionales vacíos para dejar el JSON limpio
     (o.desktop || []).forEach((d) => ["icon", "poster", "href", "src"].forEach((k) => { if (d[k] === "") delete d[k]; }));
     Object.keys(o.dockIcons || {}).forEach((k) => { if (!o.dockIcons[k]) delete o.dockIcons[k]; });
+    Object.keys(o.uiText || {}).forEach((k) => { const v = o.uiText[k]; if (!v || (!v.es && !v.en)) delete o.uiText[k]; });
     return o;
+  }
+
+  // Reescribe las etiquetas de SEO / vista previa / favicon de index.html
+  function rewriteIndex(html) {
+    const S = D.seo || {};
+    const base = String(S.siteUrl || "").trim().replace(/\/+$/, "");
+    const a = (v) => String(v || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const abs = (p) => (!p ? "" : /^https?:/i.test(p) ? p : `${base}/${String(p).replace(/^\//, "")}`);
+    const set = (re, val) => { html = html.replace(re, (m, pre, post) => pre + val + post); };
+    if (S.title) {
+      html = html.replace(/<title>[\s\S]*?<\/title>/, () => `<title>${a(S.title)}</title>`);
+      set(/(<meta property="og:title" content=")[^"]*(")/, a(S.title));
+    }
+    if (S.description) {
+      set(/(<meta name="description" content=")[^"]*(")/, a(S.description));
+      set(/(<meta property="og:description" content=")[^"]*(")/, a(S.description));
+    }
+    if (base) {
+      set(/(<meta property="og:url" content=")[^"]*(")/, a(base + "/"));
+      set(/(<link rel="canonical" href=")[^"]*(")/, a(base + "/"));
+    }
+    if (S.shareImage && base) set(/(<meta property="og:image" content=")[^"]*(")/, a(abs(S.shareImage)));
+    if (S.favicon) {
+      const ext = (S.favicon.split(".").pop() || "").toLowerCase();
+      const mime = { svg: "image/svg+xml", png: "image/png", ico: "image/x-icon", webp: "image/webp", jpg: "image/jpeg", jpeg: "image/jpeg" }[ext] || "image/png";
+      html = html.replace(/<link rel="icon"[^>]*>/, () => `<link rel="icon" href="/${a(S.favicon.replace(/^\//, ""))}" type="${mime}" />`);
+    }
+    return html;
   }
 
   async function publish(btn) {
@@ -115,6 +144,13 @@
     btn.disabled = true;
     btn.innerHTML = `<span class="spin"></span> Publicando…`;
     try {
+      if (D.seo) {
+        try {
+          const oldHtml = await api(`/contents/index.html?ref=${encodeURIComponent(gh.branch)}`, { accept: "application/vnd.github.raw+json", raw: true });
+          const newHtml = rewriteIndex(oldHtml);
+          if (newHtml !== oldHtml) files.push({ path: "index.html", content: newHtml, encoding: "utf-8" });
+        } catch { /* si no se puede leer index.html, se publica el resto */ }
+      }
       const ref = await api(`/git/ref/heads/${encodeURIComponent(gh.branch)}`);
       const baseSha = ref.object.sha;
       const baseCommit = await api(`/git/commits/${baseSha}`);
@@ -124,7 +160,7 @@
         tree.push({ path: f.path, mode: "100644", type: "blob", sha: blob.sha });
       }
       const newTree = await api("/git/trees", { method: "POST", body: { base_tree: baseCommit.tree.sha, tree } });
-      const uploads = files.length - 1;
+      const uploads = files.filter((f) => f.encoding === "base64").length;
       const commit = await api("/git/commits", {
         method: "POST",
         body: { message: `Actualiza contenido desde el admin${uploads ? ` (+${uploads} archivo${uploads > 1 ? "s" : ""})` : ""}`, tree: newTree.sha, parents: [baseSha] },
@@ -191,12 +227,27 @@
     switch (f.type) {
       case "text":
       case "number": {
-        const inp = h("input", { type: f.type === "number" ? "number" : "text", value: obj[f.key] ?? "", placeholder: f.ph || "", step: f.step, min: f.min, max: f.max });
+        const inp = h("input", { type: f.type === "number" ? "number" : "text", value: obj[f.key] ?? "", placeholder: typeof f.ph === "string" ? f.ph : "", step: f.step, min: f.min, max: f.max });
         inp.addEventListener("input", () => {
           obj[f.key] = f.type === "number" ? (inp.value === "" ? 0 : +inp.value) : inp.value;
           touch();
         });
         ctl.append(inp);
+        break;
+      }
+      case "toggle": {
+        const cb = h("input", { type: "checkbox", class: "switch", checked: obj[f.key] !== false });
+        cb.addEventListener("change", () => { obj[f.key] = cb.checked; touch(); });
+        ctl.append(h("label", { class: "toggle" }, cb, h("span", {}, f.on || "Mostrar")));
+        break;
+      }
+      case "color": {
+        const val = /^#[0-9a-f]{6}$/i.test(obj[f.key] || "") ? obj[f.key] : f.def || "#0a64d8";
+        const pick = h("input", { type: "color", value: val });
+        const txt = h("input", { type: "text", value: val, class: "path" });
+        pick.addEventListener("input", () => { obj[f.key] = pick.value; txt.value = pick.value; touch(); });
+        txt.addEventListener("input", () => { if (/^#[0-9a-f]{6}$/i.test(txt.value)) { obj[f.key] = txt.value; pick.value = txt.value; touch(); } });
+        ctl.append(h("div", { class: "colorrow" }, pick, txt));
         break;
       }
       case "textarea": {
@@ -219,7 +270,7 @@
         const v = i18nObj(obj, f.key);
         ["es", "en"].forEach((l) => {
           const inp = f.type === "i18nArea" ? h("textarea", { rows: f.rows || 3 }) : h("input", { type: "text" });
-          inp.placeholder = l === "es" ? "Español" : "English";
+          inp.placeholder = f.ph && typeof f.ph === "object" ? f.ph[l] : l === "es" ? "Español" : "English";
           inp.value = v[l] || "";
           inp.addEventListener("input", () => { v[l] = inp.value; touch(); });
           ctl.append(h("div", { class: "lang" }, h("span", { class: "flag" }, l.toUpperCase()), inp));
@@ -319,14 +370,117 @@
   // ---------- Secciones ----------
   const SECTIONS = [
     { id: "general", name: "General", color: "#8e8e93", icon: `<svg viewBox="0 0 16 16" fill="#fff"><circle cx="8" cy="8" r="2.4"/><path d="M8 1.5l1.2 1.7 2-.5.3 2 1.9.8-.8 1.9 1.3 1.6-1.7 1.2.5 2-2 .3-.8 1.9-1.9-.8L8 14.5l-1.2-1.7-2 .5-.3-2-1.9-.8.8-1.9L2.1 7l1.7-1.2-.5-2 2-.3.8-1.9 1.9.8z" fill="none" stroke="#fff" stroke-width="1.3"/></svg>` },
+    { id: "cv", name: "CV y showreel", color: "#e5484d", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M4 1.5h5.5l3 3V14a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V2a.5.5 0 0 1 .5-.5z"/><rect x="5" y="8" width="6" height="1.2" fill="#e5484d"/><rect x="5" y="10.3" width="4" height="1.2" fill="#e5484d"/></svg>` },
     { id: "about", name: "Sobre mí", color: "#f5b82e", icon: `<svg viewBox="0 0 16 16" fill="#fff"><circle cx="8" cy="5.5" r="2.8"/><path d="M2.5 14c.6-3 2.9-4.5 5.5-4.5s4.9 1.5 5.5 4.5z"/></svg>` },
     { id: "intro", name: "Intro", color: "#ff5f6d", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M5 3.5v9l7-4.5z"/></svg>` },
     { id: "desktop", name: "Escritorio e íconos", color: "#34aadc", icon: `<svg viewBox="0 0 16 16" fill="#fff"><rect x="2" y="3" width="12" height="8" rx="1.5"/><rect x="6" y="12" width="4" height="1.6" rx=".8"/></svg>` },
     { id: "folders", name: "Carpetas", color: "#0a84ff", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M1.5 4a1.5 1.5 0 0 1 1.5-1.5h3l1.5 1.5H13A1.5 1.5 0 0 1 14.5 5.5v6A1.5 1.5 0 0 1 13 13H3a1.5 1.5 0 0 1-1.5-1.5z"/></svg>` },
+    { id: "seo", name: "SEO y compartir", color: "#30b0c7", icon: `<svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 14 14"/></svg>` },
+    { id: "look", name: "Apariencia", color: "#ff9500", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M8 1.5a6.5 6.5 0 1 0 0 13c.9 0 1.3-.6 1.3-1.2 0-.8-.6-1-.6-1.7 0-.6.5-1.1 1.2-1.1h1.6a3 3 0 0 0 3-3c0-3.3-2.9-6-6.5-6z"/><circle cx="4.8" cy="7.5" r="1" fill="#ff9500"/><circle cx="7" cy="4.6" r="1" fill="#ff9500"/><circle cx="10.4" cy="5.2" r="1" fill="#ff9500"/></svg>` },
+    { id: "texts", name: "Textos de la interfaz", color: "#5856d6", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M3 3h10v2.2h-1.4V4.4H8.7v7.2h1.5V13H5.8v-1.4h1.5V4.4H4.4v.8H3z"/></svg>` },
     { id: "cases", name: "Casos de estudio", color: "#af52de", icon: `<svg viewBox="0 0 16 16" fill="#fff"><rect x="2" y="2.5" width="12" height="11" rx="1.6"/><rect x="4" y="5" width="8" height="1.4" rx=".7" fill="#af52de"/><rect x="4" y="8" width="5" height="1.4" rx=".7" fill="#af52de"/></svg>` },
   ];
 
+  // Textos editables de la interfaz del sitio (vacío = texto por defecto)
+  const UI_KEYS = [
+    ["skip", "Botón saltar intro", "Saltar intro", "Skip intro"], ["now", "Hora de la notificación", "ahora", "now"],
+    ["info", "Menú «Info»", "Info", "Info"], ["instagram", "Menú «Instagram» / dock", "Instagram", "Instagram"],
+    ["all", "Filtro «Todo»", "Todo", "All"], ["cases", "Filtro «Casos»", "Casos", "Cases"], ["photos", "Filtro «Fotos»", "Fotos", "Photos"], ["videos", "Filtro «Videos»", "Videos", "Videos"],
+    ["items", "Contador de elementos ({n} = número)", "{n} elementos", "{n} items"], ["caseBadge", "Etiqueta de caso", "Caso de estudio", "Case study"], ["video", "Etiqueta de video", "Video", "Video"],
+    ["client", "Ficha: Cliente", "Cliente", "Client"], ["role", "Ficha: Rol", "Rol", "Role"], ["year", "Ficha: Año", "Año", "Year"], ["tools", "Ficha: Herramientas", "Herramientas", "Tools"],
+    ["prev", "Botón caso anterior", "← Anterior", "← Previous"], ["next", "Botón caso siguiente", "Siguiente →", "Next →"],
+    ["favorites", "Barra lateral: Favoritos", "Favoritos", "Favorites"], ["more", "Barra lateral: Más", "Más", "More"],
+    ["download", "Botón descargar CV", "Descargar", "Download"], ["openTab", "Abrir PDF en pestaña", "Abrir en pestaña nueva", "Open in new tab"],
+    ["pdfMobile", "Aviso del PDF en celular", "Toca el botón para ver el PDF.", "Tap the button to view the PDF."],
+    ["whatsapp", "Dock: WhatsApp", "WhatsApp", "WhatsApp"], ["linkedin", "Dock: LinkedIn", "LinkedIn", "LinkedIn"], ["behance", "Dock: Behance", "Behance", "Behance"], ["email", "Dock: Correo", "Correo", "Email"],
+    ["close", "Botón cerrar ventana", "Cerrar", "Close"],
+  ];
+
+  // Mini escritorio para mover íconos arrastrando
+  function positionEditor() {
+    const stage = h("div", { class: "stage", style: `background-image:url("${resolve(D.wallpaper)}")` });
+    D.desktop.forEach((it) => {
+      const chip = h("div", { class: "chip " + (it.type || ""), style: `left:${it.x}%;top:${it.y}%` }, t(it.label) || it.id);
+      chip.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        chip.setPointerCapture(e.pointerId);
+        chip.classList.add("drag");
+        const r = stage.getBoundingClientRect();
+        const move = (ev) => {
+          it.x = Math.round(Math.min(96, Math.max(4, ((ev.clientX - r.left) / r.width) * 100)) * 2) / 2;
+          it.y = Math.round(Math.min(90, Math.max(5, ((ev.clientY - r.top) / r.height) * 100)) * 2) / 2;
+          chip.style.left = it.x + "%"; chip.style.top = it.y + "%";
+        };
+        const up = () => {
+          chip.removeEventListener("pointermove", move);
+          chip.classList.remove("drag");
+          touch();
+          const sc = $(".content").scrollTop; render(); $(".content").scrollTop = sc;
+        };
+        chip.addEventListener("pointermove", move);
+        chip.addEventListener("pointerup", up, { once: true });
+      });
+      stage.append(chip);
+    });
+    return h("section", { class: "group" }, h("h3", {}, "Vista del escritorio"), h("p", {}, "Arrastra los íconos para acomodarlos. Así se verán en computador (en celular se ordenan solos)."), stage);
+  }
+
   const RENDER = {
+    cv() {
+      const pdfs = D.desktop.filter((d) => d.type === "pdf");
+      const vids = D.desktop.filter((d) => d.type === "video");
+      const out = [];
+      if (!pdfs.length) out.push(h("div", { class: "banner" }, "No tienes un CV en el escritorio. ", h("button", { class: "btn sm", type: "button", onclick: () => { D.desktop.push({ id: "cv", type: "pdf", x: 58, y: 38, label: "CV", src: "" }); touch(); render(); } }, "+ Agregar CV")));
+      pdfs.forEach((d) => out.push(group(`Documento: ${t(d.label) || d.id}`, "Sube tu CV en PDF (menos de 25 MB). Se abre en una ventana y se puede descargar.", d, [
+        { key: "src", type: "file", label: "Archivo PDF", accept: "application/pdf" },
+        { key: "label", type: "i18n", label: "Nombre del ícono" },
+      ])));
+      vids.forEach((d) => out.push(group(`Video: ${t(d.label) || d.id}`, "MP4 (H.264) de menos de 25 MB. Si pesa más, comprímelo con HandBrake.", d, [
+        { key: "src", type: "file", label: "Archivo de video", accept: "video/mp4" },
+        { key: "poster", type: "image", label: "Miniatura", optional: true, max: 1600 },
+        { key: "label", type: "i18n", label: "Nombre del ícono" },
+      ])));
+      if (!vids.length) out.push(h("button", { class: "add", type: "button", onclick: () => { D.desktop.push({ id: "showreel", type: "video", x: 37, y: 31, label: "Showreel.mp4", src: "" }); touch(); render(); } }, "+ Agregar showreel"));
+      return out;
+    },
+
+    seo() {
+      D.seo = D.seo || {};
+      return [
+        group("Cómo se ve tu enlace al compartirlo", "Esto es lo que aparece en Google, WhatsApp, LinkedIn y en la pestaña del navegador.", D.seo, [
+          { key: "siteUrl", type: "text", label: "Dirección del sitio", ph: "https://www.thomgraphics.com" },
+          { key: "title", type: "text", label: "Título", hint: "Máx. 60 caracteres" },
+          { key: "description", type: "textarea", label: "Descripción", hint: "Máx. 160 caracteres" },
+          { key: "shareImage", type: "image", label: "Imagen al compartir", hint: "1200×630 px", max: 1200 },
+          { key: "favicon", type: "image", label: "Favicon (ícono de pestaña)", hint: "SVG o PNG cuadrado 512×512", keepFormat: true, accept: "image/svg+xml,image/png,image/x-icon" },
+        ]),
+        h("p", { class: "intro-text" }, "WhatsApp y LinkedIn guardan la vista previa por unos días: si no ves el cambio, prueba en linkedin.com/post-inspector."),
+      ];
+    },
+
+    look() {
+      D.theme = D.theme || {};
+      return [
+        group("Color y fondo", null, D.theme, [
+          { key: "accent", type: "color", label: "Color de acento", hint: "Selección de íconos y detalles", def: "#0a64d8" },
+        ]),
+        group("Fondo en celular (opcional)", "Si lo dejas vacío, se usa el mismo fondo del computador. Ideal: foto vertical.", D, [
+          { key: "wallpaperMobile", type: "image", label: "Fondo vertical", optional: true, max: 1600 },
+        ]),
+        group("Elementos del escritorio", null, D.theme, [
+          { key: "showIntro", type: "toggle", label: "Intro de fotos", on: "Mostrar al entrar" },
+          { key: "showNotification", type: "toggle", label: "Notificación", on: "Mostrar" },
+          { key: "showSticky", type: "toggle", label: "Nota adhesiva", on: "Mostrar" },
+        ]),
+      ];
+    },
+
+    texts() {
+      D.uiText = D.uiText || {};
+      return [group("Textos de botones y etiquetas", "Déjalos vacíos para usar el texto por defecto (el gris).", D.uiText,
+        UI_KEYS.map(([key, label, es, en]) => ({ key, type: "i18n", label, ph: { es, en } })))];
+    },
+
     general() {
       D.links = D.links || {}; D.notification = D.notification || {}; D.sticky = D.sticky || {}; D.dockIcons = D.dockIcons || {};
       return [
@@ -343,7 +497,7 @@
           { key: "instagram", type: "text", label: "Instagram", ph: "https://instagram.com/usuario" },
           { key: "linkedin", type: "text", label: "LinkedIn", ph: "https://www.linkedin.com/in/usuario" },
           { key: "behance", type: "text", label: "Behance", ph: "https://behance.net/usuario" },
-          { key: "email", type: "text", label: "Correo", ph: "mailto:hola@tudominio.com", hint: "Empieza con mailto:" },
+          { key: "email", type: "text", label: "Correo", ph: "hola@thomgraphics.com", hint: "Tu correo (con o sin mailto:)" },
         ]),
         group("Íconos del dock (opcional)", "Si subes un ícono propio reemplaza el dibujado. PNG 512×512 con fondo transparente o SVG.", D.dockIcons,
           ["whatsapp", "instagram", "linkedin", "behance", "email"].map((k) => ({ key: k, type: "image", label: k[0].toUpperCase() + k.slice(1), keepFormat: true, optional: true, accept: ICON_ACCEPT }))),
@@ -387,6 +541,7 @@
 
     desktop() {
       return [
+        positionEditor(),
         group("Íconos del escritorio", "Posición X/Y en porcentaje de la pantalla (0 a 100). En celular se ordenan solos en cuadrícula. También puedes moverlos arrastrándolos en el sitio, pero eso solo se guarda en tu navegador.", D, [
           { key: "desktop", type: "list", label: "Íconos", addLabel: "Agregar ícono", item: {
             title: (it) => `${typeName(it.type)} · ${t(it.label) || it.id}`,
@@ -417,6 +572,7 @@
       ids.forEach((id) => {
         const f = D.folders[id];
         const onDesk = D.desktop.some((d) => d.id === id && d.type === "folder");
+        if (!onDesk) out.push(h("button", { class: "btn sm ghost danger", type: "button", onclick: () => { delete D.folders[id]; touch(); render(); } }, `Eliminar carpeta «${t(f.title) || id}» (no está en el escritorio)`));
         out.push(group(`${t(f.title) || id}`, onDesk ? `ID: ${id}` : `ID: ${id} · no está en el escritorio (no se muestra)`, f, [
           { key: "title", type: "i18n", label: "Título" },
           { key: "intro", type: "i18nArea", label: "Descripción" },

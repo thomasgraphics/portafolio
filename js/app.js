@@ -17,6 +17,9 @@
     return;
   }
   D.links = D.links || {};
+  // Acepta el correo sin "mailto:" y el WhatsApp solo con el número
+  if (D.links.email && !/^mailto:/i.test(D.links.email) && D.links.email.includes("@")) D.links.email = "mailto:" + D.links.email.trim();
+  if (D.links.whatsapp && /^\+?[\d\s-]{8,}$/.test(D.links.whatsapp)) D.links.whatsapp = "https://wa.me/" + D.links.whatsapp.replace(/\D/g, "");
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 
@@ -51,11 +54,19 @@
       favorites: "Favorites", more: "More", about: "About me",
     },
   };
-  const ui = (k, ...a) => { const v = UI[lang][k]; return typeof v === "function" ? v(...a) : v; };
+  // Textos de la interfaz: se pueden reemplazar desde el admin (D.uiText)
+  const ui = (k, ...a) => {
+    const o = D.uiText && D.uiText[k] && t(D.uiText[k]);
+    if (o) return k === "items" ? o.replace("{n}", a[0]) : o;
+    const v = UI[lang][k];
+    return typeof v === "function" ? v(...a) : v;
+  };
+  const TH = Object.assign({ showIntro: true, showNotification: true, showSticky: true }, D.theme || {});
 
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const isMobile = () => matchMedia("(max-width: 760px)").matches;
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const wallpaperUrl = () => (isMobile() && D.wallpaperMobile ? D.wallpaperMobile : D.wallpaper);
 
   // =========================================================================
   // Íconos SVG (genéricos, dibujados a mano)
@@ -143,7 +154,7 @@
       <button class="mb-item mb-brand" data-open="about">${esc(D.brand)}</button>
       <span class="mb-item mb-app mb-hide-sm" id="mb-app"></span>
       <button class="mb-item mb-hide-sm" data-open="about">${ui("info")}</button>
-      ${D.links.instagram ? `<a class="mb-item mb-hide-sm" href="${esc(D.links.instagram)}" target="_blank" rel="noopener">Instagram</a>` : ""}
+      ${D.links.instagram ? `<a class="mb-item mb-hide-sm" href="${esc(D.links.instagram)}" target="_blank" rel="noopener">${esc(ui("instagram"))}</a>` : ""}
       <span class="mb-spacer"></span>
       <span class="mb-lang">
         <button data-lang="es" aria-pressed="${lang === "es"}"><span class="long">Español</span><span class="short">ES</span></button>/
@@ -626,7 +637,7 @@
   let typing = null;
   function renderSticky(animate) {
     const s = D.sticky;
-    if (!s) { sticky.remove(); return; }
+    if (!s || !TH.showSticky) { sticky.remove(); return; }
     clearInterval(typing);
     const full = t(s.text);
     sticky.innerHTML = `<h2>${esc(t(s.title))}</h2><p><span class="txt"></span><span class="caret"></span></p>`;
@@ -711,7 +722,7 @@
     renderIcons();
     const opened = openFromHash();
     setTimeout(() => renderSticky(true), 700);
-    if (D.notification && !opened) {
+    if (D.notification && TH.showNotification && !opened) {
       setTimeout(() => { notif.hidden = false; requestAnimationFrame(() => notif.classList.add("show")); }, 1100);
     }
   }
@@ -721,7 +732,7 @@
     const stack = $("#intro-stack");
     const skipBtn = $("#skip-intro");
     skipBtn.textContent = ui("skip");
-    intro.style.backgroundImage = `url("${D.wallpaper}")`;
+    intro.style.backgroundImage = `url("${wallpaperUrl()}")`;
     let finished = false;
     const timers = [];
     const finish = () => {
@@ -736,7 +747,7 @@
     skipBtn.addEventListener("click", finish);
 
     const photos = D.intro || [];
-    if (!photos.length || sess.get("introSeen", false) || reducedMotion || location.hash.length > 2) { intro.remove(); boot(); return; }
+    if (!TH.showIntro || !photos.length || sess.get("introSeen", false) || reducedMotion || location.hash.length > 2) { intro.remove(); boot(); return; }
 
     const offsets = [[-22, -64], [16, -18], [-10, 26], [8, 6], [-16, -30], [20, 30]];
     photos.forEach((p, i) => { const im = new Image(); im.src = p.src; });
@@ -757,7 +768,9 @@
 
   // ---------- Inicio ----------
   document.documentElement.lang = lang;
-  $("#wallpaper").style.backgroundImage = `url("${D.wallpaper}")`;
+  if (D.seo && t(D.seo.title)) document.title = t(D.seo.title);
+  if (TH.accent && /^#[0-9a-f]{3,8}$/i.test(TH.accent)) document.documentElement.style.setProperty("--accent", TH.accent);
+  $("#wallpaper").style.backgroundImage = `url("${wallpaperUrl()}")`;
   renderMenubar();
   renderNotification();
   renderDock();

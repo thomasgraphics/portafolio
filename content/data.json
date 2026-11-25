@@ -8,6 +8,20 @@
   "location": "Bogotá, Colombia",
   "defaultLang": "es",
   "wallpaper": "assets/img/wallpaper.jpg",
+  "wallpaperMobile": "",
+  "seo": {
+    "siteUrl": "https://www.thomgraphics.com",
+    "title": "Thomgraphics · Portafolio",
+    "description": "Thomas Felipe Hernández (Thomgraphics) — Senior Product Designer en Bogotá, Colombia. Diseño de producto, design systems, branding y motion.",
+    "shareImage": "assets/img/og-image.jpg",
+    "favicon": "favicon.svg"
+  },
+  "theme": {
+    "accent": "#0a64d8",
+    "showIntro": true,
+    "showNotification": true,
+    "showSticky": true
+  },
   "links": {
     "whatsapp": "https://wa.me/573112221511",
     "instagram": "https://instagram.com/thomgraphics",
@@ -729,5 +743,6 @@
       "Fotografía / Photo",
       "AI workflows"
     ]
-  }
+  },
+  "uiText": {}
 }
