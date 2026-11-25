@@ -334,6 +334,12 @@ body.booted .dock { transform: translate(-50%, 0); }
 .case h2 { font-size: 20px; font-family: var(--font-head, var(--font)); font-weight: var(--head-weight, 700); letter-spacing: -0.02em; margin: 0 0 8px; }
 .case section p { font-size: 15.5px; line-height: 1.65; color: var(--ink-2); margin: 0 0 18px; }
 .case section img { border-radius: 12px; width: 100%; cursor: zoom-in; }
+.case-cta { display: inline-flex; align-items: center; gap: 8px; margin: -10px 0 26px; padding: 12px 20px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 600; font-size: 15px; text-decoration: none; box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--accent) 70%, transparent); transition: transform 0.2s var(--ease), filter 0.2s; }
+.case-cta:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.case-cta span { font-size: 17px; line-height: 1; }
+.case-cta-end { margin-top: 10px; }
+.case-cta-end .case-cta { margin: 0; }
+.tile .badge.special { background: var(--accent); }
 .case-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 40px; padding-top: 20px; border-top: 0.5px solid var(--line); }
 .case-nav button { font-size: 13px; font-weight: 600; padding: 10px 14px; border-radius: 10px; background: rgba(0,0,0,.05); }
 .case-nav button:hover { background: rgba(0,0,0,.09); }

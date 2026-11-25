@@ -602,7 +602,7 @@
       if (!c) return "";
       return `<button class="tile is-case" data-idx="${i}" style="--i:${i}">
         <img src="${esc(c.cover)}" alt="${esc(c.title)}" loading="lazy" draggable="false">
-        <span class="badge">${ui("caseBadge")}</span>
+        <span class="badge${c.badge && t(c.badge) ? " special" : ""}">${esc((c.badge && t(c.badge)) || ui("caseBadge"))}</span>
         <span class="cap"><strong>${esc(c.title)}</strong><span>${esc(t(c.subtitle))}</span></span></button>`;
     }
     const src = it.type === "video" ? it.poster : it.src;
@@ -610,6 +610,15 @@
       <img src="${esc(src)}" alt="${esc(t(it.title))}" loading="lazy" draggable="false">
       ${it.type === "video" ? `<span class="badge">${ui("video")}</span>` : ""}</button>`;
   }
+
+  // Botón del caso (ej. "Ver manual interactivo") — solo enlaces https
+  function ctaHtml(c) {
+    const url = c.link && String(c.link.url || "").trim();
+    if (!url || !/^https:\/\//i.test(url)) return "";
+    const label = t(c.link.label) || (lang === "es" ? "Ver proyecto" : "View project");
+    return `<a class="case-cta" href="${esc(url)}" target="_blank" rel="noopener" data-cta="${esc(c.title)}">${esc(label)} <span aria-hidden="true">↗</span></a>`;
+  }
+  document.addEventListener("click", (e) => { const a = e.target.closest("a[data-cta]"); if (a) track("open", { id: "link:" + (a.dataset.cta || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 50) }); });
 
   function openCase(id, origin, list) {
     track("open", { id: "case:" + id });
@@ -634,6 +643,7 @@
               <div class="case-tags">${(c.tags || []).map((g) => `<span class="chip">${esc(t(g))}</span>`).join("")}</div>
               <h1>${esc(c.title)}</h1>
               <p class="sub">${esc(t(c.subtitle))}</p>
+              ${ctaHtml(c)}
               <dl class="case-meta">
                 ${["client", "role", "year", "tools"].filter((k) => m[k]).map((k) => `<div><dt>${ui(k)}</dt><dd>${esc(t(m[k]))}</dd></div>`).join("")}
               </dl>
@@ -643,6 +653,7 @@
                   ${s.p ? `<p>${esc(t(s.p))}</p>` : ""}
                   ${s.img ? `<img src="${esc(s.img)}" alt="${esc(t(s.h))}" loading="lazy" data-zoom>` : ""}
                 </section>`).join("")}
+              ${c.link && c.link.url ? `<div class="case-cta-end">${ctaHtml(c)}</div>` : ""}
               ${state.order.length > 1 ? `<nav class="case-nav">
                 <button data-go="${esc(prev)}">${ui("prev")} ${esc(D.cases[prev].title)}</button>
                 <button data-go="${esc(next)}">${esc(D.cases[next].title)} ${ui("next")}</button></nav>` : ""}

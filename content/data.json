@@ -189,6 +189,17 @@
         "en": "IMG_0552.jpg"
       },
       "src": "assets/img/me-02.jpg"
+    },
+    {
+      "id": "manuales",
+      "type": "folder",
+      "color": "green",
+      "x": 16,
+      "y": 58,
+      "label": {
+        "es": "Manuales interactivos",
+        "en": "Interactive manuals"
+      }
     }
   ],
   "folders": {
@@ -219,6 +230,10 @@
         "en": "Identities that work in the real world: visual systems, brand guidelines and applications."
       },
       "items": [
+        {
+          "type": "case",
+          "case": "mina-nm"
+        },
         {
           "type": "case",
           "case": "monchef"
@@ -370,6 +385,22 @@
           "type": "image",
           "src": "assets/img/projects/social/post-06.jpg",
           "title": "Post 6"
+        }
+      ]
+    },
+    "manuales": {
+      "title": {
+        "es": "Manuales interactivos",
+        "en": "Interactive manuals"
+      },
+      "intro": {
+        "es": "Manuales de marca convertidos en sitios web: se prueban, se copian y se descargan desde el mismo lugar donde se explican.",
+        "en": "Brand guidelines turned into websites: test, copy and download the brand in the same place where its rules are explained."
+      },
+      "items": [
+        {
+          "type": "case",
+          "case": "mina-nm"
         }
       ]
     }
@@ -711,6 +742,147 @@
             "en": "[TODO]"
           },
           "img": "assets/img/projects/tesis/02.jpg"
+        }
+      ]
+    },
+    "mina-nm": {
+      "title": "Mina NM",
+      "subtitle": {
+        "es": "Manual de marca interactivo · Agregados pétreos",
+        "en": "Interactive brand guidelines · Aggregates company"
+      },
+      "badge": {
+        "es": "Manual interactivo",
+        "en": "Interactive guidelines"
+      },
+      "link": {
+        "url": "https://thomasgraphics.github.io/mina-nm-manual/#portada",
+        "label": {
+          "es": "Ver manual interactivo",
+          "en": "View interactive manual"
+        }
+      },
+      "cover": "assets/img/projects/mina-nm/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Mina NM Agregados Pétreos",
+          "en": "Mina NM Aggregates"
+        },
+        "role": {
+          "es": "Identidad visual, animación y diseño del manual interactivo",
+          "en": "Visual identity, animation and interactive manual design"
+        },
+        "year": "2026",
+        "tools": "Branding · Motion 2D · Diseño web interactivo"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Manual interactivo",
+          "en": "Interactive manual"
+        },
+        "Motion",
+        "Web"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "¿Por qué un manual interactivo?",
+            "en": "Why an interactive manual?"
+          },
+          "p": {
+            "es": "Un manual en PDF se descarga una vez, se desactualiza y obliga a pedir los logos cada vez que alguien los necesita. Mina NM necesitaba lo contrario: una herramienta de uso diario. Por eso el brandbook es un sitio web de 21 láminas que se abre con un enlace, funciona en computador y celular, y permite probar, copiar y descargar la marca en el mismo lugar donde se explica cómo usarla. Menos errores de aplicación, cero archivos perdidos y una sola versión vigente (V 1.0 · 2026).",
+            "en": "A PDF manual gets downloaded once, goes out of date and forces people to ask for the logos every time. Mina NM needed the opposite: an everyday tool. So the brandbook is a 21-slide website that opens from a single link, works on desktop and mobile, and lets anyone test, copy and download the brand in the same place where its rules are explained. Fewer application errors, no lost files and one current version (V 1.0 · 2026)."
+          },
+          "img": "assets/img/projects/mina-nm/cover.jpg"
+        },
+        {
+          "h": {
+            "es": "La marca",
+            "en": "The brand"
+          },
+          "p": {
+            "es": "Mina NM Agregados Pétreos es una marca pensada para transmitir fortaleza, confianza y capacidad operativa. El símbolo integra las letras N y M en una estructura geométrica compacta: sus diagonales y encuentros remiten a estructura, movimiento, extracción y construcción. La portada lo presenta hecho de grano: el visitante mueve el cursor y, con un clic, lo dispersa.",
+            "en": "Mina NM Aggregates is a brand built to convey strength, trust and operational capacity. The symbol merges the letters N and M into a compact geometric structure whose diagonals evoke structure, movement, extraction and construction. The cover renders it in grain: visitors move the cursor and scatter it with a click."
+          },
+          "img": "assets/img/projects/mina-nm/02-construccion.jpg"
+        },
+        {
+          "h": {
+            "es": "Logo animado",
+            "en": "Animated logo"
+          },
+          "p": {
+            "es": "El imagotipo se construye como se extrae el material: el grano cae, el símbolo emerge pieza por pieza y el nombre se asienta con peso. Son 96 cuadros a 24 fps animados en dos (12 dibujos por segundo, 4 s en bucle). El reproductor permite pausar, avanzar cuadro a cuadro, cambiar entre 5 fondos y descargar el MP4 en 16:9 o 9:16, o los 10 videos en un ZIP.",
+            "en": "The logo builds the way the material is extracted: grain falls, the symbol emerges piece by piece and the name settles with weight. 96 frames at 24 fps animated on twos (12 drawings per second, 4 s loop). The player lets you pause, step frame by frame, switch between 5 backgrounds and download the MP4 in 16:9 or 9:16, or all 10 videos as a ZIP."
+          },
+          "img": "assets/img/projects/mina-nm/01-logo-animado.jpg"
+        },
+        {
+          "h": {
+            "es": "Reglas que se pueden probar",
+            "en": "Rules you can test"
+          },
+          "p": {
+            "es": "En lugar de solo describir las reglas, el manual deja experimentarlas: alternar entre la construcción geométrica y el sólido, ver el área de protección basada en la unidad X y mover un control deslizante para comprobar en vivo en qué tamaño el imagotipo, la versión simplificada o el isotipo siguen siendo legibles.",
+            "en": "Instead of just describing the rules, the manual lets you experience them: toggle between the geometric construction and the solid mark, see the clear space based on unit X, and drag a slider to check live at what size the full logo, the simplified version or the symbol remain legible."
+          },
+          "img": "assets/img/projects/mina-nm/03-tamano.jpg"
+        },
+        {
+          "h": {
+            "es": "Color y tipografía al alcance de un clic",
+            "en": "Color and type one click away"
+          },
+          "p": {
+            "es": "Cada color se copia con un clic: Ocre #F39D25, Café oscuro #412615, Negro #0C0C0C y Blanco hueso #F5F2E8, cada uno con su significado. Las tipografías ALT Gumbo (titulares) y Montserrat (textos) tienen un probador para escribir cualquier frase y ver todos sus pesos.",
+            "en": "Each color copies with one click: Ochre #F39D25, Dark brown #412615, Black #0C0C0C and Bone white #F5F2E8, each with its meaning. The typefaces ALT Gumbo (headlines) and Montserrat (body) include a tester to type any phrase and preview every weight."
+          },
+          "img": "assets/img/projects/mina-nm/04-colores.jpg"
+        },
+        {
+          "h": {
+            "es": "Usos incorrectos que enseñan",
+            "en": "Misuse examples that teach"
+          },
+          "p": {
+            "es": "Seis errores frecuentes: deformar, rotar, cambiar la tipografía, mover los elementos, agregar efectos o redibujar el logo. Al pasar el cursor (o tocar en el celular) cada caso se transforma en su forma correcta, así la regla se entiende en un segundo.",
+            "en": "Six common mistakes: stretching, rotating, changing the typeface, moving elements, adding effects or redrawing the logo. Hover (or tap on mobile) and each case turns into its correct form, so the rule is understood in a second."
+          },
+          "img": "assets/img/projects/mina-nm/06-usos-incorrectos.jpg"
+        },
+        {
+          "h": {
+            "es": "Descargas sin fricción",
+            "en": "Frictionless downloads"
+          },
+          "p": {
+            "es": "Un configurador reemplaza la carpeta de archivos: eliges versión (6), color (5) y formato (PNG, JPG, SVG o PDF), activas el área de protección y ves el nombre, tamaño y peso del archivo antes de descargarlo. También se puede bajar el kit completo en un ZIP o copiar el código SVG directamente.",
+            "en": "A configurator replaces the asset folder: pick a version (6), color (5) and format (PNG, JPG, SVG or PDF), toggle the clear space and preview the file name, size and weight before downloading. You can also grab the full kit as a ZIP or copy the SVG code directly."
+          },
+          "img": "assets/img/projects/mina-nm/07-descargas.jpg"
+        },
+        {
+          "h": {
+            "es": "Aplicaciones reales",
+            "en": "Real-world applications"
+          },
+          "p": {
+            "es": "La marca se lleva al entorno de la operación: tarjetas y membrete, casco, guantes, chaleco y uniformes (polo, camisas formales azul y café, y camisa de jean), con vistas ampliables y carrusel.",
+            "en": "The brand is taken into the operation: business cards and letterhead, hard hat, gloves, safety vest and uniforms (polo, blue and brown formal shirts, and denim shirt), with zoomable views and a carousel."
+          },
+          "img": "assets/img/projects/mina-nm/08-dotacion.jpg"
+        },
+        {
+          "h": {
+            "es": "Resultado",
+            "en": "Outcome"
+          },
+          "p": {
+            "es": "Un brandbook que no se guarda en una carpeta, se usa: 21 láminas navegables con índice, cada recurso listo para descargar en el formato correcto y una experiencia que convierte las reglas de marca en algo que el equipo y los proveedores pueden probar por sí mismos.",
+            "en": "A brandbook that isn't filed away but used: 21 navigable slides with an index, every asset ready to download in the right format, and an experience that turns brand rules into something the team and suppliers can test for themselves."
+          },
+          "img": "assets/img/projects/mina-nm/09-uniformes.jpg"
         }
       ]
     }

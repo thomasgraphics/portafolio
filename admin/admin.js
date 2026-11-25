@@ -927,6 +927,10 @@
           add(c.meta, { key: "role", type: "i18n", label: "Tu rol" });
           add(c.meta, { key: "year", type: "text", label: "Año" });
           add(c.meta, { key: "tools", type: "text", label: "Herramientas" });
+          add(c, { key: "badge", type: "i18n", label: "Etiqueta de la tarjeta", hint: "Ej: Manual interactivo. Vacío = «Caso de estudio»" });
+          c.link = c.link || {};
+          add(c.link, { key: "url", type: "text", label: "Enlace del botón", ph: "https://…", hint: "Opcional: muestra un botón para ver el proyecto en vivo" });
+          add(c.link, { key: "label", type: "i18n", label: "Texto del botón", ph: { es: "Ver proyecto", en: "View project" } });
           add(c, { key: "tags", type: "list", label: "Etiquetas", addLabel: "Agregar etiqueta", item: { type: "i18n", noun: "Etiqueta" } });
           add(c, { key: "sections", type: "list", label: "Secciones del caso", addLabel: "Agregar sección", item: {
             title: (s, i) => `${i + 1}. ${t(s.h) || "Sección"}`,
