@@ -169,24 +169,23 @@ body.booted .sticky { opacity: 1; }
 
 /* ---------- Notificación ---------- */
 .notification {
-  position: absolute; top: 14px; right: 18px; z-index: 40;
-  width: 340px; padding: 12px 14px;
+  position: absolute; top: 22px; left: 54%; z-index: 40;
+  width: 272px; padding: 11px 13px 12px;
   background: var(--glass-strong);
   backdrop-filter: blur(30px) saturate(1.8); -webkit-backdrop-filter: blur(30px) saturate(1.8);
-  border-radius: 18px;
+  border-radius: 16px;
   box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  transform: translateX(120%); opacity: 0;
-  transition: transform 0.7s var(--spring), opacity 0.4s;
+  transform: translateY(-16px) rotate(-2.2deg); opacity: 0;
+  transition: transform 0.7s var(--spring), opacity 0.45s;
 }
-.notification.show { transform: translateX(0); opacity: 1; }
-body > .notification { position: fixed; top: calc(var(--menubar-h) + 12px); z-index: 8500; }
+.notification.show { transform: translateY(0) rotate(-2.2deg); opacity: 1; }
 .notification .n-head { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
 .notification .n-app-icon { width: 16px; height: 16px; border-radius: 4px; background: linear-gradient(#5ee47a, #1fb94a); display: grid; place-items: center; }
 .notification .n-app-icon svg { width: 10px; height: 10px; }
 .notification .n-time { margin-left: auto; }
-.notification .n-title { font-weight: 600; font-size: 14px; margin: 4px 0 2px; }
-.notification .n-body { font-size: 13px; color: var(--ink-2); line-height: 1.35; }
+.notification .n-title { font-weight: 600; font-size: 13.5px; margin: 4px 0 2px; }
+.notification .n-body { font-size: 12.5px; color: var(--ink-2); line-height: 1.35; }
 .notification .n-close {
   position: absolute; top: -6px; left: -6px; width: 20px; height: 20px; border-radius: 50%;
   background: var(--glass-strong); box-shadow: 0 1px 4px rgba(0,0,0,.2); font-size: 12px; line-height: 20px;
@@ -395,7 +394,7 @@ body.booted .dock { transform: translate(-50%, 0); }
   .menubar .mb-hide-sm { display: none; }
   .desktop { top: calc(var(--menubar-h) + env(safe-area-inset-top)); overflow-y: auto; padding-bottom: 110px; }
   .sticky { position: relative; left: auto; top: auto; margin: 14px auto 0; width: calc(100% - 32px); transform: none; cursor: default; }
-  .notification { position: relative; top: auto; right: auto; margin: 12px auto 0; width: calc(100% - 32px); transform: translateY(-20px); }
+  .notification { position: relative; top: auto; right: auto; left: auto; margin: 12px auto 0; width: calc(100% - 32px); transform: translateY(-20px); }
   .notification.show { transform: none; }
   .notification[hidden] { display: none; }
   .icons { position: relative; inset: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px 4px; padding: 22px 12px; }

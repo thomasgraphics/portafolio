@@ -719,7 +719,6 @@
   // =========================================================================
   // Notificación, nota adhesiva y dock
   // =========================================================================
-  if (!isMobile()) document.body.appendChild(notif);
   function renderNotification() {
     const n = D.notification;
     if (!n) return;
