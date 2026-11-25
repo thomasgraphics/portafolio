@@ -228,6 +228,7 @@
       case "text":
       case "number": {
         const inp = h("input", { type: f.type === "number" ? "number" : "text", value: obj[f.key] ?? "", placeholder: typeof f.ph === "string" ? f.ph : "", step: f.step, min: f.min, max: f.max });
+        if (f.refresh) inp.addEventListener("change", () => { const sc = $(".content").scrollTop; render(); $(".content").scrollTop = sc; });
         inp.addEventListener("input", () => {
           if (f.type === "number" && inp.value === "") { if (f.ph) delete obj[f.key]; else obj[f.key] = 0; }
           else obj[f.key] = f.type === "number" ? +inp.value : inp.value;
@@ -391,6 +392,18 @@
     loadedFonts.add(f);
     document.head.append(h("link", { rel: "stylesheet", href: `https://fonts.googleapis.com/css2?family=${f.replace(/ /g, "+")}:wght@400;500;600;700;800&display=swap` }));
   }
+  const FMT = { woff2: "woff2", woff: "woff", ttf: "truetype", otf: "opentype" };
+  const cleanFam = (v) => String(v || "").replace(/[^A-Za-z0-9 _-]/g, "").trim().slice(0, 40);
+  const customFonts = () => ((D.theme || {}).customFonts || []).filter((f) => f && cleanFam(f.family) && f.src);
+  const customFamilies = () => [...new Set(((D.theme || {}).customFonts || []).map((f) => cleanFam(f && f.family)).filter(Boolean))];
+  let fontStyleEl = null;
+  function injectCustomFonts() {
+    if (!fontStyleEl) { fontStyleEl = h("style", {}); document.head.append(fontStyleEl); }
+    fontStyleEl.textContent = customFonts().map((f) => {
+      const ext = f.src.split(".").pop().toLowerCase();
+      return FMT[ext] ? `@font-face{font-family:"${cleanFam(f.family)}";src:url("${resolve(f.src)}") format("${FMT[ext]}");font-weight:${+f.weight || 400};font-style:${f.style === "italic" ? "italic" : "normal"};font-display:swap}` : "";
+    }).join("");
+  }
   const isHex = (v) => typeof v === "string" && /^#[0-9a-f]{6}$/i.test(v);
   const rgbaA = (hx, a) => { const n = parseInt(hx.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
   let previewEl = null;
@@ -398,10 +411,11 @@
     if (!previewEl || !previewEl.isConnected) return;
     const T = D.theme || {};
     const SYS = '-apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif';
-    loadFont(T.font); loadFont(T.fontHead);
+    loadFont(T.font); loadFont(T.fontHead); injectCustomFonts();
+    const ok = (f) => FONTS.includes(f) || customFamilies().includes(f);
     const v = {
-      "--p-font": FONTS.includes(T.font) ? `"${T.font}", ${SYS}` : SYS,
-      "--p-head": FONTS.includes(T.fontHead) ? `"${T.fontHead}", ${SYS}` : FONTS.includes(T.font) ? `"${T.font}", ${SYS}` : SYS,
+      "--p-font": ok(T.font) ? `"${T.font}", ${SYS}` : SYS,
+      "--p-head": ok(T.fontHead) ? `"${T.fontHead}", ${SYS}` : ok(T.font) ? `"${T.font}", ${SYS}` : SYS,
       "--p-weight": T.headWeight || 700,
       "--p-accent": isHex(T.accent) ? T.accent : "#0a64d8",
       "--p-ink": isHex(T.ink) ? T.ink : "#1c1c1e",
@@ -514,15 +528,27 @@
     look() {
       D.theme = D.theme || {};
       const T = D.theme;
-      const fontOpts = [["", "Sistema (SF Pro en Mac / Segoe en Windows)"], ...FONTS.map((f) => [f, f])];
+      const mine = customFamilies().map((f) => [f, `${f} (tu fuente)`]);
+      const fontOpts = [["", "Sistema (SF Pro en Mac / Segoe en Windows)"], ...mine, ...FONTS.map((f) => [f, f])];
       const reset = h("button", { class: "btn sm ghost danger", type: "button", onclick: () => {
         DESIGN_KEYS.forEach((k) => delete T[k]); touch(); render(); toast("Diseño restablecido. Publica para aplicarlo.");
       } }, "Restablecer diseño original");
       return [
         designPreview(),
-        group("Tipografía", "Fuentes de Google Fonts. Combina una de texto con una de títulos.", T, [
+        group("Tus tipografías", "Sube tus fuentes (WOFF2 recomendado; también WOFF, TTF u OTF). Sube un archivo por grosor/estilo con el MISMO nombre de familia, y luego elígela abajo. Usa solo fuentes con licencia para web.", T, [
+          { key: "customFonts", type: "list", label: "Fuentes subidas", addLabel: "Agregar fuente", item: {
+            title: (f) => f.family ? `${cleanFam(f.family)} · ${f.weight || 400}${f.style === "italic" ? " itálica" : ""}` : "Nueva fuente",
+            make: () => ({ family: "", src: "", weight: "400", style: "normal" }),
+            fields: [
+              { key: "family", type: "text", label: "Nombre de la familia", hint: "Ej: Thomgraphics Sans", ph: "Mi Fuente", refresh: true },
+              { key: "src", type: "file", label: "Archivo", accept: ".woff2,.woff,.ttf,.otf,font/woff2,font/woff,font/ttf,font/otf" },
+              { key: "weight", type: "select", label: "Grosor", options: [["400", "Regular (400)"], ["100", "Thin (100)"], ["200", "Extra light (200)"], ["300", "Light (300)"], ["500", "Medium (500)"], ["600", "Semibold (600)"], ["700", "Bold (700)"], ["800", "Extra bold (800)"], ["900", "Black (900)"]] },
+              { key: "style", type: "select", label: "Estilo", options: [["normal", "Normal"], ["italic", "Itálica"]] },
+            ] } },
+        ]),
+        group("Tipografía", "Elige tus fuentes o una de Google Fonts. Combina una de texto con una de títulos.", T, [
           { key: "font", type: "select", label: "Fuente de textos", options: fontOpts },
-          { key: "fontHead", type: "select", label: "Fuente de títulos", options: [["", "La misma de los textos"], ...FONTS.map((f) => [f, f])] },
+          { key: "fontHead", type: "select", label: "Fuente de títulos", options: [["", "La misma de los textos"], ...mine, ...FONTS.map((f) => [f, f])] },
           { key: "headWeight", type: "select", label: "Grosor de títulos", options: [["700", "Bold (700)"], ["800", "Extra bold (800)"], ["600", "Semibold (600)"], ["500", "Medium (500)"], ["400", "Regular (400)"]] },
         ]),
         group("Colores", null, T, [

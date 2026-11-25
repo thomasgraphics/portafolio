@@ -71,8 +71,24 @@
   const SYS = '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, Arial, sans-serif';
   const hex = (v) => (typeof v === "string" && /^#[0-9a-f]{6}$/i.test(v) ? v : null);
   const rgba = (h, a) => { const n = parseInt(h.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+  const FMT = { woff2: "woff2", woff: "woff", ttf: "truetype", otf: "opentype" };
+  const cleanFam = (v) => String(v || "").replace(/[^A-Za-z0-9 _-]/g, "").trim().slice(0, 40);
   function applyDesign(T) {
     const root = document.documentElement.style;
+    // Tipografías subidas desde el admin (@font-face)
+    const custom = (T.customFonts || []).map((f) => ({
+      fam: cleanFam(f && f.family),
+      src: String((f && f.src) || ""),
+      w: [100, 200, 300, 400, 500, 600, 700, 800, 900].includes(+f.weight) ? +f.weight : 400,
+      st: f && f.style === "italic" ? "italic" : "normal",
+    })).filter((c) => c.fam && /^[A-Za-z0-9_./-]+$/.test(c.src) && !c.src.includes("..") && FMT[c.src.split(".").pop().toLowerCase()]);
+    if (custom.length) {
+      const st = document.createElement("style");
+      st.textContent = custom.map((c) => `@font-face{font-family:"${c.fam}";src:url("/${c.src.replace(/^\//, "")}") format("${FMT[c.src.split(".").pop().toLowerCase()]}");font-weight:${c.w};font-style:${c.st};font-display:swap}`).join("");
+      document.head.append(st);
+    }
+    const customNames = new Set(custom.map((c) => c.fam));
+    const okFont = (f) => FONTS.includes(f) || customNames.has(f);
     const fams = [T.font, T.fontHead].filter((f) => FONTS.includes(f));
     if (fams.length) {
       const l = document.createElement("link");
@@ -80,8 +96,8 @@
       l.href = "https://fonts.googleapis.com/css2?" + [...new Set(fams)].map((f) => "family=" + f.replace(/ /g, "+") + ":wght@400;500;600;700;800").join("&") + "&display=swap";
       document.head.append(l);
     }
-    if (FONTS.includes(T.font)) root.setProperty("--font", `"${T.font}", ${SYS}`);
-    if (FONTS.includes(T.fontHead)) root.setProperty("--font-head", `"${T.fontHead}", ${SYS}`);
+    if (okFont(T.font)) root.setProperty("--font", `"${T.font}", ${SYS}`);
+    if (okFont(T.fontHead)) root.setProperty("--font-head", `"${T.fontHead}", ${SYS}`);
     if ([400, 500, 600, 700, 800].includes(+T.headWeight)) root.setProperty("--head-weight", +T.headWeight);
     const map = { accent: "--accent", ink: "--ink", ink2: "--ink-2", muted: "--muted", winBg: "--win-bg", winBar: "--win-bar", noteBg: "--note-bg", stickyBg: "--sticky-bg", labelInk: "--label-ink", menubarInk: "--menubar-ink" };
     Object.entries(map).forEach(([k, v]) => { if (hex(T[k])) root.setProperty(v, T[k]); });
