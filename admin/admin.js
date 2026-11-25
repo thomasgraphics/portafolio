@@ -238,7 +238,7 @@
         break;
       }
       case "toggle": {
-        const cb = h("input", { type: "checkbox", class: "switch", checked: obj[f.key] !== false });
+        const cb = h("input", { type: "checkbox", class: "switch", checked: obj[f.key] === undefined ? f.def !== false : obj[f.key] !== false });
         cb.addEventListener("change", () => { obj[f.key] = cb.checked; touch(); });
         ctl.append(h("label", { class: "toggle" }, cb, h("span", {}, f.on || "Mostrar")));
         break;
@@ -385,7 +385,7 @@
 
   // ---------- Diseño: fuentes y vista previa ----------
   const FONTS = ["Inter", "DM Sans", "Manrope", "Plus Jakarta Sans", "Outfit", "Space Grotesk", "Poppins", "Montserrat", "Work Sans", "IBM Plex Sans", "Sora", "Urbanist", "Figtree", "Geist", "Instrument Sans", "Onest", "Lexend", "Rubik", "Nunito Sans", "Raleway", "Playfair Display", "Fraunces", "DM Serif Display", "Instrument Serif", "Libre Baskerville", "Space Mono", "JetBrains Mono"];
-  const DESIGN_KEYS = ["autoDark", "darkFrom", "darkTo", "font", "fontHead", "headWeight", "accent", "ink", "ink2", "muted", "winBg", "winBar", "noteBg", "stickyBg", "labelInk", "menubarInk", "menubarBg", "menubarOpacity", "dockBg", "dockOpacity", "radius", "iconScale", "dockSize"];
+  const DESIGN_KEYS = ["autoDark", "darkFrom", "darkTo", "focusIn", "wallpaperBlur", "dof", "noise", "noiseOpacity", "noiseAnimated", "font", "fontHead", "headWeight", "accent", "ink", "ink2", "muted", "winBg", "winBar", "noteBg", "stickyBg", "labelInk", "menubarInk", "menubarBg", "menubarOpacity", "dockBg", "dockOpacity", "radius", "iconScale", "dockSize"];
   const loadedFonts = new Set();
   function loadFont(f) {
     if (!FONTS.includes(f) || loadedFonts.has(f)) return;
@@ -574,6 +574,14 @@
           { key: "radius", type: "number", label: "Esquinas de ventanas (px)", min: 0, max: 32, step: 1, ph: "12" },
           { key: "iconScale", type: "number", label: "Tamaño de íconos (%)", min: 60, max: 160, step: 5, ph: "100" },
           { key: "dockSize", type: "number", label: "Tamaño del dock (px)", min: 36, max: 80, step: 2, ph: "52" },
+        ]),
+        group("Fondo y textura", "Efectos del fondo del escritorio.", T, [
+          { key: "focusIn", type: "toggle", label: "Enfoque al entrar", on: "El fondo arranca desenfocado y se enfoca" },
+          { key: "wallpaperBlur", type: "number", label: "Desenfoque del fondo (px)", min: 0, max: 30, step: 1, ph: "4", hint: "0 = foto nítida" },
+          { key: "dof", type: "toggle", label: "Profundidad de campo", on: "Más desenfoque en los bordes" },
+          { key: "noise", type: "toggle", label: "Textura de ruido (grano)", on: "Mostrar" },
+          { key: "noiseOpacity", type: "number", label: "Intensidad del grano (%)", min: 0, max: 50, step: 1, ph: "22" },
+          { key: "noiseAnimated", type: "toggle", label: "Grano animado", on: "Efecto de película", def: false },
         ]),
         group("Modo oscuro automático", "De noche el portafolio cambia solo a modo oscuro, según la hora de quien lo visita. Tus colores personalizados aplican de día; de noche se usa la paleta oscura (el acento se mantiene). Para probarlo: tudominio.com/?modo=oscuro", T, [
           { key: "autoDark", type: "toggle", label: "Modo oscuro de noche", on: "Activado" },

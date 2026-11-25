@@ -103,6 +103,14 @@
     if (+T.radius >= 0 && +T.radius <= 32) root.setProperty("--radius-win", +T.radius + "px");
     if (+T.dockSize >= 36 && +T.dockSize <= 80) root.setProperty("--dk-size", +T.dockSize + "px");
     if (+T.iconScale >= 60 && +T.iconScale <= 160) root.setProperty("--icon-scale", +T.iconScale / 100);
+    // Fondo y textura
+    if (T.wallpaperBlur !== undefined && T.wallpaperBlur !== "" && +T.wallpaperBlur >= 0 && +T.wallpaperBlur <= 30) root.setProperty("--wp-blur", +T.wallpaperBlur + "px");
+    if (T.noiseOpacity !== undefined && T.noiseOpacity !== "" && +T.noiseOpacity >= 0 && +T.noiseOpacity <= 50) root.setProperty("--noise-o", +T.noiseOpacity / 100);
+    const b = document.body.classList;
+    b.toggle("no-dof", T.dof === false);
+    b.toggle("no-noise", T.noise === false);
+    b.toggle("noise-anim", T.noiseAnimated === true && !reducedMotion);
+    b.toggle("no-focus-in", T.focusIn === false);
   }
   // ---------- Modo oscuro automático (de noche, según la hora del visitante) ----------
   // Prueba manual: tudominio.com/?modo=oscuro  o  ?modo=claro
@@ -137,8 +145,11 @@
     applyColors(D.theme || {});
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = dark ? "#1c1c1e" : "#cfd2bf";
-    const wp = document.getElementById("wallpaper");
-    if (wp && !first) wp.style.backgroundImage = `url("${wallpaperUrl()}")`;
+    if (!first) setWallpaper();
+  }
+  function setWallpaper() {
+    const url = `url("${String(wallpaperUrl() || "").replace(/["\\\n]/g, "")}")`;
+    document.querySelectorAll(".wallpaper").forEach((el) => el.style.setProperty("--wp", url));
   }
   const wallpaperUrl = () =>
     document.documentElement.classList.contains("dark") && D.wallpaperDark ? D.wallpaperDark : (isMobile() && D.wallpaperMobile ? D.wallpaperMobile : D.wallpaper);
@@ -165,9 +176,15 @@
       <linearGradient id="${gb}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${b1}"/><stop offset="1" stop-color="${b2}"/></linearGradient>
       <linearGradient id="${gf}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${f1}"/><stop offset="1" stop-color="${f2}"/></linearGradient></defs>
       <path d="M4 12a7 7 0 0 1 7-7h23.5a6 6 0 0 1 4.6 2.2L44 13h45a7 7 0 0 1 7 7v54a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6z" fill="url(#${gb})"/>
-      <path d="M4 30a7 7 0 0 1 7-7h78a7 7 0 0 1 7 7v44a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6z" fill="url(#${gf})"/>
-      <path d="M11 23.7h78" stroke="#fff" stroke-opacity=".75" stroke-width="1.3"/>
-      <path d="M4.5 74a5.5 5.5 0 0 0 5.5 5.5h80a5.5 5.5 0 0 0 5.5-5.5" fill="none" stroke="#000" stroke-opacity=".12"/></svg>`;
+      <g class="papers">
+        <g class="paper p2"><rect x="24" y="22" width="58" height="40" rx="3" fill="#f2f2f2"/><path d="M31 31h34M31 37h40M31 43h28" stroke="#d6d6d6" stroke-width="2.2" stroke-linecap="round"/></g>
+        <g class="paper p1"><rect x="16" y="24" width="60" height="42" rx="3" fill="#fff"/><path d="M23 33h36M23 39h44M23 45h30" stroke="#cfcfcf" stroke-width="2.2" stroke-linecap="round"/></g>
+      </g>
+      <g class="front">
+        <path d="M4 30a7 7 0 0 1 7-7h78a7 7 0 0 1 7 7v44a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6z" fill="url(#${gf})"/>
+        <path d="M11 23.7h78" stroke="#fff" stroke-opacity=".75" stroke-width="1.3"/>
+        <path d="M4.5 74a5.5 5.5 0 0 0 5.5 5.5h80a5.5 5.5 0 0 0 5.5-5.5" fill="none" stroke="#000" stroke-opacity=".12"/>
+      </g></svg>`;
   };
   const svgNote = () => {
     const gy = uid(), gp = uid();
@@ -813,7 +830,13 @@
   // Intro y arranque
   // =========================================================================
   function boot() {
-    document.body.classList.add("booted");
+    // El fondo arranca desenfocado y se enfoca cuando la foto ya cargó
+    const reveal = () => requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("booted")));
+    const pre = new Image();
+    let shown = false;
+    const go = () => { if (!shown) { shown = true; reveal(); } };
+    pre.onload = go; pre.onerror = go; pre.src = wallpaperUrl();
+    setTimeout(go, 1500);
     renderIcons();
     const opened = openFromHash();
     setTimeout(() => renderSticky(true), 700);
@@ -867,7 +890,7 @@
   updateMode(true);
   applyDesign(TH);
   setInterval(() => updateMode(false), 60 * 1000);
-  $("#wallpaper").style.backgroundImage = `url("${wallpaperUrl()}")`;
+  setWallpaper();
   renderMenubar();
   renderNotification();
   renderDock();

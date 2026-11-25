@@ -75,7 +75,7 @@ En `index.html`, reemplaza las 3 apariciones de `https://tudominio.com` por tu d
 - **Escritorio e íconos:** mini escritorio para acomodar los íconos arrastrándolos; agregar, quitar, cambiar tipo y color, o subir un ícono propio.
 - **Carpetas** y **Casos de estudio:** crear, editar y eliminar.
 - **SEO y compartir:** título, descripción, imagen que aparece al compartir el enlace y favicon (se actualiza `index.html` automáticamente).
-- **Diseño y apariencia:** modo oscuro automático de noche (horario configurable, fondo de noche opcional; pruébalo con `?modo=oscuro`), tipografías (sube las tuyas en WOFF2/WOFF/TTF/OTF o usa Google Fonts, para textos y títulos), grosor de títulos, todos los colores (acento, textos, ventanas, notas, barra de menú, dock), opacidades, esquinas, tamaño de íconos y dock, fondo para celular y mostrar/ocultar intro, notificación y nota, con vista previa en vivo y botón para restablecer.
+- **Diseño y apariencia:** fondo y textura (enfoque al entrar, desenfoque, profundidad de campo, grano estático o animado), modo oscuro automático de noche (horario configurable, fondo de noche opcional; pruébalo con `?modo=oscuro`), tipografías (sube las tuyas en WOFF2/WOFF/TTF/OTF o usa Google Fonts, para textos y títulos), grosor de títulos, todos los colores (acento, textos, ventanas, notas, barra de menú, dock), opacidades, esquinas, tamaño de íconos y dock, fondo para celular y mostrar/ocultar intro, notificación y nota, con vista previa en vivo y botón para restablecer.
 - **Textos de la interfaz:** todos los botones y etiquetas del sitio en español e inglés.
 
 Lo único que **no** se cambia desde el admin, por seguridad, es la contraseña del propio admin (va en Vercel → Environment Variables).
