@@ -14,7 +14,7 @@
   --glass-strong: rgba(255, 255, 255, 0.82);
   --accent: #0a64d8;
   --menubar-h: 26px;
-  --radius-win: 12px;
+  --radius-win: 16px;
   --shadow-win: 0 30px 80px -10px rgba(0, 0, 0, 0.35), 0 0 0 0.5px rgba(0, 0, 0, 0.18);
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   --spring: cubic-bezier(0.34, 1.4, 0.5, 1);
@@ -432,9 +432,6 @@ body.booted .dock { transform: translate(-50%, 0); }
 }
 
 
-/* =========================================================================
-   Diálogo "Actualización disponible" (estilo macOS)
-   ========================================================================= */
 /* ---------- Botones estilo macOS (push buttons) ---------- */
 .mac-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 28px; padding: 0 14px; border-radius: 7px; font: 500 13px/1 var(--font); letter-spacing: -0.003em; text-decoration: none; white-space: nowrap; cursor: default; user-select: none; -webkit-user-select: none; transition: filter 0.12s; }
 .mac-btn svg { width: 14px; height: 14px; flex: none; }
@@ -491,8 +488,6 @@ html.dark {
   --glass-strong: rgba(44, 44, 46, 0.86);
   --note-bg: #232321;
   --sticky-bg: rgba(44, 44, 46, 0.88);
-  --menubar-bg: rgba(0, 0, 0, 0.34);
-  --dock-bg: rgba(38, 38, 40, 0.5);
   --shadow-win: 0 30px 80px -10px rgba(0, 0, 0, 0.7), 0 0 0 0.5px rgba(255, 255, 255, 0.12);
 }
 html.dark body { background: #141415; }
@@ -530,3 +525,165 @@ html.dark .notification .n-close { color: var(--ink); }
 
 /* Transición suave al cambiar de modo */
 html.dark .win, html.dark .sticky, html.dark .notification, html.dark .dock, html.dark .menubar { transition: background-color 0.6s, color 0.6s, box-shadow 0.6s; }
+
+
+/* =========================================================================
+   LIQUID GLASS — material de vidrio de macOS Tahoe 26
+   Capas: fondo translúcido + desenfoque y saturación (backdrop-filter)
+   + borde de luz (rim) + brillos especulares + sombra + brillo que sigue el cursor.
+   ========================================================================= */
+:root {
+  --lg-fill: rgba(255, 255, 255, 0.2);
+  --lg-fill-2: rgba(255, 255, 255, 0.42);
+  --lg-fill-3: rgba(255, 255, 255, 0.62);
+  --lg-filter: blur(14px) saturate(190%) brightness(1.06);
+  --lg-filter-soft: blur(24px) saturate(180%) brightness(1.04);
+  --lg-rim: linear-gradient(140deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.32) 22%, rgba(255, 255, 255, 0.06) 48%, rgba(255, 255, 255, 0.2) 72%, rgba(255, 255, 255, 0.85) 100%);
+  --lg-spec: inset 0 1px 1px rgba(255, 255, 255, 0.75), inset 0 -1px 1px rgba(255, 255, 255, 0.2), inset 0 0 22px rgba(255, 255, 255, 0.14);
+  --lg-drop: 0 12px 32px -10px rgba(0, 0, 0, 0.3), 0 2px 6px -2px rgba(0, 0, 0, 0.12);
+  --lg-edge: 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+  --lg-hl: rgba(255, 255, 255, 0.38);
+  --bar-h: 40px;
+}
+html.dark {
+  --lg-fill: rgba(30, 30, 32, 0.3);
+  --lg-fill-2: rgba(44, 44, 46, 0.45);
+  --lg-fill-3: rgba(44, 44, 46, 0.66);
+  --lg-filter: blur(16px) saturate(170%) brightness(0.92);
+  --lg-filter-soft: blur(26px) saturate(160%) brightness(0.9);
+  --lg-rim: linear-gradient(140deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.12) 25%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.1) 75%, rgba(255, 255, 255, 0.4) 100%);
+  --lg-spec: inset 0 1px 1px rgba(255, 255, 255, 0.22), inset 0 -1px 1px rgba(255, 255, 255, 0.06), inset 0 0 20px rgba(255, 255, 255, 0.05);
+  --lg-drop: 0 14px 36px -10px rgba(0, 0, 0, 0.65), 0 2px 6px -2px rgba(0, 0, 0, 0.4);
+  --lg-edge: 0 0 0 0.5px rgba(0, 0, 0, 0.5);
+  --lg-hl: rgba(255, 255, 255, 0.16);
+}
+
+/* Borde de luz (rim) y brillo que sigue el cursor */
+.dock::before, .notification::before, .sticky::before, .mac-btn::before, .case-talk::before, .seg::before,
+.sidebar::before, .dk .tip::before, .skip-intro::before, .win::before, .chip::before, .tile .badge::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none; z-index: 3;
+  background: var(--lg-rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.win::before { opacity: 0.55; z-index: 20; }
+.dock::after, .notification::after, .mac-btn::after, .case-talk::after, .seg::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
+  background: radial-gradient(180px circle at var(--mx, -300px) var(--my, -300px), var(--lg-hl), transparent 70%);
+  opacity: 0; transition: opacity 0.3s var(--ease);
+}
+.dock:hover::after, .notification:hover::after, .mac-btn:hover::after, .case-talk:hover::after, .seg:hover::after { opacity: 1; }
+
+/* Barra de menú: transparente como en Tahoe (solo un velo suave para leer) */
+.menubar { background: var(--menubar-bg, linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))); backdrop-filter: none; -webkit-backdrop-filter: none; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3); }
+.menubar .mb-item { border-radius: 999px; padding: 2px 10px; position: relative; }
+.menubar .mb-item:hover { background: rgba(255, 255, 255, 0.22); backdrop-filter: blur(8px) saturate(180%); -webkit-backdrop-filter: blur(8px) saturate(180%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 0 0 0.5px rgba(255, 255, 255, 0.3); }
+
+/* Dock */
+.dock {
+  background: var(--dock-bg, var(--lg-fill));
+  backdrop-filter: var(--lg-filter); -webkit-backdrop-filter: var(--lg-filter);
+  border: 0; border-radius: 28px; padding: 7px 8px 8px;
+  box-shadow: var(--lg-spec), var(--lg-drop), var(--lg-edge);
+}
+.dk { z-index: 4; }
+.dk .tip { background: var(--lg-fill-3); backdrop-filter: var(--lg-filter); -webkit-backdrop-filter: var(--lg-filter); border-radius: 999px; box-shadow: var(--lg-spec), 0 4px 14px -4px rgba(0, 0, 0, 0.3); color: var(--ink); }
+.dock .sep { background: rgba(255, 255, 255, 0.45); }
+
+/* Notificación y nota: widgets de vidrio */
+.notification { background: var(--lg-fill-2); backdrop-filter: var(--lg-filter-soft); -webkit-backdrop-filter: var(--lg-filter-soft); border-radius: 22px; box-shadow: var(--lg-spec), var(--lg-drop), var(--lg-edge); }
+.sticky { background: var(--sticky-bg, var(--lg-fill-2)); backdrop-filter: var(--lg-filter-soft); -webkit-backdrop-filter: var(--lg-filter-soft); border-radius: 22px; box-shadow: var(--lg-spec), var(--lg-drop), var(--lg-edge); }
+html.dark .sticky { background: var(--lg-fill-2); }
+.skip-intro { position: absolute; background: var(--lg-fill-2); backdrop-filter: var(--lg-filter); -webkit-backdrop-filter: var(--lg-filter); box-shadow: var(--lg-spec), var(--lg-drop); }
+
+/* Ventanas: barra de título de vidrio flotando sobre el contenido */
+.win { border-radius: var(--radius-win); }
+.win-bar {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 10; height: var(--bar-h);
+  background: color-mix(in srgb, var(--win-bg) 58%, transparent);
+  backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 0; box-shadow: inset 0 -0.5px 0 var(--line);
+}
+.win.finder .win-bar { background: linear-gradient(90deg, transparent 220px, color-mix(in srgb, var(--win-bg) 58%, transparent) 220px); box-shadow: none; }
+html.dark .win.finder .win-bar { background: linear-gradient(90deg, transparent 220px, color-mix(in srgb, var(--win-bg) 58%, transparent) 220px); }
+.win-body { padding-top: var(--bar-h); }
+.win.casewin .win-body, .win.finder .win-body { padding-top: 0; }
+.win.finder .main { padding-top: var(--bar-h); }
+.win-actions a { border-radius: 999px; background: var(--lg-fill-2); box-shadow: var(--lg-spec), var(--lg-edge); }
+.traffic span { box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.45); }
+
+/* Barra lateral flotante (Finder en Tahoe) */
+.sidebar {
+  position: relative; margin: 8px 0 8px 8px; border-radius: 16px; padding-top: 38px; border-right: 0;
+  background: color-mix(in srgb, var(--win-bar) 70%, transparent);
+  backdrop-filter: var(--lg-filter-soft); -webkit-backdrop-filter: var(--lg-filter-soft);
+  box-shadow: var(--lg-spec), 0 6px 18px -8px rgba(0, 0, 0, 0.22), var(--lg-edge);
+}
+html.dark .sidebar { background: rgba(58, 58, 60, 0.55); }
+.sb-item { border-radius: 9px; }
+.sb-item[aria-current="true"] { background: rgba(255, 255, 255, 0.7); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 0.5px rgba(0, 0, 0, 0.06); }
+html.dark .sb-item[aria-current="true"] { background: rgba(255, 255, 255, 0.14); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12); }
+
+/* Control segmentado: cápsula de vidrio */
+.seg { position: relative; padding: 3px; border-radius: 999px; background: rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06), var(--lg-edge); }
+.seg button { border-radius: 999px; padding: 5px 12px; position: relative; z-index: 4; }
+.seg button[aria-pressed="true"] { background: rgba(255, 255, 255, 0.92); box-shadow: inset 0 1px 0 #fff, 0 2px 6px -1px rgba(0, 0, 0, 0.16), 0 0 0 0.5px rgba(0, 0, 0, 0.06); }
+html.dark .seg { background: rgba(255, 255, 255, 0.07); }
+html.dark .seg button[aria-pressed="true"] { background: rgba(255, 255, 255, 0.2); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 6px -1px rgba(0, 0, 0, 0.5); }
+
+/* Chips y etiquetas */
+.chip { position: relative; background: rgba(0, 0, 0, 0.045); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), var(--lg-edge); }
+html.dark .chip { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+.tile .badge { background: rgba(20, 20, 22, 0.35); backdrop-filter: var(--lg-filter); -webkit-backdrop-filter: var(--lg-filter); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35); }
+
+/* Botones: cápsulas de vidrio */
+.mac-btn { position: relative; isolation: isolate; height: 32px; padding: 0 18px; border-radius: 999px; font-weight: 600; transition: transform 0.35s var(--spring), filter 0.15s; }
+.mac-btn > * { position: relative; z-index: 4; }
+.mac-btn:active { transform: scale(0.96); }
+.mac-btn.secondary {
+  background: var(--lg-fill-3); color: var(--ink);
+  backdrop-filter: var(--lg-filter); -webkit-backdrop-filter: var(--lg-filter);
+  box-shadow: var(--lg-spec), 0 4px 12px -4px rgba(0, 0, 0, 0.16), 0 0 0 0.5px rgba(0, 0, 0, 0.1);
+}
+.mac-btn.secondary:active { background: var(--lg-fill-3); }
+html.dark .mac-btn.secondary { background: rgba(255, 255, 255, 0.1); box-shadow: var(--lg-spec), 0 4px 12px -4px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(0, 0, 0, 0.5); }
+html.dark .mac-btn.secondary:active { background: rgba(255, 255, 255, 0.16); }
+.mac-btn.primary {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 78%, #fff), color-mix(in srgb, var(--accent) 92%, transparent));
+  backdrop-filter: var(--lg-filter); -webkit-backdrop-filter: var(--lg-filter);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), inset 0 -1px 1px rgba(255, 255, 255, 0.15), inset 0 0 14px rgba(255, 255, 255, 0.12),
+    0 8px 20px -8px color-mix(in srgb, var(--accent) 80%, transparent), 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+}
+.mac-btn.primary::before { opacity: 0.7; }
+.case-nav .mac-btn { line-height: 32px; }
+
+/* Caja «Hablar con el crack»: tarjeta de vidrio con un toque de color */
+.case-talk {
+  position: relative; isolation: isolate; border-radius: 22px; padding: 14px 14px 14px 16px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 9%, transparent), rgba(0, 229, 255, 0.06) 60%, rgba(255, 255, 255, 0.4));
+  backdrop-filter: var(--lg-filter); -webkit-backdrop-filter: var(--lg-filter);
+  box-shadow: var(--lg-spec), 0 10px 26px -14px rgba(0, 0, 0, 0.35), 0 0 0 0.5px rgba(0, 0, 0, 0.07);
+}
+.case-talk > * { position: relative; z-index: 4; }
+html.dark .case-talk { background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, transparent), rgba(0, 229, 255, 0.06) 60%, rgba(255, 255, 255, 0.04)); box-shadow: var(--lg-spec), 0 10px 26px -14px rgba(0, 0, 0, 0.7), 0 0 0 0.5px rgba(255, 255, 255, 0.08); }
+.ct-mark { border-radius: 11px; }
+
+/* Ventanas del intro */
+.intro-win { border-radius: 14px; }
+.intro-win .bar { background: color-mix(in srgb, var(--win-bar) 70%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+
+/* Celular */
+@media (max-width: 760px) {
+  :root { --bar-h: calc(46px + env(safe-area-inset-top)); }
+  .win-bar { height: var(--bar-h); }
+  .win { border-radius: 0; }
+  .win::before { display: none; }
+  .case-talk .mac-btn { height: 40px; font-size: 15px; border-radius: 999px; }
+}
+@media (max-width: 640px) { .case-talk { border-radius: 20px; } }
+
+/* Si el usuario pide menos transparencia, materiales sólidos */
+@media (prefers-reduced-transparency: reduce) {
+  :root { --lg-fill: rgba(246, 246, 246, 0.96); --lg-fill-2: rgba(250, 250, 250, 0.97); --lg-fill-3: #fff; }
+  html.dark { --lg-fill: rgba(40, 40, 42, 0.97); --lg-fill-2: rgba(44, 44, 46, 0.98); --lg-fill-3: #3a3a3c; }
+}

@@ -636,7 +636,7 @@
     const state = existing ? existing.state : { id, order };
     state.id = id; state.order = order;
     openWindow("case", {
-      state, origin, w: 900, h: 700, resetScroll: true,
+      state, origin, w: 900, h: 700, resetScroll: true, cls: "casewin",
       get hash() { return "case/" + state.id; },
       title: () => D.cases[state.id].title,
       render(body) {
@@ -859,6 +859,14 @@
       document.addEventListener("visibilitychange", () => clearTimeout(fallback), { once: true });
     }
   });
+  // Liquid Glass: el brillo especular sigue al cursor
+  document.addEventListener("pointermove", (e) => {
+    const g = e.target.closest && e.target.closest(".mac-btn, .dock, .seg, .notification, .case-talk");
+    if (!g) return;
+    const r = g.getBoundingClientRect();
+    g.style.setProperty("--mx", (e.clientX - r.left).toFixed(0) + "px");
+    g.style.setProperty("--my", (e.clientY - r.top).toFixed(0) + "px");
+  }, { passive: true });
   // Magnificación del dock al pasar el mouse (como en macOS)
   dock.addEventListener("mousemove", (e) => {
     if (isMobile() || reducedMotion) return;
