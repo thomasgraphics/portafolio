@@ -99,15 +99,49 @@
     if (okFont(T.font)) root.setProperty("--font", `"${T.font}", ${SYS}`);
     if (okFont(T.fontHead)) root.setProperty("--font-head", `"${T.fontHead}", ${SYS}`);
     if ([400, 500, 600, 700, 800].includes(+T.headWeight)) root.setProperty("--head-weight", +T.headWeight);
-    const map = { accent: "--accent", ink: "--ink", ink2: "--ink-2", muted: "--muted", winBg: "--win-bg", winBar: "--win-bar", noteBg: "--note-bg", stickyBg: "--sticky-bg", labelInk: "--label-ink", menubarInk: "--menubar-ink" };
-    Object.entries(map).forEach(([k, v]) => { if (hex(T[k])) root.setProperty(v, T[k]); });
-    if (hex(T.menubarBg)) root.setProperty("--menubar-bg", rgba(T.menubarBg, Math.min(1, Math.max(0, (+T.menubarOpacity || 16) / 100))));
-    if (hex(T.dockBg)) root.setProperty("--dock-bg", rgba(T.dockBg, Math.min(1, Math.max(0, (+T.dockOpacity || 38) / 100))));
+    applyColors(T);
     if (+T.radius >= 0 && +T.radius <= 32) root.setProperty("--radius-win", +T.radius + "px");
     if (+T.dockSize >= 36 && +T.dockSize <= 80) root.setProperty("--dk-size", +T.dockSize + "px");
     if (+T.iconScale >= 60 && +T.iconScale <= 160) root.setProperty("--icon-scale", +T.iconScale / 100);
   }
-  const wallpaperUrl = () => (isMobile() && D.wallpaperMobile ? D.wallpaperMobile : D.wallpaper);
+  // ---------- Modo oscuro automático (de noche, según la hora del visitante) ----------
+  // Prueba manual: tudominio.com/?modo=oscuro  o  ?modo=claro
+  const COLOR_MAP = { ink: "--ink", ink2: "--ink-2", muted: "--muted", winBg: "--win-bg", winBar: "--win-bar", noteBg: "--note-bg", stickyBg: "--sticky-bg", labelInk: "--label-ink", menubarInk: "--menubar-ink" };
+  const forced = (new URLSearchParams(location.search).get("modo") || "").toLowerCase();
+  function isDark() {
+    if (forced === "oscuro" || forced === "dark") return true;
+    if (forced === "claro" || forced === "light") return false;
+    const T = D.theme || {};
+    if (T.autoDark === false) return false;
+    const from = Number.isFinite(+T.darkFrom) && T.darkFrom !== "" ? +T.darkFrom : 18;
+    const to = Number.isFinite(+T.darkTo) && T.darkTo !== "" ? +T.darkTo : 6;
+    const h = new Date().getHours();
+    return from === to ? false : from > to ? h >= from || h < to : h >= from && h < to;
+  }
+  // Los colores personalizados aplican en modo claro; de noche se usa la paleta oscura (el acento se mantiene)
+  function applyColors(T) {
+    const root = document.documentElement.style;
+    const dark = document.documentElement.classList.contains("dark");
+    [...Object.values(COLOR_MAP), "--accent", "--menubar-bg", "--dock-bg"].forEach((v) => root.removeProperty(v));
+    if (hex(T.accent)) root.setProperty("--accent", T.accent);
+    if (dark) return;
+    Object.entries(COLOR_MAP).forEach(([k, v]) => { if (hex(T[k])) root.setProperty(v, T[k]); });
+    if (hex(T.menubarBg)) root.setProperty("--menubar-bg", rgba(T.menubarBg, Math.min(1, Math.max(0, (+T.menubarOpacity || 16) / 100))));
+    if (hex(T.dockBg)) root.setProperty("--dock-bg", rgba(T.dockBg, Math.min(1, Math.max(0, (+T.dockOpacity || 38) / 100))));
+  }
+  function updateMode(first) {
+    const dark = isDark();
+    const html = document.documentElement;
+    if (!first && dark === html.classList.contains("dark")) return;
+    html.classList.toggle("dark", dark);
+    applyColors(D.theme || {});
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = dark ? "#1c1c1e" : "#cfd2bf";
+    const wp = document.getElementById("wallpaper");
+    if (wp && !first) wp.style.backgroundImage = `url("${wallpaperUrl()}")`;
+  }
+  const wallpaperUrl = () =>
+    document.documentElement.classList.contains("dark") && D.wallpaperDark ? D.wallpaperDark : (isMobile() && D.wallpaperMobile ? D.wallpaperMobile : D.wallpaper);
 
   // =========================================================================
   // Íconos SVG (genéricos, dibujados a mano)
@@ -810,7 +844,9 @@
   // ---------- Inicio ----------
   document.documentElement.lang = lang;
   if (D.seo && t(D.seo.title)) document.title = t(D.seo.title);
+  updateMode(true);
   applyDesign(TH);
+  setInterval(() => updateMode(false), 60 * 1000);
   $("#wallpaper").style.backgroundImage = `url("${wallpaperUrl()}")`;
   renderMenubar();
   renderNotification();

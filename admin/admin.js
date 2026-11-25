@@ -385,7 +385,7 @@
 
   // ---------- Diseño: fuentes y vista previa ----------
   const FONTS = ["Inter", "DM Sans", "Manrope", "Plus Jakarta Sans", "Outfit", "Space Grotesk", "Poppins", "Montserrat", "Work Sans", "IBM Plex Sans", "Sora", "Urbanist", "Figtree", "Geist", "Instrument Sans", "Onest", "Lexend", "Rubik", "Nunito Sans", "Raleway", "Playfair Display", "Fraunces", "DM Serif Display", "Instrument Serif", "Libre Baskerville", "Space Mono", "JetBrains Mono"];
-  const DESIGN_KEYS = ["font", "fontHead", "headWeight", "accent", "ink", "ink2", "muted", "winBg", "winBar", "noteBg", "stickyBg", "labelInk", "menubarInk", "menubarBg", "menubarOpacity", "dockBg", "dockOpacity", "radius", "iconScale", "dockSize"];
+  const DESIGN_KEYS = ["autoDark", "darkFrom", "darkTo", "font", "fontHead", "headWeight", "accent", "ink", "ink2", "muted", "winBg", "winBar", "noteBg", "stickyBg", "labelInk", "menubarInk", "menubarBg", "menubarOpacity", "dockBg", "dockOpacity", "radius", "iconScale", "dockSize"];
   const loadedFonts = new Set();
   function loadFont(f) {
     if (!FONTS.includes(f) || loadedFonts.has(f)) return;
@@ -573,6 +573,14 @@
           { key: "radius", type: "number", label: "Esquinas de ventanas (px)", min: 0, max: 32, step: 1, ph: "12" },
           { key: "iconScale", type: "number", label: "Tamaño de íconos (%)", min: 60, max: 160, step: 5, ph: "100" },
           { key: "dockSize", type: "number", label: "Tamaño del dock (px)", min: 36, max: 80, step: 2, ph: "52" },
+        ]),
+        group("Modo oscuro automático", "De noche el portafolio cambia solo a modo oscuro, según la hora de quien lo visita. Tus colores personalizados aplican de día; de noche se usa la paleta oscura (el acento se mantiene). Para probarlo: tudominio.com/?modo=oscuro", T, [
+          { key: "autoDark", type: "toggle", label: "Modo oscuro de noche", on: "Activado" },
+          { key: "darkFrom", type: "number", label: "Empieza a las (hora 0–23)", min: 0, max: 23, step: 1, ph: "18" },
+          { key: "darkTo", type: "number", label: "Termina a las (hora 0–23)", min: 0, max: 23, step: 1, ph: "6" },
+        ]),
+        group("Fondo de noche (opcional)", "Si lo dejas vacío, de noche se oscurece el fondo normal.", D, [
+          { key: "wallpaperDark", type: "image", label: "Fondo en modo oscuro", optional: true },
         ]),
         group("Fondo en celular (opcional)", "Si lo dejas vacío, se usa el mismo fondo del computador. Ideal: foto vertical.", D, [
           { key: "wallpaperMobile", type: "image", label: "Fondo vertical", optional: true, max: 1600 },
