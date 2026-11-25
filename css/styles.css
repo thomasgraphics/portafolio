@@ -164,7 +164,7 @@ body.no-noise .noise { display: none; }
 body.booted .sticky { opacity: 1; }
 .sticky h2 { margin: 0 0 6px; font-size: 16px; font-weight: var(--head-weight, 700); font-family: var(--font-head, var(--font)); letter-spacing: -0.01em; }
 .sticky p { margin: 0; font-size: 14px; color: var(--ink-2); min-height: 1.3em; }
-.sticky p + p { margin-top: 7px; padding-top: 7px; border-top: 0.5px solid var(--line); }
+.sticky p + p { margin-top: 6px; padding-top: 6px; border-top: 0.5px solid var(--line); font-size: 12.5px; line-height: 1.35; color: var(--muted); }
 .sticky .caret { display: inline-block; width: 1.5px; height: 1em; background: #f0a500; vertical-align: -2px; margin-left: 1px; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 

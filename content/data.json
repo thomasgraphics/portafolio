@@ -163,8 +163,8 @@
     {
       "id": "showreel",
       "type": "video",
-      "x": 37,
-      "y": 31,
+      "x": 68,
+      "y": 73,
       "label": {
         "es": "Showreel.mp4",
         "en": "Showreel.mp4"
@@ -193,17 +193,6 @@
         "en": "IMG_0552.jpg"
       },
       "src": "assets/img/me-02.jpg"
-    },
-    {
-      "id": "manuales",
-      "type": "folder",
-      "color": "green",
-      "x": 16,
-      "y": 58,
-      "label": {
-        "es": "Manuales interactivos",
-        "en": "Interactive manuals"
-      }
     }
   ],
   "folders": {
@@ -236,23 +225,43 @@
       "items": [
         {
           "type": "case",
-          "case": "mina-nm"
+          "case": "mina-nm",
+          "category": {
+            "es": "Manuales interactivos",
+            "en": "Interactive manuals"
+          }
         },
         {
           "type": "case",
-          "case": "monchef"
+          "case": "monchef",
+          "category": {
+            "es": "Identidad visual",
+            "en": "Visual identity"
+          }
         },
         {
           "type": "case",
-          "case": "nas-cellano"
+          "case": "nas-cellano",
+          "category": {
+            "es": "Identidad visual",
+            "en": "Visual identity"
+          }
         },
         {
           "type": "case",
-          "case": "emsa"
+          "case": "emsa",
+          "category": {
+            "es": "Identidad visual",
+            "en": "Visual identity"
+          }
         },
         {
           "type": "case",
-          "case": "tesis"
+          "case": "tesis",
+          "category": {
+            "es": "Investigación",
+            "en": "Research"
+          }
         }
       ]
     },
@@ -389,22 +398,6 @@
           "type": "image",
           "src": "assets/img/projects/social/post-06.jpg",
           "title": "Post 6"
-        }
-      ]
-    },
-    "manuales": {
-      "title": {
-        "es": "Manuales interactivos",
-        "en": "Interactive manuals"
-      },
-      "intro": {
-        "es": "Manuales de marca convertidos en sitios web: se prueban, se copian y se descargan desde el mismo lugar donde se explican.",
-        "en": "Brand guidelines turned into websites: test, copy and download the brand in the same place where its rules are explained."
-      },
-      "items": [
-        {
-          "type": "case",
-          "case": "mina-nm"
         }
       ]
     }

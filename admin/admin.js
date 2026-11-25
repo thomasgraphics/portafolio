@@ -879,6 +879,7 @@
               { key: "src", type: "file", label: "Video (MP4)", accept: "video/mp4", when: (o) => o.type === "video" },
               { key: "poster", type: "image", label: "Miniatura", when: (o) => o.type === "video", max: 1600 },
               { key: "title", type: "i18n", label: "Título", when: (o) => o.type !== "case" },
+              { key: "category", type: "i18n", label: "Categoría", hint: "Opcional. Crea filtros dentro de la carpeta (ej: Manuales interactivos). Usa el mismo nombre para agrupar." },
             ] } },
         ]));
       });

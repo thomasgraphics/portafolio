@@ -549,9 +549,17 @@
       title: () => t(D.folders[state.id].title),
       render(body, w) {
         const f = D.folders[state.id];
-        const kinds = [...new Set(f.items.map(kindOf))];
-        const list = f.items.filter((it) => state.filter === "all" || kindOf(it) === state.filter);
-        const labels = { case: ui("cases"), image: ui("photos"), video: ui("videos") };
+        // Filtros: por categoría (si los elementos tienen categoría) o por tipo (casos / fotos / videos)
+        const catKey = (it) => (it.category ? (typeof it.category === "object" ? it.category.es || it.category.en || "" : String(it.category)) : "");
+        const catLabel = {};
+        f.items.forEach((it) => { const k = catKey(it); if (k) catLabel[k] = t(it.category); });
+        const cats = Object.keys(catLabel);
+        const useCats = cats.length > 0;
+        const kinds = useCats ? cats : [...new Set(f.items.map(kindOf))];
+        const groupOf = (it) => (useCats ? catKey(it) : kindOf(it));
+        if (state.filter !== "all" && !kinds.includes(state.filter)) state.filter = "all";
+        const list = f.items.filter((it) => state.filter === "all" || groupOf(it) === state.filter);
+        const labels = useCats ? catLabel : { case: ui("cases"), image: ui("photos"), video: ui("videos") };
         const extras = D.desktop.filter((d) => d.type === "note" || d.type === "pdf");
         body.innerHTML = `
           <aside class="sidebar">
@@ -565,7 +573,7 @@
               <h1>${esc(t(f.title))}</h1>
               <p>${esc(t(f.intro))}</p>
               <div class="filters">
-                ${kinds.length > 1 ? `<div class="seg" role="group">${["all", ...kinds].map((k) => `<button data-filter="${k}" aria-pressed="${state.filter === k}">${k === "all" ? ui("all") : labels[k]}</button>`).join("")}</div>` : ""}
+                ${kinds.length > 1 || useCats ? `<div class="seg" role="group">${["all", ...kinds].map((k) => `<button data-filter="${esc(k)}" aria-pressed="${state.filter === k}">${k === "all" ? ui("all") : esc(labels[k])}</button>`).join("")}</div>` : ""}
                 <span class="count">${ui("items", list.length)}</span>
               </div>
             </div>
@@ -801,10 +809,7 @@
       return `<a class="dk${custom ? " custom" : ""}" href="${esc(href)}" data-net="${k}" ${ext ? 'target="_blank" rel="noopener"' : ""} aria-label="${ui(k)}">
         ${custom ? `<img src="${esc(custom)}" alt="" draggable="false">` : DOCK_ICONS[k]()}<span class="tip">${ui(k)}</span></a>`;
     });
-    const docs = D.desktop.filter((d) => d.type === "note" || d.type === "pdf").map((d) =>
-      `<button class="dk doc" data-open="${esc(d.id)}" data-win="${d.type === "note" ? "about" : "pdf:" + esc(d.id)}" aria-label="${esc(t(d.label))}">
-        ${d.type === "note" ? svgNote() : svgPdf()}<span class="tip">${esc(t(d.label))}</span><span class="dot"></span></button>`);
-    dock.innerHTML = links.join("") + (docs.length ? `<span class="sep" aria-hidden="true"></span>` + docs.join("") : "");
+    dock.innerHTML = links.join("");
     updateDock();
   }
   function updateDock() {
