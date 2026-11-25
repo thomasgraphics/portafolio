@@ -442,6 +442,7 @@
     if (!w) return;
     wins.delete(key);
     $$("video", w.el).forEach((v) => v.pause());
+    w.el.style.animation = "";
     const tile = dock.querySelector(`.dk-min[data-restore="${CSS.escape(key)}"]`);
     if (tile) { tile.remove(); renderMin(); }
     w.el.classList.add("closing");
@@ -455,21 +456,55 @@
   }
 
   // ---------- Minimizar al Dock con efecto "genio" (como macOS) ----------
-  function genie(el, tile, reverse) {
-    const r = el.getBoundingClientRect(), t = tile.getBoundingClientRect();
-    const f = (n) => n.toFixed(2) + "%";
-    const p = ((t.left + t.width / 2) - r.left) / r.width * 100;
-    const half = (t.width / 2) / r.width * 100;
-    const dy = t.bottom - r.bottom, sY = Math.max(0.02, t.height / r.height);
-    const col = (a, b) => `polygon(${f(p - a)} 0%, ${f(p + a)} 0%, ${f(p + b)} 100%, ${f(p - b)} 100%)`;
-    const origin = `${f(p)} 100%`;
-    const frames = [
-      { offset: 0, clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", transform: "none", transformOrigin: origin, opacity: 1 },
-      { offset: 0.35, clipPath: `polygon(0% 0%, 100% 0%, ${f(p + half * 1.8)} 100%, ${f(p - half * 1.8)} 100%)`, transform: `translateY(${dy * 0.12}px) scaleY(0.94)`, transformOrigin: origin, opacity: 1 },
-      { offset: 0.7, clipPath: col(half * 3.2, half), transform: `translateY(${dy * 0.62}px) scaleY(${(1 + sY) / 2.2})`, transformOrigin: origin, opacity: 1 },
-      { offset: 1, clipPath: col(half, half), transform: `translateY(${dy}px) scaleY(${sY})`, transformOrigin: origin, opacity: 0.5 },
-    ];
-    return el.animate(frames, { duration: reducedMotion ? 1 : 620, easing: "cubic-bezier(0.5, 0, 0.3, 1)", direction: reverse ? "reverse" : "normal", fill: "none" });
+  // Genio de macOS: la ventana se desliza por un "tubo" de lados curvos (curva en S) que va del
+  // ancho de la ventana al ancho del ícono del Dock. Primero se curva y se absorbe la parte de abajo,
+  // luego la de arriba la sigue. Se dibuja cuadro a cuadro con un contorno de muchos puntos (bordes suaves).
+  function genie(el, tile, reverse, done) {
+    const r = el.getBoundingClientRect(), ic = tile.getBoundingClientRect();
+    const W = r.width, H = r.height;
+    const iL = ic.left + ic.width * 0.08, iR = ic.right - ic.width * 0.08, iT = ic.top + ic.height * 0.12, iB = ic.bottom - ic.height * 0.08;
+    const clamp01 = (x) => Math.max(0, Math.min(1, x));
+    const lerp = (a, b, k) => a + (b - a) * k;
+    const sCurve = (u) => 0.5 - 0.5 * Math.cos(Math.PI * clamp01(u));
+    const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+    const easeIn = (x) => x * x * (2.2 - 1.2 * x);
+    const tubeTop = r.top, tubeBot = Math.max(iT, r.bottom - 1);
+    const side = (Y, bend, left) => {
+      const sg = sCurve((Y - tubeTop) / (iT - tubeTop || 1));
+      const from = left ? r.left : r.right, to = left ? iL : iR;
+      return lerp(from, lerp(from, to, sg), bend);
+    };
+    const DUR = reducedMotion ? 1 : 640, N = 34;
+    el.style.transformOrigin = "0 0";
+    el.style.willChange = "transform, clip-path, filter";
+    let start = null;
+    const frame = (now) => {
+      if (start === null) start = now;
+      const p = clamp01((now - start) / DUR);
+      const k = reverse ? 1 - p : p;
+      const bend = ease(clamp01(k / 0.42));
+      const bottomY = lerp(r.bottom, iB, easeIn(clamp01((k - 0.12) / 0.78)));
+      const topY = Math.min(bottomY - ic.height * 0.8, lerp(r.top, iT, easeIn(clamp01((k - 0.3) / 0.7))));
+      const Lt = side(topY, bend, true), Rt = side(topY, bend, false);
+      const sx = Math.max(0.001, (Rt - Lt) / W), sy = Math.max(0.001, (bottomY - topY) / H);
+      el.style.transform = `translate(${(Lt - r.left).toFixed(2)}px, ${(topY - r.top).toFixed(2)}px) scale(${sx.toFixed(4)}, ${sy.toFixed(4)})`;
+      const L = [], R = [];
+      for (let i = 0; i <= N; i++) {
+        const Y = lerp(topY, bottomY, i / N), ly = ((Y - topY) / sy).toFixed(1);
+        L.push(`${((side(Y, bend, true) - Lt) / sx).toFixed(1)}px ${ly}px`);
+        R.push(`${((side(Y, bend, false) - Lt) / sx).toFixed(1)}px ${ly}px`);
+      }
+      el.style.clipPath = `polygon(${L.join(",")},${R.reverse().join(",")})`;
+      el.style.filter = `blur(${(Math.sin(Math.PI * k) * 1.4 * (0.4 + 0.6 * k)).toFixed(2)}px)`;
+      el.style.opacity = String(1 - clamp01((k - 0.86) / 0.14) * 0.55);
+      if (tile.classList.contains("entering") && k > 0.82) tile.classList.remove("entering");
+      if (p < 1) requestAnimationFrame(frame);
+      else {
+        ["transform", "clipPath", "filter", "opacity", "willChange", "transformOrigin"].forEach((x) => (el.style[x] = ""));
+        if (done) done();
+      }
+    };
+    frame(performance.now()); // primer cuadro de inmediato: sin parpadeo al restaurar
   }
   function miniThumb(w) {
     const img = [...w.el.querySelectorAll(".win-body img")].find((i) => i.complete && i.naturalWidth);
@@ -497,10 +532,10 @@
     tile.innerHTML = miniThumb(w);
     dock.appendChild(tile); renderMin();
     w.minimized = true;
-    requestAnimationFrame(() => {
-      const anim = genie(w.el, tile, false);
-      anim.onfinish = () => { w.el.style.display = "none"; tile.classList.remove("entering"); };
-    });
+    w.el.style.animation = "none"; // que no se repita la animación de apertura al restaurar
+    w.el.style.zIndex = 5000; // la ventana que se minimiza pasa por encima de las demás
+    w.el.classList.add("genie");
+    requestAnimationFrame(() => genie(w.el, tile, false, () => { w.el.style.display = "none"; w.el.classList.remove("genie"); tile.classList.remove("entering"); }));
     const next = topWin();
     if (next) focusWin(next.key);
     else { document.body.classList.remove("has-window"); updateAppName(); setHash(""); }
@@ -515,9 +550,9 @@
     document.body.classList.add("has-window");
     focusWin(key);
     if (tile) {
-      const anim = genie(w.el, tile, true);
+      w.el.classList.add("genie");
       tile.classList.add("leaving");
-      anim.onfinish = () => { tile.remove(); renderMin(); };
+      genie(w.el, tile, true, () => { w.el.classList.remove("genie"); tile.remove(); renderMin(); });
     }
   }
 
