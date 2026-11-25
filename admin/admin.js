@@ -461,6 +461,7 @@
     ["pdfMobile", "Aviso del PDF en celular", "Toca el botón para ver el PDF.", "Tap the button to view the PDF."],
     ["whatsapp", "Dock: WhatsApp", "WhatsApp", "WhatsApp"], ["linkedin", "Dock: LinkedIn", "LinkedIn", "LinkedIn"], ["behance", "Dock: Behance", "Behance", "Behance"], ["email", "Dock: Correo", "Correo", "Email"],
     ["close", "Botón cerrar ventana", "Cerrar", "Close"],
+    ["rotate", "Aviso al girar el teléfono", "Gira tu teléfono para ver el portafolio", "Rotate your phone to view the portfolio"],
   ];
 
   // Mini escritorio para mover íconos arrastrando
@@ -626,9 +627,10 @@
           { key: "body", type: "i18nArea", label: "Mensaje" },
           { key: "opens", type: "select", label: "Al hacer clic abre", options: () => D.desktop.map((d) => [d.id, `${t(d.label)} (${typeName(d.type)})`]) },
         ]),
-        group("Nota adhesiva", null, D.sticky, [
+        group("Nota adhesiva", "Agrega las líneas que quieras: frase, cargo actual, disponibilidad…", D.sticky, [
           { key: "title", type: "i18n", label: "Título" },
-          { key: "text", type: "i18n", label: "Texto" },
+          { key: "text", type: "i18n", label: "Primera línea" },
+          { key: "lines", type: "list", label: "Más líneas", addLabel: "Agregar línea", item: { type: "i18n", noun: "Línea" } },
         ]),
       ];
     },

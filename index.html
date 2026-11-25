@@ -21,6 +21,7 @@
   <link rel="canonical" href="https://www.thomgraphics.com/" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -40,6 +41,14 @@
   <div id="windows" class="windows"></div>
 
   <nav id="dock" class="dock" aria-label="Contacto"></nav>
+
+  <!-- Aviso para girar el teléfono (el sitio solo se usa en vertical en celulares) -->
+  <div id="rotate" class="rotate" role="alert" aria-live="polite">
+    <div class="rotate-inner">
+      <svg class="rotate-phone" viewBox="0 0 64 64" aria-hidden="true"><rect x="20" y="8" width="24" height="44" rx="5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="45" r="2" fill="currentColor"/><path d="M50 20a20 20 0 0 1 2 22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M48 39l4 4 3-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p id="rotate-text">Gira tu teléfono para ver el portafolio</p>
+    </div>
+  </div>
 
   <div id="intro" class="intro" aria-hidden="true">
     <div id="intro-stack" class="intro-stack"></div>

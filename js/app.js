@@ -42,7 +42,7 @@
       client: "Cliente", role: "Rol", year: "Año", tools: "Herramientas", prev: "← Anterior", next: "Siguiente →",
       pdfMobile: "Toca el botón para ver el PDF.", desktop: "Escritorio", contact: "Contacto",
       whatsapp: "WhatsApp", instagram: "Instagram", linkedin: "LinkedIn", behance: "Behance", email: "Correo",
-      favorites: "Favoritos", more: "Más", about: "Sobre mí",
+      favorites: "Favoritos", more: "Más", about: "Sobre mí", rotate: "Gira tu teléfono para ver el portafolio",
     },
     en: {
       info: "Info", skip: "Skip intro", now: "now", all: "All", cases: "Cases", photos: "Photos", videos: "Videos",
@@ -51,7 +51,7 @@
       client: "Client", role: "Role", year: "Year", tools: "Tools", prev: "← Previous", next: "Next →",
       pdfMobile: "Tap the button to view the PDF.", desktop: "Desktop", contact: "Contact",
       whatsapp: "WhatsApp", instagram: "Instagram", linkedin: "LinkedIn", behance: "Behance", email: "Email",
-      favorites: "Favorites", more: "More", about: "About me",
+      favorites: "Favorites", more: "More", about: "About me", rotate: "Rotate your phone to view the portfolio",
     },
   };
   // Textos de la interfaz: se pueden reemplazar desde el admin (D.uiText)
@@ -714,13 +714,27 @@
     const s = D.sticky;
     if (!s || !TH.showSticky) { sticky.remove(); return; }
     clearInterval(typing);
-    const full = t(s.text);
-    sticky.innerHTML = `<h2>${esc(t(s.title))}</h2><p><span class="txt"></span><span class="caret"></span></p>`;
-    const out = $(".txt", sticky);
-    if (!animate || reducedMotion) { out.textContent = full; return; }
-    let i = 0;
-    typing = setInterval(() => { out.textContent = full.slice(0, ++i); if (i >= full.length) clearInterval(typing); }, 55);
+    // Texto principal + líneas adicionales (editables en el admin)
+    const lines = [s.text, ...(Array.isArray(s.lines) ? s.lines : [])].map(t).filter(Boolean);
+    sticky.innerHTML = `<h2>${esc(t(s.title))}</h2>` + lines.map(() => `<p><span class="txt"></span></p>`).join("");
+    const outs = $$(".txt", sticky);
+    const caret = document.createElement("span");
+    caret.className = "caret";
+    if (!animate || reducedMotion) {
+      outs.forEach((el, i) => (el.textContent = lines[i]));
+      if (outs.length) outs[outs.length - 1].after(caret);
+      return;
+    }
+    let li = 0, ci = 0;
+    if (outs.length) outs[0].after(caret);
+    typing = setInterval(() => {
+      if (li >= lines.length) { clearInterval(typing); return; }
+      outs[li].textContent = lines[li].slice(0, ++ci);
+      outs[li].after(caret);
+      if (ci >= lines[li].length) { li++; ci = 0; }
+    }, 45);
   }
+
   // La nota también se puede mover
   (() => {
     let d = null;
@@ -774,6 +788,11 @@
   // =========================================================================
   // Cambio de idioma
   // =========================================================================
+  // Bloqueo de horizontal: el aviso lo maneja CSS; aquí solo el texto y, si el navegador lo permite
+  // (app instalada / pantalla completa), se fija la orientación vertical.
+  function setRotateText() { const el = $("#rotate-text"); if (el) el.textContent = ui("rotate"); }
+  try { if (isMobile() && screen.orientation && screen.orientation.lock) screen.orientation.lock("portrait").catch(() => {}); } catch { /* no soportado */ }
+
   function setLang(l) {
     if (l === lang || !UI[l]) return;
     lang = l;
@@ -784,6 +803,7 @@
     renderNotification();
     renderSticky(false);
     renderDock();
+    setRotateText();
     const skip = $("#skip-intro");
     if (skip) skip.textContent = ui("skip");
     wins.forEach((w) => paint(w));
@@ -851,6 +871,7 @@
   renderMenubar();
   renderNotification();
   renderDock();
+  setRotateText();
   window.addEventListener("hashchange", openFromHash);
   window.addEventListener("resize", tick);
   runIntro();

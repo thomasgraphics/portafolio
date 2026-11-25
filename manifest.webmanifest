@@ -1,0 +1,10 @@
+{
+  "name": "Thomgraphics · Portafolio",
+  "short_name": "Thomgraphics",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#cfd2bf",
+  "theme_color": "#cfd2bf",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
