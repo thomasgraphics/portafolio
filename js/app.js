@@ -248,7 +248,7 @@
       <button class="mb-item mb-brand" data-open="about">${esc(D.brand)}</button>
       <span class="mb-item mb-app mb-hide-sm" id="mb-app"></span>
       <button class="mb-item mb-hide-sm" data-open="about">${ui("info")}</button>
-      ${D.links.instagram ? `<a class="mb-item mb-hide-sm" href="${esc(D.links.instagram)}" target="_blank" rel="noopener">${esc(ui("instagram"))}</a>` : ""}
+      ${D.links.instagram ? `<a class="mb-item mb-hide-sm" href="${esc(D.links.instagram)}" data-net="instagram" target="_blank" rel="noopener">${esc(ui("instagram"))}</a>` : ""}
       <span class="mb-spacer"></span>
       <span class="mb-lang">
         <button data-lang="es" aria-pressed="${lang === "es"}"><span class="long">Español</span><span class="short">ES</span></button>/
@@ -787,7 +787,7 @@
     const links = ["whatsapp", "instagram", "linkedin", "behance", "email"].filter((k) => D.links[k]).map((k) => {
       const href = D.links[k], ext = /^https?:/.test(href);
       const custom = D.dockIcons && D.dockIcons[k];
-      return `<a class="dk${custom ? " custom" : ""}" href="${esc(href)}" ${ext ? 'target="_blank" rel="noopener"' : ""} aria-label="${ui(k)}">
+      return `<a class="dk${custom ? " custom" : ""}" href="${esc(href)}" data-net="${k}" ${ext ? 'target="_blank" rel="noopener"' : ""} aria-label="${ui(k)}">
         ${custom ? `<img src="${esc(custom)}" alt="" draggable="false">` : DOCK_ICONS[k]()}<span class="tip">${ui(k)}</span></a>`;
     });
     const docs = D.desktop.filter((d) => d.type === "note" || d.type === "pdf").map((d) =>
@@ -802,6 +802,32 @@
   dock.addEventListener("click", (e) => {
     const b = e.target.closest("[data-open]");
     if (b) openItem(b.dataset.open, b);
+  });
+
+  // ---------- En el celular: abrir la app de la red social si está instalada ----------
+  // Android: enlace "intent" con el paquete de la app y regreso al navegador si no está instalada.
+  // iPhone: se abre el enlace normal en la misma pestaña, así iOS lo pasa a la app (Universal Links).
+  const APP_PKG = { instagram: "com.instagram.android", linkedin: "com.linkedin.android", facebook: "com.facebook.katana", x: "com.twitter.android", tiktok: "com.zhiliaoapp.musically", behance: "com.behance.behance", whatsapp: "com.whatsapp", youtube: "com.google.android.youtube" };
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  function appUrl(net, href) {
+    let u;
+    try { u = new URL(href); } catch { return href; }
+    if (!/^https?:$/.test(u.protocol)) return href;
+    if (isAndroid && APP_PKG[net]) {
+      let path = u.pathname + u.search;
+      if (net === "instagram") { const user = u.pathname.split("/").filter(Boolean)[0]; if (user) path = `/_u/${user}/`; }
+      return `intent://${u.host}${path}#Intent;scheme=https;package=${APP_PKG[net]};S.browser_fallback_url=${encodeURIComponent(href)};end`;
+    }
+    return href;
+  }
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-net]");
+    if (!a) return;
+    track("open", { id: "link:" + a.dataset.net });
+    if (!(isAndroid || isIOS) || !/^https?:/i.test(a.href)) return; // computador: pestaña nueva normal
+    e.preventDefault();
+    location.href = appUrl(a.dataset.net, a.getAttribute("href"));
   });
   // Magnificación del dock al pasar el mouse (como en macOS)
   dock.addEventListener("mousemove", (e) => {
