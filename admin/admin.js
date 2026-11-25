@@ -229,7 +229,8 @@
       case "number": {
         const inp = h("input", { type: f.type === "number" ? "number" : "text", value: obj[f.key] ?? "", placeholder: typeof f.ph === "string" ? f.ph : "", step: f.step, min: f.min, max: f.max });
         inp.addEventListener("input", () => {
-          obj[f.key] = f.type === "number" ? (inp.value === "" ? 0 : +inp.value) : inp.value;
+          if (f.type === "number" && inp.value === "") { if (f.ph) delete obj[f.key]; else obj[f.key] = 0; }
+          else obj[f.key] = f.type === "number" ? +inp.value : inp.value;
           touch();
         });
         ctl.append(inp);
@@ -376,10 +377,62 @@
     { id: "desktop", name: "Escritorio e íconos", color: "#34aadc", icon: `<svg viewBox="0 0 16 16" fill="#fff"><rect x="2" y="3" width="12" height="8" rx="1.5"/><rect x="6" y="12" width="4" height="1.6" rx=".8"/></svg>` },
     { id: "folders", name: "Carpetas", color: "#0a84ff", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M1.5 4a1.5 1.5 0 0 1 1.5-1.5h3l1.5 1.5H13A1.5 1.5 0 0 1 14.5 5.5v6A1.5 1.5 0 0 1 13 13H3a1.5 1.5 0 0 1-1.5-1.5z"/></svg>` },
     { id: "seo", name: "SEO y compartir", color: "#30b0c7", icon: `<svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 14 14"/></svg>` },
-    { id: "look", name: "Apariencia", color: "#ff9500", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M8 1.5a6.5 6.5 0 1 0 0 13c.9 0 1.3-.6 1.3-1.2 0-.8-.6-1-.6-1.7 0-.6.5-1.1 1.2-1.1h1.6a3 3 0 0 0 3-3c0-3.3-2.9-6-6.5-6z"/><circle cx="4.8" cy="7.5" r="1" fill="#ff9500"/><circle cx="7" cy="4.6" r="1" fill="#ff9500"/><circle cx="10.4" cy="5.2" r="1" fill="#ff9500"/></svg>` },
+    { id: "look", name: "Diseño y apariencia", color: "#ff9500", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M8 1.5a6.5 6.5 0 1 0 0 13c.9 0 1.3-.6 1.3-1.2 0-.8-.6-1-.6-1.7 0-.6.5-1.1 1.2-1.1h1.6a3 3 0 0 0 3-3c0-3.3-2.9-6-6.5-6z"/><circle cx="4.8" cy="7.5" r="1" fill="#ff9500"/><circle cx="7" cy="4.6" r="1" fill="#ff9500"/><circle cx="10.4" cy="5.2" r="1" fill="#ff9500"/></svg>` },
     { id: "texts", name: "Textos de la interfaz", color: "#5856d6", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M3 3h10v2.2h-1.4V4.4H8.7v7.2h1.5V13H5.8v-1.4h1.5V4.4H4.4v.8H3z"/></svg>` },
     { id: "cases", name: "Casos de estudio", color: "#af52de", icon: `<svg viewBox="0 0 16 16" fill="#fff"><rect x="2" y="2.5" width="12" height="11" rx="1.6"/><rect x="4" y="5" width="8" height="1.4" rx=".7" fill="#af52de"/><rect x="4" y="8" width="5" height="1.4" rx=".7" fill="#af52de"/></svg>` },
   ];
+
+  // ---------- Diseño: fuentes y vista previa ----------
+  const FONTS = ["Inter", "DM Sans", "Manrope", "Plus Jakarta Sans", "Outfit", "Space Grotesk", "Poppins", "Montserrat", "Work Sans", "IBM Plex Sans", "Sora", "Urbanist", "Figtree", "Geist", "Instrument Sans", "Onest", "Lexend", "Rubik", "Nunito Sans", "Raleway", "Playfair Display", "Fraunces", "DM Serif Display", "Instrument Serif", "Libre Baskerville", "Space Mono", "JetBrains Mono"];
+  const DESIGN_KEYS = ["font", "fontHead", "headWeight", "accent", "ink", "ink2", "muted", "winBg", "winBar", "noteBg", "stickyBg", "labelInk", "menubarInk", "menubarBg", "menubarOpacity", "dockBg", "dockOpacity", "radius", "iconScale", "dockSize"];
+  const loadedFonts = new Set();
+  function loadFont(f) {
+    if (!FONTS.includes(f) || loadedFonts.has(f)) return;
+    loadedFonts.add(f);
+    document.head.append(h("link", { rel: "stylesheet", href: `https://fonts.googleapis.com/css2?family=${f.replace(/ /g, "+")}:wght@400;500;600;700;800&display=swap` }));
+  }
+  const isHex = (v) => typeof v === "string" && /^#[0-9a-f]{6}$/i.test(v);
+  const rgbaA = (hx, a) => { const n = parseInt(hx.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+  let previewEl = null;
+  function paintPreview() {
+    if (!previewEl || !previewEl.isConnected) return;
+    const T = D.theme || {};
+    const SYS = '-apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif';
+    loadFont(T.font); loadFont(T.fontHead);
+    const v = {
+      "--p-font": FONTS.includes(T.font) ? `"${T.font}", ${SYS}` : SYS,
+      "--p-head": FONTS.includes(T.fontHead) ? `"${T.fontHead}", ${SYS}` : FONTS.includes(T.font) ? `"${T.font}", ${SYS}` : SYS,
+      "--p-weight": T.headWeight || 700,
+      "--p-accent": isHex(T.accent) ? T.accent : "#0a64d8",
+      "--p-ink": isHex(T.ink) ? T.ink : "#1c1c1e",
+      "--p-ink2": isHex(T.ink2) ? T.ink2 : "#3a3a3c",
+      "--p-muted": isHex(T.muted) ? T.muted : "#6e6e73",
+      "--p-win": isHex(T.winBg) ? T.winBg : "#ffffff",
+      "--p-bar": isHex(T.winBar) ? T.winBar : "#f3f2ef",
+      "--p-sticky": isHex(T.stickyBg) ? T.stickyBg : "rgba(255,255,255,.82)",
+      "--p-label": isHex(T.labelInk) ? T.labelInk : "#ffffff",
+      "--p-mb-ink": isHex(T.menubarInk) ? T.menubarInk : "#ffffff",
+      "--p-mb": isHex(T.menubarBg) ? rgbaA(T.menubarBg, (+T.menubarOpacity || 16) / 100) : "rgba(30,30,30,.16)",
+      "--p-dock": isHex(T.dockBg) ? rgbaA(T.dockBg, (+T.dockOpacity || 38) / 100) : "rgba(255,255,255,.38)",
+      "--p-radius": (T.radius !== undefined && T.radius !== "" ? +T.radius : 12) + "px",
+      "--p-dk": Math.round((+T.dockSize || 52) * 0.62) + "px",
+      "--p-icon": (+T.iconScale || 100) / 100,
+    };
+    Object.entries(v).forEach(([k, val]) => previewEl.style.setProperty(k, val));
+  }
+  function designPreview() {
+    previewEl = h("div", { class: "dprev", style: `background-image:url("${resolve(D.wallpaper)}")`, html: `
+      <div class="dp-menu"><b>${(D.brand || "Thomgraphics").replace(/[<>&"]/g, "")}</b><span>Info</span><span class="sp"></span><span>mar 24 nov 21:50</span></div>
+      <div class="dp-sticky"><b>Recordatorio:</b><span>Diseña para personas</span></div>
+      <div class="dp-icon"><i></i><span>Branding</span></div>
+      <div class="dp-win"><div class="dp-bar"><em></em><em></em><em></em><span>UX/UI &amp; Producto</span></div>
+        <div class="dp-body"><h4>UX/UI &amp; Producto</h4><p>Productos digitales diseñados de punta a punta.</p><div class="dp-chip">Caso de estudio</div><a>Ver caso →</a></div></div>
+      <div class="dp-dock"><i></i><i></i><i></i><i></i></div>` });
+    requestAnimationFrame(paintPreview);
+    return h("section", { class: "group" }, h("h3", {}, "Vista previa"), h("p", {}, "Se actualiza mientras editas. El sitio cambia al publicar."), previewEl);
+  }
+  document.addEventListener("input", () => { if (section === "look") paintPreview(); });
+  document.addEventListener("change", () => { if (section === "look") paintPreview(); });
 
   // Textos editables de la interfaz del sitio (vacío = texto por defecto)
   const UI_KEYS = [
@@ -460,18 +513,50 @@
 
     look() {
       D.theme = D.theme || {};
+      const T = D.theme;
+      const fontOpts = [["", "Sistema (SF Pro en Mac / Segoe en Windows)"], ...FONTS.map((f) => [f, f])];
+      const reset = h("button", { class: "btn sm ghost danger", type: "button", onclick: () => {
+        DESIGN_KEYS.forEach((k) => delete T[k]); touch(); render(); toast("Diseño restablecido. Publica para aplicarlo.");
+      } }, "Restablecer diseño original");
       return [
-        group("Color y fondo", null, D.theme, [
-          { key: "accent", type: "color", label: "Color de acento", hint: "Selección de íconos y detalles", def: "#0a64d8" },
+        designPreview(),
+        group("Tipografía", "Fuentes de Google Fonts. Combina una de texto con una de títulos.", T, [
+          { key: "font", type: "select", label: "Fuente de textos", options: fontOpts },
+          { key: "fontHead", type: "select", label: "Fuente de títulos", options: [["", "La misma de los textos"], ...FONTS.map((f) => [f, f])] },
+          { key: "headWeight", type: "select", label: "Grosor de títulos", options: [["700", "Bold (700)"], ["800", "Extra bold (800)"], ["600", "Semibold (600)"], ["500", "Medium (500)"], ["400", "Regular (400)"]] },
+        ]),
+        group("Colores", null, T, [
+          { key: "accent", type: "color", label: "Acento", hint: "Selección, enlaces y detalles", def: "#0a64d8" },
+          { key: "ink", type: "color", label: "Texto principal", def: "#1c1c1e" },
+          { key: "ink2", type: "color", label: "Texto de párrafos", def: "#3a3a3c" },
+          { key: "muted", type: "color", label: "Texto secundario", def: "#6e6e73" },
+          { key: "winBg", type: "color", label: "Fondo de ventanas", def: "#ffffff" },
+          { key: "winBar", type: "color", label: "Barra de ventanas", def: "#f3f2ef" },
+          { key: "noteBg", type: "color", label: "Fondo de «Sobre mí»", def: "#fffdf6" },
+          { key: "stickyBg", type: "color", label: "Nota adhesiva", def: "#ffffff" },
+          { key: "labelInk", type: "color", label: "Nombres de íconos", def: "#ffffff" },
+        ]),
+        group("Barra de menú y dock", null, T, [
+          { key: "menubarInk", type: "color", label: "Texto de la barra", def: "#ffffff" },
+          { key: "menubarBg", type: "color", label: "Color de la barra", def: "#1e1e1e" },
+          { key: "menubarOpacity", type: "number", label: "Opacidad de la barra (%)", min: 0, max: 100, step: 1, ph: "16" },
+          { key: "dockBg", type: "color", label: "Color del dock", def: "#ffffff" },
+          { key: "dockOpacity", type: "number", label: "Opacidad del dock (%)", min: 0, max: 100, step: 1, ph: "38" },
+        ]),
+        group("Forma y tamaños", null, T, [
+          { key: "radius", type: "number", label: "Esquinas de ventanas (px)", min: 0, max: 32, step: 1, ph: "12" },
+          { key: "iconScale", type: "number", label: "Tamaño de íconos (%)", min: 60, max: 160, step: 5, ph: "100" },
+          { key: "dockSize", type: "number", label: "Tamaño del dock (px)", min: 36, max: 80, step: 2, ph: "52" },
         ]),
         group("Fondo en celular (opcional)", "Si lo dejas vacío, se usa el mismo fondo del computador. Ideal: foto vertical.", D, [
           { key: "wallpaperMobile", type: "image", label: "Fondo vertical", optional: true, max: 1600 },
         ]),
-        group("Elementos del escritorio", null, D.theme, [
+        group("Elementos del escritorio", null, T, [
           { key: "showIntro", type: "toggle", label: "Intro de fotos", on: "Mostrar al entrar" },
           { key: "showNotification", type: "toggle", label: "Notificación", on: "Mostrar" },
           { key: "showSticky", type: "toggle", label: "Nota adhesiva", on: "Mostrar" },
         ]),
+        reset,
       ];
     },
 
