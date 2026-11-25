@@ -355,3 +355,4 @@ details.case > summary img { background: #3a3a3c; }
   .vz-utm-row span { grid-column: 1 / -1; }
   .vz-hl { font-size: 8px; }
 }
+.nav button[aria-current="true"], .nav button[aria-current="true"]:hover { background: var(--accent); color: #fff; }

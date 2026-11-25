@@ -11,6 +11,7 @@
   const h = (tag, attrs, ...kids) => {
     const el = document.createElement(tag);
     for (const [k, v] of Object.entries(attrs || {})) {
+      if (k.startsWith("aria-") && typeof v === "boolean") { el.setAttribute(k, String(v)); continue; }
       if (v == null || v === false) continue;
       if (k === "class") el.className = v;
       else if (k === "html") el.innerHTML = v;
