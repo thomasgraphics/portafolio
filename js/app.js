@@ -631,6 +631,7 @@
 
   function openCase(id, origin, list) {
     track("open", { id: "case:" + id });
+    noteProjectSeen(id);
     const order = list && list.length ? list : Object.keys(D.cases);
     const existing = wins.get("case");
     const state = existing ? existing.state : { id, order };
@@ -938,6 +939,97 @@
     });
     timers.push(setTimeout(finish, start + photos.length * step + 900));
   }
+
+
+  // =========================================================================
+  // "Actualización disponible" — invita a contactar después de ver N proyectos
+  // =========================================================================
+  const UPD_DEF = {
+    enabled: true, after: 2,
+    title: { es: "Actualización disponible", en: "Update available" },
+    subtitle: { es: "Thomgraphics · Contacto directo", en: "Thomgraphics · Direct contact" },
+    body: { es: "Ya exploraste {n} proyectos. ¿Quieres hablar con el diseñador que creó todo esto? Esta actualización instala una conversación directa por WhatsApp.", en: "You've explored {n} projects. Want to talk to the designer who built all this? This update installs a direct WhatsApp conversation." },
+    notes: [
+      { es: "Conversación directa con Thomas", en: "Direct conversation with Thomas" },
+      { es: "Producto, UX/UI y branding", en: "Product, UX/UI and branding" },
+      { es: "Sin formularios", en: "No forms" },
+    ],
+    cta: { es: "Escribir por WhatsApp", en: "Message on WhatsApp" },
+    later: { es: "Más tarde", en: "Later" },
+    preparing: { es: "Preparando actualización…", en: "Preparing update…" },
+    ready: { es: "Lista para instalar", en: "Ready to install" },
+    message: { es: "Hola Thomas, vi tu portafolio y me gustaría hablar contigo sobre un proyecto.", en: "Hi Thomas, I saw your portfolio and I'd like to talk about a project." },
+  };
+  // Lo que venga vacío desde el admin usa el texto por defecto
+  const hasText = (v) => (v && typeof v === "object" && !Array.isArray(v) ? !!(v.es || v.en) : Array.isArray(v) ? v.some(hasText) : v !== "" && v != null);
+  const UPD = Object.assign({}, UPD_DEF, Object.fromEntries(Object.entries(D.update || {}).filter(([, v]) => hasText(v) || typeof v === "boolean")));
+  const TG_PATH = "M91 76 L29 82 L29 241 L91 234Z M273 70 L189 78 L188 132 L273 123Z M100 76 L100 234 L273 216 L273 131 L217 137 L216 161 L158 167 L157 70Z M273 0 L0 26 L0 77 L273 50Z";
+  function noteProjectSeen(id) {
+    if (!UPD.enabled || !D.links.whatsapp) return;
+    const seen = new Set(sess.get("seenCases", []));
+    seen.add(id);
+    sess.set("seenCases", [...seen]);
+    const need = Math.max(1, parseInt(UPD.after, 10) || 2);
+    if (seen.size >= need && !sess.get("updShown", false)) {
+      sess.set("updShown", true);
+      setTimeout(() => showUpdate(seen.size), 1600);
+    }
+  }
+  function whatsappHref() {
+    const base = D.links.whatsapp || "";
+    const msg = t(UPD.message);
+    return msg ? base + (base.includes("?") ? "&" : "?") + "text=" + encodeURIComponent(msg) : base;
+  }
+  function showUpdate(n) {
+    if ($(".upd-backdrop")) return;
+    const prev = document.activeElement;
+    const notes = (Array.isArray(UPD.notes) ? UPD.notes : []).map(t).filter(Boolean);
+    const back = document.createElement("div");
+    back.className = "upd-backdrop";
+    back.innerHTML = `
+      <div class="upd" role="dialog" aria-modal="true" aria-labelledby="upd-title" aria-describedby="upd-body">
+        <div class="upd-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><defs><linearGradient id="updg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2c30"/><stop offset="1" stop-color="#0d0e10"/></linearGradient></defs>
+            <path d="M50 2C85 2 98 15 98 50S85 98 50 98 2 85 2 50 15 2 50 2Z" fill="url(#updg)"/>
+            <g transform="translate(22 25) scale(.205)"><path fill="#00ffff" d="${TG_PATH}"/></g></svg>
+          <span class="upd-badge"><svg viewBox="0 0 24 24"><path d="M12 5v10m0 0-4.5-4.5M12 15l4.5-4.5M6 19h12" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="upd-main">
+          <h2 id="upd-title">${esc(t(UPD.title))}</h2>
+          <p class="upd-sub">${esc(t(UPD.subtitle))}</p>
+          <p id="upd-body" class="upd-body">${esc(t(UPD.body)).replace("{n}", String(n))}</p>
+          ${notes.length ? `<ul class="upd-notes">${notes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+          <div class="upd-progress"><span class="upd-bar"><i></i></span><small class="upd-status">${esc(t(UPD.preparing))}</small></div>
+          <div class="upd-actions">
+            <button type="button" class="upd-btn upd-later">${esc(t(UPD.later))}</button>
+            <a class="upd-btn upd-cta" href="${esc(whatsappHref())}" target="_blank" rel="noopener" data-net="whatsapp">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.9 2 11.7c0 2.6 1.3 4.9 3.4 6.5L4.6 21.5l3.8-1.9c1.1.3 2.3.5 3.6.5 5.5 0 10-3.9 10-8.7S17.5 3 12 3z"/></svg>
+              ${esc(t(UPD.cta))}</a>
+          </div>
+        </div>
+      </div>`;
+    document.body.appendChild(back);
+    track("open", { id: "update:shown" });
+    const cta = $(".upd-cta", back), later = $(".upd-later", back), status = $(".upd-status", back);
+    requestAnimationFrame(() => back.classList.add("on"));
+    setTimeout(() => { back.classList.add("ready"); status.textContent = t(UPD.ready); cta.focus({ preventScroll: true }); }, reducedMotion ? 0 : 1500);
+    const close = () => {
+      back.classList.remove("on");
+      document.removeEventListener("keydown", onKey, true);
+      setTimeout(() => back.remove(), 300);
+      if (prev && prev.focus) prev.focus({ preventScroll: true });
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape") { e.stopPropagation(); close(); }
+      if (e.key === "Tab") { const f = [later, cta]; const i = f.indexOf(document.activeElement); e.preventDefault(); f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus(); }
+    };
+    document.addEventListener("keydown", onKey, true);
+    later.addEventListener("click", () => { track("open", { id: "update:later" }); close(); });
+    cta.addEventListener("click", () => { track("open", { id: "update:whatsapp" }); setTimeout(close, 400); });
+    back.addEventListener("click", (e) => { if (e.target === back) close(); });
+  }
+  // Para probarlo: tudominio.com/?actualizacion=1
+  if (new URLSearchParams(location.search).get("actualizacion") === "1") setTimeout(() => showUpdate(2), 2500);
 
   // ---------- Inicio ----------
   document.documentElement.lang = lang;

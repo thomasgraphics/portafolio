@@ -799,6 +799,17 @@
           { key: "body", type: "i18nArea", label: "Mensaje" },
           { key: "opens", type: "select", label: "Al hacer clic abre", options: () => D.desktop.map((d) => [d.id, `${t(d.label)} (${typeName(d.type)})`]) },
         ]),
+        group("Aviso «Actualización disponible»", "Diálogo estilo macOS que invita a escribirte por WhatsApp después de ver cierta cantidad de proyectos (una vez por visita). Pruébalo con tudominio.com/?actualizacion=1", (D.update = D.update || {}), [
+          { key: "enabled", type: "toggle", label: "Mostrar el aviso", on: "Activado" },
+          { key: "after", type: "number", label: "Después de ver (proyectos)", min: 1, max: 10, step: 1, ph: "2" },
+          { key: "title", type: "i18n", label: "Título", ph: { es: "Actualización disponible", en: "Update available" } },
+          { key: "subtitle", type: "i18n", label: "Subtítulo", ph: { es: "Thomgraphics · Contacto directo", en: "Thomgraphics · Direct contact" } },
+          { key: "body", type: "i18nArea", label: "Mensaje", hint: "{n} = número de proyectos vistos" },
+          { key: "notes", type: "list", label: "Notas de la versión (viñetas)", addLabel: "Agregar viñeta", item: { type: "i18n", noun: "Viñeta" } },
+          { key: "cta", type: "i18n", label: "Botón principal", ph: { es: "Escribir por WhatsApp", en: "Message on WhatsApp" } },
+          { key: "later", type: "i18n", label: "Botón secundario", ph: { es: "Más tarde", en: "Later" } },
+          { key: "message", type: "i18nArea", label: "Mensaje que se escribe en WhatsApp", rows: 2 },
+        ]),
         group("Nota adhesiva", "Agrega las líneas que quieras: frase, cargo actual, disponibilidad…", D.sticky, [
           { key: "title", type: "i18n", label: "Título" },
           { key: "text", type: "i18n", label: "Primera línea" },

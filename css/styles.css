@@ -433,6 +433,58 @@ body.booted .dock { transform: translate(-50%, 0); }
   .note { padding: 18px 20px 40px; }
 }
 
+
+/* =========================================================================
+   Diálogo "Actualización disponible" (estilo macOS)
+   ========================================================================= */
+.upd-backdrop {
+  position: fixed; inset: 0; z-index: 9700; display: grid; place-items: center; padding: 20px;
+  background: rgba(0, 0, 0, 0); transition: background 0.3s var(--ease), backdrop-filter 0.3s;
+}
+.upd-backdrop.on { background: rgba(0, 0, 0, 0.22); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.upd {
+  width: min(460px, 100%); display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 18px;
+  padding: 22px 22px 18px; border-radius: 14px;
+  background: var(--win-bg); color: var(--ink);
+  box-shadow: 0 30px 80px -12px rgba(0, 0, 0, 0.45), 0 0 0 0.5px rgba(0, 0, 0, 0.2);
+  transform: translateY(-14px) scale(0.96); opacity: 0;
+  transition: transform 0.45s var(--spring), opacity 0.25s;
+  user-select: text; -webkit-user-select: text;
+}
+.upd-backdrop.on .upd { transform: none; opacity: 1; }
+.upd-icon { position: relative; width: 64px; height: 64px; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)); }
+.upd-icon > svg { width: 64px; height: 64px; display: block; }
+.upd-badge { position: absolute; right: -4px; bottom: -4px; width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(#3b9bff, #0a6fe0); display: grid; place-items: center; box-shadow: 0 0 0 2.5px var(--win-bg); }
+.upd-badge svg { width: 15px; height: 15px; }
+.upd h2 { margin: 2px 0 2px; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
+.upd-sub { margin: 0 0 10px; font-size: 12px; color: var(--muted); }
+.upd-body { margin: 0 0 10px; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+.upd-notes { margin: 0 0 14px; padding: 10px 12px 10px 28px; border-radius: 9px; background: rgba(0, 0, 0, 0.04); font-size: 12.5px; color: var(--ink-2); display: grid; gap: 3px; }
+.upd-progress { display: grid; gap: 5px; margin-bottom: 16px; }
+.upd-bar { height: 6px; border-radius: 999px; background: rgba(0, 0, 0, 0.08); overflow: hidden; }
+.upd-bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--accent); transition: width 1.45s cubic-bezier(0.45, 0, 0.25, 1); }
+.upd-backdrop.on .upd-bar i { width: 100%; }
+.upd-status { font-size: 11.5px; color: var(--muted); }
+.upd-actions { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.upd-btn { display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; text-decoration: none; cursor: pointer; }
+.upd-later { background: rgba(0, 0, 0, 0.06); color: var(--ink); box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1); }
+.upd-later:hover { background: rgba(0, 0, 0, 0.1); }
+.upd-cta { background: linear-gradient(#34d26a, #1faa52); color: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 0 0 0.5px rgba(0, 0, 0, 0.15); opacity: 0.55; pointer-events: none; transition: opacity 0.3s, filter 0.2s; }
+.upd-backdrop.ready .upd-cta { opacity: 1; pointer-events: auto; }
+.upd-cta:hover { filter: brightness(1.06); }
+.upd-cta svg { width: 16px; height: 16px; }
+html.dark .upd-notes { background: rgba(255, 255, 255, 0.06); }
+html.dark .upd-bar { background: rgba(255, 255, 255, 0.12); }
+html.dark .upd-later { background: rgba(255, 255, 255, 0.1); box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12); }
+html.dark .upd { box-shadow: 0 30px 80px -12px rgba(0, 0, 0, 0.7), 0 0 0 0.5px rgba(255, 255, 255, 0.14); }
+@media (max-width: 760px) {
+  .upd { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 12px; padding: 22px 18px 18px; }
+  .upd-notes { text-align: left; width: 100%; }
+  .upd-progress { width: 100%; text-align: left; }
+  .upd-actions { width: 100%; flex-direction: column-reverse; }
+  .upd-btn { justify-content: center; padding: 11px 14px; font-size: 15px; }
+}
+
 /* ---------- Bloqueo de orientación horizontal en teléfonos ---------- */
 .rotate { display: none; }
 @media (orientation: landscape) and (max-height: 520px) and (pointer: coarse) {
