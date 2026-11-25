@@ -84,6 +84,14 @@ Las fotos que subas se optimizan solas: se reducen a 2400 px como máximo y se g
 
 ---
 
+## Estadísticas de visitas
+
+En el admin → **Estadísticas**: visitas por día, a qué horas y qué días te visitan, países y ciudades, de qué red social llegan, dispositivos, idiomas y qué proyectos abren más. Anónimo: sin cookies y sin guardar IPs.
+
+**Activarlas (una vez):** Vercel → proyecto → **Storage → Create Database → Upstash for Redis** (gratis) → conéctala al proyecto → **Redeploy**.
+
+Usa los **enlaces con seguimiento** del panel (`?utm_source=instagram`, `whatsapp`, etc.) en cada red para saber cuál funciona mejor. Activa "No contar mis visitas" en tus navegadores.
+
 ## 4. Seguridad (qué te protege)
 
 | Capa | Qué hace |

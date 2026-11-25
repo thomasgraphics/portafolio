@@ -371,6 +371,7 @@
 
   // ---------- Secciones ----------
   const SECTIONS = [
+    { id: "stats", name: "Estadísticas", color: "#34c759", icon: `<svg viewBox="0 0 16 16" fill="#fff"><rect x="2" y="8" width="2.6" height="6" rx="1"/><rect x="6.7" y="4" width="2.6" height="10" rx="1"/><rect x="11.4" y="1.8" width="2.6" height="12.2" rx="1"/></svg>` },
     { id: "general", name: "General", color: "#8e8e93", icon: `<svg viewBox="0 0 16 16" fill="#fff"><circle cx="8" cy="8" r="2.4"/><path d="M8 1.5l1.2 1.7 2-.5.3 2 1.9.8-.8 1.9 1.3 1.6-1.7 1.2.5 2-2 .3-.8 1.9-1.9-.8L8 14.5l-1.2-1.7-2 .5-.3-2-1.9-.8.8-1.9L2.1 7l1.7-1.2-.5-2 2-.3.8-1.9 1.9.8z" fill="none" stroke="#fff" stroke-width="1.3"/></svg>` },
     { id: "cv", name: "CV y showreel", color: "#e5484d", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M4 1.5h5.5l3 3V14a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V2a.5.5 0 0 1 .5-.5z"/><rect x="5" y="8" width="6" height="1.2" fill="#e5484d"/><rect x="5" y="10.3" width="4" height="1.2" fill="#e5484d"/></svg>` },
     { id: "about", name: "Sobre mí", color: "#f5b82e", icon: `<svg viewBox="0 0 16 16" fill="#fff"><circle cx="8" cy="5.5" r="2.8"/><path d="M2.5 14c.6-3 2.9-4.5 5.5-4.5s4.9 1.5 5.5 4.5z"/></svg>` },
@@ -382,6 +383,166 @@
     { id: "texts", name: "Textos de la interfaz", color: "#5856d6", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M3 3h10v2.2h-1.4V4.4H8.7v7.2h1.5V13H5.8v-1.4h1.5V4.4H4.4v.8H3z"/></svg>` },
     { id: "cases", name: "Casos de estudio", color: "#af52de", icon: `<svg viewBox="0 0 16 16" fill="#fff"><rect x="2" y="2.5" width="12" height="11" rx="1.6"/><rect x="4" y="5" width="8" height="1.4" rx=".7" fill="#af52de"/><rect x="4" y="8" width="5" height="1.4" rx=".7" fill="#af52de"/></svg>` },
   ];
+
+
+  // =========================================================================
+  // Estadísticas (datos anónimos guardados por /api/track)
+  // =========================================================================
+  let statsDays = store.get("statsDays", 30);
+  const SOCIAL = { instagram: "Instagram", linkedin: "LinkedIn", facebook: "Facebook", whatsapp: "WhatsApp", x: "X (Twitter)", tiktok: "TikTok", behance: "Behance", dribbble: "Dribbble", youtube: "YouTube", pinterest: "Pinterest", telegram: "Telegram" };
+  const OTHER_SRC = { google: "Google", bing: "Bing", chatgpt: "ChatGPT", directo: "Directo / sin referencia" };
+  const srcName = (k) => SOCIAL[k] || OTHER_SRC[k] || (k.startsWith("otro:") ? k.slice(5) : k);
+  const flag = (cc) => (/^[A-Z]{2}$/.test(cc) && cc !== "XX" ? String.fromCodePoint(...[...cc].map((c) => 127397 + c.charCodeAt(0))) : "🌐");
+  const regionName = (() => { try { const dn = new Intl.DisplayNames(["es"], { type: "region" }); return (cc) => (cc === "XX" ? "Desconocido" : dn.of(cc) || cc); } catch { return (cc) => cc; } })();
+  const langName = (() => { try { const dn = new Intl.DisplayNames(["es"], { type: "language" }); return (l) => (l === "??" ? "Desconocido" : dn.of(l) || l); } catch { return (l) => l; } })();
+  const fmt = (n) => Number(n || 0).toLocaleString("es-CO");
+  const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+  const DAYS_ES = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+
+  let tipEl = null;
+  function tipOn(container) {
+    if (!tipEl) { tipEl = h("div", { class: "vz-tip", role: "tooltip" }); document.body.append(tipEl); }
+    container.addEventListener("pointermove", (e) => {
+      const t = e.target.closest("[data-tip]");
+      if (!t) { tipEl.classList.remove("on"); return; }
+      tipEl.textContent = t.dataset.tip;
+      tipEl.classList.add("on");
+      const x = Math.min(window.innerWidth - tipEl.offsetWidth - 8, e.clientX + 12);
+      tipEl.style.left = x + "px"; tipEl.style.top = e.clientY - tipEl.offsetHeight - 10 + "px";
+    });
+    container.addEventListener("pointerleave", () => tipEl.classList.remove("on"));
+  }
+
+  function barList(rows, total, nameFn, max = 10) {
+    const top = rows.slice(0, max);
+    const peak = Math.max(1, ...top.map((r) => r.n));
+    if (!top.length) return h("p", { class: "vz-empty" }, "Aún no hay datos.");
+    return h("div", { class: "vz-bars" }, top.map((r) => h("div", { class: "vz-row", "data-tip": `${nameFn(r.key)}: ${fmt(r.n)} (${pct(r.n, total)}%)` },
+      h("span", { class: "vz-name" }, nameFn(r.key)),
+      h("span", { class: "vz-track" }, h("span", { class: "vz-fill", style: `width:${Math.max(2, (r.n / peak) * 100)}%` })),
+      h("span", { class: "vz-val" }, fmt(r.n), h("small", {}, ` ${pct(r.n, total)}%`)))));
+  }
+
+  function card(title, sub, ...body) {
+    return h("section", { class: "vz-card" }, h("h3", {}, title), sub ? h("p", { class: "vz-sub" }, sub) : null, ...body);
+  }
+
+  function utmBuilder() {
+    const base = ((D.seo && D.seo.siteUrl) || location.origin).replace(/\/+$/, "") + "/";
+    const chans = [["instagram", "Bio de Instagram"], ["linkedin", "Perfil / posts de LinkedIn"], ["whatsapp", "WhatsApp"], ["facebook", "Facebook"], ["tiktok", "TikTok"], ["behance", "Behance"], ["cv", "Tu CV en PDF"], ["email", "Firma de correo"]];
+    return card("Enlaces con seguimiento", "WhatsApp y algunas apps no avisan de dónde viene la visita. Usa estos enlaces en cada red y sabrás exactamente cuál funciona.",
+      h("div", { class: "vz-utm" }, chans.map(([k, label]) => {
+        const url = `${base}?utm_source=${k}`;
+        const btn = h("button", { class: "btn sm", type: "button" }, "Copiar");
+        btn.addEventListener("click", async () => {
+          try { await navigator.clipboard.writeText(url); btn.textContent = "¡Copiado!"; setTimeout(() => (btn.textContent = "Copiar"), 1500); } catch { toast(url); }
+        });
+        return h("div", { class: "vz-utm-row" }, h("span", {}, label), h("code", {}, url), btn);
+      })));
+  }
+
+  function setupCard(msg) {
+    return card("Activa las estadísticas (una sola vez, 3 minutos)", msg || null,
+      h("ol", { class: "vz-steps" },
+        h("li", {}, "En Vercel abre tu proyecto ", h("b", {}, "portafolio"), " → pestaña ", h("b", {}, "Storage"), "."),
+        h("li", {}, h("b", {}, "Create Database"), " → elige ", h("b", {}, "Upstash for Redis"), " (plan gratuito) → región cercana (ej. São Paulo o Washington) → ", h("b", {}, "Create"), "."),
+        h("li", {}, "Conéctala al proyecto ", h("b", {}, "portafolio"), " (marca Production, Preview y Development) → ", h("b", {}, "Connect"), ". Vercel crea solas las variables."),
+        h("li", {}, "Ve a ", h("b", {}, "Deployments → ⋯ → Redeploy"), ". Desde ese momento se empiezan a contar las visitas.")));
+  }
+
+  function renderStatsBody(box, data) {
+    box.innerHTML = "";
+    if (!data.configured) { box.append(setupCard("Las métricas ya están programadas; solo falta conectar la base de datos gratuita."), utmBuilder()); return; }
+    const total = data.totals.visits;
+    const socialN = data.sources.filter((s) => SOCIAL[s.key]).reduce((a, s) => a + s.n, 0);
+    const topC = data.countries[0];
+    const kpi = (label, value, note) => h("div", { class: "vz-kpi" }, h("span", {}, label), h("b", {}, value), note ? h("small", {}, note) : null);
+
+    // Visitas por día
+    const peak = Math.max(1, ...data.daily.map((d) => d.visits));
+    const step = Math.ceil(data.daily.length / 8);
+    const daily = h("div", { class: "vz-daily" },
+      h("div", { class: "vz-cols" }, data.daily.map((d) => {
+        const dt = new Date(d.date + "T12:00:00");
+        const label = dt.toLocaleDateString("es-CO", { weekday: "short", day: "numeric", month: "short" });
+        return h("div", { class: "vz-col", "data-tip": `${label}: ${fmt(d.visits)} visitas · ${fmt(d.uniques)} visitantes` },
+          h("span", { class: "vz-colbar" + (d.visits ? "" : " zero"), style: `height:${d.visits ? Math.max(3, (d.visits / peak) * 100) : 0}%` }));
+      })),
+      h("div", { class: "vz-xaxis" }, data.daily.map((d, i) => h("span", {}, i % step === 0 ? new Date(d.date + "T12:00:00").toLocaleDateString("es-CO", { day: "numeric", month: "short" }) : ""))));
+
+    // Mapa de calor día × hora
+    const hPeak = Math.max(1, ...data.heat.flat());
+    const heat = h("div", { class: "vz-heat" },
+      h("span", {}), ...Array.from({ length: 24 }, (_, hh) => h("span", { class: "vz-hl" }, hh % 3 === 0 ? `${hh}h` : "")),
+      ...data.heat.flatMap((row, wd) => [h("span", { class: "vz-dl" }, DAYS_ES[wd]), ...row.map((n, hh) => h("span", {
+        class: "vz-cell", style: n ? `background:rgba(51,140,237,${(0.18 + 0.82 * (n / hPeak)).toFixed(2)})` : "",
+        "data-tip": `${DAYS_ES[wd]} ${hh}:00–${hh}:59 · ${fmt(n)} visita${n === 1 ? "" : "s"}`,
+      }))]));
+    const bestH = data.hours.indexOf(Math.max(...data.hours));
+
+    const opensNames = (k) => {
+      const [type, id] = k.split(":");
+      if (type === "case") return `Caso · ${(D.cases[id] || {}).title || id}`;
+      if (type === "folder") return `Carpeta · ${t((D.folders[id] || {}).title) || id}`;
+      const it = D.desktop.find((d) => d.id === id);
+      return `${it ? t(it.label) : id}`;
+    };
+    const cityName = (k) => { const [cc, c] = k.split("|"); return `${flag(cc)} ${c}`; };
+    const totalOpens = data.opens.reduce((a, x) => a + x.n, 0);
+
+    const grid = h("div", { class: "vz-grid" },
+      card("Visitas por día", `Últimos ${data.days} días · hora de Colombia`, daily,
+        h("details", { class: "vz-table" }, h("summary", {}, "Ver tabla"),
+          h("table", {}, h("thead", {}, h("tr", {}, h("th", {}, "Fecha"), h("th", {}, "Visitas"), h("th", {}, "Visitantes"))),
+            h("tbody", {}, [...data.daily].reverse().map((d) => h("tr", {}, h("td", {}, d.date), h("td", {}, fmt(d.visits)), h("td", {}, fmt(d.uniques)))))))),
+      card("¿A qué horas te visitan?", total ? `La hora con más visitas: ${bestH}:00–${bestH}:59 (hora de Colombia)` : "Cada cuadro es una hora; más intenso = más visitas.", heat),
+      card("¿De dónde llegan?", "Redes sociales, buscadores o directo", barList(data.sources, total, srcName, 12)),
+      card("Países", null, barList(data.countries, total, (cc) => `${flag(cc)} ${regionName(cc)}`)),
+      card("Ciudades", null, barList(data.cities, total, cityName)),
+      card("Lo más visto", "Carpetas, casos y archivos que abren", barList(data.opens, totalOpens, opensNames)),
+      card("Dispositivos", null, barList(data.devices, total, (k) => k[0].toUpperCase() + k.slice(1))),
+      card("Idioma del navegador", null, barList(data.languages, total, langName)),
+      card("Edad de los visitantes", null, h("p", { class: "vz-sub" }, "Un sitio web no puede saber la edad de quien lo visita. Solo Google Analytics la estima, y únicamente con mucho tráfico (miles de visitas) porque usa datos de cuentas de Google. Si en el futuro lo necesitas, se puede conectar Google Analytics además de estas métricas.")),
+    );
+
+    box.append(
+      h("div", { class: "vz-kpis" },
+        kpi("Visitas", fmt(total)),
+        kpi("Visitantes", fmt(data.totals.uniques), "únicos por día, sumados"),
+        kpi("Desde redes sociales", `${pct(socialN, total)}%`, `${fmt(socialN)} visitas`),
+        kpi("País principal", topC ? `${flag(topC.key)} ${regionName(topC.key)}` : "—", topC ? `${pct(topC.n, total)}% de las visitas` : null)),
+      grid, utmBuilder());
+    tipOn(box);
+  }
+
+  function statsSection() {
+    const box = h("div", { class: "vz" }, h("p", { class: "intro-text" }, "Cargando estadísticas…"));
+    const load = async () => {
+      try {
+        const r = await fetch(`/admin/stats?days=${statsDays}`, { credentials: "same-origin", cache: "no-store" });
+        if (r.status === 404) throw new Error("local");
+        const data = await r.json();
+        if (!r.ok) throw new Error(data.error || r.status);
+        renderStatsBody(box, data);
+      } catch (e) {
+        box.innerHTML = "";
+        box.append(e.message === "local" || /Failed to fetch|JSON/.test(e.message)
+          ? card("Estadísticas", "Las estadísticas se ven en tu sitio publicado (www.thomgraphics.com/admin), no en una copia local.")
+          : card("No se pudieron cargar las estadísticas", e.message), utmBuilder());
+      }
+    };
+    let noTrack = false;
+    try { noTrack = localStorage.getItem("tg-notrack") === "1"; } catch { /* */ }
+    const nt = h("input", { type: "checkbox", class: "switch", checked: noTrack });
+    nt.addEventListener("change", () => { try { nt.checked ? localStorage.setItem("tg-notrack", "1") : localStorage.removeItem("tg-notrack"); } catch { /* */ } toast(nt.checked ? "Tus visitas desde este navegador ya no se cuentan." : "Tus visitas desde este navegador se vuelven a contar."); });
+    const bar = h("div", { class: "vz-bar" },
+      h("div", { class: "seg-a" }, [7, 30, 90].map((n) => h("button", { type: "button", "aria-pressed": statsDays === n, onclick: () => { statsDays = n; store.set("statsDays", n); render(); } }, `${n} días`))),
+      h("button", { class: "btn sm", type: "button", onclick: () => { box.innerHTML = ""; box.append(h("p", { class: "intro-text" }, "Actualizando…")); load(); } }, "↻ Actualizar"),
+      h("span", { class: "grow" }),
+      h("label", { class: "toggle" }, nt, h("span", {}, "No contar mis visitas en este navegador")));
+    load();
+    return [bar, box];
+  }
 
   // ---------- Diseño: fuentes y vista previa ----------
   const FONTS = ["Inter", "DM Sans", "Manrope", "Plus Jakarta Sans", "Outfit", "Space Grotesk", "Poppins", "Montserrat", "Work Sans", "IBM Plex Sans", "Sora", "Urbanist", "Figtree", "Geist", "Instrument Sans", "Onest", "Lexend", "Rubik", "Nunito Sans", "Raleway", "Playfair Display", "Fraunces", "DM Serif Display", "Instrument Serif", "Libre Baskerville", "Space Mono", "JetBrains Mono"];
@@ -494,6 +655,8 @@
   }
 
   const RENDER = {
+    stats() { return statsSection(); },
+
     cv() {
       const pdfs = D.desktop.filter((d) => d.type === "pdf");
       const vids = D.desktop.filter((d) => d.type === "video");

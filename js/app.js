@@ -148,7 +148,9 @@
     if (!first) setWallpaper();
   }
   function setWallpaper() {
-    const url = `url("${String(wallpaperUrl() || "").replace(/["\\\n]/g, "")}")`;
+    let src = String(wallpaperUrl() || "").replace(/["\\\n]/g, "");
+    if (src && !/^(https?:|data:|blob:|\/)/i.test(src)) src = "/" + src;
+    const url = `url("${src}")`;
     document.querySelectorAll(".wallpaper").forEach((el) => el.style.setProperty("--wp", url));
   }
   const wallpaperUrl = () =>
@@ -345,11 +347,7 @@
   iconsEl.addEventListener("click", (e) => {
     const el = e.target.closest(".icon");
     if (!el || el.dataset.justDragged) { if (el) delete el.dataset.justDragged; return; }
-    const now = Date.now();
-    const isDouble = lastTap.id === el.dataset.id && now - lastTap.time < 450;
-    lastTap = { id: el.dataset.id, time: now };
-    // Móvil / táctil: un toque abre. Mouse: doble clic abre (como en un computador).
-    if (isMobile() || pointerType === "touch" || isDouble || e.detail === 0) { openItem(el.dataset.id, el); lastTap.id = null; }
+    openItem(el.dataset.id, el);
   });
   $("#desktop").addEventListener("pointerdown", (e) => { if (!e.target.closest(".icon")) select(null); });
 
@@ -511,8 +509,21 @@
   // =========================================================================
   // Tipos de ventana
   // =========================================================================
+  // ---------- Métricas anónimas (sin cookies). Se desactivan desde el admin en tu navegador ----------
+  const tracked = new Set();
+  function track(ev, extra) {
+    try { if (localStorage.getItem("tg-notrack") === "1") return; } catch { /* */ }
+    if (ev === "open") { if (tracked.has(extra.id)) return; tracked.add(extra.id); }
+    const body = JSON.stringify({ ev, ref: document.referrer || "", q: location.search, lang: navigator.language || "", ...extra });
+    try {
+      if (navigator.sendBeacon) navigator.sendBeacon("/api/track", new Blob([body], { type: "text/plain" }));
+      else fetch("/api/track", { method: "POST", body, keepalive: true }).catch(() => {});
+    } catch { /* */ }
+  }
+
   function openItem(id, origin) {
     const item = itemById(id);
+    if (item && item.type !== "folder") track("open", { id: "item:" + id });
     if (!item) { if (D.folders[id]) openFolder(id, origin); return; }
     const label = item.label;
     switch (item.type) {
@@ -526,6 +537,7 @@
   }
 
   function openFolder(id, origin) {
+    track("open", { id: "folder:" + id });
     if (!D.folders[id]) return;
     const startKey = "folder:" + id;
     if (wins.has(startKey)) return focusWin(startKey);
@@ -601,6 +613,7 @@
   }
 
   function openCase(id, origin, list) {
+    track("open", { id: "case:" + id });
     const order = list && list.length ? list : Object.keys(D.cases);
     const existing = wins.get("case");
     const state = existing ? existing.state : { id, order };
@@ -895,6 +908,7 @@
   renderNotification();
   renderDock();
   setRotateText();
+  track("view", {});
   window.addEventListener("hashchange", openFromHash);
   window.addEventListener("resize", tick);
   runIntro();
