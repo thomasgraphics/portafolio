@@ -95,7 +95,8 @@ body.no-noise .noise { display: none; }
 .menubar .mb-item { padding: 2px 8px; border-radius: 4px; white-space: nowrap; text-decoration: none; }
 .menubar .mb-item:hover { background: rgba(255, 255, 255, 0.18); }
 .menubar .mb-brand { font-weight: 700; }
-.menubar .mb-logo { display: grid; place-items: center; padding: 2px 9px; }
+.menubar .mb-logo { display: grid; place-items: center; padding: 2px 9px; color: var(--menubar-ink, #fff); }
+.menubar .mb-logo svg { display: block; filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2)); }
 .menubar .mb-status { display: flex; align-items: center; gap: 12px; padding: 0 8px; }
 .menubar .mb-app { font-weight: 600; }
 .menubar .mb-spacer { flex: 1; }
@@ -412,7 +413,7 @@ body.booted .dock { transform: translate(-50%, 0); }
   .dock { gap: 6px; }
   .dk .tip { display: none; }
   .sidebar { display: none; }
-  .menubar .mb-logo { display: none; }
+  .menubar .mb-logo { padding: 2px 6px 2px 0; }
   .menubar .mb-status { gap: 6px; padding: 0 4px; }
 
   .windows { top: 0; z-index: 9500; }
