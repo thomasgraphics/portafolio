@@ -180,6 +180,7 @@ body.booted .sticky { opacity: 1; }
   transition: transform 0.7s var(--spring), opacity 0.4s;
 }
 .notification.show { transform: translateX(0); opacity: 1; }
+body > .notification { position: fixed; top: calc(var(--menubar-h) + 12px); z-index: 8500; }
 .notification .n-head { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
 .notification .n-app-icon { width: 16px; height: 16px; border-radius: 4px; background: linear-gradient(#5ee47a, #1fb94a); display: grid; place-items: center; }
 .notification .n-app-icon svg { width: 10px; height: 10px; }

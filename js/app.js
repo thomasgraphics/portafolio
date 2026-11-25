@@ -404,7 +404,6 @@
     bindWindow(w);
     focusWin(key);
     document.body.classList.add("has-window");
-    if (!notif.hidden) dismissNotif();
     updateDock();
     return w;
   }
@@ -720,6 +719,7 @@
   // =========================================================================
   // Notificación, nota adhesiva y dock
   // =========================================================================
+  if (!isMobile()) document.body.appendChild(notif);
   function renderNotification() {
     const n = D.notification;
     if (!n) return;
@@ -879,7 +879,7 @@
     renderIcons();
     const opened = openFromHash();
     setTimeout(() => renderSticky(true), 700);
-    if (D.notification && TH.showNotification && !opened) {
+    if (D.notification && TH.showNotification) {
       setTimeout(() => { notif.hidden = false; requestAnimationFrame(() => notif.classList.add("show")); }, 1100);
     }
   }
