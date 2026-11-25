@@ -335,15 +335,13 @@ body.booted .dock { transform: translate(-50%, 0); }
 .case h2 { font-size: 20px; font-family: var(--font-head, var(--font)); font-weight: var(--head-weight, 700); letter-spacing: -0.02em; margin: 0 0 8px; }
 .case section p { font-size: 15.5px; line-height: 1.65; color: var(--ink-2); margin: 0 0 18px; }
 .case section img { border-radius: 12px; width: 100%; cursor: zoom-in; }
-.case-cta { display: inline-flex; align-items: center; gap: 8px; margin: -10px 0 26px; padding: 12px 20px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 600; font-size: 15px; text-decoration: none; box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--accent) 70%, transparent); transition: transform 0.2s var(--ease), filter 0.2s; }
-.case-cta:hover { transform: translateY(-2px); filter: brightness(1.08); }
-.case-cta span { font-size: 17px; line-height: 1; }
+.case-cta { margin: -10px 0 26px; }
+.case-cta span { font-size: 13px; line-height: 1; opacity: 0.9; }
 .case-cta-end { margin-top: 10px; }
 .case-cta-end .case-cta { margin: 0; }
 .tile .badge.special { background: var(--accent); }
 .case-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 40px; padding-top: 20px; border-top: 0.5px solid var(--line); }
-.case-nav button { font-size: 13px; font-weight: 600; padding: 10px 14px; border-radius: 10px; background: rgba(0,0,0,.05); }
-.case-nav button:hover { background: rgba(0,0,0,.09); }
+.case-nav .mac-btn { max-width: 48%; overflow: hidden; text-overflow: ellipsis; display: inline-block; line-height: 28px; }
 
 /* ---------- Nota (Sobre mí) ---------- */
 .note { background: var(--note-bg, #fffdf6); min-height: 100%; padding: 22px 34px 40px; font-size: 15px; line-height: 1.65; color: var(--ink-2); }
@@ -437,22 +435,29 @@ body.booted .dock { transform: translate(-50%, 0); }
 /* =========================================================================
    Diálogo "Actualización disponible" (estilo macOS)
    ========================================================================= */
-/* "Hablar con el crack" al final de cada proyecto */
-.case-talk { display: flex; align-items: center; gap: 16px; margin: 34px 0 6px; padding: 18px 18px 18px 20px; border-radius: 16px; background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(10, 100, 216, 0.06)); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06); }
-.ct-mark { flex: none; width: 46px; height: 46px; border-radius: 12px; background: #0b0c0e; color: #00ffff; display: grid; place-items: center; }
-.ct-mark svg { width: 26px; height: 23px; }
-.ct-copy { flex: 1; min-width: 0; display: grid; gap: 2px; }
-.ct-copy strong { font-size: 15.5px; letter-spacing: -0.01em; }
-.ct-copy span { font-size: 13.5px; color: var(--muted); }
-.ct-btn { flex: none; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 12px; background: linear-gradient(#34d26a, #1faa52); color: #fff; font-weight: 600; font-size: 15px; text-decoration: none; box-shadow: 0 8px 20px -8px rgba(31, 170, 82, 0.8), inset 0 0 0 0.5px rgba(0, 0, 0, 0.12); transition: transform 0.2s var(--ease), filter 0.2s; }
-.ct-btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
-.ct-btn svg { width: 18px; height: 18px; }
-html.dark .case-talk { background: linear-gradient(135deg, rgba(37, 211, 102, 0.12), rgba(10, 100, 216, 0.1)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
-@media (max-width: 640px) {
-  .case-talk { flex-wrap: wrap; padding: 16px; }
-  .ct-btn { width: 100%; justify-content: center; }
-}
+/* ---------- Botones estilo macOS (push buttons) ---------- */
+.mac-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 28px; padding: 0 14px; border-radius: 7px; font: 500 13px/1 var(--font); letter-spacing: -0.003em; text-decoration: none; white-space: nowrap; cursor: default; user-select: none; -webkit-user-select: none; transition: filter 0.12s; }
+.mac-btn svg { width: 14px; height: 14px; flex: none; }
+.mac-btn:focus-visible { outline: 3.5px solid color-mix(in srgb, var(--accent) 50%, transparent); outline-offset: 0.5px; }
+.mac-btn.primary { color: #fff; background-color: var(--accent); background-image: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)); box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.14), 0 0.5px 1.5px rgba(0, 0, 0, 0.22), inset 0 0.5px 0 rgba(255, 255, 255, 0.28); }
+.mac-btn.primary:active { filter: brightness(0.88); }
+.mac-btn.secondary { color: var(--ink); background: #fff; box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.16), 0 0.5px 1.5px rgba(0, 0, 0, 0.12); }
+.mac-btn.secondary:active { background: #ececec; }
+html.dark .mac-btn.secondary { background: rgba(255, 255, 255, 0.14); box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.12), 0 0 0 0.5px rgba(0, 0, 0, 0.4), 0 0.5px 1.5px rgba(0, 0, 0, 0.3); }
+html.dark .mac-btn.secondary:active { background: rgba(255, 255, 255, 0.22); }
 
+/* "Hablar con el crack": caja agrupada como en Ajustes del Sistema */
+.case-talk { display: flex; align-items: center; gap: 12px; margin: 34px 0 6px; padding: 12px 14px; border-radius: 10px; background: rgba(0, 0, 0, 0.035); box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1); }
+.ct-mark { flex: none; width: 40px; height: 40px; border-radius: 9.5px; background: linear-gradient(160deg, #26282d, #0b0c0e 70%); color: #00ffff; display: grid; place-items: center; box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.18), 0 0 0 0.5px rgba(0, 0, 0, 0.3), 0 1.5px 3px rgba(0, 0, 0, 0.25); }
+.ct-mark svg { width: 22px; height: 20px; }
+.ct-copy { flex: 1; min-width: 0; display: grid; gap: 1px; }
+.ct-copy strong { font: 600 13px/1.35 var(--font); letter-spacing: -0.005em; }
+.ct-copy span { font: 400 12px/1.35 var(--font); color: var(--muted); }
+html.dark .case-talk { background: rgba(255, 255, 255, 0.05); box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.1); }
+@media (max-width: 640px) {
+  .case-talk { flex-wrap: wrap; }
+  .case-talk .mac-btn { width: 100%; height: 34px; font-size: 14px; border-radius: 8px; }
+}
 /* ---------- Bloqueo de orientación horizontal en teléfonos ---------- */
 .rotate { display: none; }
 @media (orientation: landscape) and (max-height: 520px) and (pointer: coarse) {
@@ -517,8 +522,6 @@ html.dark .seg { background: rgba(255, 255, 255, 0.08); }
 html.dark .seg button[aria-pressed="true"] { background: #636366; color: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); }
 html.dark .tile { background: #2c2c2e; }
 html.dark .chip { background: rgba(255, 255, 255, 0.09); }
-html.dark .case-nav button { background: rgba(255, 255, 255, 0.07); }
-html.dark .case-nav button:hover { background: rgba(255, 255, 255, 0.12); }
 html.dark .pdf-frame, html.dark .viewer.light { background: #2c2c2e; }
 html.dark .btn { background: #f5f5f7; color: #1c1c1e; }
 html.dark .intro-win { background: #2c2c2e; }

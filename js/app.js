@@ -625,7 +625,7 @@
     const url = c.link && String(c.link.url || "").trim();
     if (!url || !/^https:\/\//i.test(url)) return "";
     const label = t(c.link.label) || (lang === "es" ? "Ver proyecto" : "View project");
-    return `<a class="case-cta" href="${esc(url)}" target="_blank" rel="noopener" data-cta="${esc(c.title)}">${esc(label)} <span aria-hidden="true">↗</span></a>`;
+    return `<a class="mac-btn primary case-cta" href="${esc(url)}" target="_blank" rel="noopener" data-cta="${esc(c.title)}">${esc(label)} <span aria-hidden="true">↗</span></a>`;
   }
   document.addEventListener("click", (e) => { const a = e.target.closest("a[data-cta]"); if (a) track("open", { id: "link:" + (a.dataset.cta || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 50) }); });
 
@@ -665,8 +665,8 @@
               ${c.link && c.link.url ? `<div class="case-cta-end">${ctaHtml(c)}</div>` : ""}
               ${talkHtml(c, state.id)}
               ${state.order.length > 1 ? `<nav class="case-nav">
-                <button data-go="${esc(prev)}">${ui("prev")} ${esc(D.cases[prev].title)}</button>
-                <button data-go="${esc(next)}">${esc(D.cases[next].title)} ${ui("next")}</button></nav>` : ""}
+                <button class="mac-btn secondary" data-go="${esc(prev)}">${ui("prev")} ${esc(D.cases[prev].title)}</button>
+                <button class="mac-btn secondary" data-go="${esc(next)}">${esc(D.cases[next].title)} ${ui("next")}</button></nav>` : ""}
             </div>
           </article>`;
         body.onclick = (e) => {
@@ -975,7 +975,7 @@
     return `<aside class="case-talk">
       <span class="ct-mark" aria-hidden="true">${MONO_SVG}</span>
       <div class="ct-copy"><strong>${esc(t(TALK.title))}</strong><span>${esc(t(TALK.text))}</span></div>
-      <a class="ct-btn" href="${esc(href)}" target="_blank" rel="noopener" data-net="whatsapp" data-talk="${esc(id)}">${WA_SVG}${esc(t(TALK.cta))}</a>
+      <a class="mac-btn primary ct-btn" href="${esc(href)}" target="_blank" rel="noopener" data-net="whatsapp" data-talk="${esc(id)}">${WA_SVG}${esc(t(TALK.cta))}</a>
     </aside>`;
   }
   document.addEventListener("click", (e) => { const a = e.target.closest("a[data-talk]"); if (a) track("open", { id: "talk:" + a.dataset.talk }); });
