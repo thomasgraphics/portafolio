@@ -625,7 +625,7 @@
     const url = c.link && String(c.link.url || "").trim();
     if (!url || !/^https:\/\//i.test(url)) return "";
     const label = t(c.link.label) || (lang === "es" ? "Ver proyecto" : "View project");
-    return `<a class="mac-btn primary case-cta" href="${esc(url)}" target="_blank" rel="noopener" data-cta="${esc(c.title)}">${esc(label)} <span aria-hidden="true">↗</span></a>`;
+    return `<a class="mac-btn secondary case-cta" href="${esc(url)}" target="_blank" rel="noopener" data-cta="${esc(c.title)}">${esc(label)} <span aria-hidden="true">↗</span></a>`;
   }
   document.addEventListener("click", (e) => { const a = e.target.closest("a[data-cta]"); if (a) track("open", { id: "link:" + (a.dataset.cta || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 50) }); });
 
