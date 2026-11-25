@@ -831,6 +831,13 @@
     let u;
     try { u = new URL(href); } catch { return href; }
     if (!/^https?:$/.test(u.protocol)) return href;
+    // WhatsApp: esquema propio de la app (más confiable que wa.me en celulares)
+    if (net === "whatsapp" && /(^|\.)wa\.me$|whatsapp\.com$/i.test(u.host)) {
+      const phone = (u.searchParams.get("phone") || u.pathname.replace(/\D/g, "")).replace(/\D/g, "");
+      const q = "send?phone=" + phone + (u.searchParams.get("text") ? "&text=" + encodeURIComponent(u.searchParams.get("text")) : "");
+      if (isAndroid) return `intent://${q}#Intent;scheme=whatsapp;package=com.whatsapp;S.browser_fallback_url=${encodeURIComponent(href)};end`;
+      if (isIOS) return "whatsapp://" + q;
+    }
     if (isAndroid && APP_PKG[net]) {
       let path = u.pathname + u.search;
       if (net === "instagram") { const user = u.pathname.split("/").filter(Boolean)[0]; if (user) path = `/_u/${user}/`; }
@@ -844,7 +851,13 @@
     track("open", { id: "link:" + a.dataset.net });
     if (!(isAndroid || isIOS) || !/^https?:/i.test(a.href)) return; // computador: pestaña nueva normal
     e.preventDefault();
-    location.href = appUrl(a.dataset.net, a.getAttribute("href"));
+    const href = a.getAttribute("href"), target = appUrl(a.dataset.net, href);
+    location.href = target;
+    // iPhone sin la app instalada: si seguimos en la página, abre la versión web
+    if (isIOS && target !== href) {
+      const fallback = setTimeout(() => { if (!document.hidden) location.href = href; }, 1600);
+      document.addEventListener("visibilitychange", () => clearTimeout(fallback), { once: true });
+    }
   });
   // Magnificación del dock al pasar el mouse (como en macOS)
   dock.addEventListener("mousemove", (e) => {
