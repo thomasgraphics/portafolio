@@ -166,11 +166,11 @@
       "x": 68,
       "y": 73,
       "label": {
-        "es": "Showreel.mp4",
-        "en": "Showreel.mp4"
+        "es": "Conóceme en 45s.mp4",
+        "en": "Meet me in 45s.mp4"
       },
-      "src": "assets/video/showreel.mp4",
-      "poster": "assets/img/projects/motion/motion-01.jpg"
+      "src": "assets/video/conoceme.mp4",
+      "poster": "assets/img/conoceme-poster.jpg"
     },
     {
       "id": "me1",
@@ -277,9 +277,9 @@
       "items": [
         {
           "type": "video",
-          "src": "assets/video/showreel.mp4",
-          "poster": "assets/img/projects/motion/motion-01.jpg",
-          "title": "Showreel"
+          "src": "assets/video/conoceme.mp4",
+          "poster": "assets/img/conoceme-poster.jpg",
+          "title": "Conóceme en 45s"
         },
         {
           "type": "image",
