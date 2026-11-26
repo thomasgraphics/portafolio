@@ -783,6 +783,7 @@ html.dark .win-share:hover { background: rgba(255, 255, 255, 0.1); }
 .share-pop a:hover, .share-pop button:hover { background: var(--accent); color: #fff; }
 .share-pop svg { width: 18px; height: 18px; flex: none; }
 .share-pop .ok, .share-pop .ok:hover { background: #28c840; color: #fff; }
+.share-pop.is-ctx { transform-origin: top left; animation-duration: 0.16s; }
 
 /* Intro sin imagen: ventana vacía */
 .intro-blank { width: 100%; aspect-ratio: 9 / 11; background: linear-gradient(160deg, #f4f3f1, #e7e5e1); }

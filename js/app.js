@@ -727,7 +727,7 @@
     if (it.type === "case") {
       const c = D.cases[it.case];
       if (!c) return "";
-      return `<button class="tile is-case" data-idx="${i}" style="--i:${i}">
+      return `<button class="tile is-case" data-idx="${i}" data-case="${esc(it.case)}" style="--i:${i}">
         <img src="${esc(sm(c.cover))}" alt="${esc(c.title)}" loading="lazy" decoding="async" draggable="false">
         <span class="badge${c.badge && t(c.badge) ? " special" : ""}">${esc((c.badge && t(c.badge)) || ui("caseBadge"))}</span>
         <span class="cap"><strong>${esc(c.title)}</strong><span>${esc(t(c.subtitle))}</span></span></button>`;
@@ -760,15 +760,34 @@
   };
   let sharePop = null;
   const closeShare = () => { if (sharePop) { sharePop.remove(); sharePop = null; } };
-  function shareCase(id, btn) {
-    const c = D.cases[id];
-    if (!c) return;
-    const url = `${location.origin}/p/${id}`;
-    const title = `${c.title} · ${t(c.subtitle)}`;
-    const text = lang === "es" ? `Mira este proyecto de Thomgraphics: ${c.title}` : `Check out this Thomgraphics project: ${c.title}`;
-    track("open", { id: "share:" + id });
+  // Qué se comparte: un proyecto ("monchef") o una carpeta ("f:branding")
+  function shareInfo(key) {
+    if (key.startsWith("f:")) {
+      const id = key.slice(2), f = D.folders[id];
+      if (!f) return null;
+      const name = t(f.title) || id;
+      const first = (f.items || []).map((it) => (it.type === "case" ? (D.cases[it.case] || {}).cover : it.type === "video" ? it.poster : it.src)).find(Boolean);
+      return {
+        url: `${location.origin}/f/${id}`, name, img: first || (D.seo && D.seo.shareImage) || "",
+        title: `${name} · ${lang === "es" ? "Portafolio de Thomgraphics" : "Thomgraphics portfolio"}`,
+        text: lang === "es" ? `Mira la carpeta «${name}» del portafolio de Thomgraphics` : `Check out the “${name}” folder in the Thomgraphics portfolio`,
+      };
+    }
+    const c = D.cases[key];
+    if (!c) return null;
+    return {
+      url: `${location.origin}/p/${key}`, name: c.title, img: c.cover || "",
+      title: `${c.title} · ${t(c.subtitle)}`,
+      text: lang === "es" ? `Mira este proyecto de Thomgraphics: ${c.title}` : `Check out this Thomgraphics project: ${c.title}`,
+    };
+  }
+  function shareCase(id, btn, at) {
+    const info = shareInfo(id);
+    if (!info) return;
+    const { url, title, text } = info;
+    track("open", { id: "share:" + id.replace(":", "-") });
     if (navigator.share && (isMobile() || matchMedia("(pointer: coarse)").matches)) { navigator.share({ title, text, url }).catch(() => {}); return; }
-    if (sharePop) { closeShare(); return; }
+    if (sharePop) { closeShare(); if (!at) return; }
     const e = encodeURIComponent;
     const opts = [
       ["copy", lang === "es" ? "Copiar enlace" : "Copy link", null],
@@ -781,14 +800,22 @@
     sharePop = document.createElement("div");
     sharePop.className = "share-pop";
     sharePop.setAttribute("role", "menu");
-    sharePop.innerHTML = `<div class="sp-head"><img src="${esc(sm(c.cover || ""))}" alt=""><div><b>${esc(c.title)}</b><small>${esc(url.replace(/^https?:\/\//, ""))}</small></div></div>` +
+    sharePop.innerHTML = `<div class="sp-head">${info.img ? `<img src="${esc(sm(info.img))}" alt="">` : ""}<div><b>${esc(info.name)}</b><small>${esc(url.replace(/^https?:\/\//, ""))}</small></div></div>` +
       opts.map(([ic, label, href], i) => href && href !== "native"
         ? `<a role="menuitem" href="${esc(href)}" target="_blank" rel="noopener" data-sp="${i}"><svg viewBox="0 0 20 20" aria-hidden="true">${SH_ICONS[ic]}</svg>${esc(label)}</a>`
         : `<button role="menuitem" type="button" data-sp="${i}"><svg viewBox="0 0 20 20" aria-hidden="true">${SH_ICONS[ic]}</svg><span>${esc(label)}</span></button>`).join("");
     document.body.appendChild(sharePop);
-    const r = btn.getBoundingClientRect();
-    sharePop.style.top = Math.round(r.bottom + 8) + "px";
-    sharePop.style.left = Math.round(Math.max(8, Math.min(innerWidth - sharePop.offsetWidth - 8, r.right - sharePop.offsetWidth + 6))) + "px";
+    const W = sharePop.offsetWidth, H = sharePop.offsetHeight;
+    if (at) {
+      // Menú contextual: aparece donde se hizo clic derecho (como en macOS)
+      sharePop.classList.add("is-ctx");
+      sharePop.style.left = Math.round(Math.max(8, Math.min(innerWidth - W - 8, at.x))) + "px";
+      sharePop.style.top = Math.round(at.y + H + 8 > innerHeight ? Math.max(8, at.y - H) : at.y) + "px";
+    } else {
+      const r = btn.getBoundingClientRect();
+      sharePop.style.top = Math.round(r.bottom + 8) + "px";
+      sharePop.style.left = Math.round(Math.max(8, Math.min(innerWidth - W - 8, r.right - W + 6))) + "px";
+    }
     sharePop.addEventListener("click", (ev) => {
       const it = ev.target.closest("[data-sp]");
       if (!it) return;
@@ -810,6 +837,20 @@
     if (sharePop && !sharePop.contains(e.target)) closeShare();
   }, true);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && sharePop) { e.stopImmediatePropagation(); closeShare(); } }, true);
+  // Clic derecho sobre una carpeta (escritorio o barra lateral) o sobre un proyecto → menú de compartir
+  document.addEventListener("contextmenu", (e) => {
+    const el = e.target.closest && e.target.closest('.icon[data-id], .sb-item[data-folder], .tile[data-case]');
+    if (!el) { closeShare(); return; }
+    let key = null;
+    if (el.dataset.folder) key = "f:" + el.dataset.folder;
+    else if (el.dataset.case) key = el.dataset.case;
+    else { const it = itemById(el.dataset.id); if (it && it.type === "folder" && D.folders[it.id]) key = "f:" + it.id; }
+    if (!key) return;
+    e.preventDefault();
+    if (el.classList.contains("icon")) select(el);
+    closeShare();
+    shareCase(key, el, { x: e.clientX, y: e.clientY });
+  });
   window.addEventListener("resize", closeShare);
 
   // ---------- Prototipos y videos incrustados (se cargan al hacer clic) ----------

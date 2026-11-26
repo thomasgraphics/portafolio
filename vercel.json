@@ -105,6 +105,10 @@
     {
       "source": "/p/:id",
       "destination": "/api/share?id=:id"
+    },
+    {
+      "source": "/f/:id",
+      "destination": "/api/share?f=:id"
     }
   ]
 }
