@@ -387,6 +387,24 @@
           "case": "tipsco"
         },
         {
+          "type": "video",
+          "src": "assets/video/tipsco-spot.mp4",
+          "poster": "assets/img/projects/tipsco/poster-spot.jpg",
+          "title": {
+            "es": "Tipsco · Spot",
+            "en": "Tipsco · Spot"
+          }
+        },
+        {
+          "type": "video",
+          "src": "assets/video/tipsco-explicativo.mp4",
+          "poster": "assets/img/projects/tipsco/poster-explicativo.jpg",
+          "title": {
+            "es": "Tipsco · Video explicativo",
+            "en": "Tipsco · Explainer"
+          }
+        },
+        {
           "type": "image",
           "src": "assets/img/projects/motion/motion-02.jpg",
           "title": {
@@ -1955,8 +1973,8 @@
     "tipsco": {
       "title": "Tipsco",
       "subtitle": {
-        "es": "Motion graphics · Marketplace",
-        "en": "Motion graphics · Marketplace"
+        "es": "Motion graphics · Marketplace de insumos",
+        "en": "Motion graphics · Supplies marketplace"
       },
       "cover": "assets/img/projects/tipsco/cover.jpg",
       "meta": {
@@ -1978,22 +1996,43 @@
       "sections": [
         {
           "h": {
+            "es": "Spot · ¿Qué necesitas?",
+            "en": "Spot · What do you need?"
+          },
+          "p": {
+            "es": "Pieza corta para pauta: en 20 segundos presenta el marketplace y sus categorías (materiales de construcción, insumos agrícolas y electrodomésticos).",
+            "en": "A short ad piece: in 20 seconds it introduces the marketplace and its categories (building materials, farm supplies and home appliances)."
+          },
+          "video": "assets/video/tipsco-spot.mp4",
+          "poster": "assets/img/projects/tipsco/poster-spot.jpg"
+        },
+        {
+          "h": {
+            "es": "Video explicativo",
+            "en": "Explainer video"
+          },
+          "p": {
+            "es": "Un explainer de 2 minutos y medio que cuenta cómo funciona Tipsco paso a paso, desde buscar lo que necesitas hasta recibirlo, con el mensaje de marca «Tu mejor aliado».",
+            "en": "A two-and-a-half-minute explainer that walks through how Tipsco works step by step, from finding what you need to getting it delivered, carried by the brand message “Your best ally”."
+          },
+          "video": "assets/video/tipsco-explicativo.mp4",
+          "poster": "assets/img/projects/tipsco/poster-explicativo.jpg"
+        },
+        {
+          "h": {
             "es": "Contexto",
             "en": "Context"
           },
           "p": {
-            "es": "Piezas de motion graphics para presentar el marketplace de Tipsco: contar en segundos qué es, cómo funciona y por qué usarlo, con un lenguaje gráfico cercano y animación 2D.",
-            "en": "Motion graphics pieces to introduce the Tipsco marketplace: explain in seconds what it is, how it works and why to use it, with a friendly graphic language and 2D animation."
-          }
-        },
-        {
-          "img": "assets/img/projects/tipsco/01.jpg",
-          "h": {
-            "es": "El proyecto en pantallas",
-            "en": "The project, screen by screen"
+            "es": "Tipsco es un marketplace que conecta a compradores con proveedores de materiales de construcción, insumos agrícolas y electrodomésticos. Hice el motion graphics de la marca: animación 2D con un lenguaje gráfico cercano, colores planos y ritmo ágil para explicar en segundos qué es, cómo funciona y por qué usarlo.",
+            "en": "Tipsco is a marketplace connecting buyers with suppliers of building materials, farm supplies and home appliances. I created the brand’s motion graphics: 2D animation with a friendly graphic language, flat colors and a brisk pace to explain in seconds what it is, how it works and why to use it."
           }
         }
-      ]
+      ],
+      "badge": {
+        "es": "Video",
+        "en": "Video"
+      }
     }
   },
   "about": {
