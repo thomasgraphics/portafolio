@@ -16,6 +16,11 @@
       Si abriste el archivo con doble clic, ábrelo con un servidor local (Live Server en VS Code o <code>npx serve .</code>).</div>`;
     return;
   }
+  // Contenido oculto desde el admin: casos, elementos de carpetas, íconos del escritorio y carpetas vacías
+  D.cases = D.cases || {}; D.folders = D.folders || {}; D.desktop = D.desktop || [];
+  Object.keys(D.cases).forEach((id) => { if (D.cases[id].hidden) delete D.cases[id]; });
+  Object.values(D.folders).forEach((f) => { f.items = (f.items || []).filter((it) => !it.hidden && !(it.type === "case" && !D.cases[it.case])); });
+  D.desktop = D.desktop.filter((d) => !d.hidden && !(d.type === "folder" && (!D.folders[d.id] || !D.folders[d.id].items.length)));
   D.links = D.links || {};
   // Acepta el correo sin "mailto:" y el WhatsApp solo con el número
   if (D.links.email && !/^mailto:/i.test(D.links.email) && D.links.email.includes("@")) D.links.email = "mailto:" + D.links.email.trim();

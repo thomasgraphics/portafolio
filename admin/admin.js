@@ -252,6 +252,13 @@
         ctl.append(inp);
         break;
       }
+      case "visible": {
+        // Muestra u oculta un elemento del portafolio sin borrarlo
+        const cb = h("input", { type: "checkbox", class: "switch", checked: !obj.hidden });
+        cb.addEventListener("change", () => { if (cb.checked) delete obj.hidden; else obj.hidden = true; touch(); });
+        ctl.append(h("label", { class: "toggle" }, cb, h("span", {}, "Visible en el portafolio")));
+        break;
+      }
       case "toggle": {
         const cb = h("input", { type: "checkbox", class: "switch", checked: obj[f.key] === undefined ? f.def !== false : obj[f.key] !== false });
         cb.addEventListener("change", () => { obj[f.key] = cb.checked; touch(); });
@@ -867,6 +874,7 @@
               { key: "label", type: "i18n", label: "Nombre" },
               { key: "id", type: "text", label: "ID", hint: "Sin espacios ni tildes. Es el enlace: tudominio.com/#/ID" },
               { key: "color", type: "select", label: "Color de carpeta", options: COLORS, when: (o) => o.type === "folder" },
+              { key: "hidden", type: "visible", label: "Visibilidad", hint: "Apágalo para ocultar este ícono del escritorio" },
               { key: "icon", type: "image", label: "Ícono propio", hint: "Opcional. PNG/SVG con fondo transparente", keepFormat: true, optional: true, accept: ICON_ACCEPT },
               { key: "src", type: "image", label: "Foto", when: (o) => o.type === "photo", max: 2000 },
               { key: "src", type: "file", label: "Archivo de video", hint: "MP4 (H.264), menos de 25 MB", accept: "video/mp4", when: (o) => o.type === "video" },
@@ -904,6 +912,7 @@
               { key: "src", type: "file", label: "Video (MP4)", accept: "video/mp4", when: (o) => o.type === "video" },
               { key: "poster", type: "image", label: "Miniatura", when: (o) => o.type === "video", max: 1600 },
               { key: "title", type: "i18n", label: "Título", when: (o) => o.type !== "case" },
+              { key: "hidden", type: "visible", label: "Visibilidad" },
               { key: "category", type: "i18n", label: "Categoría", hint: "Opcional. Crea filtros dentro de la carpeta (ej: Manuales interactivos). Usa el mismo nombre para agrupar." },
             ] } },
         ]));
@@ -946,6 +955,7 @@
         const fill = () => {
           box.innerHTML = "";
           const add = (obj, f) => { const e = field(obj, f, fill); if (e) box.append(e); };
+          add(c, { key: "hidden", type: "visible", label: "Visibilidad", hint: "Apágalo para ocultar el proyecto sin borrarlo" });
           add(c, { key: "title", type: "text", label: "Título" });
           add(c, { key: "subtitle", type: "i18n", label: "Subtítulo" });
           add(c, { key: "cover", type: "image", label: "Portada", hint: "Horizontal, 1600×1000 aprox." });

@@ -188,7 +188,8 @@
         "es": "IMG_0418.jpg",
         "en": "IMG_0418.jpg"
       },
-      "src": "assets/img/me-01.webp"
+      "src": "assets/img/me-01.webp",
+      "hidden": true
     },
     {
       "id": "me2",
@@ -199,7 +200,8 @@
         "es": "IMG_0552.jpg",
         "en": "IMG_0552.jpg"
       },
-      "src": "assets/img/me-02.webp"
+      "src": "assets/img/me-02.webp",
+      "hidden": true
     }
   ],
   "folders": {
@@ -384,7 +386,8 @@
           "title": {
             "es": "Animación 2D",
             "en": "2D animation"
-          }
+          },
+          "hidden": true
         },
         {
           "type": "image",
@@ -392,7 +395,8 @@
           "title": {
             "es": "Motion para redes",
             "en": "Social motion"
-          }
+          },
+          "hidden": true
         }
       ]
     },
@@ -412,7 +416,8 @@
           "title": {
             "es": "Fotografía 1",
             "en": "Photo 1"
-          }
+          },
+          "hidden": true
         },
         {
           "type": "image",
@@ -420,7 +425,8 @@
           "title": {
             "es": "Fotografía 2",
             "en": "Photo 2"
-          }
+          },
+          "hidden": true
         },
         {
           "type": "image",
@@ -428,7 +434,8 @@
           "title": {
             "es": "Fotografía 3",
             "en": "Photo 3"
-          }
+          },
+          "hidden": true
         },
         {
           "type": "image",
@@ -436,7 +443,8 @@
           "title": {
             "es": "Fotografía 4",
             "en": "Photo 4"
-          }
+          },
+          "hidden": true
         },
         {
           "type": "image",
@@ -444,7 +452,8 @@
           "title": {
             "es": "Fotografía 5",
             "en": "Photo 5"
-          }
+          },
+          "hidden": true
         },
         {
           "type": "image",
@@ -452,7 +461,8 @@
           "title": {
             "es": "Fotografía 6",
             "en": "Photo 6"
-          }
+          },
+          "hidden": true
         }
       ]
     },
@@ -469,32 +479,38 @@
         {
           "type": "image",
           "src": "assets/img/projects/social/post-01.webp",
-          "title": "Post 1"
+          "title": "Post 1",
+          "hidden": true
         },
         {
           "type": "image",
           "src": "assets/img/projects/social/post-02.webp",
-          "title": "Post 2"
+          "title": "Post 2",
+          "hidden": true
         },
         {
           "type": "image",
           "src": "assets/img/projects/social/post-03.webp",
-          "title": "Post 3"
+          "title": "Post 3",
+          "hidden": true
         },
         {
           "type": "image",
           "src": "assets/img/projects/social/post-04.webp",
-          "title": "Post 4"
+          "title": "Post 4",
+          "hidden": true
         },
         {
           "type": "image",
           "src": "assets/img/projects/social/post-05.webp",
-          "title": "Post 5"
+          "title": "Post 5",
+          "hidden": true
         },
         {
           "type": "image",
           "src": "assets/img/projects/social/post-06.webp",
-          "title": "Post 6"
+          "title": "Post 6",
+          "hidden": true
         }
       ]
     }
@@ -568,7 +584,8 @@
           },
           "img": "assets/img/projects/hunter-track/03.webp"
         }
-      ]
+      ],
+      "hidden": true
     },
     "fergo": {
       "title": "Fergo Ingeniería",
@@ -617,7 +634,8 @@
           },
           "img": "assets/img/projects/fergo/02.webp"
         }
-      ]
+      ],
+      "hidden": true
     },
     "monchef": {
       "title": "Monchef",
@@ -676,7 +694,8 @@
           },
           "img": "assets/img/projects/monchef/03.webp"
         }
-      ]
+      ],
+      "hidden": true
     },
     "nas-cellano": {
       "title": "Neil Armstrong School",
@@ -836,7 +855,8 @@
           },
           "img": "assets/img/projects/emsa/02.webp"
         }
-      ]
+      ],
+      "hidden": true
     },
     "tesis": {
       "title": "Capas de historia, la memoria te espera",
@@ -887,7 +907,8 @@
           },
           "img": "assets/img/projects/tesis/02.webp"
         }
-      ]
+      ],
+      "hidden": true
     },
     "mina-nm": {
       "title": "Mina NM",
