@@ -340,8 +340,8 @@
           "type": "case",
           "case": "monchef",
           "category": {
-            "es": "Identidad",
-            "en": "Identity"
+            "es": "Manuales",
+            "en": "Manuals"
           }
         },
         {
@@ -640,48 +640,128 @@
     "monchef": {
       "title": "Monchef",
       "subtitle": {
-        "es": "Branding gastronómico",
-        "en": "Gastronomic branding"
+        "es": "Brandbook interactivo · Restaurante de bowls",
+        "en": "Interactive brandbook · Bowl restaurant"
       },
-      "cover": "assets/img/projects/monchef/cover.webp",
+      "badge": {
+        "es": "Manual interactivo",
+        "en": "Interactive guidelines"
+      },
+      "link": {
+        "url": "https://thomasgraphics.github.io/monchef-manual/",
+        "label": {
+          "es": "Ver manual interactivo",
+          "en": "View interactive manual"
+        }
+      },
+      "cover": "assets/img/projects/monchef/portada.webp",
       "meta": {
         "client": "Monchef",
         "role": {
-          "es": "Diseñador de marca",
-          "en": "Brand designer"
+          "es": "Identidad visual, motion y diseño del brandbook interactivo",
+          "en": "Visual identity, motion and interactive brandbook design"
         },
-        "year": "2025–2026",
-        "tools": "Illustrator · Photoshop"
+        "year": "2026",
+        "tools": "Branding · Motion 2D · 3D · Diseño web interactivo"
       },
       "tags": [
         "Branding",
         {
           "es": "Gastronomía",
           "en": "Food"
-        }
+        },
+        {
+          "es": "Manual interactivo",
+          "en": "Interactive manual"
+        },
+        "Motion"
       ],
       "sections": [
         {
           "h": {
-            "es": "Concepto",
-            "en": "Concept"
+            "es": "Un manual que se recorre como un menú",
+            "en": "A manual you browse like a menu"
           },
           "p": {
-            "es": "[TODO: idea central de la marca.]",
-            "en": "[TODO: core brand idea.]"
+            "es": "Monchef es un restaurante de bowls, así que su manual no podía ser un PDF más. Lo convertí en un sitio web de 17 láminas organizado como una carta: entradas (el concepto y las versiones de la marca), platos fuertes (íconos, color y tipografía), postres (usos no correctos, un quiz y el patrón) y algo para llevar (aplicaciones, intros animadas y descargas). Se avanza girando una perilla, con flechas o deslizando, y en la portada un clic sirve arroz sobre el logo.",
+            "en": "Monchef is a bowl restaurant, so its guidelines couldn't be just another PDF. I turned them into a 17-page website organized like a menu: starters (concept and brand versions), mains (icons, color and type), desserts (misuses, a quiz and the pattern) and something to go (applications, animated intros and downloads). You move forward by turning a knob, with arrow keys or by swiping, and on the cover a click serves rice over the logo."
           },
-          "img": "assets/img/projects/monchef/01.webp"
+          "img": "assets/img/projects/monchef/01-portada.webp"
         },
         {
           "h": {
-            "es": "Sistema visual",
-            "en": "Visual system"
+            "es": "Imagotipo",
+            "en": "Logo concept"
           },
           "p": {
-            "es": "[TODO]",
-            "en": "[TODO]"
+            "es": "La marca representa la experiencia de comer en un bowl, fusionada con una tipografía dinámica que transmite innovación y calidad. Un despiece interactivo separa sus ingredientes: la tipografía, los granos de arroz y el bowl.",
+            "en": "The brand captures the experience of eating from a bowl, merged with dynamic lettering that conveys innovation and quality. An interactive breakdown separates its ingredients: the lettering, the rice grains and the bowl."
           },
-          "img": "assets/img/projects/monchef/02.webp"
+          "img": "assets/img/projects/monchef/02-imagotipo.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones que se prueban",
+            "en": "Versions you can test"
+          },
+          "p": {
+            "es": "La marca principal y la secundaria se prueban sobre toda la paleta, con indicador de contraste en vivo, zona de protección y vista a tamaño mínimo. Para redes y publicidad hay tres íconos alternativos (MON en bowl, MON servido y MON CHEF) y un bowl en 3D que se gira con el cursor para ver cómo vive la marca fuera de la pantalla.",
+            "en": "The primary and secondary marks can be tested on the whole palette, with a live contrast readout, clear space and a minimum-size preview. For social media and ads there are three alternate icons (MON in a bowl, MON served and MON CHEF) and a 3D bowl you spin with the cursor to see how the brand lives off-screen."
+          },
+          "img": "assets/img/projects/monchef/03-versiones.webp"
+        },
+        {
+          "img": "assets/img/projects/monchef/04-iconos.webp"
+        },
+        {
+          "h": {
+            "es": "Color y legibilidad",
+            "en": "Color and legibility"
+          },
+          "p": {
+            "es": "Tres primarios (rojo Monchef, vino y verde hoja) y dos secundarios (arroz tostado y cacao). Cada valor se copia en HEX, RGB o CMYK con un clic, y una matriz de contraste WCAG 2.2 muestra qué combinaciones de texto y fondo sí se pueden usar.",
+            "en": "Three primaries (Monchef red, wine and leaf green) and two secondaries (toasted rice and cocoa). Each value is copied as HEX, RGB or CMYK in one click, and a WCAG 2.2 contrast matrix shows which text-and-background pairs are safe to use."
+          },
+          "img": "assets/img/projects/monchef/05-color.webp"
+        },
+        {
+          "img": "assets/img/projects/monchef/06-combinaciones.webp"
+        },
+        {
+          "h": {
+            "es": "Tipografía",
+            "en": "Typography"
+          },
+          "p": {
+            "es": "Mosean para titulares, siempre en mayúsculas, y Montserrat variable (de 100 a 900) para textos. Ambas tienen probadores en vivo para escribir, cambiar el tamaño y el peso, y ver la jerarquía recomendada aplicada en un ejemplo real.",
+            "en": "Mosean for headlines, always in caps, and variable Montserrat (100 to 900) for text. Both have live testers to type, change size and weight, and see the recommended hierarchy applied to a real example."
+          },
+          "img": "assets/img/projects/monchef/07-tipografia.webp"
+        },
+        {
+          "img": "assets/img/projects/monchef/08-montserrat.webp"
+        },
+        {
+          "h": {
+            "es": "Lo que no se sirve",
+            "en": "What doesn't get served"
+          },
+          "p": {
+            "es": "Los usos no correctos son tarjetas interactivas: cada una muestra el error (colores cambiados, proporciones distorsionadas, baja resolución, efectos) y con un clic se corrige. Después, un quiz de seis platos pone a prueba si cada aplicación «se sirve» o «no se sirve».",
+            "en": "Misuses are interactive cards: each shows the mistake (swapped colors, distorted proportions, low resolution, effects) and one click fixes it. Then a six-dish quiz tests whether each application “gets served” or not."
+          },
+          "img": "assets/img/projects/monchef/09-usos.webp"
+        },
+        {
+          "h": {
+            "es": "Patrón generativo",
+            "en": "Generative pattern"
+          },
+          "p": {
+            "es": "Bowls servidos y vacíos alternados en retícula forman la textura de la marca para empaques, fondos y redes. El generador permite cambiar la combinación, la escala, el giro y el movimiento, y descargar el resultado en SVG o PNG.",
+            "en": "Served and empty bowls alternating on a grid make up the brand texture for packaging, backgrounds and social media. The generator lets you change the color combo, scale, rotation and motion, and download the result as SVG or PNG."
+          },
+          "img": "assets/img/projects/monchef/10-patron.webp"
         },
         {
           "h": {
@@ -689,13 +769,39 @@
             "en": "Applications"
           },
           "p": {
-            "es": "[TODO]",
-            "en": "[TODO]"
+            "es": "La marca en bolsa kraft, bowl para llevar, tarjetas, post, historia y delantal. Un selector cambia la combinación de color en todas las piezas a la vez para mostrar que el sistema se adapta sin perder carácter.",
+            "en": "The brand on a kraft bag, take-away bowl, cards, post, story and apron. A selector switches the color combo across every piece at once to show the system adapts without losing character."
           },
-          "img": "assets/img/projects/monchef/03.webp"
+          "img": "assets/img/projects/monchef/11-empaque.webp"
+        },
+        {
+          "img": "assets/img/projects/monchef/12-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Intros animadas",
+            "en": "Animated intros"
+          },
+          "p": {
+            "es": "Tres entradas de marca de 5 segundos: «Salteado», «Lluvia de arroz» y «Del patrón a la marca». Dentro del manual se recorren cuadro a cuadro y se descargan en verde o rojo, en 16:9 y 9:16: 12 MP4 listos para reels, video y presentaciones.",
+            "en": "Three 5-second brand intros: “Stir-fry”, “Rice rain” and “From pattern to brand”. Inside the manual you scrub them frame by frame and download them in green or red, 16:9 and 9:16: 12 MP4s ready for reels, video and presentations."
+          },
+          "video": "assets/video/monchef-intros.mp4",
+          "poster": "assets/img/projects/monchef/intros-poster.webp"
+        },
+        {
+          "h": {
+            "es": "Todo listo para llevar",
+            "en": "Everything ready to go"
+          },
+          "p": {
+            "es": "La última lámina reúne las descargas: logos e íconos en SVG, PDF, PNG y JPG en cinco colores, el patrón, la paleta en ASE, CSS, JSON y tokens de diseño, las tipografías, las intros y kits ZIP. Quien produzca una pieza de Monchef tiene la regla y el archivo oficial en el mismo lugar.",
+            "en": "The last page gathers the downloads: logos and icons as SVG, PDF, PNG and JPG in five colors, the pattern, the palette as ASE, CSS, JSON and design tokens, the typefaces, the intros and ZIP kits. Anyone producing a Monchef piece has the rule and the official file in the same place."
+          },
+          "img": "assets/img/projects/monchef/13-descargas.webp"
         }
       ],
-      "hidden": true
+      "shareImage": "assets/img/share/monchef.jpg"
     },
     "nas-cellano": {
       "title": "Neil Armstrong School",
@@ -2168,7 +2274,6 @@
     "assets/img/projects/hunter-track/cover.webp": "assets/img/projects/hunter-track/cover-sm.webp",
     "assets/img/projects/mascotas-contigo/cover.webp": "assets/img/projects/mascotas-contigo/cover-sm.webp",
     "assets/img/projects/mina-nm/cover.webp": "assets/img/projects/mina-nm/cover-sm.webp",
-    "assets/img/projects/monchef/cover.webp": "assets/img/projects/monchef/cover-sm.webp",
     "assets/img/projects/motion/motion-02.webp": "assets/img/projects/motion/motion-02-sm.webp",
     "assets/img/projects/motion/motion-03.webp": "assets/img/projects/motion/motion-03-sm.webp",
     "assets/img/projects/multibanca/cover.webp": "assets/img/projects/multibanca/cover-sm.webp",
@@ -2188,6 +2293,7 @@
     "assets/img/projects/tipsco/poster-explicativo.webp": "assets/img/projects/tipsco/poster-explicativo-sm.webp",
     "assets/img/projects/tipsco/poster-spot.webp": "assets/img/projects/tipsco/poster-spot-sm.webp",
     "assets/img/projects/verdella/cover.webp": "assets/img/projects/verdella/cover-sm.webp",
-    "assets/img/projects/villavofm/cover.webp": "assets/img/projects/villavofm/cover-sm.webp"
+    "assets/img/projects/villavofm/cover.webp": "assets/img/projects/villavofm/cover-sm.webp",
+    "assets/img/projects/monchef/portada.webp": "assets/img/projects/monchef/portada-sm.webp"
   }
 }
