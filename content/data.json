@@ -215,11 +215,99 @@
       "items": [
         {
           "type": "case",
-          "case": "hunter-track"
+          "case": "multibanca",
+          "category": {
+            "es": "Fintech",
+            "en": "Fintech"
+          }
         },
         {
           "type": "case",
-          "case": "fergo"
+          "case": "hoytrabajas",
+          "category": {
+            "es": "Plataformas y dashboards",
+            "en": "Platforms & dashboards"
+          }
+        },
+        {
+          "type": "case",
+          "case": "mascotas-contigo",
+          "category": {
+            "es": "Apps móviles",
+            "en": "Mobile apps"
+          }
+        },
+        {
+          "type": "case",
+          "case": "gestion-vuelos",
+          "category": {
+            "es": "Plataformas y dashboards",
+            "en": "Platforms & dashboards"
+          }
+        },
+        {
+          "type": "case",
+          "case": "credu",
+          "category": {
+            "es": "Fintech",
+            "en": "Fintech"
+          }
+        },
+        {
+          "type": "case",
+          "case": "verdella",
+          "category": {
+            "es": "Web y landing pages",
+            "en": "Web & landing pages"
+          }
+        },
+        {
+          "type": "case",
+          "case": "borrows",
+          "category": {
+            "es": "Fintech",
+            "en": "Fintech"
+          }
+        },
+        {
+          "type": "case",
+          "case": "primavera-urbana",
+          "category": {
+            "es": "Apps móviles",
+            "en": "Mobile apps"
+          }
+        },
+        {
+          "type": "case",
+          "case": "villavofm",
+          "category": {
+            "es": "Apps móviles",
+            "en": "Mobile apps"
+          }
+        },
+        {
+          "type": "case",
+          "case": "habitat-contigo",
+          "category": {
+            "es": "Plataformas y dashboards",
+            "en": "Platforms & dashboards"
+          }
+        },
+        {
+          "type": "case",
+          "case": "hunter-track",
+          "category": {
+            "es": "Apps móviles",
+            "en": "Mobile apps"
+          }
+        },
+        {
+          "type": "case",
+          "case": "fergo",
+          "category": {
+            "es": "Web y landing pages",
+            "en": "Web & landing pages"
+          }
         }
       ]
     },
@@ -289,6 +377,14 @@
           "title": "Conóceme en 45s",
           "srcMobile": "assets/video/conoceme-vertical.mp4",
           "posterMobile": "assets/img/conoceme-poster-vertical.jpg"
+        },
+        {
+          "type": "case",
+          "case": "sumer"
+        },
+        {
+          "type": "case",
+          "case": "tipsco"
         },
         {
           "type": "image",
@@ -889,6 +985,1012 @@
             "en": "A brandbook that isn't filed away but used: 21 navigable slides with an index, every asset ready to download in the right format, and an experience that turns brand rules into something the team and suppliers can test for themselves."
           },
           "img": "assets/img/projects/mina-nm/09-uniformes.jpg"
+        }
+      ]
+    },
+    "multibanca": {
+      "title": "Multibanca",
+      "subtitle": {
+        "es": "Pagos programados · App fintech",
+        "en": "Scheduled payments · Fintech app"
+      },
+      "cover": "assets/img/projects/multibanca/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Multibanca · Fintech",
+          "en": "Multibanca · Fintech"
+        },
+        "role": {
+          "es": "UX/UI Designer",
+          "en": "UX/UI Designer"
+        },
+        "year": "2023",
+        "tools": "Figma · Photoshop · Illustrator"
+      },
+      "tags": [
+        "UX/UI",
+        "Fintech",
+        "Mobile",
+        "Design System"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Contexto",
+            "en": "Context"
+          },
+          "p": {
+            "es": "Los datos internos mostraban que más del 70 % de los usuarios hacía los mismos pagos mes a mes, y los insights del equipo de investigación lo confirmaban: hacía falta una forma de programarlos. Así nació la funcionalidad de pagos programados y frecuentes dentro de la app de Multibanca.",
+            "en": "Internal data showed that over 70% of users made the same payments every month, and research insights confirmed it: people needed a way to schedule them. That is how scheduled and recurring payments were born inside the Multibanca app."
+          }
+        },
+        {
+          "h": {
+            "es": "El reto",
+            "en": "The challenge"
+          },
+          "p": {
+            "es": "Resolver las fricciones de pagar lo mismo cada mes y convertirlo en algo que se configura una vez y se olvida, sin sacrificar control ni seguridad. Además, validar con usuarios reales para iterar antes del lanzamiento.",
+            "en": "Remove the friction of paying the same bills every month and turn it into something you set up once and forget, without giving up control or security, then validate with real users and iterate before launch."
+          }
+        },
+        {
+          "h": {
+            "es": "Proceso",
+            "en": "Process"
+          },
+          "p": {
+            "es": "Empatizar, definir, idear, prototipar y validar. Entrevisté a clientes reales del banco y analicé cómo resuelven este servicio otras entidades; el 90 % de los encuestados encontró atractiva la propuesta, así que entró como prioridad en el roadmap. Exploré varios flujos en wireframes de baja fidelidad, los probamos internamente y el flujo ganador se prototipó con el design system de Multibanca. Cerramos con pruebas de usabilidad y ajustes finales.",
+            "en": "Empathize, define, ideate, prototype and validate. I interviewed real bank customers and analyzed how other financial institutions solve this; 90% of respondents found the idea appealing, so it became a roadmap priority. I explored several flows as low-fidelity wireframes, we tested them internally, and the winning flow was prototyped with the Multibanca design system. We closed with usability tests and final adjustments."
+          }
+        },
+        {
+          "h": {
+            "es": "Lo que diseñé",
+            "en": "What I designed"
+          },
+          "p": {
+            "es": "Onboarding, registro con validación de identidad (documento, código al celular y reconocimiento facial), un home enfocado en tareas y el flujo de pagos frecuentes en 5 pasos: agregar la factura con una foto, en PDF, por correo o manualmente; elegir la cuenta; y definir el monto. También diseñé las cuentas colaborativas, para dividir una factura por porcentajes con otra persona, y una sección de informes con calendario de pagos.",
+            "en": "Onboarding, sign-up with identity verification (ID, SMS code and facial recognition), a task-focused home and a 5-step recurring payments flow: add the bill with a photo, a PDF, by email or manually; pick the account; and set the amount. I also designed shared accounts, to split a bill by percentage with someone else, and a reports section with a payment calendar."
+          }
+        },
+        {
+          "img": "assets/img/projects/multibanca/01.jpg",
+          "h": {
+            "es": "El proyecto en pantallas",
+            "en": "The project, screen by screen"
+          }
+        },
+        {
+          "img": "assets/img/projects/multibanca/02.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/03.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/04.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/05.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/06.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/07.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/08.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/09.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/10.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/11.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/12.jpg"
+        },
+        {
+          "img": "assets/img/projects/multibanca/13.jpg"
+        }
+      ]
+    },
+    "hoytrabajas": {
+      "title": "HoyTrabajas",
+      "subtitle": {
+        "es": "Tablero de gestión de candidatos · Plataforma de empleo",
+        "en": "Candidate management board · Job platform"
+      },
+      "cover": "assets/img/projects/hoytrabajas/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "HoyTrabajas · Empleo y reclutamiento",
+          "en": "HoyTrabajas · Jobs & recruiting"
+        },
+        "role": {
+          "es": "UX/UI Designer",
+          "en": "UX/UI Designer"
+        },
+        "year": "2024",
+        "tools": "Figma · Photoshop · Illustrator"
+      },
+      "tags": [
+        "UX/UI",
+        "Dashboard",
+        "Research",
+        "Design System"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Hipótesis",
+            "en": "Hypothesis"
+          },
+          "p": {
+            "es": "Un analista de selección debería poder gestionar, uno a uno o de forma masiva, a todos los candidatos de sus ofertas en una sola vista. Los candidatos se filtran por afinidad, a partir de preguntas de segmentación apoyadas en inteligencia artificial, y en el mismo tablero aparecen los servicios de valor agregado: verificación de antecedentes, prueba de inglés y módulo de citación.",
+            "en": "A recruiter should be able to manage every candidate from their job posts, one by one or in bulk, from a single view. Candidates are filtered by affinity through AI-assisted screening questions, and the same board surfaces value-added services: background checks, English tests and an interview scheduler."
+          }
+        },
+        {
+          "h": {
+            "es": "Investigación",
+            "en": "Research"
+          },
+          "p": {
+            "es": "Hice benchmarking de tres referentes (CompuTrabajo, elempleo.com y Magneto) y, siguiendo a Nielsen Norman Group, entrevisté a 5 analistas, suficientes para descubrir cerca del 85 % de los problemas de usabilidad. Los dolores eran claros: saltar de pantalla en pantalla para ver hojas de vida, movimientos masivos difíciles de descubrir y candidatos perdidos entre listas largas.",
+            "en": "I benchmarked three references (CompuTrabajo, elempleo.com and Magneto) and, following Nielsen Norman Group, interviewed 5 recruiters, enough to surface about 85% of usability issues. The pain points were clear: jumping between screens to read résumés, bulk actions that were hard to discover, and candidates lost in long lists."
+          }
+        },
+        {
+          "h": {
+            "es": "Decisiones",
+            "en": "Decisions"
+          },
+          "p": {
+            "es": "Prioricé con MoSCoW para alinear al equipo y a los stakeholders: experiencia en una misma pantalla, movimientos individuales y masivos, y una sección para los servicios de valor agregado que también funciona como vitrina para quien aún no los ha comprado. La meta era mover candidatos con la menor cantidad de clics y de cambios de pantalla.",
+            "en": "I prioritized with MoSCoW to align the team and stakeholders: a single-screen experience, individual and bulk moves, and a value-added services area that doubles as a showcase for those who have not bought them yet. The goal was to move candidates with the fewest clicks and screen changes."
+          }
+        },
+        {
+          "h": {
+            "es": "Resultado",
+            "en": "Outcome"
+          },
+          "p": {
+            "es": "Rediseñé el tablero de ofertas y el de gestión de cada oferta con los componentes del design system y un menú lateral contraíble que libera espacio de trabajo. El negocio buscaba dos cosas: más uso de la plataforma gracias a una mejor usabilidad, y candidatos informados en todo momento sobre su proceso.",
+            "en": "I redesigned the job board and the per-offer management board with design system components and a collapsible sidebar that frees up working space. The business wanted two things: more platform usage through better usability, and candidates kept informed about their process at all times."
+          }
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/01.jpg",
+          "h": {
+            "es": "El proyecto en pantallas",
+            "en": "The project, screen by screen"
+          }
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/02.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/03.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/04.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/05.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/06.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/07.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/08.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/09.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/10.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/11.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/12.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/13.jpg"
+        },
+        {
+          "img": "assets/img/projects/hoytrabajas/14.jpg"
+        }
+      ]
+    },
+    "gestion-vuelos": {
+      "title": "Air Express",
+      "subtitle": {
+        "es": "Sistema de gestión y rastreo de vuelos",
+        "en": "Flight management & tracking system"
+      },
+      "cover": "assets/img/projects/gestion-vuelos/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Gestión aérea · Proyecto conceptual",
+          "en": "Aviation operations · Concept project"
+        },
+        "role": {
+          "es": "UX/UI Designer",
+          "en": "UX/UI Designer"
+        },
+        "year": "2021",
+        "tools": "Figma"
+      },
+      "tags": [
+        "UX/UI",
+        "Dashboard",
+        "Web app"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Objetivo",
+            "en": "Goal"
+          },
+          "p": {
+            "es": "Crear un sistema para rastrear, monitorear y administrar operaciones aéreas en tiempo real. Está pensado para aerolíneas, operadores logísticos y equipos de mantenimiento que necesitan información clara y ordenada sobre aviones, rutas y actividades.",
+            "en": "Build a system to track, monitor and manage air operations in real time, for airlines, logistics operators and maintenance teams who need clear, organized information about aircraft, routes and activities."
+          }
+        },
+        {
+          "h": {
+            "es": "Requerimientos",
+            "en": "Requirements"
+          },
+          "p": {
+            "es": "Mapa interactivo con el detalle de cada avión, alertas por problemas técnicos o cambios de vuelo, un buscador inteligente con predicciones, el historial completo de cada aeronave y funciones según el rol (operador, técnico…).",
+            "en": "An interactive map with each aircraft’s details, alerts for technical issues or flight changes, a smart search with predictions, each aircraft’s full history, and role-based features (operator, technician…)."
+          }
+        },
+        {
+          "h": {
+            "es": "Lo que diseñé",
+            "en": "What I designed"
+          },
+          "p": {
+            "es": "Siguiendo el proceso de investigación, prototipo, validaciones y alta fidelidad, diseñé el acceso (inicio de sesión, registro y recuperación de contraseña), el mapa de rastreo con las rutas activas, la gestión de cada avión, las órdenes de mantenimiento con su equipo y materiales, y un panel de estadísticas operativas.",
+            "en": "Following a research, prototype, validation and high-fidelity process, I designed access (sign-in, sign-up and password recovery), the tracking map with active routes, per-aircraft management, maintenance orders with crew and materials, and an operations statistics dashboard."
+          }
+        },
+        {
+          "img": "assets/img/projects/gestion-vuelos/01.jpg",
+          "h": {
+            "es": "El proyecto en pantallas",
+            "en": "The project, screen by screen"
+          }
+        },
+        {
+          "img": "assets/img/projects/gestion-vuelos/02.jpg"
+        },
+        {
+          "img": "assets/img/projects/gestion-vuelos/03.jpg"
+        },
+        {
+          "img": "assets/img/projects/gestion-vuelos/04.jpg"
+        },
+        {
+          "img": "assets/img/projects/gestion-vuelos/05.jpg"
+        },
+        {
+          "img": "assets/img/projects/gestion-vuelos/06.jpg"
+        },
+        {
+          "img": "assets/img/projects/gestion-vuelos/07.jpg"
+        }
+      ]
+    },
+    "credu": {
+      "title": "Credu",
+      "subtitle": {
+        "es": "Simulación y solicitud de créditos educativos",
+        "en": "Student loan simulation & application"
+      },
+      "cover": "assets/img/projects/solicitud-creditos/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Credu · Fintech educativa",
+          "en": "Credu · EdTech fintech"
+        },
+        "role": {
+          "es": "UI Designer",
+          "en": "UI Designer"
+        },
+        "year": "2020",
+        "tools": "Adobe XD · Illustrator · Photoshop"
+      },
+      "tags": [
+        "UI",
+        "Fintech",
+        "Web"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Contexto",
+            "en": "Context"
+          },
+          "p": {
+            "es": "Credu ayuda a estudiantes universitarios a simular, solicitar y gestionar créditos educativos. El objetivo era un diseño limpio, intuitivo y profesional, que transmitiera confianza en algo tan delicado como financiar una carrera.",
+            "en": "Credu helps university students simulate, apply for and manage student loans. The goal was a clean, intuitive and professional design that builds trust around something as sensitive as paying for a degree."
+          }
+        },
+        {
+          "h": {
+            "es": "Lo que diseñé",
+            "en": "What I designed"
+          },
+          "p": {
+            "es": "Un simulador que muestra de inmediato el monto, los intereses, el seguro, la administración y el valor de cada cuota. A partir de ahí, un camino de tres pasos: escoger la universidad, simular y diligenciar los datos. Completan el sitio una sección para que las universidades se vinculen como aliadas, la vitrina de aliados del ecosistema fintech y unas preguntas frecuentes que resuelven las dudas antes de que lleguen a soporte.",
+            "en": "A simulator that instantly shows the amount, interest, insurance, fees and the value of each installment, followed by a three-step path: pick the university, simulate and fill in your details. The site also includes an area for universities to join as partners, a showcase of fintech ecosystem partners and an FAQ that answers questions before they reach support."
+          }
+        },
+        {
+          "img": "assets/img/projects/solicitud-creditos/01.jpg",
+          "h": {
+            "es": "El proyecto en pantallas",
+            "en": "The project, screen by screen"
+          }
+        },
+        {
+          "img": "assets/img/projects/solicitud-creditos/02.jpg"
+        },
+        {
+          "img": "assets/img/projects/solicitud-creditos/03.jpg"
+        },
+        {
+          "img": "assets/img/projects/solicitud-creditos/04.jpg"
+        },
+        {
+          "img": "assets/img/projects/solicitud-creditos/05.jpg"
+        }
+      ]
+    },
+    "mascotas-contigo": {
+      "title": "Mascotas Contigo",
+      "subtitle": {
+        "es": "App de adopción de mascotas",
+        "en": "Pet adoption app"
+      },
+      "cover": "assets/img/projects/mascotas-contigo/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Proyecto propio · Villavicencio",
+          "en": "Personal project · Villavicencio"
+        },
+        "role": {
+          "es": "UX/UI Designer",
+          "en": "UX/UI Designer"
+        },
+        "year": "2022",
+        "tools": "Figma · Optimal Workshop · Whimsical · Illustrator"
+      },
+      "tags": [
+        "UX/UI",
+        "Mobile",
+        "Research",
+        {
+          "es": "Impacto social",
+          "en": "Social impact"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Contexto",
+            "en": "Context"
+          },
+          "p": {
+            "es": "Villavicencio y sus corregimientos tienen muchos animales en situación de calle, y las fundaciones y los refugios viven en sobrecupo. Hoy la adopción ocurre en grupos de Facebook e Instagram que no están pensados para eso: no hay registro, no hay seguimiento y es difícil llegar a todas las fundaciones.",
+            "en": "Villavicencio and its surrounding towns have many stray animals, and shelters are over capacity. Today adoption happens in Facebook and Instagram groups that were never designed for it: there are no records, no follow-up, and it is hard to reach every shelter."
+          }
+        },
+        {
+          "h": {
+            "es": "Objetivo",
+            "en": "Goal"
+          },
+          "p": {
+            "es": "Una app que reúna a todos los animales que buscan hogar, con un proceso de adopción ágil, sencillo y seguro, que además deje un registro del adoptante para verificar el bienestar del animal.",
+            "en": "An app that gathers every animal looking for a home, with a fast, simple and safe adoption process, and that keeps a record of the adopter to check on the animal’s wellbeing."
+          }
+        },
+        {
+          "h": {
+            "es": "Investigación",
+            "en": "Research"
+          },
+          "p": {
+            "es": "Hice benchmarking de Mi Mascota, Distrito Animal y Appets; construí dos user personas, Ángela (28, psicóloga en Bogotá) y Raúl (34, tendero en Villavicencio); y realicé un card sorting abierto y remoto en Optimal Workshop con 10 participantes. Con eso definí la arquitectura de información y el diagrama de flujo.",
+            "en": "I benchmarked Mi Mascota, Distrito Animal and Appets; built two user personas, Ángela (28, psychologist in Bogotá) and Raúl (34, shopkeeper in Villavicencio); and ran a remote open card sort in Optimal Workshop with 10 participants. That shaped the information architecture and the user flow."
+          }
+        },
+        {
+          "h": {
+            "es": "Diseño",
+            "en": "Design"
+          },
+          "p": {
+            "es": "Pasé de wireframes de baja a media fidelidad y luego a la UI final, construida sobre una grilla de 8 pt con márgenes de 16 y gutter de 24, a 360 × 800 px, la resolución Android más usada. El flujo cubre explorar por categorías, ver la ficha de cada animal, postularse, chatear con la fundación y seguir la solicitud hasta la adopción.",
+            "en": "I moved from low to mid-fidelity wireframes and then to the final UI, built on an 8 pt grid with 16 margins and a 24 gutter at 360 × 800 px, the most common Android resolution. The flow covers browsing by category, each animal’s profile, applying, chatting with the shelter and tracking the request through to adoption."
+          }
+        },
+        {
+          "h": {
+            "es": "Prototipo interactivo",
+            "en": "Interactive prototype"
+          },
+          "p": {
+            "es": "Recorre el prototipo de Figma: tócalo como si fuera la app.",
+            "en": "Explore the Figma prototype: tap through it like the real app."
+          },
+          "embedType": "figma",
+          "embedId": "proto/F0sbdXYr0NyWMEKCy0vacJ",
+          "embedRatio": "mobile"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/01.jpg",
+          "h": {
+            "es": "El proyecto en pantallas",
+            "en": "The project, screen by screen"
+          }
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/02.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/03.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/04.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/05.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/06.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/07.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/08.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/09.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/10.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/11.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/12.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/13.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/14.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/15.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/16.jpg"
+        },
+        {
+          "img": "assets/img/projects/mascotas-contigo/17.jpg"
+        }
+      ],
+      "badge": {
+        "es": "Prototipo interactivo",
+        "en": "Interactive prototype"
+      }
+    },
+    "verdella": {
+      "title": "Verdella Apartamentos",
+      "subtitle": {
+        "es": "Landing page · Proyecto de vivienda",
+        "en": "Landing page · Housing development"
+      },
+      "cover": "assets/img/projects/verdella/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Arboleda Verdella · Construcción",
+          "en": "Arboleda Verdella · Real estate"
+        },
+        "role": {
+          "es": "UI Designer",
+          "en": "UI Designer"
+        },
+        "year": "2022",
+        "tools": "Figma"
+      },
+      "tags": [
+        "UI",
+        "Web",
+        "Landing page"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Objetivo",
+            "en": "Goal"
+          },
+          "p": {
+            "es": "Diseñar una página de destino que capte la atención de compradores potenciales del proyecto Verdella, en el sector Los Alcázares de Manizales. Tenía que mostrar las ventajas del proyecto y el diseño de los apartamentos, y sobre todo convertir visitas en contactos.",
+            "en": "Design a landing page that grabs the attention of potential buyers for the Verdella development in the Los Alcázares area of Manizales. It had to show the project’s advantages and the apartment designs, and above all turn visits into leads."
+          }
+        },
+        {
+          "h": {
+            "es": "Lo que diseñé",
+            "en": "What I designed"
+          },
+          "p": {
+            "es": "Un hero con el formulario «Separa tu apartamento» siempre a la vista, los tipos de apartamento con sus áreas (de 36 a 51,2 m²) y el precio desde, una galería, las zonas comunes con íconos, el mensaje de subsidios VIS y un chat directo con asesores. Todo con una paleta verde que refuerza la promesa: vivir rodeado de naturaleza.",
+            "en": "A hero with an always-visible “Reserve your apartment” form, apartment types with their sizes (36 to 51.2 m²) and starting price, a gallery, amenities with icons, a social-housing subsidy message and a direct chat with sales advisors. All in a green palette that reinforces the promise: living surrounded by nature."
+          }
+        },
+        {
+          "img": "assets/img/projects/verdella/01.jpg",
+          "h": {
+            "es": "El proyecto en pantallas",
+            "en": "The project, screen by screen"
+          }
+        },
+        {
+          "img": "assets/img/projects/verdella/02.jpg"
+        },
+        {
+          "img": "assets/img/projects/verdella/03.jpg"
+        }
+      ]
+    },
+    "primavera-urbana": {
+      "title": "Primavera Urbana",
+      "subtitle": {
+        "es": "App del centro comercial · Villavicencio",
+        "en": "Shopping mall app · Villavicencio"
+      },
+      "cover": "assets/img/projects/primavera-urbana/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Primavera Urbana · Centro comercial y empresarial",
+          "en": "Primavera Urbana · Shopping & business center"
+        },
+        "role": {
+          "es": "UX/UI Designer",
+          "en": "UX/UI Designer"
+        },
+        "year": "2021",
+        "tools": "Adobe XD · Illustrator · Photoshop"
+      },
+      "tags": [
+        "UX/UI",
+        "Mobile",
+        "Retail"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Contexto",
+            "en": "Context"
+          },
+          "p": {
+            "es": "Primavera Urbana es un centro comercial y empresarial de Villavicencio, «donde es natural ser feliz». La app tenía que acompañar la visita: encontrar una tienda, enterarse de los eventos, usar cupones y ubicarse dentro del edificio.",
+            "en": "Primavera Urbana is a shopping and business center in Villavicencio, “where being happy comes naturally”. The app had to support the visit: find a store, hear about events, use coupons and find your way around the building."
+          }
+        },
+        {
+          "h": {
+            "es": "Lo que diseñé",
+            "en": "What I designed"
+          },
+          "p": {
+            "es": "Una app de más de 30 pantallas con un home de cuatro accesos grandes (Marcas, Eventos, Cupones y Espacios), registro de facturas, ayuda y cambio de idioma. Incluye un directorio de tiendas por categoría con la ficha de cada local y su ubicación en el plano, cupones que se redimen escaneando un código QR y un recorrido por los espacios de cada piso con minimapa. La identidad tropical del centro comercial está en cada pantalla.",
+            "en": "A 30+ screen app with a home built around four big entry points (Brands, Events, Coupons and Spaces), invoice registration, help and language switching. It includes a store directory by category with each store’s profile and its location on the floor plan, coupons redeemed by scanning a QR code, and a floor-by-floor tour of the spaces with a minimap. The mall’s tropical identity runs through every screen."
+          }
+        },
+        {
+          "h": {
+            "es": "Prototipo interactivo",
+            "en": "Interactive prototype"
+          },
+          "p": {
+            "es": "Recorre las pantallas del prototipo original en Adobe XD.",
+            "en": "Browse the original Adobe XD prototype."
+          },
+          "embedType": "xd",
+          "embedId": "0efe0a8d-c36a-40cb-a170-756f69f2513b-5bad",
+          "embedRatio": "mobile"
+        },
+        {
+          "img": "assets/img/projects/primavera-urbana/01.jpg",
+          "h": {
+            "es": "Pantallas clave",
+            "en": "Key screens"
+          }
+        },
+        {
+          "img": "assets/img/projects/primavera-urbana/02.jpg"
+        }
+      ],
+      "badge": {
+        "es": "Prototipo interactivo",
+        "en": "Interactive prototype"
+      }
+    },
+    "villavofm": {
+      "title": "Villavo FM 97.3",
+      "subtitle": {
+        "es": "App de la emisora · Radio y noticias",
+        "en": "Radio station app · Radio & news"
+      },
+      "cover": "assets/img/projects/villavofm/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Villavo FM 97.3 · «La radio que cuenta contigo»",
+          "en": "Villavo FM 97.3 · Public radio"
+        },
+        "role": {
+          "es": "UX/UI Designer",
+          "en": "UX/UI Designer"
+        },
+        "year": "2021",
+        "tools": "Adobe XD"
+      },
+      "tags": [
+        "UX/UI",
+        "Mobile",
+        "Media"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Contexto",
+            "en": "Context"
+          },
+          "p": {
+            "es": "La nueva FM de Villavicencio necesitaba llevar su programación al celular: escuchar en vivo, saber qué suena y leer las noticias de la ciudad en un solo lugar.",
+            "en": "Villavicencio’s new FM station needed to bring its programming to phones: listen live, know what is on air and read the city’s news, all in one place."
+          }
+        },
+        {
+          "h": {
+            "es": "Lo que diseñé",
+            "en": "What I designed"
+          },
+          "p": {
+            "es": "Un home que muestra lo que está sonando («Voces de Ciudad»), el carrusel de programas con sus horarios y las noticias de la ciudad. Cada noticia tiene su detalle con un podcast integrado. Hay una sección para conocer al equipo, y el reproductor queda fijo abajo y se expande a pantalla completa con la frecuencia, las ondas en movimiento y el control de volumen.",
+            "en": "A home showing what is on air (“Voces de Ciudad”), a carousel of shows with their schedules and the city’s news. Each story has a detail view with a built-in podcast. There is a section to meet the team, and a persistent player at the bottom that expands to full screen with the frequency, animated waves and volume control."
+          }
+        },
+        {
+          "h": {
+            "es": "Prototipo interactivo",
+            "en": "Interactive prototype"
+          },
+          "p": {
+            "es": "Recorre el prototipo original en Adobe XD.",
+            "en": "Browse the original Adobe XD prototype."
+          },
+          "embedType": "xd",
+          "embedId": "92b60f9e-4c8f-4b45-92b5-7ae12d9c70ec-c7e5",
+          "embedRatio": "mobile"
+        },
+        {
+          "img": "assets/img/projects/villavofm/01.jpg",
+          "h": {
+            "es": "Pantallas",
+            "en": "Screens"
+          }
+        }
+      ],
+      "badge": {
+        "es": "Prototipo interactivo",
+        "en": "Interactive prototype"
+      }
+    },
+    "borrows": {
+      "title": "Borrows",
+      "subtitle": {
+        "es": "Plataforma de préstamos e inversión · Rediseño web",
+        "en": "Lending & investing platform · Web redesign"
+      },
+      "cover": "assets/img/projects/borrows/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Borrows · Fintech",
+          "en": "Borrows · Fintech"
+        },
+        "role": {
+          "es": "UX/UI Designer",
+          "en": "UX/UI Designer"
+        },
+        "year": "2021",
+        "tools": "Adobe XD"
+      },
+      "tags": [
+        "UX/UI",
+        "Fintech",
+        "Web"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Contexto",
+            "en": "Context"
+          },
+          "p": {
+            "es": "Borrows conecta a personas que necesitan dinero con personas que quieren invertirlo: préstamos de 100 mil a 1,8 millones de pesos, sin intermediarios ni letra pequeña.",
+            "en": "Borrows connects people who need money with people who want to invest it: loans from 100,000 to 1.8 million pesos, with no middlemen and no fine print."
+          }
+        },
+        {
+          "h": {
+            "es": "Lo que diseñé",
+            "en": "What I designed"
+          },
+          "p": {
+            "es": "Un rediseño con una personalidad fuerte (amarillo, azul eléctrico y magenta, e ilustración) que habla de tú a tú. El simulador «¿Cuánto dinero necesitas?» es la puerta de entrada, seguido de un registro corto, beneficios y requisitos visibles desde el primer pantallazo, una sección para quienes quieren ser inversionistas y unas preguntas frecuentes que explican sin rodeos el análisis de riesgo.",
+            "en": "A redesign with a bold personality (yellow, electric blue and magenta, plus illustration) that speaks to people as equals. The “How much money do you need?” simulator is the entry point, followed by a short sign-up, benefits and requirements visible from the first screen, an area for people who want to invest and an FAQ that explains risk assessment plainly."
+          }
+        },
+        {
+          "h": {
+            "es": "Prototipo interactivo",
+            "en": "Interactive prototype"
+          },
+          "p": {
+            "es": "Recorre el prototipo original en Adobe XD.",
+            "en": "Browse the original Adobe XD prototype."
+          },
+          "embedType": "xd",
+          "embedId": "0764a6c9-dc8d-429a-a146-d48a5ec27b97-5237",
+          "embedRatio": "desktop"
+        },
+        {
+          "img": "assets/img/projects/borrows/01.jpg",
+          "h": {
+            "es": "Pantallas",
+            "en": "Screens"
+          }
+        },
+        {
+          "img": "assets/img/projects/borrows/02.jpg"
+        },
+        {
+          "img": "assets/img/projects/borrows/03.jpg"
+        },
+        {
+          "img": "assets/img/projects/borrows/04.jpg"
+        }
+      ],
+      "badge": {
+        "es": "Prototipo interactivo",
+        "en": "Interactive prototype"
+      }
+    },
+    "habitat-contigo": {
+      "title": "Hábitat Contigo",
+      "subtitle": {
+        "es": "Sistema administrativo · Secretaría de Control Físico",
+        "en": "Admin system · Urban Development Office"
+      },
+      "cover": "assets/img/projects/sec-control-fisico/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Alcaldía de Villavicencio · Secretaría de Control Físico",
+          "en": "Villavicencio City Hall · Urban Development Office"
+        },
+        "role": {
+          "es": "UX/UI Designer",
+          "en": "UX/UI Designer"
+        },
+        "year": "2021",
+        "tools": "Adobe XD"
+      },
+      "tags": [
+        "UX/UI",
+        "Dashboard",
+        {
+          "es": "Sector público",
+          "en": "Public sector"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Contexto",
+            "en": "Context"
+          },
+          "p": {
+            "es": "La Secretaría de Control Físico necesitaba administrar los proyectos de vivienda de la ciudad, las constructoras que los ejecutan y su estado, en un sistema propio y fácil de usar por el equipo.",
+            "en": "The city’s Urban Development Office needed to manage local housing projects, the builders behind them and their status, in its own system that the team could use easily."
+          }
+        },
+        {
+          "h": {
+            "es": "Lo que diseñé",
+            "en": "What I designed"
+          },
+          "p": {
+            "es": "Un panel administrativo con acceso seguro y menú lateral, con módulos de proyectos, constructoras, usuarios, estados y banners. La creación y edición de cada proyecto se hace en un solo modal: foto, ubicación en el mapa, código de tierras, coordenadas, unidades de vivienda, constructoras asociadas y un estado tipo semáforo para ver de un vistazo cómo va cada obra.",
+            "en": "An admin panel with secure access and a sidebar, with modules for projects, builders, users, statuses and banners. Each project is created and edited in a single modal: photo, map location, land code, coordinates, housing units, assigned builders and a traffic-light status to see at a glance how each development is going."
+          }
+        },
+        {
+          "h": {
+            "es": "Prototipo interactivo",
+            "en": "Interactive prototype"
+          },
+          "p": {
+            "es": "Recorre el prototipo original en Adobe XD.",
+            "en": "Browse the original Adobe XD prototype."
+          },
+          "embedType": "xd",
+          "embedId": "87652b42-5fe2-44f7-89b4-2709555f0d09-d236",
+          "embedRatio": "desktop"
+        },
+        {
+          "img": "assets/img/projects/sec-control-fisico/01.jpg",
+          "h": {
+            "es": "Pantallas",
+            "en": "Screens"
+          }
+        },
+        {
+          "img": "assets/img/projects/sec-control-fisico/02.jpg"
+        },
+        {
+          "img": "assets/img/projects/sec-control-fisico/03.jpg"
+        },
+        {
+          "img": "assets/img/projects/sec-control-fisico/04.jpg"
+        },
+        {
+          "img": "assets/img/projects/sec-control-fisico/05.jpg"
+        }
+      ],
+      "badge": {
+        "es": "Prototipo interactivo",
+        "en": "Interactive prototype"
+      }
+    },
+    "sumer": {
+      "title": "Sumer × Rappi",
+      "subtitle": {
+        "es": "Diseño multimedia · Campaña de co-branding",
+        "en": "Multimedia design · Co-branding campaign"
+      },
+      "cover": "assets/img/projects/sumer/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Sumer · «La moneda digital de los negocios»",
+          "en": "Sumer · Digital currency for businesses"
+        },
+        "role": {
+          "es": "Diseñador multimedia",
+          "en": "Multimedia designer"
+        },
+        "year": "2022",
+        "tools": "After Effects · Illustrator · Photoshop"
+      },
+      "tags": [
+        "Motion",
+        {
+          "es": "Diseño gráfico",
+          "en": "Graphic design"
+        },
+        "Email"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Contexto",
+            "en": "Context"
+          },
+          "p": {
+            "es": "Sumer y Rappi lanzaron una alianza para que los negocios enviaran sus productos con Rappi directamente desde la app de Sumer. Había que contarlo rápido, con claridad y con la energía de las dos marcas.",
+            "en": "Sumer and Rappi launched a partnership so businesses could ship their products with Rappi straight from the Sumer app. The story had to be told fast, clearly and with the energy of both brands."
+          }
+        },
+        {
+          "h": {
+            "es": "Lo que hice",
+            "en": "What I made"
+          },
+          "p": {
+            "es": "Un motion graphic para la campaña de co-branding, la pieza gráfica principal y el diseño de los emails en HTML, el canal principal de comunicación con los clientes, para posicionar la marca.",
+            "en": "A motion graphic for the co-branding campaign, the main key visual and HTML email designs for brand positioning, since email was the main channel to reach customers."
+          }
+        },
+        {
+          "h": {
+            "es": "Motion graphic",
+            "en": "Motion graphic"
+          },
+          "p": {
+            "es": "El motion graphic de la campaña.",
+            "en": "The campaign motion graphic."
+          },
+          "embedType": "youtube",
+          "embedId": "M077ICjq0wk",
+          "embedRatio": "video"
+        },
+        {
+          "img": "assets/img/projects/sumer/01.jpg",
+          "h": {
+            "es": "El proyecto en pantallas",
+            "en": "The project, screen by screen"
+          }
+        },
+        {
+          "img": "assets/img/projects/sumer/02.jpg"
+        },
+        {
+          "img": "assets/img/projects/sumer/03.jpg"
+        }
+      ]
+    },
+    "tipsco": {
+      "title": "Tipsco",
+      "subtitle": {
+        "es": "Motion graphics · Marketplace",
+        "en": "Motion graphics · Marketplace"
+      },
+      "cover": "assets/img/projects/tipsco/cover.jpg",
+      "meta": {
+        "client": {
+          "es": "Tipsco · Marketplace",
+          "en": "Tipsco · Marketplace"
+        },
+        "role": {
+          "es": "Motion designer",
+          "en": "Motion designer"
+        },
+        "year": "2022",
+        "tools": "After Effects · Illustrator"
+      },
+      "tags": [
+        "Motion",
+        "Video"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Contexto",
+            "en": "Context"
+          },
+          "p": {
+            "es": "Piezas de motion graphics para presentar el marketplace de Tipsco: contar en segundos qué es, cómo funciona y por qué usarlo, con un lenguaje gráfico cercano y animación 2D.",
+            "en": "Motion graphics pieces to introduce the Tipsco marketplace: explain in seconds what it is, how it works and why to use it, with a friendly graphic language and 2D animation."
+          }
+        },
+        {
+          "img": "assets/img/projects/tipsco/01.jpg",
+          "h": {
+            "es": "El proyecto en pantallas",
+            "en": "The project, screen by screen"
+          }
         }
       ]
     }

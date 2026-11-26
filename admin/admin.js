@@ -951,6 +951,9 @@
               { key: "h", type: "i18n", label: "Título" },
               { key: "p", type: "i18nArea", label: "Texto", rows: 4 },
               { key: "img", type: "image", label: "Imagen", optional: true },
+              { key: "embedType", type: "select", rerender: true, label: "Prototipo o video incrustado", options: [["", "Ninguno"], ["figma", "Prototipo de Figma"], ["xd", "Prototipo de Adobe XD"], ["youtube", "Video de YouTube"]] },
+              { key: "embedId", type: "text", label: "Enlace o ID", hint: "Figma: pega el enlace del prototipo · XD: el código después de /view/ · YouTube: el código del video", when: (o) => !!o.embedType },
+              { key: "embedRatio", type: "select", label: "Formato", options: [["desktop", "Escritorio (16:10)"], ["mobile", "Celular (vertical)"], ["video", "Video (16:9)"]], when: (o) => !!o.embedType },
             ] } });
         };
         const d = h("details", { class: "case", open: openCases.has(id) },

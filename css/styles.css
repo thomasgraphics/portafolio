@@ -718,3 +718,18 @@ html.dark .case-talk { background: linear-gradient(135deg, color-mix(in srgb, va
 @media (max-width: 760px) {
   .win:has(.viewer:not(.light)) .win-body { padding-top: 0; }
 }
+
+/* ---------- Prototipos y videos incrustados en los casos ---------- */
+.case-embed { position: relative; margin: 6px auto 0; border-radius: 16px; overflow: hidden; background: #111; display: grid; place-items: center; cursor: pointer; isolation: isolate; box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.12), 0 14px 34px -16px rgba(0, 0, 0, 0.45); }
+.case-embed.r-video { aspect-ratio: 16 / 9; }
+.case-embed.r-desktop { aspect-ratio: 16 / 10; }
+.case-embed.r-mobile { aspect-ratio: 9 / 16; width: min(100%, 400px); max-height: 82vh; }
+.case-embed .ce-bg { position: absolute; inset: -20px; width: calc(100% + 40px); height: calc(100% + 40px); object-fit: cover; filter: blur(18px) saturate(140%) brightness(0.75); transform: scale(1.05); z-index: -1; }
+.case-embed .ce-play { height: 40px; padding: 0 20px; font-size: 14px; }
+.case-embed .ce-play svg { width: 16px; height: 16px; }
+.case-embed .ce-note { position: absolute; bottom: 12px; left: 0; right: 0; text-align: center; font-size: 11.5px; color: rgba(255, 255, 255, 0.75); }
+.case-embed:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 60%, transparent); outline-offset: 3px; }
+.case-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #fff; }
+.case-embed.on { cursor: default; }
+/* Leyenda de las tarjetas: velo más oscuro para leer sobre portadas con texto */
+.tile.is-case .cap { padding-top: 48px; background: linear-gradient(transparent, rgba(8, 8, 10, 0.55) 38%, rgba(8, 8, 10, 0.86)); }

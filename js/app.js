@@ -736,6 +736,41 @@
   }
   document.addEventListener("click", (e) => { const a = e.target.closest("a[data-cta]"); if (a) track("open", { id: "link:" + (a.dataset.cta || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 50) }); });
 
+  // ---------- Prototipos y videos incrustados (se cargan al hacer clic) ----------
+  function embedUrl(type, id) {
+    id = String(id || "").trim();
+    const safe = /^[A-Za-z0-9_\-\/]+$/.test(id);
+    if (type === "youtube" && /^[A-Za-z0-9_-]{6,20}$/.test(id)) return `https://www.youtube-nocookie.com/embed/${id}?rel=0&autoplay=1&playsinline=1`;
+    if (type === "figma") {
+      const u = /^https:\/\/(www\.)?figma\.com\//.test(id) ? id : safe ? "https://www.figma.com/" + id : "";
+      return u ? "https://www.figma.com/embed?embed_host=thomgraphics&url=" + encodeURIComponent(u) : "";
+    }
+    if (type === "xd" && /^[A-Za-z0-9-]+$/.test(id)) return `https://xd.adobe.com/embed/${id}/`;
+    return "";
+  }
+  function embedHtml(s, c) {
+    const url = embedUrl(s.embedType, s.embedId);
+    if (!url) return "";
+    const video = s.embedType === "youtube";
+    const label = video ? (lang === "es" ? "Reproducir video" : "Play video") : (lang === "es" ? "Abrir prototipo interactivo" : "Open interactive prototype");
+    const note = s.embedType === "xd" ? "Adobe XD" : s.embedType === "figma" ? "Figma" : "YouTube";
+    const ratio = ["mobile", "desktop", "video"].includes(s.embedRatio) ? s.embedRatio : video ? "video" : "desktop";
+    return `<div class="case-embed r-${ratio}" data-embed="${esc(url)}" role="button" tabindex="0" aria-label="${esc(label)}">
+      ${c.cover ? `<img class="ce-bg" src="${esc(c.cover)}" alt="" aria-hidden="true">` : ""}
+      <span class="mac-btn primary ce-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg>${esc(label)}</span>
+      <small class="ce-note">${note}</small>
+    </div>`;
+  }
+  function loadEmbed(el) {
+    if (el.classList.contains("on")) return;
+    const f = document.createElement("iframe");
+    f.src = el.dataset.embed; f.loading = "lazy"; f.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
+    f.allowFullscreen = true; f.referrerPolicy = "strict-origin-when-cross-origin"; f.title = el.getAttribute("aria-label") || "";
+    el.innerHTML = ""; el.appendChild(f); el.classList.add("on"); el.removeAttribute("role"); el.removeAttribute("tabindex");
+    track("open", { id: "embed:" + (el.dataset.embed.match(/youtube|figma|xd\.adobe/) || ["x"])[0] });
+  }
+  document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches("[data-embed]")) { e.preventDefault(); loadEmbed(e.target); } });
+
   function openCase(id, origin, list) {
     track("open", { id: "case:" + id });
     const order = list && list.length ? list : Object.keys(D.cases);
@@ -767,7 +802,8 @@
                 <section>
                   ${s.h ? `<h2>${esc(t(s.h))}</h2>` : ""}
                   ${s.p ? `<p>${esc(t(s.p))}</p>` : ""}
-                  ${s.img ? `<img src="${esc(s.img)}" alt="${esc(t(s.h))}" loading="lazy" data-zoom>` : ""}
+                  ${s.img ? `<img src="${esc(s.img)}" alt="${esc(t(s.h) || c.title)}" loading="lazy" data-zoom>` : ""}
+                  ${embedHtml(s, c)}
                 </section>`).join("")}
               ${c.link && c.link.url ? `<div class="case-cta-end">${ctaHtml(c)}</div>` : ""}
               ${talkHtml(c, state.id)}
@@ -777,6 +813,8 @@
             </div>
           </article>`;
         body.onclick = (e) => {
+          const em = e.target.closest("[data-embed]");
+          if (em) { loadEmbed(em); return; }
           const go = e.target.closest("[data-go]");
           if (go) { openCase(go.dataset.go, null, state.order); return; }
           const z = e.target.closest("[data-zoom]");
