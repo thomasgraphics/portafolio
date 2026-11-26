@@ -1084,10 +1084,12 @@
     clearInterval(typing);
     // Texto principal + líneas adicionales (editables en el admin)
     const lines = [s.text, ...(Array.isArray(s.lines) ? s.lines : [])].map(t).filter(Boolean);
-    sticky.innerHTML = `<h2>${esc(t(s.title))}</h2>` + lines.map(() => `<p><span class="txt"></span></p>`).join("");
+    // Cada línea guarda su espacio final (texto invisible debajo) para que nada salte mientras se escribe
+    sticky.innerHTML = `<h2>${esc(t(s.title))}</h2>` + lines.map((l) => `<p class="tw"><span class="sizer" aria-hidden="true">${esc(l)}</span><span class="live"><span class="txt"></span></span></p>`).join("");
     const outs = $$(".txt", sticky);
     const caret = document.createElement("span");
     caret.className = "caret";
+    if (animate === "prep") return;
     if (!animate || reducedMotion) {
       outs.forEach((el, i) => (el.textContent = lines[i]));
       if (outs.length) outs[outs.length - 1].after(caret);
@@ -1357,7 +1359,8 @@
       notif.classList.add("pending");
       setTimeout(() => { notif.hidden = false; notif.classList.remove("pending"); requestAnimationFrame(() => notif.classList.add("show")); }, 700);
     }
-    const stickyAt = hasNotif ? 1700 : 700;
+    const stickyAt = hasNotif ? (isMobile() ? 1250 : 1700) : 700;
+    renderSticky("prep"); // reserva su tamaño desde el inicio
     setTimeout(() => { sticky.classList.add("in"); renderSticky(true); }, stickyAt);
   }
 

@@ -832,3 +832,25 @@ html.dark .trash-item:hover { background: rgba(255, 255, 255, 0.07); }
 /* Dedo sostenido sobre carpetas y proyectos (celular) */
 .icon, .sb-item, .tile { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
 .lp-hold { filter: brightness(0.86); transition: filter 0.45s ease; }
+
+/* Celular: entrada del mensaje (desde la izquierda) y del recordatorio (desde la derecha) */
+@media (max-width: 760px) {
+  .desktop { overflow-x: hidden; }
+  .notification, .sticky {
+    opacity: 0;
+    transition: transform 0.95s cubic-bezier(0.2, 1.18, 0.32, 1), opacity 0.5s ease-out, box-shadow 0.6s ease;
+    will-change: transform, opacity;
+  }
+  .notification { transform: translate3d(-115%, 0, 0) rotate(-4deg) scale(0.96); transform-origin: 0% 50%; }
+  .notification.show { transform: none; opacity: 1; }
+  .sticky { transform: translate3d(115%, 0, 0) rotate(4deg) scale(0.96); transform-origin: 100% 50%; }
+  body.booted .sticky.in { transform: none; opacity: 1; }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .notification, .sticky { transform: none !important; transition: opacity 0.4s; }
+}
+
+/* Recordatorio: cada línea reserva su alto final mientras se escribe */
+.sticky p.tw { display: grid; }
+.sticky p.tw > span { grid-area: 1 / 1; }
+.sticky p.tw .sizer { visibility: hidden; }
