@@ -747,6 +747,73 @@
   }
   document.addEventListener("click", (e) => { const a = e.target.closest("a[data-cta]"); if (a) track("open", { id: "link:" + (a.dataset.cta || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 50) }); });
 
+  // ---------- Compartir un proyecto (enlace con vista previa: /p/<id>) ----------
+  const SHARE_SVG = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5v10M6.4 6 10 2.5 13.6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.5H5.5A1.5 1.5 0 0 0 4 10v6a1.5 1.5 0 0 0 1.5 1.5h9A1.5 1.5 0 0 0 16 16v-6a1.5 1.5 0 0 0-1.5-1.5H13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+  const SH_ICONS = {
+    copy: '<path d="M8 12l4-4M7 9.5 5.6 10.9a2.5 2.5 0 0 0 3.5 3.5L10.5 13M13 10.5l1.4-1.4a2.5 2.5 0 0 0-3.5-3.5L9.5 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
+    chat: '<path d="M10 3.5c-3.6 0-6.5 2.4-6.5 5.4 0 1.6.8 3 2.2 4l-.6 2.6 2.8-1.5c.7.2 1.4.3 2.1.3 3.6 0 6.5-2.4 6.5-5.4S13.6 3.5 10 3.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>',
+    work: '<rect x="3.5" y="6.5" width="13" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 6.5V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 12.5 5v1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>',
+    globe: '<circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 10h13M10 3.5c2 2.2 2 10.8 0 13M10 3.5c-2 2.2-2 10.8 0 13" fill="none" stroke="currentColor" stroke-width="1.3"/>',
+    post: '<path d="M4.5 4.5l11 11M15.5 4.5l-11 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
+    mail: '<rect x="3.5" y="5" width="13" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 6l6 4.5L16 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>',
+    more: '<circle cx="5.5" cy="10" r="1.4" fill="currentColor"/><circle cx="10" cy="10" r="1.4" fill="currentColor"/><circle cx="14.5" cy="10" r="1.4" fill="currentColor"/>',
+  };
+  let sharePop = null;
+  const closeShare = () => { if (sharePop) { sharePop.remove(); sharePop = null; } };
+  function shareCase(id, btn) {
+    const c = D.cases[id];
+    if (!c) return;
+    const url = `${location.origin}/p/${id}`;
+    const title = `${c.title} · ${t(c.subtitle)}`;
+    const text = lang === "es" ? `Mira este proyecto de Thomgraphics: ${c.title}` : `Check out this Thomgraphics project: ${c.title}`;
+    track("open", { id: "share:" + id });
+    if (navigator.share && (isMobile() || matchMedia("(pointer: coarse)").matches)) { navigator.share({ title, text, url }).catch(() => {}); return; }
+    if (sharePop) { closeShare(); return; }
+    const e = encodeURIComponent;
+    const opts = [
+      ["copy", lang === "es" ? "Copiar enlace" : "Copy link", null],
+      ["chat", "WhatsApp", `https://wa.me/?text=${e(text + " " + url)}`],
+      ["work", "LinkedIn", `https://www.linkedin.com/sharing/share-offsite/?url=${e(url)}`],
+      ["globe", "Facebook", `https://www.facebook.com/sharer/sharer.php?u=${e(url)}`],
+      ["post", "X", `https://twitter.com/intent/tweet?text=${e(text)}&url=${e(url)}`],
+      ["mail", lang === "es" ? "Correo" : "Email", `mailto:?subject=${e(title)}&body=${e(text + "\n\n" + url)}`],
+    ];
+    if (navigator.share) opts.push(["more", lang === "es" ? "Más opciones…" : "More…", "native"]);
+    sharePop = document.createElement("div");
+    sharePop.className = "share-pop";
+    sharePop.setAttribute("role", "menu");
+    sharePop.innerHTML = `<div class="sp-head"><img src="${esc(sm(c.cover || ""))}" alt=""><div><b>${esc(c.title)}</b><small>${esc(url.replace(/^https?:\/\//, ""))}</small></div></div>` +
+      opts.map(([ic, label, href], i) => href && href !== "native"
+        ? `<a role="menuitem" href="${esc(href)}" target="_blank" rel="noopener" data-sp="${i}"><svg viewBox="0 0 20 20" aria-hidden="true">${SH_ICONS[ic]}</svg>${esc(label)}</a>`
+        : `<button role="menuitem" type="button" data-sp="${i}"><svg viewBox="0 0 20 20" aria-hidden="true">${SH_ICONS[ic]}</svg><span>${esc(label)}</span></button>`).join("");
+    document.body.appendChild(sharePop);
+    const r = btn.getBoundingClientRect();
+    sharePop.style.top = Math.round(r.bottom + 8) + "px";
+    sharePop.style.left = Math.round(Math.max(8, Math.min(innerWidth - sharePop.offsetWidth - 8, r.right - sharePop.offsetWidth + 6))) + "px";
+    sharePop.addEventListener("click", (ev) => {
+      const it = ev.target.closest("[data-sp]");
+      if (!it) return;
+      const [ic, , href] = opts[+it.dataset.sp];
+      if (ic === "copy") {
+        ev.preventDefault();
+        (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(() => {
+          it.querySelector("span").textContent = lang === "es" ? "¡Enlace copiado!" : "Link copied!"; it.classList.add("ok");
+          setTimeout(closeShare, 1100);
+        }).catch(() => { prompt(lang === "es" ? "Copia el enlace:" : "Copy the link:", url); closeShare(); });
+        return;
+      }
+      if (href === "native") { navigator.share({ title, text, url }).catch(() => {}); }
+      setTimeout(closeShare, 50);
+    });
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest && e.target.closest("[data-share]");
+    if (b) { e.stopPropagation(); shareCase(b.dataset.share, b); return; }
+    if (sharePop && !sharePop.contains(e.target)) closeShare();
+  }, true);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && sharePop) { e.stopImmediatePropagation(); closeShare(); } }, true);
+  window.addEventListener("resize", closeShare);
+
   // ---------- Prototipos y videos incrustados (se cargan al hacer clic) ----------
   function embedUrl(type, id) {
     id = String(id || "").trim();
@@ -792,6 +859,7 @@
     state.id = id; state.order = order;
     openWindow("case", {
       state, origin, w: 900, h: 700, resetScroll: true, cls: "casewin",
+      actions: () => `<button class="win-share" data-share="${esc(state.id)}" aria-label="${lang === "es" ? "Compartir proyecto" : "Share project"}" title="${lang === "es" ? "Compartir" : "Share"}">${SHARE_SVG}</button>`,
       get hash() { return "case/" + state.id; },
       title: () => D.cases[state.id].title,
       render(body) {

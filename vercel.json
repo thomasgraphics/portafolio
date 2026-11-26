@@ -101,6 +101,10 @@
     {
       "source": "/admin/stats",
       "destination": "/api/stats"
+    },
+    {
+      "source": "/p/:id",
+      "destination": "/api/share?id=:id"
     }
   ]
 }
