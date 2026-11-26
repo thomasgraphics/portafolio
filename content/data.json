@@ -328,15 +328,15 @@
         },
         {
           "type": "case",
-          "case": "monchef",
+          "case": "nas-cellano",
           "category": {
-            "es": "Identidad",
-            "en": "Identity"
+            "es": "Manuales",
+            "en": "Manuals"
           }
         },
         {
           "type": "case",
-          "case": "nas-cellano",
+          "case": "monchef",
           "category": {
             "es": "Identidad",
             "en": "Identity"
@@ -679,61 +679,111 @@
       ]
     },
     "nas-cellano": {
-      "title": "Neil Armstrong School & Cellano",
+      "title": "Neil Armstrong School",
       "subtitle": {
-        "es": "Renovación del manual de marca",
-        "en": "Brand guidelines renewal"
+        "es": "Brandbook interactivo · Institución educativa",
+        "en": "Interactive brandbook · School"
+      },
+      "badge": {
+        "es": "Manual interactivo",
+        "en": "Interactive guidelines"
+      },
+      "link": {
+        "url": "https://thomasgraphics.github.io/nas-manual/",
+        "label": {
+          "es": "Ver manual interactivo",
+          "en": "View interactive manual"
+        }
       },
       "cover": "assets/img/projects/nas-cellano/cover.webp",
       "meta": {
-        "client": "NAS · Cellano",
+        "client": {
+          "es": "Neil Armstrong School · CELLANO",
+          "en": "Neil Armstrong School · CELLANO"
+        },
         "role": {
-          "es": "Brand consultant",
-          "en": "Brand consultant"
+          "es": "Identidad visual, animación y diseño del brandbook interactivo",
+          "en": "Visual identity, animation and interactive brandbook design"
         },
         "year": "2026",
-        "tools": "Illustrator · InDesign · Figma"
+        "tools": "Branding · Motion 2D · 3D · Diseño web interactivo"
       },
       "tags": [
         "Branding",
         {
-          "es": "Manual de marca",
-          "en": "Guidelines"
-        }
+          "es": "Manual interactivo",
+          "en": "Interactive manual"
+        },
+        "Motion",
+        "Web"
       ],
       "sections": [
         {
           "h": {
-            "es": "Alcance",
-            "en": "Scope"
+            "es": "¿Por qué un brandbook interactivo?",
+            "en": "Why an interactive brandbook?"
           },
           "p": {
-            "es": "Elementos de identidad, tipografía, paletas de color, imagen, plantillas para redes sociales y aplicaciones de marca.",
-            "en": "Identity elements, typography, color palettes, imagery, social media templates and branded applications."
+            "es": "Un colegio tiene muchas manos produciendo piezas: profesores, coordinadores, comunicaciones, aliados y proveedores. Por eso el manual de Neil Armstrong School no es un PDF, sino un sitio web de 28 láminas en 4 capítulos que se abre con un enlace. Ahí cada persona entiende la marca tocándola, copia los colores con un clic y descarga los archivos oficiales en el mismo lugar donde se explica cómo usarlos. Hay una sola versión vigente (V1.0 · 2026).",
+            "en": "A school has many hands producing communication: teachers, coordinators, the comms team, partners and suppliers. That is why the Neil Armstrong School guidelines are not a PDF but a 28-page, 4-chapter website opened with a link. Everyone learns the brand by touching it, copies colors in one click and downloads official files right where their use is explained. There is a single current version (V1.0 · 2026)."
           },
-          "img": "assets/img/projects/nas-cellano/01.webp"
+          "img": "assets/img/projects/nas-cellano/01-portada.webp"
         },
         {
           "h": {
-            "es": "Dirección creativa",
-            "en": "Creative direction"
+            "es": "Identidad que se explora",
+            "en": "Identity you can explore"
           },
           "p": {
-            "es": "Una paleta secundaria con concepto global, con tonos rojos, en lugar de una estética regional.",
-            "en": "A secondary palette built around a global concept with red tones, rather than a regional aesthetic."
+            "es": "El escudo se recorre con una lupa que revela su anatomía: águila, planeta Tierra, estrellas, superficie lunar, ramo de olivo, principios y franjas de color. La bandera ondea en 3D con un control de viento, junto con sus usos incorrectos. El sistema completo reúne el logotipo NAS, el logotipo juvenil NAS by CELLANO para redes y campañas, y la marca corporativa CELLANO (Corporación Educativa del Llano) para la gestión institucional, cada uno con sus versiones, área de protección y tamaño mínimo.",
+            "en": "The crest is explored with a magnifier that reveals its anatomy: eagle, Earth, stars, lunar surface, olive branch, principles and color stripes. The flag waves in 3D with a wind control, alongside its misuses. The full system brings together the NAS logotype, the youth logotype NAS by CELLANO for social media and campaigns, and the CELLANO corporate brand (Corporación Educativa del Llano) for institutional management, each with its versions, clear space and minimum size."
           },
-          "img": "assets/img/projects/nas-cellano/02.webp"
+          "img": "assets/img/projects/nas-cellano/02-anatomia.webp"
+        },
+        {
+          "img": "assets/img/projects/nas-cellano/03-bandera.webp"
         },
         {
           "h": {
-            "es": "Plantillas",
-            "en": "Templates"
+            "es": "Logo animado",
+            "en": "Animated logo"
           },
           "p": {
-            "es": "[TODO]",
-            "en": "[TODO]"
+            "es": "Diseñé cuatro intros de marca de 5 segundos, una para cada marca: «Órbita» (escudo), «Ignición» (NAS), «Rebote» (NAS by CELLANO) y «Apertura» (CELLANO). En la del escudo, las estrellas convergen, un anillo orbital traza la trayectoria y el escudo se revela con un barrido de 360° y un pulso de radar. Se reproducen cuadro a cuadro dentro del manual y se descargan en azul o blanco, en 16:9 y 9:16: 16 MP4 listos para redes y eventos.",
+            "en": "I designed four 5-second brand intros, one per brand: “Orbit” (crest), “Ignition” (NAS), “Bounce” (NAS by CELLANO) and “Opening” (CELLANO). In the crest intro, stars converge, an orbital ring traces the path and the crest is revealed with a 360° sweep and a radar pulse. They play frame by frame inside the manual and download in blue or white, in 16:9 and 9:16: 16 MP4s ready for social media and events."
           },
-          "img": "assets/img/projects/nas-cellano/03.webp"
+          "img": "assets/img/projects/nas-cellano/04-logo-animado.webp"
+        },
+        {
+          "h": {
+            "es": "Sistema visual",
+            "en": "Visual system"
+          },
+          "p": {
+            "es": "Source Serif para lo institucional (portadas, títulos y certificados) y Poppins para redes y textos, con muestras que se pueden editar escribiendo sobre ellas. La paleta institucional (azul #002D51, verde #97BF0D, azul complementario y blanco) vive en cápsulas 3D que copian HEX, RGB, CMYK o Pantone al tocarlas. La paleta secundaria digital nace del propio escudo. Las pautas de fotografía se explican con ilustraciones de referencia: lo que sí y lo que no.",
+            "en": "Source Serif for institutional use (covers, titles and certificates) and Poppins for social media and body text, with samples you can edit by typing on them. The institutional palette (blue #002D51, green #97BF0D, complementary blue and white) lives in 3D capsules that copy HEX, RGB, CMYK or Pantone on tap. The secondary digital palette comes from the crest itself. Photography guidelines are explained with reference illustrations: dos and don’ts."
+          },
+          "img": "assets/img/projects/nas-cellano/05-tipografia.webp"
+        },
+        {
+          "img": "assets/img/projects/nas-cellano/06-color.webp"
+        },
+        {
+          "img": "assets/img/projects/nas-cellano/07-fotografia.webp"
+        },
+        {
+          "h": {
+            "es": "Aplicaciones y descargas",
+            "en": "Applications & downloads"
+          },
+          "p": {
+            "es": "Papelería y plantillas, formatos digitales con las zonas seguras del reel y de la portada, y un configurador de uniformes (niñas o niños; diario, formal o deportivo). Cierra con un centro de descargas: 4 marcas en SVG, PNG, PDF y JPG, la paleta en ASE, CSS y JSON, las tipografías, las intros y el kit completo en un ZIP. Toda pieza nueva parte de estos archivos.",
+            "en": "Stationery and templates, digital formats with reel and cover safe zones, and a uniform configurator (girls or boys; daily, formal or sports). It closes with a download center: 4 brands in SVG, PNG, PDF and JPG, the palette in ASE, CSS and JSON, the typefaces, the intros and the full kit in one ZIP. Every new piece starts from these files."
+          },
+          "img": "assets/img/projects/nas-cellano/08-uniformes.webp"
+        },
+        {
+          "img": "assets/img/projects/nas-cellano/09-descargas.webp"
         }
       ]
     },
