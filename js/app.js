@@ -1180,7 +1180,7 @@
     if (!TH.showIntro || !photos.length || sess.get("introSeen", false) || reducedMotion || location.hash.length > 2) { intro.remove(); boot(); return; }
 
     const offsets = [[-22, -64], [16, -18], [-10, 26], [8, 6], [-16, -30], [20, 30]];
-    photos.forEach((p, i) => { const im = new Image(); im.src = p.src; });
+    photos.forEach((p) => { if (p.src) { const im = new Image(); im.src = p.src; } });
     const start = 500, step = 650;
     photos.forEach((p, i) => {
       timers.push(setTimeout(() => {
@@ -1189,7 +1189,7 @@
         w.className = "intro-win";
         w.style.setProperty("--dx", dx + "px");
         w.style.setProperty("--dy", dy + "px");
-        w.innerHTML = `<div class="bar"><i></i><i></i><i></i><span>${esc(p.name || "")}</span></div><img src="${esc(p.src)}" alt="">`;
+        w.innerHTML = `<div class="bar"><i></i><i></i><i></i><span>${esc(p.name || "")}</span></div>${p.src ? `<img src="${esc(p.src)}" alt="">` : `<div class="intro-blank"></div>`}`;
         stack.appendChild(w);
       }, start + i * step));
     });
