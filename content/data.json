@@ -2345,6 +2345,132 @@
           "es": "Hace un año",
           "en": "A year ago"
         }
+      },
+      {
+        "name": {
+          "es": "Es rapidito, ¿me lo haces?",
+          "en": "It's quick, can you do it?"
+        },
+        "note": {
+          "es": "Ningún logo es rapidito. Eliminado.",
+          "en": "No logo is quick. Deleted."
+        },
+        "date": {
+          "es": "Cada semana",
+          "en": "Every week"
+        }
+      },
+      {
+        "name": {
+          "es": "Logo_final_FINAL_v27.ai",
+          "en": "Logo_final_FINAL_v27.ai"
+        },
+        "note": {
+          "es": "Hubo 26 versiones finales antes de esta.",
+          "en": "There were 26 final versions before this one."
+        },
+        "date": {
+          "es": "Hace 3 días",
+          "en": "3 days ago"
+        }
+      },
+      {
+        "name": {
+          "es": "Pago con exposición",
+          "en": "Paid in exposure"
+        },
+        "note": {
+          "es": "La exposición no paga el arriendo.",
+          "en": "Exposure doesn't pay the rent."
+        },
+        "date": {
+          "es": "Hace un mes",
+          "en": "A month ago"
+        }
+      },
+      {
+        "name": {
+          "es": "Ponle el logo más grande",
+          "en": "Make the logo bigger"
+        },
+        "note": {
+          "es": "Ya no cabe en la pantalla.",
+          "en": "It no longer fits on the screen."
+        },
+        "date": {
+          "es": "Hoy",
+          "en": "Today"
+        }
+      },
+      {
+        "name": {
+          "es": "Comic Sans",
+          "en": "Comic Sans"
+        },
+        "note": {
+          "es": "Hay decisiones que no tienen vuelta atrás.",
+          "en": "Some decisions can't be undone."
+        },
+        "date": {
+          "es": "2009",
+          "en": "2009"
+        }
+      },
+      {
+        "name": {
+          "es": "Cambios después de aprobado",
+          "en": "Changes after approval"
+        },
+        "note": {
+          "es": "Aprobado significa aprobado.",
+          "en": "Approved means approved."
+        },
+        "date": {
+          "es": "Ayer",
+          "en": "Yesterday"
+        }
+      },
+      {
+        "name": {
+          "es": "El síndrome del impostor",
+          "en": "Impostor syndrome"
+        },
+        "note": {
+          "es": "Nueve años de experiencia dicen otra cosa.",
+          "en": "Nine years of experience say otherwise."
+        },
+        "date": {
+          "es": "Hace poco",
+          "en": "Recently"
+        }
+      },
+      {
+        "name": {
+          "es": "Brief de una sola línea",
+          "en": "One-line brief"
+        },
+        "note": {
+          "es": "«Algo bonito, moderno y que impacte». Archivo vacío.",
+          "en": "“Something nice, modern and impactful.” Empty file."
+        },
+        "date": {
+          "es": "Hace una semana",
+          "en": "A week ago"
+        }
+      },
+      {
+        "name": {
+          "es": "Clientes que no responden",
+          "en": "Clients who ghost"
+        },
+        "note": {
+          "es": "Último mensaje: visto ayer.",
+          "en": "Last message: seen yesterday."
+        },
+        "date": {
+          "es": "Visto ayer",
+          "en": "Seen yesterday"
+        }
       }
     ]
   }

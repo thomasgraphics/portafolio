@@ -1205,7 +1205,7 @@
   function openTrash(origin) {
     track("open", { id: "trash" });
     openWindow("trash", {
-      origin, w: 720, h: 460, hash: "papelera", cls: "finder trashwin",
+      origin, w: 760, h: 560, hash: "papelera", cls: "finder trashwin",
       title: () => tt("title"),
       render(body) {
         const items = trashItems();
