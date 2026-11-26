@@ -778,7 +778,6 @@
       ["post", "X", `https://twitter.com/intent/tweet?text=${e(text)}&url=${e(url)}`],
       ["mail", lang === "es" ? "Correo" : "Email", `mailto:?subject=${e(title)}&body=${e(text + "\n\n" + url)}`],
     ];
-    if (navigator.share) opts.push(["more", lang === "es" ? "Más opciones…" : "More…", "native"]);
     sharePop = document.createElement("div");
     sharePop.className = "share-pop";
     sharePop.setAttribute("role", "menu");
@@ -802,7 +801,6 @@
         }).catch(() => { prompt(lang === "es" ? "Copia el enlace:" : "Copy the link:", url); closeShare(); });
         return;
       }
-      if (href === "native") { navigator.share({ title, text, url }).catch(() => {}); }
       setTimeout(closeShare, 50);
     });
   }
