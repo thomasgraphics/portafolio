@@ -755,6 +755,8 @@
     const label = video ? (lang === "es" ? "Reproducir video" : "Play video") : (lang === "es" ? "Abrir prototipo interactivo" : "Open interactive prototype");
     const note = s.embedType === "xd" ? "Adobe XD" : s.embedType === "figma" ? "Figma" : "YouTube";
     const ratio = ["mobile", "desktop", "video"].includes(s.embedRatio) ? s.embedRatio : video ? "video" : "desktop";
+    // Los videos se muestran listos para ver (sin el paso de "abrir")
+    if (video || s.autoload) return `<div class="case-embed on r-${ratio}"><iframe src="${esc(url.replace("&autoplay=1", ""))}" loading="lazy" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${esc(c.title)}"></iframe></div>`;
     return `<div class="case-embed r-${ratio}" data-embed="${esc(url)}" role="button" tabindex="0" aria-label="${esc(label)}">
       ${c.cover ? `<img class="ce-bg" src="${esc(c.cover)}" alt="" aria-hidden="true">` : ""}
       <span class="mac-btn primary ce-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg>${esc(label)}</span>
@@ -803,6 +805,7 @@
                   ${s.h ? `<h2>${esc(t(s.h))}</h2>` : ""}
                   ${s.p ? `<p>${esc(t(s.p))}</p>` : ""}
                   ${s.img ? `<img src="${esc(s.img)}" alt="${esc(t(s.h) || c.title)}" loading="lazy" data-zoom>` : ""}
+                  ${s.video ? `<video class="case-video" src="${esc(s.video)}" ${s.poster ? `poster="${esc(s.poster)}"` : ""} controls playsinline preload="metadata"></video>` : ""}
                   ${embedHtml(s, c)}
                 </section>`).join("")}
               ${c.link && c.link.url ? `<div class="case-cta-end">${ctaHtml(c)}</div>` : ""}

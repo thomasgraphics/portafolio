@@ -225,24 +225,24 @@
           "type": "case",
           "case": "hoytrabajas",
           "category": {
-            "es": "Plataformas y dashboards",
-            "en": "Platforms & dashboards"
+            "es": "Plataformas",
+            "en": "Platforms"
           }
         },
         {
           "type": "case",
           "case": "mascotas-contigo",
           "category": {
-            "es": "Apps móviles",
-            "en": "Mobile apps"
+            "es": "Apps",
+            "en": "Apps"
           }
         },
         {
           "type": "case",
           "case": "gestion-vuelos",
           "category": {
-            "es": "Plataformas y dashboards",
-            "en": "Platforms & dashboards"
+            "es": "Plataformas",
+            "en": "Platforms"
           }
         },
         {
@@ -257,8 +257,8 @@
           "type": "case",
           "case": "verdella",
           "category": {
-            "es": "Web y landing pages",
-            "en": "Web & landing pages"
+            "es": "Web",
+            "en": "Web"
           }
         },
         {
@@ -273,40 +273,40 @@
           "type": "case",
           "case": "primavera-urbana",
           "category": {
-            "es": "Apps móviles",
-            "en": "Mobile apps"
+            "es": "Apps",
+            "en": "Apps"
           }
         },
         {
           "type": "case",
           "case": "villavofm",
           "category": {
-            "es": "Apps móviles",
-            "en": "Mobile apps"
+            "es": "Apps",
+            "en": "Apps"
           }
         },
         {
           "type": "case",
           "case": "habitat-contigo",
           "category": {
-            "es": "Plataformas y dashboards",
-            "en": "Platforms & dashboards"
+            "es": "Plataformas",
+            "en": "Platforms"
           }
         },
         {
           "type": "case",
           "case": "hunter-track",
           "category": {
-            "es": "Apps móviles",
-            "en": "Mobile apps"
+            "es": "Apps",
+            "en": "Apps"
           }
         },
         {
           "type": "case",
           "case": "fergo",
           "category": {
-            "es": "Web y landing pages",
-            "en": "Web & landing pages"
+            "es": "Web",
+            "en": "Web"
           }
         }
       ]
@@ -322,32 +322,32 @@
           "type": "case",
           "case": "mina-nm",
           "category": {
-            "es": "Manuales interactivos",
-            "en": "Interactive manuals"
+            "es": "Manuales",
+            "en": "Manuals"
           }
         },
         {
           "type": "case",
           "case": "monchef",
           "category": {
-            "es": "Identidad visual",
-            "en": "Visual identity"
+            "es": "Identidad",
+            "en": "Identity"
           }
         },
         {
           "type": "case",
           "case": "nas-cellano",
           "category": {
-            "es": "Identidad visual",
-            "en": "Visual identity"
+            "es": "Identidad",
+            "en": "Identity"
           }
         },
         {
           "type": "case",
           "case": "emsa",
           "category": {
-            "es": "Identidad visual",
-            "en": "Visual identity"
+            "es": "Identidad",
+            "en": "Identity"
           }
         },
         {
@@ -1905,6 +1905,20 @@
       "sections": [
         {
           "h": {
+            "es": "Motion graphic",
+            "en": "Motion graphic"
+          },
+          "p": {
+            "es": "El motion graphic de la campaña Sumer × Rappi.",
+            "en": "The Sumer × Rappi campaign motion graphic."
+          },
+          "embedType": "youtube",
+          "embedId": "M077ICjq0wk",
+          "embedRatio": "video",
+          "autoload": true
+        },
+        {
+          "h": {
             "es": "Contexto",
             "en": "Context"
           },
@@ -1922,19 +1936,6 @@
             "es": "Un motion graphic para la campaña de co-branding, la pieza gráfica principal y el diseño de los emails en HTML, el canal principal de comunicación con los clientes, para posicionar la marca.",
             "en": "A motion graphic for the co-branding campaign, the main key visual and HTML email designs for brand positioning, since email was the main channel to reach customers."
           }
-        },
-        {
-          "h": {
-            "es": "Motion graphic",
-            "en": "Motion graphic"
-          },
-          "p": {
-            "es": "El motion graphic de la campaña.",
-            "en": "The campaign motion graphic."
-          },
-          "embedType": "youtube",
-          "embedId": "M077ICjq0wk",
-          "embedRatio": "video"
         },
         {
           "img": "assets/img/projects/sumer/01.jpg",
