@@ -1351,11 +1351,14 @@
     setTimeout(go, 1500);
     renderIcons();
     const opened = openFromHash();
-    setTimeout(() => renderSticky(true), 700);
-    if (D.notification && TH.showNotification) {
+    // Orden de entrada: primero el mensaje, después el recordatorio
+    const hasNotif = !!(D.notification && TH.showNotification);
+    if (hasNotif) {
       notif.classList.add("pending");
-      setTimeout(() => { notif.hidden = false; notif.classList.remove("pending"); requestAnimationFrame(() => notif.classList.add("show")); }, 1100);
+      setTimeout(() => { notif.hidden = false; notif.classList.remove("pending"); requestAnimationFrame(() => notif.classList.add("show")); }, 700);
     }
+    const stickyAt = hasNotif ? 1700 : 700;
+    setTimeout(() => { sticky.classList.add("in"); renderSticky(true); }, stickyAt);
   }
 
   function runIntro() {
