@@ -170,7 +170,9 @@
         "en": "Meet me in 45s.mp4"
       },
       "src": "assets/video/conoceme.mp4",
-      "poster": "assets/img/conoceme-poster.jpg"
+      "poster": "assets/img/conoceme-poster.jpg",
+      "srcMobile": "assets/video/conoceme-vertical.mp4",
+      "posterMobile": "assets/img/conoceme-poster-vertical.jpg"
     },
     {
       "id": "me1",
@@ -279,7 +281,9 @@
           "type": "video",
           "src": "assets/video/conoceme.mp4",
           "poster": "assets/img/conoceme-poster.jpg",
-          "title": "Conóceme en 45s"
+          "title": "Conóceme en 45s",
+          "srcMobile": "assets/video/conoceme-vertical.mp4",
+          "posterMobile": "assets/img/conoceme-poster-vertical.jpg"
         },
         {
           "type": "image",

@@ -706,3 +706,15 @@ html.dark .case-talk { background: linear-gradient(135deg, color-mix(in srgb, va
 .win.genie { transition: none !important; }
 .win.genie .win-bar, .win.genie .sidebar { backdrop-filter: none; -webkit-backdrop-filter: none; }
 .win.genie .win-bar { background: var(--win-bar); }
+
+/* Video en el celular: formato reel a pantalla completa */
+@media (max-width: 760px) {
+  .viewer { background: #000; }
+  .viewer video { width: 100%; height: 100%; object-fit: contain; }
+}
+/* Ventanas de video/imagen: barra de vidrio oscura sobre el contenido (estilo reel en el celular) */
+.win:has(.viewer:not(.light)) .win-bar { background: rgba(20, 20, 22, 0.45); box-shadow: none; }
+.win:has(.viewer:not(.light)) .win-title { color: rgba(255, 255, 255, 0.92); }
+@media (max-width: 760px) {
+  .win:has(.viewer:not(.light)) .win-body { padding-top: 0; }
+}

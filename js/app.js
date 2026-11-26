@@ -638,7 +638,7 @@
       case "note": return openAbout(origin);
       case "pdf": return openPdf(item, origin);
       case "photo": return openImage(item.src, label, origin, id);
-      case "video": return openVideo(item.src, label, item.poster, origin, id);
+      case "video": return openVideo(item.src, label, item.poster, origin, id, item);
       case "link": return window.open(item.href, "_blank", "noopener");
     }
   }
@@ -705,7 +705,7 @@
           if (!tEl) return;
           const it = list[+tEl.dataset.idx];
           if (it.type === "case") openCase(it.case, tEl, f.items.filter((x) => x.type === "case").map((x) => x.case));
-          else if (it.type === "video") openVideo(it.src, it.title, it.poster, tEl);
+          else if (it.type === "video") openVideo(it.src, it.title, it.poster, tEl, null, it);
           else openImage(it.src, it.title, tEl);
         };
       },
@@ -829,7 +829,9 @@
     };
     img.onload = go; img.onerror = go; img.src = src;
   }
-  function openVideo(src, title, poster, origin, hashId) {
+  function openVideo(src, title, poster, origin, hashId, item) {
+    // En el celular se usa la versión vertical (formato reel) si existe
+    if (isMobile() && item && item.srcMobile) { src = item.srcMobile; poster = item.posterMobile || poster; }
     openWindow("vid:" + src, {
       title, origin, w: 880, h: 533, hash: hashId || "",
       render(body) {

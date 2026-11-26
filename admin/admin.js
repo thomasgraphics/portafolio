@@ -102,7 +102,7 @@
 
   function cleanup(o) {
     // Quita campos opcionales vacíos para dejar el JSON limpio
-    (o.desktop || []).forEach((d) => ["icon", "poster", "href", "src"].forEach((k) => { if (d[k] === "") delete d[k]; }));
+    (o.desktop || []).forEach((d) => ["icon", "poster", "href", "src", "srcMobile", "posterMobile"].forEach((k) => { if (d[k] === "") delete d[k]; }));
     Object.keys(o.dockIcons || {}).forEach((k) => { if (!o.dockIcons[k]) delete o.dockIcons[k]; });
     Object.keys(o.uiText || {}).forEach((k) => { const v = o.uiText[k]; if (!v || (!v.es && !v.en)) delete o.uiText[k]; });
     return o;
@@ -670,6 +670,8 @@
       vids.forEach((d) => out.push(group(`Video: ${t(d.label) || d.id}`, "MP4 (H.264) de menos de 25 MB. Si pesa más, comprímelo con HandBrake.", d, [
         { key: "src", type: "file", label: "Archivo de video", accept: "video/mp4" },
         { key: "poster", type: "image", label: "Miniatura", optional: true, max: 1600 },
+        { key: "srcMobile", type: "file", label: "Video vertical para celular (9:16)", hint: "Opcional. Formato reel 1080×1920; en el celular se muestra este", accept: "video/mp4", optional: true },
+        { key: "posterMobile", type: "image", label: "Miniatura vertical", optional: true, max: 1280 },
         { key: "label", type: "i18n", label: "Nombre del ícono" },
       ])));
       if (!vids.length) out.push(h("button", { class: "add", type: "button", onclick: () => { D.desktop.push({ id: "showreel", type: "video", x: 37, y: 31, label: "Showreel.mp4", src: "" }); touch(); render(); } }, "+ Agregar showreel"));
@@ -855,6 +857,8 @@
               { key: "src", type: "image", label: "Foto", when: (o) => o.type === "photo", max: 2000 },
               { key: "src", type: "file", label: "Archivo de video", hint: "MP4 (H.264), menos de 25 MB", accept: "video/mp4", when: (o) => o.type === "video" },
               { key: "poster", type: "image", label: "Miniatura del video", when: (o) => o.type === "video", optional: true, max: 1600 },
+              { key: "srcMobile", type: "file", label: "Video vertical para celular (9:16)", hint: "Opcional. Formato reel; en el celular se muestra este", accept: "video/mp4", when: (o) => o.type === "video", optional: true },
+              { key: "posterMobile", type: "image", label: "Miniatura vertical", when: (o) => o.type === "video", optional: true, max: 1280 },
               { key: "src", type: "file", label: "Archivo PDF", accept: "application/pdf", when: (o) => o.type === "pdf" },
               { key: "href", type: "text", label: "URL", ph: "https://…", when: (o) => o.type === "link" },
               { key: "x", type: "number", label: "Posición X (%)", min: 0, max: 100, step: 0.5 },
