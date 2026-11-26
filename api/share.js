@@ -32,7 +32,7 @@ export default {
       c = { title: tx(f.title) || fid };
       title = `${c.title} · Portafolio de Thomgraphics`;
       desc = clip(tx(f.intro) || tx(D.seo && D.seo.description), 190);
-      image = abs(D.seo && D.seo.shareImage);
+      image = abs(f.shareImage || (D.seo && D.seo.shareImage));
       pageUrl = `${origin}/f/${fid}`;
     } else {
       c = D && D.cases && D.cases[id];

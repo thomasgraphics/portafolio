@@ -311,7 +311,8 @@
             "en": "Web"
           }
         }
-      ]
+      ],
+      "shareImage": "assets/img/share/folder-ux.jpg"
     },
     "branding": {
       "title": "Branding",
@@ -360,7 +361,8 @@
             "en": "Research"
           }
         }
-      ]
+      ],
+      "shareImage": "assets/img/share/folder-branding.jpg"
     },
     "motion": {
       "title": {
@@ -398,7 +400,8 @@
           },
           "hidden": true
         }
-      ]
+      ],
+      "shareImage": "assets/img/share/folder-motion.jpg"
     },
     "foto": {
       "title": {
@@ -464,7 +467,8 @@
           },
           "hidden": true
         }
-      ]
+      ],
+      "shareImage": "assets/img/share/folder-foto.jpg"
     },
     "social": {
       "title": {
@@ -512,7 +516,8 @@
           "title": "Post 6",
           "hidden": true
         }
-      ]
+      ],
+      "shareImage": "assets/img/share/folder-social.jpg"
     }
   },
   "cases": {

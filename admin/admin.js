@@ -904,6 +904,7 @@
         out.push(group(`${t(f.title) || id}`, onDesk ? `ID: ${id}` : `ID: ${id} · no está en el escritorio (no se muestra)`, f, [
           { key: "title", type: "i18n", label: "Título" },
           { key: "intro", type: "i18nArea", label: "Descripción" },
+          { key: "shareImage", type: "image", label: "Portada al compartir (clic derecho → compartir)", hint: "1200×630 px", max: 1200 },
           { key: "items", type: "list", label: "Contenido", addLabel: "Agregar elemento", item: {
             title: (it) => it.type === "case" ? `Caso · ${(D.cases[it.case] || {}).title || it.case || "—"}` : `${it.type === "video" ? "Video" : "Imagen"} · ${t(it.title) || (it.src || "").split("/").pop()}`,
             make: () => ({ type: "image", src: "", title: { es: "", en: "" } }),

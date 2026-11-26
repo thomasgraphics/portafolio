@@ -768,7 +768,7 @@
       const name = t(f.title) || id;
       const first = (f.items || []).map((it) => (it.type === "case" ? (D.cases[it.case] || {}).cover : it.type === "video" ? it.poster : it.src)).find(Boolean);
       return {
-        url: `${location.origin}/f/${id}`, name, img: first || (D.seo && D.seo.shareImage) || "",
+        url: `${location.origin}/f/${id}`, name, img: first || f.shareImage || (D.seo && D.seo.shareImage) || "",
         title: `${name} · ${lang === "es" ? "Portafolio de Thomgraphics" : "Thomgraphics portfolio"}`,
         text: lang === "es" ? `Mira la carpeta «${name}» del portafolio de Thomgraphics` : `Check out the “${name}” folder in the Thomgraphics portfolio`,
       };
