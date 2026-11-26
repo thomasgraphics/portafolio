@@ -1351,16 +1351,34 @@
     const go = () => { if (!shown) { shown = true; reveal(); } };
     pre.onload = go; pre.onerror = go; pre.src = wallpaperUrl();
     setTimeout(go, 1500);
+    // Orden de entrada: primero el mensaje, luego el recordatorio y por último las carpetas e íconos
+    const hasNotif = !!(D.notification && TH.showNotification);
+    const hasSticky = !!(D.sticky && TH.showSticky);
+    // Celular: en secuencia. Computador: todo sube a la vez, con resorte suave (estilo Apple)
+    const seq = isMobile();
+    const notifAt = seq ? 600 : 450;
+    const stickyAt = seq ? (hasNotif ? 1150 : 600) : 450;
+    const iconsAt = seq ? (hasSticky ? stickyAt + 750 : hasNotif ? notifAt + 650 : 150) : 450;
+    iconsEl.style.setProperty("--icons-delay", (seq ? iconsAt : 60) + "ms");
     renderIcons();
     const opened = openFromHash();
-    // Orden de entrada: primero el mensaje, después el recordatorio
-    const hasNotif = !!(D.notification && TH.showNotification);
-    if (hasNotif) {
-      notif.classList.add("pending");
-      setTimeout(() => { notif.hidden = false; notif.classList.remove("pending"); requestAnimationFrame(() => notif.classList.add("show")); }, 700);
-    }
-    const stickyAt = hasNotif ? (isMobile() ? 1250 : 1700) : 700;
     renderSticky("prep"); // reserva su tamaño desde el inicio
+    if (hasNotif) notif.classList.add("pending");
+    const showNotif = () => { notif.hidden = false; notif.classList.remove("pending"); void notif.offsetWidth; }; // reflow: que la transición sí arranque
+    if (!seq) {
+      // Computador: los tres arrancan en el mismo cuadro
+      setTimeout(() => {
+        if (hasNotif) showNotif();
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          if (hasNotif) notif.classList.add("show");
+          sticky.classList.add("in"); renderSticky(true);
+          iconsEl.classList.add("go");
+        }));
+      }, 450);
+      return;
+    }
+    iconsEl.classList.add("go");
+    if (hasNotif) setTimeout(() => { showNotif(); requestAnimationFrame(() => notif.classList.add("show")); }, notifAt);
     setTimeout(() => { sticky.classList.add("in"); renderSticky(true); }, stickyAt);
   }
 

@@ -310,6 +310,14 @@
             "es": "Web",
             "en": "Web"
           }
+        },
+        {
+          "type": "case",
+          "case": "komercia",
+          "category": {
+            "es": "Apps",
+            "en": "Apps"
+          }
         }
       ],
       "shareImage": "assets/img/share/folder-ux.jpg"
@@ -359,6 +367,30 @@
           "category": {
             "es": "Investigación",
             "en": "Research"
+          }
+        },
+        {
+          "type": "case",
+          "case": "logofolio",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "nuestro-llano-tv",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "etiquetas",
+          "category": {
+            "es": "Empaques",
+            "en": "Packaging"
           }
         }
       ],
@@ -466,6 +498,102 @@
             "en": "Photo 6"
           },
           "hidden": true
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/street-01.webp",
+          "title": {
+            "es": "Retrato urbano · 01",
+            "en": "Street portrait · 01"
+          },
+          "category": {
+            "es": "Retrato",
+            "en": "Portrait"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/street-02.webp",
+          "title": {
+            "es": "Retrato urbano · 02",
+            "en": "Street portrait · 02"
+          },
+          "category": {
+            "es": "Retrato",
+            "en": "Portrait"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/street-03.webp",
+          "title": {
+            "es": "Retrato urbano · 03",
+            "en": "Street portrait · 03"
+          },
+          "category": {
+            "es": "Retrato",
+            "en": "Portrait"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/street-04.webp",
+          "title": {
+            "es": "Retrato urbano · 04",
+            "en": "Street portrait · 04"
+          },
+          "category": {
+            "es": "Retrato",
+            "en": "Portrait"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/producto-01.webp",
+          "title": {
+            "es": "La Criolla · Punto Burger",
+            "en": "La Criolla · Punto Burger"
+          },
+          "category": {
+            "es": "Producto",
+            "en": "Product"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/producto-02.webp",
+          "title": {
+            "es": "Picada",
+            "en": "Platter"
+          },
+          "category": {
+            "es": "Producto",
+            "en": "Product"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/producto-03.webp",
+          "title": {
+            "es": "Postre de fresas",
+            "en": "Strawberry dessert"
+          },
+          "category": {
+            "es": "Producto",
+            "en": "Product"
+          }
+        },
+        {
+          "type": "image",
+          "src": "assets/img/projects/foto/producto-04.webp",
+          "title": {
+            "es": "Leche de almendras",
+            "en": "Almond milk"
+          },
+          "category": {
+            "es": "Producto",
+            "en": "Product"
+          }
         }
       ],
       "shareImage": "assets/img/share/folder-foto.jpg"
@@ -515,6 +643,54 @@
           "src": "assets/img/projects/social/post-06.webp",
           "title": "Post 6",
           "hidden": true
+        },
+        {
+          "type": "case",
+          "case": "emsa-energia",
+          "category": {
+            "es": "Marcas",
+            "en": "Brands"
+          }
+        },
+        {
+          "type": "case",
+          "case": "arimena",
+          "category": {
+            "es": "Marcas",
+            "en": "Brands"
+          }
+        },
+        {
+          "type": "case",
+          "case": "komercia",
+          "category": {
+            "es": "Marcas",
+            "en": "Brands"
+          }
+        },
+        {
+          "type": "case",
+          "case": "llaneros-fc",
+          "category": {
+            "es": "Deportes",
+            "en": "Sports"
+          }
+        },
+        {
+          "type": "case",
+          "case": "deportivo-meta",
+          "category": {
+            "es": "Deportes",
+            "en": "Sports"
+          }
+        },
+        {
+          "type": "case",
+          "case": "afiches-eventos",
+          "category": {
+            "es": "Eventos",
+            "en": "Events"
+          }
         }
       ],
       "shareImage": "assets/img/share/folder-social.jpg"
@@ -2203,6 +2379,532 @@
         "en": "Video"
       },
       "shareImage": "assets/img/share/tipsco.jpg"
+    },
+    "emsa-energia": {
+      "title": "EMSA · Trabajamos con Energía",
+      "subtitle": {
+        "es": "Contenido para redes · Empresa de energía del Meta",
+        "en": "Social media content · Meta's power company"
+      },
+      "cover": "assets/img/projects/emsa-energia/cover.webp",
+      "meta": {
+        "client": {
+          "es": "Electrificadora del Meta (EMSA)",
+          "en": "Electrificadora del Meta (EMSA)"
+        },
+        "role": {
+          "es": "Diseñador gráfico",
+          "en": "Graphic designer"
+        },
+        "year": "2020–2021",
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        {
+          "es": "Diseño gráfico",
+          "en": "Graphic design"
+        },
+        {
+          "es": "Redes sociales",
+          "en": "Social media"
+        },
+        {
+          "es": "Servicios públicos",
+          "en": "Utilities"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "El reto: explicar la factura sin perder a nadie",
+            "en": "The challenge: explaining the bill without losing anyone"
+          },
+          "p": {
+            "es": "Una empresa de energía tiene que comunicar temas técnicos (tarifas, resoluciones de la CREG, días facturados, reclamos) a usuarios que solo quieren saber cuánto van a pagar. Diseñé las piezas de la línea «Trabajamos con Energía» con un mensaje principal por pieza, jerarquías muy claras y los datos clave resaltados en cápsulas de color.",
+            "en": "A power company has to explain technical topics (rates, regulatory resolutions, billed days, claims) to customers who just want to know how much they will pay. I designed the «Trabajamos con Energía» line with one key message per piece, very clear hierarchy and the key data highlighted in color pills."
+          },
+          "img": "assets/img/projects/emsa-energia/01.webp"
+        },
+        {
+          "h": {
+            "es": "Un sistema reconocible en el feed",
+            "en": "A system you recognize in the feed"
+          },
+          "p": {
+            "es": "Verde y azul institucional, fotografía real de los técnicos, ilustración para los trámites y un cierre fijo con la marca. Así cada post, ya sea un consejo de ahorro con 35 grados, un beneficio de ser cliente o un cambio tarifario, se reconoce como EMSA antes de leerlo.",
+            "en": "Institutional green and blue, real photos of field technicians, illustration for procedures and a fixed brand sign-off. That way every post, whether a saving tip on a 35-degree day, a customer perk or a rate change, reads as EMSA before you even read it."
+          },
+          "img": "assets/img/projects/emsa-energia/02.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/emsa-energia.jpg"
+    },
+    "llaneros-fc": {
+      "title": "Llaneros F.C.",
+      "subtitle": {
+        "es": "Contenido deportivo · Torneo BetPlay",
+        "en": "Sports content · BetPlay Tournament"
+      },
+      "cover": "assets/img/projects/llaneros-fc/cover.webp",
+      "meta": {
+        "client": "Llaneros F.C.",
+        "role": {
+          "es": "Diseñador gráfico",
+          "en": "Graphic designer"
+        },
+        "year": "2021",
+        "tools": "Photoshop · Illustrator"
+      },
+      "tags": [
+        {
+          "es": "Diseño gráfico",
+          "en": "Graphic design"
+        },
+        {
+          "es": "Redes sociales",
+          "en": "Social media"
+        },
+        {
+          "es": "Deportes",
+          "en": "Sports"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Piezas que se publican en tiempo real",
+            "en": "Pieces published in real time"
+          },
+          "p": {
+            "es": "Para el equipo de Villavicencio en el Torneo BetPlay 2021-I diseñé el contenido de partido: previas con hora y estadio, goles, cumpleaños de jugadores, alineaciones y fixture. En fútbol el diseño se produce contra el reloj, así que construí plantillas con texturas de concreto, tipografía condensada y el negro y dorado del club para publicar en minutos sin perder calidad.",
+            "en": "For the Villavicencio club in the 2021-I BetPlay Tournament I designed match-day content: previews with kick-off time and venue, goals, player birthdays, line-ups and fixtures. Football design runs against the clock, so I built templates with concrete textures, condensed type and the club's black and gold to publish in minutes without losing quality."
+          },
+          "img": "assets/img/projects/llaneros-fc/01.webp"
+        },
+        {
+          "h": {
+            "es": "Fixture y titulares",
+            "en": "Fixtures and line-ups"
+          },
+          "p": {
+            "es": "Las piezas informativas ordenan mucha información (16 fechas, escudos, suplentes) en una retícula limpia que se lee bien en el celular y sostiene la campaña #MisLlanerosDeNuevo.",
+            "en": "Information pieces organize a lot of data (16 match days, crests, substitutes) on a clean grid that reads well on a phone and carries the #MisLlanerosDeNuevo campaign."
+          },
+          "img": "assets/img/projects/llaneros-fc/02.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/llaneros-fc.jpg"
+    },
+    "deportivo-meta": {
+      "title": "Club Deportivo Meta",
+      "subtitle": {
+        "es": "Contenido deportivo · Liga Argos",
+        "en": "Sports content · Argos League"
+      },
+      "cover": "assets/img/projects/deportivo-meta/cover.webp",
+      "meta": {
+        "client": "Club Deportivo Meta",
+        "role": {
+          "es": "Diseñador gráfico",
+          "en": "Graphic designer"
+        },
+        "year": "2017",
+        "tools": "Photoshop · Illustrator"
+      },
+      "tags": [
+        {
+          "es": "Diseño gráfico",
+          "en": "Graphic design"
+        },
+        {
+          "es": "Redes sociales",
+          "en": "Social media"
+        },
+        {
+          "es": "Deportes",
+          "en": "Sports"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Identidad de partido",
+            "en": "Match-day identity"
+          },
+          "p": {
+            "es": "Diseñé las piezas de la Liga Argos para el club: previas, marcadores finales, goles y entretiempos. La cancha verde funciona como fondo de marca, el resultado va siempre en grande y los patrocinadores tienen un espacio fijo abajo, para que la información más importante se lea en un segundo.",
+            "en": "I designed the club's Argos League pieces: previews, final scores, goals and half-time updates. The green pitch works as the brand background, the score always goes big and sponsors have a fixed slot at the bottom, so the key information reads in a second."
+          },
+          "img": "assets/img/projects/deportivo-meta/01.webp"
+        },
+        {
+          "h": {
+            "es": "Alineaciones y marcador",
+            "en": "Line-ups and score"
+          },
+          "p": {
+            "es": "La alineación se dibuja sobre la cancha con nombres y suplentes, y el entretiempo repite la misma estructura que el final del juego para que la serie se vea consistente en el feed.",
+            "en": "The line-up is drawn on the pitch with names and substitutes, and the half-time update repeats the full-time layout so the series looks consistent in the feed."
+          },
+          "img": "assets/img/projects/deportivo-meta/02.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/deportivo-meta.jpg"
+    },
+    "arimena": {
+      "title": "Transportes Arimena",
+      "subtitle": {
+        "es": "Redes sociales · Servicio de taxis",
+        "en": "Social media · Taxi service"
+      },
+      "cover": "assets/img/projects/arimena/cover.webp",
+      "meta": {
+        "client": "Transportes Arimena",
+        "role": {
+          "es": "Diseñador gráfico",
+          "en": "Graphic designer"
+        },
+        "year": "2019",
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        {
+          "es": "Diseño gráfico",
+          "en": "Graphic design"
+        },
+        {
+          "es": "Redes sociales",
+          "en": "Social media"
+        },
+        {
+          "es": "Transporte",
+          "en": "Transport"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Cercana a la ciudad",
+            "en": "Close to the city"
+          },
+          "p": {
+            "es": "Para la empresa de taxis de Villavicencio creé contenido que conecta la marca con la ciudad: el cumpleaños 179 de Villavicencio, el apoyo a Llaneros y fechas locales, siempre con el número para pedir el servicio a la vista.",
+            "en": "For this Villavicencio taxi company I created content that ties the brand to the city: Villavicencio's 179th anniversary, support for the local football team and local dates, always with the number to book a ride in plain sight."
+          },
+          "img": "assets/img/projects/arimena/01.webp"
+        },
+        {
+          "h": {
+            "es": "Una llamada a la acción que no falla",
+            "en": "A call to action that never misses"
+          },
+          "p": {
+            "es": "El amarillo taxi y el damero son el código visual de la marca. Cada pieza termina en una sola acción: llamar o seguir sus redes.",
+            "en": "Taxi yellow and the checkerboard are the brand's visual code. Every piece ends in a single action: call or follow its social channels."
+          },
+          "img": "assets/img/projects/arimena/02.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/arimena.jpg"
+    },
+    "komercia": {
+      "title": "Komercia",
+      "subtitle": {
+        "es": "App para vender en línea · Contenido de marca",
+        "en": "Online selling app · Brand content"
+      },
+      "cover": "assets/img/projects/komercia/cover.webp",
+      "meta": {
+        "client": "Komercia",
+        "role": {
+          "es": "Diseñador UX/UI y gráfico",
+          "en": "UX/UI and graphic designer"
+        },
+        "year": "2020",
+        "tools": "Figma · Illustrator · Photoshop"
+      },
+      "tags": [
+        {
+          "es": "UX/UI",
+          "en": "UX/UI"
+        },
+        {
+          "es": "App",
+          "en": "App"
+        },
+        {
+          "es": "Redes sociales",
+          "en": "Social media"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Vender por internet, sin ser experto",
+            "en": "Selling online without being an expert"
+          },
+          "p": {
+            "es": "Komercia ayuda a pequeños negocios a montar su tienda en línea y venderla por WhatsApp. Diseñé los flujos principales de su app: punto de venta (POS), inventario y pagos, seguimiento de ventas y gestión del negocio. Botones grandes, listas fáciles de escanear y estados con color para que un tendero pueda usarla entre cliente y cliente.",
+            "en": "Komercia helps small businesses set up an online store and sell through WhatsApp. I designed the app's core flows: point of sale (POS), inventory and payments, sales tracking and business management. Big buttons, easy-to-scan lists and color-coded statuses so a shop owner can use it between customers."
+          },
+          "img": "assets/img/projects/komercia/01.webp"
+        },
+        {
+          "h": {
+            "es": "Contenido para crecer la comunidad",
+            "en": "Content to grow the community"
+          },
+          "p": {
+            "es": "Durante la cuarentena, Komercia pasó de herramienta a comunidad. Diseñé las piezas de webinars, alianzas con Mercado Pago y la celebración de las 2.000 tiendas del #TeamKomercio, con ilustraciones de personajes y un morado de marca que se reconoce en el feed.",
+            "en": "During the lockdown Komercia went from a tool to a community. I designed webinar pieces, Mercado Pago partnership posts and the celebration of 2,000 stores in #TeamKomercio, with character illustrations and a brand purple that stands out in the feed."
+          },
+          "img": "assets/img/projects/komercia/02.webp"
+        },
+        {
+          "p": {
+            "es": "Piezas de producto: tienda lista en 10 minutos por WhatsApp y una propuesta para restaurantes con menú en línea.",
+            "en": "Product pieces: a store ready in 10 minutes on WhatsApp and an offer for restaurants with an online menu."
+          },
+          "img": "assets/img/projects/komercia/03.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/komercia.jpg"
+    },
+    "afiches-eventos": {
+      "title": "Afiches para artistas y eventos",
+      "subtitle": {
+        "es": "Diseño publicitario · Música en vivo",
+        "en": "Advertising design · Live music"
+      },
+      "cover": "assets/img/projects/afiches-eventos/cover.webp",
+      "meta": {
+        "client": {
+          "es": "Laura Romero, Nico Vega, Kaliwa, Camilo Botero y El Burgués Pub",
+          "en": "Laura Romero, Nico Vega, Kaliwa, Camilo Botero and El Burgués Pub"
+        },
+        "role": {
+          "es": "Diseñador publicitario",
+          "en": "Advertising designer"
+        },
+        "year": "2019–2020",
+        "tools": "Photoshop · Illustrator"
+      },
+      "tags": [
+        {
+          "es": "Diseño publicitario",
+          "en": "Advertising design"
+        },
+        {
+          "es": "Música",
+          "en": "Music"
+        },
+        {
+          "es": "Eventos",
+          "en": "Events"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Cada artista, su propio lenguaje",
+            "en": "Each artist, their own language"
+          },
+          "p": {
+            "es": "Afiches para conciertos virtuales y presentaciones en vivo de artistas de Villavicencio. Cada uno parte de la personalidad del músico: el romanticismo de «Amores virtuales» de Laura Romero o la noche íntima de su show sin cover.",
+            "en": "Posters for virtual concerts and live shows by Villavicencio artists. Each one starts from the musician's personality: the romance of Laura Romero's «Amores virtuales» or the intimate night of her no-cover show."
+          },
+          "img": "assets/img/projects/afiches-eventos/01.webp"
+        },
+        {
+          "h": {
+            "es": "Información clara, aunque haya mucha",
+            "en": "Clear information, even when there is a lot"
+          },
+          "p": {
+            "es": "Fecha, hora, boletería, aliados y redes en una sola pieza. Ordené la jerarquía para que primero se vea el artista, después el cuándo y por último los logos de los patrocinadores, como en «Desconectado» de Nico Vega, el concierto de Amor y Amistad de Kaliwa o el Día del Padre con Camilo Botero en El Burgués Pub.",
+            "en": "Date, time, tickets, partners and social handles in one piece. I ordered the hierarchy so you see the artist first, then the when and finally the sponsor logos, as in Nico Vega's «Desconectado», Kaliwa's Love and Friendship concert or Father's Day with Camilo Botero at El Burgués Pub."
+          },
+          "img": "assets/img/projects/afiches-eventos/02.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/afiches-eventos.jpg"
+    },
+    "nuestro-llano-tv": {
+      "title": "Nuestro Llano Televisión",
+      "subtitle": {
+        "es": "Identidad corporativa · Canal de televisión",
+        "en": "Corporate identity · TV channel"
+      },
+      "cover": "assets/img/projects/nuestro-llano-tv/cover.webp",
+      "meta": {
+        "client": "Nuestro Llano Televisión",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "year": {
+          "es": "Varios años",
+          "en": "Several years"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad corporativa",
+          "en": "Corporate identity"
+        },
+        {
+          "es": "Medios",
+          "en": "Media"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Una marca que sale a la calle",
+            "en": "A brand that hits the street"
+          },
+          "p": {
+            "es": "Diseñé la marca y su papelería para este medio regional del Llano. El símbolo es una N que también es un arco, inspirado en las puertas y el horizonte llanero, pensado para funcionar en pequeño sobre un micrófono o en grande en un chaleco.",
+            "en": "I designed the brand and stationery for this regional media outlet from the Llanos. The symbol is an N that is also an arch, inspired by doorways and the plains horizon, built to work small on a microphone or big on a vest."
+          },
+          "img": "assets/img/projects/nuestro-llano-tv/01.webp"
+        },
+        {
+          "h": {
+            "es": "Aplicaciones de campo",
+            "en": "Field applications"
+          },
+          "p": {
+            "es": "Cubo de micrófono, tarjetas de presentación y chalecos de prensa en rojo y naranja: la marca se identifica en cualquier transmisión en exteriores.",
+            "en": "Mic flag, business cards and press vests in red and orange: the brand is recognizable in any outdoor broadcast."
+          },
+          "img": "assets/img/projects/nuestro-llano-tv/02.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/nuestro-llano-tv.jpg"
+    },
+    "logofolio": {
+      "title": "Logofolio",
+      "subtitle": {
+        "es": "Identidades para marcas del Llano",
+        "en": "Identities for brands from the Llanos"
+      },
+      "cover": "assets/img/projects/logofolio/cover.webp",
+      "meta": {
+        "client": {
+          "es": "Varios clientes",
+          "en": "Various clients"
+        },
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "year": {
+          "es": "Varios años",
+          "en": "Several years"
+        },
+        "tools": "Illustrator"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Logotipos",
+          "en": "Logos"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Trece marcas, trece personalidades",
+            "en": "Thirteen brands, thirteen personalities"
+          },
+          "p": {
+            "es": "Una selección de logotipos que diseñé para negocios, medios y artistas de la región: Jugos Carolina, Apícola San Ángel, Komercia, Villavo al Día, Mosso Family Dental y Omega Pólizas y Seguros. Cada marca parte de lo que la hace única: una mascota cercana para una juguería, un panal para la miel 100% natural o un omega que protege para una aseguradora.",
+            "en": "A selection of logos I designed for businesses, media and artists in the region: Jugos Carolina, Apícola San Ángel, Komercia, Villavo al Día, Mosso Family Dental and Omega insurance. Each brand starts from what makes it unique: a friendly mascot for a juice shop, a honeycomb for 100% natural honey or a protective omega for an insurer."
+          },
+          "img": "assets/img/projects/logofolio/01.webp"
+        },
+        {
+          "p": {
+            "es": "Nuestro Llano Televisión, Macadamia Sandwich Gourmet, MiaBox, el músico Camilo Botero, Magazín Guayoyo, Sebastián Cruz y Doña Jaky, comidas típicas del Llano.",
+            "en": "Nuestro Llano Televisión, Macadamia Sandwich Gourmet, MiaBox, musician Camilo Botero, Magazín Guayoyo, Sebastián Cruz and Doña Jaky, traditional food from the Llanos."
+          },
+          "img": "assets/img/projects/logofolio/02.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/logofolio.jpg"
+    },
+    "etiquetas": {
+      "title": "Etiquetas y empaques",
+      "subtitle": {
+        "es": "Diseño de etiquetas · Productos del Llano",
+        "en": "Label design · Products from the Llanos"
+      },
+      "cover": "assets/img/projects/etiquetas/cover.webp",
+      "meta": {
+        "client": {
+          "es": "Candy Gold, Apícola San Ángel y Agropiña (Frupi)",
+          "en": "Candy Gold, Apícola San Ángel and Agropiña (Frupi)"
+        },
+        "role": {
+          "es": "Diseñador de empaques",
+          "en": "Packaging designer"
+        },
+        "year": {
+          "es": "Varios años",
+          "en": "Several years"
+        },
+        "tools": "Illustrator"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Empaques",
+          "en": "Packaging"
+        },
+        {
+          "es": "Etiquetas",
+          "en": "Labels"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Candy Gold",
+            "en": "Candy Gold"
+          },
+          "p": {
+            "es": "Etiquetas para piña en dos sabores, ginger y pepper. Las franjas de color diferencian el sabor a primera vista en la góndola y la tabla nutricional va en sellos fáciles de leer.",
+            "en": "Labels for pineapple in two flavors, ginger and pepper. Colored stripes tell the flavors apart at a glance on the shelf, and nutrition facts sit in easy-to-read badges."
+          },
+          "img": "assets/img/projects/etiquetas/01.webp"
+        },
+        {
+          "h": {
+            "es": "Apícola San Ángel",
+            "en": "Apícola San Ángel"
+          },
+          "p": {
+            "es": "Etiqueta frontal y posterior para miel 100% natural: el panal como fondo, un sello negro y dorado que transmite calidad y la información técnica (composición, recomendaciones y sellos de confianza) organizada atrás.",
+            "en": "Front and back label for 100% natural honey: the honeycomb as background, a black-and-gold seal that conveys quality, and the technical information (composition, recommendations and trust seals) organized on the back."
+          },
+          "img": "assets/img/projects/etiquetas/02.webp"
+        },
+        {
+          "h": {
+            "es": "Frupi · Piña llanera",
+            "en": "Frupi · Pineapple from the Llanos"
+          },
+          "p": {
+            "es": "Empaque para piña fresca procesada por Agropiña: un magenta que salta en la nevera, la marca con frutas en movimiento y toda la información regulatoria (INVIMA, tabla nutricional y contenidos) sin perder frescura.",
+            "en": "Packaging for fresh pineapple processed by Agropiña: a magenta that pops in the fridge, a brand with fruit in motion and all the regulatory information (health registry, nutrition facts and net contents) without losing freshness."
+          },
+          "img": "assets/img/projects/etiquetas/03.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/etiquetas.jpg"
     }
   },
   "about": {
@@ -2299,7 +3001,24 @@
     "assets/img/projects/tipsco/poster-spot.webp": "assets/img/projects/tipsco/poster-spot-sm.webp",
     "assets/img/projects/verdella/cover.webp": "assets/img/projects/verdella/cover-sm.webp",
     "assets/img/projects/villavofm/cover.webp": "assets/img/projects/villavofm/cover-sm.webp",
-    "assets/img/projects/monchef/portada.webp": "assets/img/projects/monchef/portada-sm.webp"
+    "assets/img/projects/monchef/portada.webp": "assets/img/projects/monchef/portada-sm.webp",
+    "assets/img/projects/emsa-energia/cover.webp": "assets/img/projects/emsa-energia/cover-sm.webp",
+    "assets/img/projects/llaneros-fc/cover.webp": "assets/img/projects/llaneros-fc/cover-sm.webp",
+    "assets/img/projects/deportivo-meta/cover.webp": "assets/img/projects/deportivo-meta/cover-sm.webp",
+    "assets/img/projects/arimena/cover.webp": "assets/img/projects/arimena/cover-sm.webp",
+    "assets/img/projects/komercia/cover.webp": "assets/img/projects/komercia/cover-sm.webp",
+    "assets/img/projects/afiches-eventos/cover.webp": "assets/img/projects/afiches-eventos/cover-sm.webp",
+    "assets/img/projects/nuestro-llano-tv/cover.webp": "assets/img/projects/nuestro-llano-tv/cover-sm.webp",
+    "assets/img/projects/logofolio/cover.webp": "assets/img/projects/logofolio/cover-sm.webp",
+    "assets/img/projects/etiquetas/cover.webp": "assets/img/projects/etiquetas/cover-sm.webp",
+    "assets/img/projects/foto/street-01.webp": "assets/img/projects/foto/street-01-sm.webp",
+    "assets/img/projects/foto/street-02.webp": "assets/img/projects/foto/street-02-sm.webp",
+    "assets/img/projects/foto/street-03.webp": "assets/img/projects/foto/street-03-sm.webp",
+    "assets/img/projects/foto/street-04.webp": "assets/img/projects/foto/street-04-sm.webp",
+    "assets/img/projects/foto/producto-01.webp": "assets/img/projects/foto/producto-01-sm.webp",
+    "assets/img/projects/foto/producto-02.webp": "assets/img/projects/foto/producto-02-sm.webp",
+    "assets/img/projects/foto/producto-03.webp": "assets/img/projects/foto/producto-03-sm.webp",
+    "assets/img/projects/foto/producto-04.webp": "assets/img/projects/foto/producto-04-sm.webp"
   },
   "trash": {
     "enabled": true,

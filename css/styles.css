@@ -124,7 +124,7 @@ body.no-noise .noise { display: none; }
   touch-action: none;
   opacity: 0;
   animation: icon-in 0.6s var(--spring) forwards;
-  animation-delay: calc(var(--i) * 45ms + 150ms);
+  animation-delay: calc(var(--i) * var(--icon-stagger, 0ms) + var(--icons-delay, 150ms));
 }
 @keyframes icon-in { from { opacity: 0; transform: translate(-50%, -40%) scale(0.85); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
 .icon.dragging { z-index: 50; cursor: grabbing; transition: none; }
@@ -163,7 +163,7 @@ body.no-noise .noise { display: none; }
   opacity: 0; transition: opacity 0.6s var(--ease);
   touch-action: none; cursor: grab;
 }
-body.booted .sticky.in { opacity: 1; }
+.sticky.in { opacity: 1; }
 .sticky h2 { margin: 0 0 6px; font-size: 16px; font-weight: var(--head-weight, 700); font-family: var(--font-head, var(--font)); letter-spacing: -0.01em; }
 .sticky p { margin: 0; font-size: 14px; color: var(--ink-2); min-height: 1.3em; }
 .sticky p + p { margin-top: 6px; padding-top: 6px; border-top: 0.5px solid var(--line); font-size: 12.5px; line-height: 1.35; color: var(--muted); }
@@ -844,7 +844,7 @@ html.dark .trash-item:hover { background: rgba(255, 255, 255, 0.07); }
   .notification { transform: translate3d(-115%, 0, 0) rotate(-4deg) scale(0.96); transform-origin: 0% 50%; }
   .notification.show { transform: none; opacity: 1; }
   .sticky { transform: translate3d(115%, 0, 0) rotate(4deg) scale(0.96); transform-origin: 100% 50%; }
-  body.booted .sticky.in { transform: none; opacity: 1; }
+  .sticky.in { transform: none; opacity: 1; }
 }
 @media (max-width: 760px) and (prefers-reduced-motion: reduce) {
   .notification, .sticky { transform: none !important; transition: opacity 0.4s; }
@@ -854,3 +854,20 @@ html.dark .trash-item:hover { background: rgba(255, 255, 255, 0.07); }
 .sticky p.tw { display: grid; }
 .sticky p.tw > span { grid-area: 1 / 1; }
 .sticky p.tw .sizer { visibility: hidden; }
+
+/* Computador: mensaje, recordatorio e íconos suben juntos (resorte suave, desenfoque que se aclara) */
+@media (min-width: 761px) {
+  .icon { animation: icon-rise 1.05s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .icons:not(.go) .icon { animation: none; opacity: 0; }
+  @keyframes icon-rise {
+    from { opacity: 0; transform: translate(-50%, calc(-50% + 34px)) scale(0.94); filter: blur(6px); }
+    60% { filter: blur(0); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: none; }
+  }
+  .notification { transform: translateY(34px) rotate(-2.2deg) scale(0.96); transition: transform 1.05s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease-out; }
+  .notification.show { transform: translateY(0) rotate(-2.2deg) scale(1); }
+  .sticky { transform: translateY(34px) rotate(-1.5deg) scale(0.96); transition: transform 1.05s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease-out; }
+  .sticky.in { transform: rotate(-1.5deg); }
+}
+@media (max-width: 760px) { .icon { --icon-stagger: 45ms; } }
+@media (prefers-reduced-motion: reduce) { .icon { animation-duration: 0.01s; } }
