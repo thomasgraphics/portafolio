@@ -827,3 +827,7 @@ html.dark .trash-item:hover { background: rgba(255, 255, 255, 0.07); }
 .mac-alert p { font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
 .mac-alert .ma-btns { display: flex; gap: 8px; width: 100%; margin-top: 8px; }
 .mac-alert .ma-btns .mac-btn { flex: 1; justify-content: center; }
+
+/* Dedo sostenido sobre carpetas y proyectos (celular) */
+.icon, .sb-item, .tile { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.lp-hold { filter: brightness(0.86); transition: filter 0.45s ease; }

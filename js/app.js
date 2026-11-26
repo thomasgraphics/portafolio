@@ -790,7 +790,8 @@
     if (!info) return;
     const { url, title, text } = info;
     track("open", { id: "share:" + id.replace(":", "-") });
-    if (navigator.share && (isMobile() || matchMedia("(pointer: coarse)").matches)) { navigator.share({ title, text, url }).catch(() => {}); return; }
+    // Botón de compartir en el celular: hoja nativa del teléfono. Clic derecho / dedo sostenido: menú propio.
+    if (!at && navigator.share && (isMobile() || matchMedia("(pointer: coarse)").matches)) { navigator.share({ title, text, url }).catch(() => {}); return; }
     if (sharePop) { closeShare(); if (!at) return; }
     const e = encodeURIComponent;
     const opts = [
@@ -842,19 +843,64 @@
   }, true);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && sharePop) { e.stopImmediatePropagation(); closeShare(); } }, true);
   // Clic derecho sobre una carpeta (escritorio o barra lateral) o sobre un proyecto → menú de compartir
+  const SHARE_TARGETS = '.icon[data-id], .sb-item[data-folder], .tile[data-case]';
+  const shareKeyOf = (el) => {
+    if (el.dataset.folder) return "f:" + el.dataset.folder;
+    if (el.dataset.case) return el.dataset.case;
+    const it = itemById(el.dataset.id);
+    return it && it.type === "folder" && D.folders[it.id] ? "f:" + it.id : null;
+  };
+  let lpAt = 0; // momento en que se abrió el menú con el dedo sostenido
   document.addEventListener("contextmenu", (e) => {
-    const el = e.target.closest && e.target.closest('.icon[data-id], .sb-item[data-folder], .tile[data-case]');
+    const el = e.target.closest && e.target.closest(SHARE_TARGETS);
     if (!el) { closeShare(); return; }
-    let key = null;
-    if (el.dataset.folder) key = "f:" + el.dataset.folder;
-    else if (el.dataset.case) key = el.dataset.case;
-    else { const it = itemById(el.dataset.id); if (it && it.type === "folder" && D.folders[it.id]) key = "f:" + it.id; }
+    const key = shareKeyOf(el);
     if (!key) return;
     e.preventDefault();
+    if (Date.now() - lpAt < 1200 || matchMedia("(pointer: coarse)").matches) return; // en táctil lo maneja el dedo sostenido
     if (el.classList.contains("icon")) select(el);
     closeShare();
     shareCase(key, el, { x: e.clientX, y: e.clientY });
   });
+  // Celular: sostener el dedo ~0,5 s sobre una carpeta o proyecto abre el menú de compartir
+  {
+    let lp = null;
+    const cancel = () => { if (lp) { clearTimeout(lp.timer); lp.el.classList.remove("lp-hold"); lp = null; } };
+    document.addEventListener("touchstart", (e) => {
+      cancel();
+      if (e.touches.length !== 1) return;
+      const el = e.target.closest && e.target.closest(SHARE_TARGETS);
+      if (!el) return;
+      const key = shareKeyOf(el);
+      if (!key) return;
+      const tch = e.touches[0];
+      lp = { el, key, x: tch.clientX, y: tch.clientY, fired: false };
+      el.classList.add("lp-hold");
+      lp.timer = setTimeout(() => {
+        if (!lp) return;
+        lp.fired = true; lpAt = Date.now();
+        lp.el.classList.remove("lp-hold");
+        if (navigator.vibrate) { try { navigator.vibrate(12); } catch {} }
+        if (lp.el.classList.contains("icon")) select(lp.el);
+        closeShare();
+        shareCase(lp.key, lp.el, { x: Math.max(12, lp.x - 125), y: lp.y + 14 });
+      }, 480);
+    }, { passive: true });
+    document.addEventListener("touchmove", (e) => {
+      if (!lp || lp.fired) return;
+      const tch = e.touches[0];
+      if (Math.hypot(tch.clientX - lp.x, tch.clientY - lp.y) > 10) cancel();
+    }, { passive: true });
+    document.addEventListener("touchend", (e) => {
+      if (lp && lp.fired) { if (e.cancelable) e.preventDefault(); lp = null; return; } // que no abra la carpeta al soltar
+      cancel();
+    }, { passive: false });
+    document.addEventListener("touchcancel", cancel, { passive: true });
+    // Si el navegador igual dispara el clic al soltar, se ignora (y no cierra el menú recién abierto)
+    window.addEventListener("click", (e) => {
+      if (Date.now() - lpAt < 700 && !(sharePop && sharePop.contains(e.target))) { e.preventDefault(); e.stopImmediatePropagation(); }
+    }, true);
+  }
   window.addEventListener("resize", closeShare);
 
   // ---------- Prototipos y videos incrustados (se cargan al hacer clic) ----------
