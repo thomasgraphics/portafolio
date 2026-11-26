@@ -20,7 +20,7 @@
   D.cases = D.cases || {}; D.folders = D.folders || {}; D.desktop = D.desktop || [];
   Object.keys(D.cases).forEach((id) => { if (D.cases[id].hidden) delete D.cases[id]; });
   Object.values(D.folders).forEach((f) => { f.items = (f.items || []).filter((it) => !it.hidden && !(it.type === "case" && !D.cases[it.case])); });
-  D.desktop = D.desktop.filter((d) => !d.hidden && !(d.type === "folder" && (!D.folders[d.id] || !D.folders[d.id].items.length)));
+  D.desktop = D.desktop.filter((d) => !d.hidden && !(d.type === "folder" && !D.folders[d.id]));
   D.links = D.links || {};
   // Acepta el correo sin "mailto:" y el WhatsApp solo con el número
   if (D.links.email && !/^mailto:/i.test(D.links.email) && D.links.email.includes("@")) D.links.email = "mailto:" + D.links.email.trim();
@@ -688,10 +688,14 @@
               <p>${esc(t(f.intro))}</p>
               <div class="filters">
                 ${kinds.length > 1 || useCats ? `<div class="seg" role="group">${["all", ...kinds].map((k) => `<button data-filter="${esc(k)}" aria-pressed="${state.filter === k}">${k === "all" ? ui("all") : esc(labels[k])}</button>`).join("")}</div>` : ""}
-                <span class="count">${ui("items", list.length)}</span>
+                ${f.items.length ? `<span class="count">${ui("items", list.length)}</span>` : ""}
               </div>
             </div>
-            <div class="grid">${list.map((it, i) => tile(it, i)).join("")}</div>
+            ${f.items.length ? `<div class="grid">${list.map((it, i) => tile(it, i)).join("")}</div>` : `<div class="folder-empty">
+              <svg viewBox="0 0 64 52" aria-hidden="true"><path d="M4 10a6 6 0 0 1 6-6h14l6 6h24a6 6 0 0 1 6 6v26a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6z" fill="currentColor" opacity=".16"/><path d="M4 18h56v24a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6z" fill="currentColor" opacity=".24"/></svg>
+              <strong>${lang === "es" ? "Muy pronto" : "Coming soon"}</strong>
+              <span>${lang === "es" ? "Estoy preparando los proyectos de esta carpeta." : "I'm preparing the projects for this folder."}</span>
+            </div>`}
           </div>`;
         body.onclick = (e) => {
           const nav = e.target.closest("[data-folder]");

@@ -755,3 +755,9 @@ html.dark .case-talk { background: linear-gradient(135deg, color-mix(in srgb, va
   .tile .cap span { display: none; }
   .tile .badge { top: 7px; right: 7px; font-size: 9.5px; padding: 2px 7px; }
 }
+
+/* Carpeta vacía (aún sin proyectos publicados) */
+.folder-empty { display: grid; place-items: center; align-content: center; gap: 6px; min-height: 320px; padding: 40px 24px; text-align: center; color: var(--muted); }
+.folder-empty svg { width: 84px; height: 68px; color: var(--accent); margin-bottom: 8px; }
+.folder-empty strong { font-size: 17px; color: var(--ink); letter-spacing: -0.01em; }
+.folder-empty span { font-size: 13.5px; max-width: 300px; }
