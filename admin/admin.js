@@ -128,6 +128,8 @@
       set(/(<link rel="canonical" href=")[^"]*(")/, a(base + "/"));
     }
     if (S.shareImage && base) set(/(<meta property="og:image" content=")[^"]*(")/, a(abs(S.shareImage)));
+    if (S.shareImage && base) set(/(<meta name="twitter:image" content=")[^"]*(")/, a(abs(S.shareImage)));
+    if (S.description) set(/(<meta name="twitter:description" content=")[^"]*(")/, a(S.description));
     if (S.favicon) {
       const ext = (S.favicon.split(".").pop() || "").toLowerCase();
       const mime = { svg: "image/svg+xml", png: "image/png", ico: "image/x-icon", webp: "image/webp", jpg: "image/jpeg", jpeg: "image/jpeg" }[ext] || "image/png";
