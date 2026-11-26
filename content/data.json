@@ -371,14 +371,6 @@
         },
         {
           "type": "case",
-          "case": "logofolio",
-          "category": {
-            "es": "Identidad",
-            "en": "Identity"
-          }
-        },
-        {
-          "type": "case",
           "case": "nuestro-llano-tv",
           "category": {
             "es": "Identidad",
@@ -391,6 +383,94 @@
           "category": {
             "es": "Empaques",
             "en": "Packaging"
+          }
+        },
+        {
+          "type": "case",
+          "case": "jugos-carolina",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "apicola-san-angel",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "villavo-al-dia",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "mosso-family-dental",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "omega-seguros",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "macadamia",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "miabox",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "camilo-botero",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "magazin-guayoyo",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "sebastian-cruz",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "dona-jaky",
+          "category": {
+            "es": "Identidad",
+            "en": "Identity"
           }
         }
       ],
@@ -2666,6 +2746,20 @@
             "en": "Product pieces: a store ready in 10 minutes on WhatsApp and an offer for restaurants with an online menu."
           },
           "img": "assets/img/projects/komercia/03.webp"
+        },
+        {
+          "h": {
+            "es": "La marca",
+            "en": "The brand"
+          },
+          "p": {
+            "es": "El logotipo en sus versiones a color, negativo y monocromática, con su paleta y aplicaciones en papelería.",
+            "en": "The logo in full-color, reversed and single-color versions, with its palette and stationery applications."
+          },
+          "img": "assets/img/projects/komercia/marca-versiones.webp"
+        },
+        {
+          "img": "assets/img/projects/komercia/marca-papeleria.webp"
         }
       ],
       "shareImage": "assets/img/share/komercia.jpg"
@@ -2781,60 +2875,23 @@
             "en": "Mic flag, business cards and press vests in red and orange: the brand is recognizable in any outdoor broadcast."
           },
           "img": "assets/img/projects/nuestro-llano-tv/02.webp"
+        },
+        {
+          "h": {
+            "es": "La marca",
+            "en": "The brand"
+          },
+          "p": {
+            "es": "El logotipo en sus versiones a color, negativo y monocromática, con su paleta y aplicaciones en papelería.",
+            "en": "The logo in full-color, reversed and single-color versions, with its palette and stationery applications."
+          },
+          "img": "assets/img/projects/nuestro-llano-tv/marca-versiones.webp"
+        },
+        {
+          "img": "assets/img/projects/nuestro-llano-tv/marca-papeleria.webp"
         }
       ],
       "shareImage": "assets/img/share/nuestro-llano-tv.jpg"
-    },
-    "logofolio": {
-      "title": "Logofolio",
-      "subtitle": {
-        "es": "Identidades para marcas del Llano",
-        "en": "Identities for brands from the Llanos"
-      },
-      "cover": "assets/img/projects/logofolio/cover.webp",
-      "meta": {
-        "client": {
-          "es": "Varios clientes",
-          "en": "Various clients"
-        },
-        "role": {
-          "es": "Diseñador de marca",
-          "en": "Brand designer"
-        },
-        "year": {
-          "es": "Varios años",
-          "en": "Several years"
-        },
-        "tools": "Illustrator"
-      },
-      "tags": [
-        "Branding",
-        {
-          "es": "Logotipos",
-          "en": "Logos"
-        }
-      ],
-      "sections": [
-        {
-          "h": {
-            "es": "Trece marcas, trece personalidades",
-            "en": "Thirteen brands, thirteen personalities"
-          },
-          "p": {
-            "es": "Una selección de logotipos que diseñé para negocios, medios y artistas de la región: Jugos Carolina, Apícola San Ángel, Komercia, Villavo al Día, Mosso Family Dental y Omega Pólizas y Seguros. Cada marca parte de lo que la hace única: una mascota cercana para una juguería, un panal para la miel 100% natural o un omega que protege para una aseguradora.",
-            "en": "A selection of logos I designed for businesses, media and artists in the region: Jugos Carolina, Apícola San Ángel, Komercia, Villavo al Día, Mosso Family Dental and Omega insurance. Each brand starts from what makes it unique: a friendly mascot for a juice shop, a honeycomb for 100% natural honey or a protective omega for an insurer."
-          },
-          "img": "assets/img/projects/logofolio/01.webp"
-        },
-        {
-          "p": {
-            "es": "Nuestro Llano Televisión, Macadamia Sandwich Gourmet, MiaBox, el músico Camilo Botero, Magazín Guayoyo, Sebastián Cruz y Doña Jaky, comidas típicas del Llano.",
-            "en": "Nuestro Llano Televisión, Macadamia Sandwich Gourmet, MiaBox, musician Camilo Botero, Magazín Guayoyo, Sebastián Cruz and Doña Jaky, traditional food from the Llanos."
-          },
-          "img": "assets/img/projects/logofolio/02.webp"
-        }
-      ],
-      "shareImage": "assets/img/share/logofolio.jpg"
     },
     "etiquetas": {
       "title": "Etiquetas y empaques",
@@ -2905,6 +2962,941 @@
         }
       ],
       "shareImage": "assets/img/share/etiquetas.jpg"
+    },
+    "jugos-carolina": {
+      "title": "Jugos Carolina",
+      "subtitle": {
+        "es": "Identidad visual · Juguería",
+        "en": "Visual identity · Juice shop"
+      },
+      "cover": "assets/img/projects/jugos-carolina/cover.webp",
+      "meta": {
+        "client": "Jugos Carolina",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Una juguería que se siente de barrio",
+            "en": "A juice shop that feels like home"
+          },
+          "p": {
+            "es": "Carolina, una niña de gafas y coletas, es la mascota de la marca: cercana, alegre y fácil de recordar. Las hojas y el verde vivo hablan de fruta fresca, y la tipografía redondeada mantiene el tono amable que buscan las familias.",
+            "en": "Carolina, a girl with glasses and pigtails, is the brand mascot: friendly, cheerful and easy to remember. The leaves and vivid green speak of fresh fruit, and the rounded lettering keeps the warm tone families look for."
+          },
+          "img": "assets/img/projects/jugos-carolina/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "Papelería",
+            "en": "Stationery"
+          },
+          "p": {
+            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
+            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
+          },
+          "img": "assets/img/projects/jugos-carolina/02-papeleria.webp"
+        },
+        {
+          "h": {
+            "es": "Para llevar",
+            "en": "To go"
+          },
+          "p": {
+            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
+            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
+          },
+          "img": "assets/img/projects/jugos-carolina/03-merch.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/jugos-carolina/04-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/jugos-carolina/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/jugos-carolina.jpg"
+    },
+    "apicola-san-angel": {
+      "title": "Apícola San Ángel",
+      "subtitle": {
+        "es": "Identidad visual · Miel 100% natural",
+        "en": "Visual identity · 100% natural honey"
+      },
+      "cover": "assets/img/projects/apicola-san-angel/cover.webp",
+      "meta": {
+        "client": "Apícola San Ángel",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Un sello que da confianza",
+            "en": "A seal that builds trust"
+          },
+          "p": {
+            "es": "Para una miel 100% natural, la marca tenía que transmitir pureza y origen. Un sello negro con borde dorado enmarca un panal y una abeja, como las etiquetas de productos artesanales que pasan de generación en generación. La misma identidad vive en su etiqueta (ver «Etiquetas y empaques»).",
+            "en": "For 100% natural honey, the brand had to convey purity and origin. A black seal with a gold edge frames a honeycomb and a bee, like the labels of artisan products passed down through generations. The same identity lives on its label (see “Labels and packaging”)."
+          },
+          "img": "assets/img/projects/apicola-san-angel/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "Papelería",
+            "en": "Stationery"
+          },
+          "p": {
+            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
+            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
+          },
+          "img": "assets/img/projects/apicola-san-angel/02-papeleria.webp"
+        },
+        {
+          "h": {
+            "es": "Para llevar",
+            "en": "To go"
+          },
+          "p": {
+            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
+            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
+          },
+          "img": "assets/img/projects/apicola-san-angel/03-merch.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/apicola-san-angel/04-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/apicola-san-angel/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/apicola-san-angel.jpg"
+    },
+    "villavo-al-dia": {
+      "title": "Villavo al Día",
+      "subtitle": {
+        "es": "Identidad visual · Medio de noticias",
+        "en": "Visual identity · News outlet"
+      },
+      "cover": "assets/img/projects/villavo-al-dia/cover.webp",
+      "meta": {
+        "client": "Villavo al Día",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Noticias con movimiento",
+            "en": "News in motion"
+          },
+          "p": {
+            "es": "Un medio digital de Villavicencio necesitaba una marca que funcionara sobre todo en pantalla. Tres trazos de color forman una V que se lee como un destello o una señal que se transmite, y la tipografía pesada y compacta se mantiene legible incluso como foto de perfil.",
+            "en": "A digital news outlet from Villavicencio needed a brand that works mostly on screens. Three colored strokes form a V that reads like a flash or a broadcast signal, and the heavy, compact type stays legible even as a profile picture."
+          },
+          "img": "assets/img/projects/villavo-al-dia/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/villavo-al-dia/02-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Papelería",
+            "en": "Stationery"
+          },
+          "p": {
+            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
+            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
+          },
+          "img": "assets/img/projects/villavo-al-dia/03-papeleria.webp"
+        },
+        {
+          "h": {
+            "es": "La marca en el espacio",
+            "en": "The brand in space"
+          },
+          "p": {
+            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
+            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
+          },
+          "img": "assets/img/projects/villavo-al-dia/04-aviso.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/villavo-al-dia/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/villavo-al-dia.jpg"
+    },
+    "mosso-family-dental": {
+      "title": "Mosso Family Dental",
+      "subtitle": {
+        "es": "Identidad visual · Clínica odontológica",
+        "en": "Visual identity · Dental clinic"
+      },
+      "cover": "assets/img/projects/mosso-family-dental/cover.webp",
+      "meta": {
+        "client": "Mosso Family Dental",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Odontología con calidez premium",
+            "en": "Dentistry with premium warmth"
+          },
+          "p": {
+            "es": "La M del logotipo dibuja un diente en un solo trazo caligráfico. El dorado y la tipografía fina la alejan del azul clínico de siempre y la acercan a una experiencia más cálida y de confianza, pensada para toda la familia.",
+            "en": "The M in the logotype draws a tooth in a single calligraphic stroke. The gold and the fine type move it away from the usual clinical blue and toward a warmer, more trustworthy experience designed for the whole family."
+          },
+          "img": "assets/img/projects/mosso-family-dental/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "Papelería",
+            "en": "Stationery"
+          },
+          "p": {
+            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
+            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
+          },
+          "img": "assets/img/projects/mosso-family-dental/02-papeleria.webp"
+        },
+        {
+          "h": {
+            "es": "La marca en el espacio",
+            "en": "The brand in space"
+          },
+          "p": {
+            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
+            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
+          },
+          "img": "assets/img/projects/mosso-family-dental/03-aviso.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/mosso-family-dental/04-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/mosso-family-dental/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/mosso-family-dental.jpg"
+    },
+    "omega-seguros": {
+      "title": "Omega Pólizas y Seguros",
+      "subtitle": {
+        "es": "Identidad visual · Aseguradora",
+        "en": "Visual identity · Insurance"
+      },
+      "cover": "assets/img/projects/omega-seguros/cover.webp",
+      "meta": {
+        "client": "Omega Pólizas y Seguros",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Protección para todos",
+            "en": "Protection for everyone"
+          },
+          "p": {
+            "es": "La omega funciona como un techo que cubre, y su forma de arco remite a protección. El rojo da energía y cercanía a un sector que suele verse frío, y el «¡Para Todos!» escrito a mano cierra la promesa de la marca.",
+            "en": "The omega works as a roof that covers, and its arch shape suggests protection. Red brings energy and warmth to a sector that often feels cold, and the handwritten “¡Para Todos!” closes the brand promise."
+          },
+          "img": "assets/img/projects/omega-seguros/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "Papelería",
+            "en": "Stationery"
+          },
+          "p": {
+            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
+            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
+          },
+          "img": "assets/img/projects/omega-seguros/02-papeleria.webp"
+        },
+        {
+          "h": {
+            "es": "La marca en el espacio",
+            "en": "The brand in space"
+          },
+          "p": {
+            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
+            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
+          },
+          "img": "assets/img/projects/omega-seguros/03-aviso.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/omega-seguros/04-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/omega-seguros/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/omega-seguros.jpg"
+    },
+    "macadamia": {
+      "title": "Macadamia Sandwich Gourmet",
+      "subtitle": {
+        "es": "Identidad visual · Sándwiches gourmet",
+        "en": "Visual identity · Gourmet sandwiches"
+      },
+      "cover": "assets/img/projects/macadamia/cover.webp",
+      "meta": {
+        "client": "Macadamia Sandwich Gourmet",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Un sándwich digno de la realeza",
+            "en": "A sandwich fit for royalty"
+          },
+          "p": {
+            "es": "Una corona sobre un cojín rojo convierte al sándwich en algo gourmet, con un tono divertido. El emblema circular y la cinta con el nombre funcionan como un sello de calidad en empaques, menú y fachada.",
+            "en": "A crown on a red cushion turns the sandwich into something gourmet, with a playful tone. The circular emblem and the name ribbon work as a quality seal on packaging, menus and the storefront."
+          },
+          "img": "assets/img/projects/macadamia/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "Para llevar",
+            "en": "To go"
+          },
+          "p": {
+            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
+            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
+          },
+          "img": "assets/img/projects/macadamia/02-merch.webp"
+        },
+        {
+          "h": {
+            "es": "La marca en el espacio",
+            "en": "The brand in space"
+          },
+          "p": {
+            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
+            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
+          },
+          "img": "assets/img/projects/macadamia/03-aviso.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/macadamia/04-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/macadamia/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/macadamia.jpg"
+    },
+    "miabox": {
+      "title": "MiaBox",
+      "subtitle": {
+        "es": "Identidad visual · Envíos internacionales",
+        "en": "Visual identity · International shipping"
+      },
+      "cover": "assets/img/projects/miabox/cover.webp",
+      "meta": {
+        "client": "MiaBox",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Del mundo a tu casa",
+            "en": "From the world to your door"
+          },
+          "p": {
+            "es": "Para un servicio de casillero y envíos desde Miami, el avión que despega sobre el nombre resume la promesa: rapidez y alcance internacional. El azul da confianza y el rojo de «BOX» señala el paquete que llega.",
+            "en": "For a Miami mailbox and shipping service, the plane taking off over the name sums up the promise: speed and international reach. Blue conveys trust and the red “BOX” points to the package that arrives."
+          },
+          "img": "assets/img/projects/miabox/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "Papelería",
+            "en": "Stationery"
+          },
+          "p": {
+            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
+            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
+          },
+          "img": "assets/img/projects/miabox/02-papeleria.webp"
+        },
+        {
+          "h": {
+            "es": "La marca en el espacio",
+            "en": "The brand in space"
+          },
+          "p": {
+            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
+            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
+          },
+          "img": "assets/img/projects/miabox/03-aviso.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/miabox/04-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/miabox/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/miabox.jpg"
+    },
+    "camilo-botero": {
+      "title": "Camilo Botero",
+      "subtitle": {
+        "es": "Marca personal · Músico",
+        "en": "Personal brand · Musician"
+      },
+      "cover": "assets/img/projects/camilo-botero/cover.webp",
+      "meta": {
+        "client": "Camilo Botero",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Una firma con ritmo",
+            "en": "A signature with rhythm"
+          },
+          "p": {
+            "es": "Para el músico de Villavicencio diseñé un lettering a mano con letras que rebotan y se apilan, como su música: fresca, cercana y con mucha personalidad. Funciona en afiches, redes y merch, y lo usamos en sus presentaciones en vivo (ver «Afiches para artistas y eventos»).",
+            "en": "For this Villavicencio musician I designed hand lettering that bounces and stacks, like his music: fresh, warm and full of personality. It works on posters, social media and merch, and we used it for his live shows (see “Posters for artists and events”)."
+          },
+          "img": "assets/img/projects/camilo-botero/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "Para llevar",
+            "en": "To go"
+          },
+          "p": {
+            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
+            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
+          },
+          "img": "assets/img/projects/camilo-botero/02-merch.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/camilo-botero/03-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Papelería",
+            "en": "Stationery"
+          },
+          "p": {
+            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
+            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
+          },
+          "img": "assets/img/projects/camilo-botero/04-papeleria.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/camilo-botero/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/camilo-botero.jpg"
+    },
+    "magazin-guayoyo": {
+      "title": "Magazín Guayoyo",
+      "subtitle": {
+        "es": "Identidad visual · Programa magazín",
+        "en": "Visual identity · Magazine show"
+      },
+      "cover": "assets/img/projects/magazin-guayoyo/cover.webp",
+      "meta": {
+        "client": "Magazín Guayoyo",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Conversación con sabor a café",
+            "en": "Conversation that tastes like coffee"
+          },
+          "p": {
+            "es": "El guayoyo es el café suave que acompaña la conversación de la mañana. Por eso el logo mezcla bloques de color como un set de televisión, una tipografía juguetona y una taza humeante: un programa ligero, variado y para toda la familia.",
+            "en": "A guayoyo is the mild coffee that goes with morning conversation. That is why the logo mixes color blocks like a TV set, playful lettering and a steaming cup: a light, varied show for the whole family."
+          },
+          "img": "assets/img/projects/magazin-guayoyo/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/magazin-guayoyo/02-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Para llevar",
+            "en": "To go"
+          },
+          "p": {
+            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
+            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
+          },
+          "img": "assets/img/projects/magazin-guayoyo/03-merch.webp"
+        },
+        {
+          "h": {
+            "es": "Papelería",
+            "en": "Stationery"
+          },
+          "p": {
+            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
+            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
+          },
+          "img": "assets/img/projects/magazin-guayoyo/04-papeleria.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/magazin-guayoyo/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/magazin-guayoyo.jpg"
+    },
+    "sebastian-cruz": {
+      "title": "Sebastián Cruz",
+      "subtitle": {
+        "es": "Marca personal · Monograma",
+        "en": "Personal brand · Monogram"
+      },
+      "cover": "assets/img/projects/sebastian-cruz/cover.webp",
+      "meta": {
+        "client": "Sebastián Cruz",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Elegancia en dos letras",
+            "en": "Elegance in two letters"
+          },
+          "p": {
+            "es": "Un monograma que entrelaza la S y la C en un solo trazo, con el nombre completo en mayúsculas espaciadas debajo. Una marca personal sobria y elegante que se ve bien grabada, impresa o como foto de perfil.",
+            "en": "A monogram that intertwines the S and the C in a single stroke, with the full name in widely spaced capitals below. A sober, elegant personal brand that looks good engraved, printed or as a profile picture."
+          },
+          "img": "assets/img/projects/sebastian-cruz/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "Papelería",
+            "en": "Stationery"
+          },
+          "p": {
+            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
+            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
+          },
+          "img": "assets/img/projects/sebastian-cruz/02-papeleria.webp"
+        },
+        {
+          "h": {
+            "es": "Para llevar",
+            "en": "To go"
+          },
+          "p": {
+            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
+            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
+          },
+          "img": "assets/img/projects/sebastian-cruz/03-merch.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/sebastian-cruz/04-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/sebastian-cruz/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/sebastian-cruz.jpg"
+    },
+    "dona-jaky": {
+      "title": "Doña Jaky",
+      "subtitle": {
+        "es": "Identidad visual · Comidas típicas del Llano",
+        "en": "Visual identity · Traditional food from the Llanos"
+      },
+      "cover": "assets/img/projects/dona-jaky/cover.webp",
+      "meta": {
+        "client": "Doña Jaky",
+        "role": {
+          "es": "Diseñador de marca",
+          "en": "Brand designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Identidad visual",
+          "en": "Visual identity"
+        },
+        {
+          "es": "Logotipo",
+          "en": "Logo"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "La sazón tiene cara",
+            "en": "Flavor with a face"
+          },
+          "p": {
+            "es": "La marca es la propia Doña Jaky: un retrato ilustrado con flor en el cabello, sonrisa y blusa típica, enmarcado en un círculo como un sello de la casa. Un vino tinto profundo y una tipografía manuscrita transmiten tradición, hogar y sabor llanero.",
+            "en": "The brand is Doña Jaky herself: an illustrated portrait with a flower in her hair, a smile and a traditional blouse, framed in a circle like a house seal. A deep wine red and handwritten lettering convey tradition, home and the flavor of the Llanos."
+          },
+          "img": "assets/img/projects/dona-jaky/01-hero.webp"
+        },
+        {
+          "h": {
+            "es": "Para llevar",
+            "en": "To go"
+          },
+          "p": {
+            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
+            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
+          },
+          "img": "assets/img/projects/dona-jaky/02-merch.webp"
+        },
+        {
+          "h": {
+            "es": "La marca en el espacio",
+            "en": "The brand in space"
+          },
+          "p": {
+            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
+            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
+          },
+          "img": "assets/img/projects/dona-jaky/03-aviso.webp"
+        },
+        {
+          "h": {
+            "es": "En redes",
+            "en": "On social"
+          },
+          "p": {
+            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
+            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
+          },
+          "img": "assets/img/projects/dona-jaky/04-redes.webp"
+        },
+        {
+          "h": {
+            "es": "Versiones y color",
+            "en": "Versions and color"
+          },
+          "p": {
+            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
+            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+          },
+          "img": "assets/img/projects/dona-jaky/05-versiones.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/dona-jaky.jpg"
     }
   },
   "about": {
@@ -3009,7 +4001,6 @@
     "assets/img/projects/komercia/cover.webp": "assets/img/projects/komercia/cover-sm.webp",
     "assets/img/projects/afiches-eventos/cover.webp": "assets/img/projects/afiches-eventos/cover-sm.webp",
     "assets/img/projects/nuestro-llano-tv/cover.webp": "assets/img/projects/nuestro-llano-tv/cover-sm.webp",
-    "assets/img/projects/logofolio/cover.webp": "assets/img/projects/logofolio/cover-sm.webp",
     "assets/img/projects/etiquetas/cover.webp": "assets/img/projects/etiquetas/cover-sm.webp",
     "assets/img/projects/foto/street-01.webp": "assets/img/projects/foto/street-01-sm.webp",
     "assets/img/projects/foto/street-02.webp": "assets/img/projects/foto/street-02-sm.webp",
@@ -3018,7 +4009,18 @@
     "assets/img/projects/foto/producto-01.webp": "assets/img/projects/foto/producto-01-sm.webp",
     "assets/img/projects/foto/producto-02.webp": "assets/img/projects/foto/producto-02-sm.webp",
     "assets/img/projects/foto/producto-03.webp": "assets/img/projects/foto/producto-03-sm.webp",
-    "assets/img/projects/foto/producto-04.webp": "assets/img/projects/foto/producto-04-sm.webp"
+    "assets/img/projects/foto/producto-04.webp": "assets/img/projects/foto/producto-04-sm.webp",
+    "assets/img/projects/jugos-carolina/cover.webp": "assets/img/projects/jugos-carolina/cover-sm.webp",
+    "assets/img/projects/apicola-san-angel/cover.webp": "assets/img/projects/apicola-san-angel/cover-sm.webp",
+    "assets/img/projects/villavo-al-dia/cover.webp": "assets/img/projects/villavo-al-dia/cover-sm.webp",
+    "assets/img/projects/mosso-family-dental/cover.webp": "assets/img/projects/mosso-family-dental/cover-sm.webp",
+    "assets/img/projects/omega-seguros/cover.webp": "assets/img/projects/omega-seguros/cover-sm.webp",
+    "assets/img/projects/macadamia/cover.webp": "assets/img/projects/macadamia/cover-sm.webp",
+    "assets/img/projects/miabox/cover.webp": "assets/img/projects/miabox/cover-sm.webp",
+    "assets/img/projects/camilo-botero/cover.webp": "assets/img/projects/camilo-botero/cover-sm.webp",
+    "assets/img/projects/magazin-guayoyo/cover.webp": "assets/img/projects/magazin-guayoyo/cover-sm.webp",
+    "assets/img/projects/sebastian-cruz/cover.webp": "assets/img/projects/sebastian-cruz/cover-sm.webp",
+    "assets/img/projects/dona-jaky/cover.webp": "assets/img/projects/dona-jaky/cover-sm.webp"
   },
   "trash": {
     "enabled": true,
