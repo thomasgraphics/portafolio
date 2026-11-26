@@ -7,7 +7,7 @@
   },
   "location": "Bogotá, Colombia",
   "defaultLang": "es",
-  "wallpaper": "assets/img/wallpaper.jpg",
+  "wallpaper": "assets/img/wallpaper.webp",
   "wallpaperMobile": "",
   "seo": {
     "siteUrl": "https://www.thomgraphics.com",
@@ -30,26 +30,26 @@
     "email": "thomasfelipeh20@gmail.com"
   },
   "dockIcons": {
-    "whatsapp": "assets/icons/dock-whatsapp.png",
-    "email": "assets/icons/dock-email.png",
-    "linkedin": "assets/icons/dock-linkedin.png",
-    "instagram": "assets/icons/dock-instagram.png"
+    "whatsapp": "assets/icons/dock-whatsapp.webp",
+    "email": "assets/icons/dock-email.webp",
+    "linkedin": "assets/icons/dock-linkedin.webp",
+    "instagram": "assets/icons/dock-instagram.webp"
   },
   "intro": [
     {
-      "src": "assets/img/intro/intro-1.jpg",
+      "src": "assets/img/intro/intro-1.webp",
       "name": "IMG_2041.jpg"
     },
     {
-      "src": "assets/img/intro/intro-2.jpg",
+      "src": "assets/img/intro/intro-2.webp",
       "name": "IMG_2077.jpg"
     },
     {
-      "src": "assets/img/intro/intro-3.jpg",
+      "src": "assets/img/intro/intro-3.webp",
       "name": "IMG_2113.jpg"
     },
     {
-      "src": "assets/img/intro/intro-4.jpg",
+      "src": "assets/img/intro/intro-4.webp",
       "name": "IMG_2190.jpg"
     }
   ],
@@ -175,9 +175,9 @@
         "en": "Meet me in 45s.mp4"
       },
       "src": "assets/video/conoceme.mp4",
-      "poster": "assets/img/conoceme-poster.jpg",
+      "poster": "assets/img/conoceme-poster.webp",
       "srcMobile": "assets/video/conoceme-vertical.mp4",
-      "posterMobile": "assets/img/conoceme-poster-vertical.jpg"
+      "posterMobile": "assets/img/conoceme-poster-vertical.webp"
     },
     {
       "id": "me1",
@@ -188,7 +188,7 @@
         "es": "IMG_0418.jpg",
         "en": "IMG_0418.jpg"
       },
-      "src": "assets/img/me-01.jpg"
+      "src": "assets/img/me-01.webp"
     },
     {
       "id": "me2",
@@ -199,7 +199,7 @@
         "es": "IMG_0552.jpg",
         "en": "IMG_0552.jpg"
       },
-      "src": "assets/img/me-02.jpg"
+      "src": "assets/img/me-02.webp"
     }
   ],
   "folders": {
@@ -371,14 +371,6 @@
       },
       "items": [
         {
-          "type": "video",
-          "src": "assets/video/conoceme.mp4",
-          "poster": "assets/img/conoceme-poster.jpg",
-          "title": "Conóceme en 45s",
-          "srcMobile": "assets/video/conoceme-vertical.mp4",
-          "posterMobile": "assets/img/conoceme-poster-vertical.jpg"
-        },
-        {
           "type": "case",
           "case": "sumer"
         },
@@ -387,26 +379,8 @@
           "case": "tipsco"
         },
         {
-          "type": "video",
-          "src": "assets/video/tipsco-spot.mp4",
-          "poster": "assets/img/projects/tipsco/poster-spot.jpg",
-          "title": {
-            "es": "Tipsco · Spot",
-            "en": "Tipsco · Spot"
-          }
-        },
-        {
-          "type": "video",
-          "src": "assets/video/tipsco-explicativo.mp4",
-          "poster": "assets/img/projects/tipsco/poster-explicativo.jpg",
-          "title": {
-            "es": "Tipsco · Video explicativo",
-            "en": "Tipsco · Explainer"
-          }
-        },
-        {
           "type": "image",
-          "src": "assets/img/projects/motion/motion-02.jpg",
+          "src": "assets/img/projects/motion/motion-02.webp",
           "title": {
             "es": "Animación 2D",
             "en": "2D animation"
@@ -414,7 +388,7 @@
         },
         {
           "type": "image",
-          "src": "assets/img/projects/motion/motion-03.jpg",
+          "src": "assets/img/projects/motion/motion-03.webp",
           "title": {
             "es": "Motion para redes",
             "en": "Social motion"
@@ -434,7 +408,7 @@
       "items": [
         {
           "type": "image",
-          "src": "assets/img/projects/foto/foto-01.jpg",
+          "src": "assets/img/projects/foto/foto-01.webp",
           "title": {
             "es": "Fotografía 1",
             "en": "Photo 1"
@@ -442,7 +416,7 @@
         },
         {
           "type": "image",
-          "src": "assets/img/projects/foto/foto-02.jpg",
+          "src": "assets/img/projects/foto/foto-02.webp",
           "title": {
             "es": "Fotografía 2",
             "en": "Photo 2"
@@ -450,7 +424,7 @@
         },
         {
           "type": "image",
-          "src": "assets/img/projects/foto/foto-03.jpg",
+          "src": "assets/img/projects/foto/foto-03.webp",
           "title": {
             "es": "Fotografía 3",
             "en": "Photo 3"
@@ -458,7 +432,7 @@
         },
         {
           "type": "image",
-          "src": "assets/img/projects/foto/foto-04.jpg",
+          "src": "assets/img/projects/foto/foto-04.webp",
           "title": {
             "es": "Fotografía 4",
             "en": "Photo 4"
@@ -466,7 +440,7 @@
         },
         {
           "type": "image",
-          "src": "assets/img/projects/foto/foto-05.jpg",
+          "src": "assets/img/projects/foto/foto-05.webp",
           "title": {
             "es": "Fotografía 5",
             "en": "Photo 5"
@@ -474,7 +448,7 @@
         },
         {
           "type": "image",
-          "src": "assets/img/projects/foto/foto-06.jpg",
+          "src": "assets/img/projects/foto/foto-06.webp",
           "title": {
             "es": "Fotografía 6",
             "en": "Photo 6"
@@ -494,32 +468,32 @@
       "items": [
         {
           "type": "image",
-          "src": "assets/img/projects/social/post-01.jpg",
+          "src": "assets/img/projects/social/post-01.webp",
           "title": "Post 1"
         },
         {
           "type": "image",
-          "src": "assets/img/projects/social/post-02.jpg",
+          "src": "assets/img/projects/social/post-02.webp",
           "title": "Post 2"
         },
         {
           "type": "image",
-          "src": "assets/img/projects/social/post-03.jpg",
+          "src": "assets/img/projects/social/post-03.webp",
           "title": "Post 3"
         },
         {
           "type": "image",
-          "src": "assets/img/projects/social/post-04.jpg",
+          "src": "assets/img/projects/social/post-04.webp",
           "title": "Post 4"
         },
         {
           "type": "image",
-          "src": "assets/img/projects/social/post-05.jpg",
+          "src": "assets/img/projects/social/post-05.webp",
           "title": "Post 5"
         },
         {
           "type": "image",
-          "src": "assets/img/projects/social/post-06.jpg",
+          "src": "assets/img/projects/social/post-06.webp",
           "title": "Post 6"
         }
       ]
@@ -532,7 +506,7 @@
         "es": "Rediseño de app de monitoreo GPS",
         "en": "GPS monitoring app redesign"
       },
-      "cover": "assets/img/projects/hunter-track/cover.jpg",
+      "cover": "assets/img/projects/hunter-track/cover.webp",
       "meta": {
         "client": {
           "es": "Cliente en República Dominicana",
@@ -570,7 +544,7 @@
             "es": "Auditoría de la app actual, mapeo de flujos críticos (ubicar, alertar, reportar), wireframes, design system con tokens y prototipo interactivo en Figma.",
             "en": "Audit of the current app, mapping of critical flows (locate, alert, report), wireframes, a token-based design system and an interactive Figma prototype."
           },
-          "img": "assets/img/projects/hunter-track/01.jpg"
+          "img": "assets/img/projects/hunter-track/01.webp"
         },
         {
           "h": {
@@ -581,7 +555,7 @@
             "es": "[TODO: 2–3 decisiones de diseño y por qué las tomaste.]",
             "en": "[TODO: 2–3 design decisions and why.]"
           },
-          "img": "assets/img/projects/hunter-track/02.jpg"
+          "img": "assets/img/projects/hunter-track/02.webp"
         },
         {
           "h": {
@@ -592,7 +566,7 @@
             "es": "[TODO: métricas o impacto: tiempos de tarea, satisfacción, adopción.]",
             "en": "[TODO: metrics or impact.]"
           },
-          "img": "assets/img/projects/hunter-track/03.jpg"
+          "img": "assets/img/projects/hunter-track/03.webp"
         }
       ]
     },
@@ -602,7 +576,7 @@
         "es": "Rediseño de landing page",
         "en": "Landing page redesign"
       },
-      "cover": "assets/img/projects/fergo/cover.jpg",
+      "cover": "assets/img/projects/fergo/cover.webp",
       "meta": {
         "client": {
           "es": "Ingeniería y andamios · Villavicencio",
@@ -630,7 +604,7 @@
             "es": "Rediseño completo de la landing en Figma: mini design system, diseño responsive, renders fotorrealistas generados con IA a partir de planos técnicos, prototipo interactivo y handoff técnico.",
             "en": "Full landing redesign in Figma: mini design system, responsive design, photorealistic AI renders generated from technical blueprints, interactive prototype and technical handoff."
           },
-          "img": "assets/img/projects/fergo/01.jpg"
+          "img": "assets/img/projects/fergo/01.webp"
         },
         {
           "h": {
@@ -641,7 +615,7 @@
             "es": "Los planos técnicos se convirtieron en renders fotorrealistas para mostrar las soluciones de la empresa sin depender de sesiones fotográficas.",
             "en": "Technical blueprints were turned into photorealistic renders to showcase the company's solutions without relying on photo shoots."
           },
-          "img": "assets/img/projects/fergo/02.jpg"
+          "img": "assets/img/projects/fergo/02.webp"
         }
       ]
     },
@@ -651,7 +625,7 @@
         "es": "Branding gastronómico",
         "en": "Gastronomic branding"
       },
-      "cover": "assets/img/projects/monchef/cover.jpg",
+      "cover": "assets/img/projects/monchef/cover.webp",
       "meta": {
         "client": "Monchef",
         "role": {
@@ -678,7 +652,7 @@
             "es": "[TODO: idea central de la marca.]",
             "en": "[TODO: core brand idea.]"
           },
-          "img": "assets/img/projects/monchef/01.jpg"
+          "img": "assets/img/projects/monchef/01.webp"
         },
         {
           "h": {
@@ -689,7 +663,7 @@
             "es": "[TODO]",
             "en": "[TODO]"
           },
-          "img": "assets/img/projects/monchef/02.jpg"
+          "img": "assets/img/projects/monchef/02.webp"
         },
         {
           "h": {
@@ -700,7 +674,7 @@
             "es": "[TODO]",
             "en": "[TODO]"
           },
-          "img": "assets/img/projects/monchef/03.jpg"
+          "img": "assets/img/projects/monchef/03.webp"
         }
       ]
     },
@@ -710,7 +684,7 @@
         "es": "Renovación del manual de marca",
         "en": "Brand guidelines renewal"
       },
-      "cover": "assets/img/projects/nas-cellano/cover.jpg",
+      "cover": "assets/img/projects/nas-cellano/cover.webp",
       "meta": {
         "client": "NAS · Cellano",
         "role": {
@@ -737,7 +711,7 @@
             "es": "Elementos de identidad, tipografía, paletas de color, imagen, plantillas para redes sociales y aplicaciones de marca.",
             "en": "Identity elements, typography, color palettes, imagery, social media templates and branded applications."
           },
-          "img": "assets/img/projects/nas-cellano/01.jpg"
+          "img": "assets/img/projects/nas-cellano/01.webp"
         },
         {
           "h": {
@@ -748,7 +722,7 @@
             "es": "Una paleta secundaria con concepto global, con tonos rojos, en lugar de una estética regional.",
             "en": "A secondary palette built around a global concept with red tones, rather than a regional aesthetic."
           },
-          "img": "assets/img/projects/nas-cellano/02.jpg"
+          "img": "assets/img/projects/nas-cellano/02.webp"
         },
         {
           "h": {
@@ -759,7 +733,7 @@
             "es": "[TODO]",
             "en": "[TODO]"
           },
-          "img": "assets/img/projects/nas-cellano/03.jpg"
+          "img": "assets/img/projects/nas-cellano/03.webp"
         }
       ]
     },
@@ -769,7 +743,7 @@
         "es": "Logo y mascota",
         "en": "Logo & mascot"
       },
-      "cover": "assets/img/projects/emsa/cover.jpg",
+      "cover": "assets/img/projects/emsa/cover.webp",
       "meta": {
         "client": "EMSA",
         "role": {
@@ -799,7 +773,7 @@
             "es": "Crear la identidad de las olimpiadas bajo el lema «Superando Barreras, Iluminando Caminos», respetando la línea gráfica de EMSA.",
             "en": "Create the games' identity under the motto “Superando Barreras, Iluminando Caminos” while respecting EMSA's brand guidelines."
           },
-          "img": "assets/img/projects/emsa/01.jpg"
+          "img": "assets/img/projects/emsa/01.webp"
         },
         {
           "h": {
@@ -810,7 +784,7 @@
             "es": "[TODO]",
             "en": "[TODO]"
           },
-          "img": "assets/img/projects/emsa/02.jpg"
+          "img": "assets/img/projects/emsa/02.webp"
         }
       ]
     },
@@ -820,7 +794,7 @@
         "es": "Investigación · patrimonio y memoria urbana",
         "en": "Research · heritage and urban memory"
       },
-      "cover": "assets/img/projects/tesis/cover.jpg",
+      "cover": "assets/img/projects/tesis/cover.webp",
       "meta": {
         "client": {
           "es": "Proyecto académico",
@@ -850,7 +824,7 @@
             "es": "Tesis sobre el patrimonio arquitectónico y la memoria urbana de Villavicencio. [TODO: amplía el enfoque y el resultado.]",
             "en": "Thesis on the architectural heritage and urban memory of Villavicencio. [TODO]"
           },
-          "img": "assets/img/projects/tesis/01.jpg"
+          "img": "assets/img/projects/tesis/01.webp"
         },
         {
           "h": {
@@ -861,7 +835,7 @@
             "es": "[TODO]",
             "en": "[TODO]"
           },
-          "img": "assets/img/projects/tesis/02.jpg"
+          "img": "assets/img/projects/tesis/02.webp"
         }
       ]
     },
@@ -882,7 +856,7 @@
           "en": "View interactive manual"
         }
       },
-      "cover": "assets/img/projects/mina-nm/cover.jpg",
+      "cover": "assets/img/projects/mina-nm/cover.webp",
       "meta": {
         "client": {
           "es": "Mina NM Agregados Pétreos",
@@ -914,7 +888,7 @@
             "es": "Un manual en PDF se descarga una vez, se desactualiza y obliga a pedir los logos cada vez que alguien los necesita. Mina NM necesitaba lo contrario: una herramienta de uso diario. Por eso el brandbook es un sitio web de 21 láminas que se abre con un enlace, funciona en computador y celular, y permite probar, copiar y descargar la marca en el mismo lugar donde se explica cómo usarla. Menos errores de aplicación, cero archivos perdidos y una sola versión vigente (V 1.0 · 2026).",
             "en": "A PDF manual gets downloaded once, goes out of date and forces people to ask for the logos every time. Mina NM needed the opposite: an everyday tool. So the brandbook is a 21-slide website that opens from a single link, works on desktop and mobile, and lets anyone test, copy and download the brand in the same place where its rules are explained. Fewer application errors, no lost files and one current version (V 1.0 · 2026)."
           },
-          "img": "assets/img/projects/mina-nm/cover.jpg"
+          "img": "assets/img/projects/mina-nm/cover.webp"
         },
         {
           "h": {
@@ -925,7 +899,7 @@
             "es": "Mina NM Agregados Pétreos es una marca pensada para transmitir fortaleza, confianza y capacidad operativa. El símbolo integra las letras N y M en una estructura geométrica compacta: sus diagonales y encuentros remiten a estructura, movimiento, extracción y construcción. La portada lo presenta hecho de grano: el visitante mueve el cursor y, con un clic, lo dispersa.",
             "en": "Mina NM Aggregates is a brand built to convey strength, trust and operational capacity. The symbol merges the letters N and M into a compact geometric structure whose diagonals evoke structure, movement, extraction and construction. The cover renders it in grain: visitors move the cursor and scatter it with a click."
           },
-          "img": "assets/img/projects/mina-nm/02-construccion.jpg"
+          "img": "assets/img/projects/mina-nm/02-construccion.webp"
         },
         {
           "h": {
@@ -936,7 +910,7 @@
             "es": "El imagotipo se construye como se extrae el material: el grano cae, el símbolo emerge pieza por pieza y el nombre se asienta con peso. Son 96 cuadros a 24 fps animados en dos (12 dibujos por segundo, 4 s en bucle). El reproductor permite pausar, avanzar cuadro a cuadro, cambiar entre 5 fondos y descargar el MP4 en 16:9 o 9:16, o los 10 videos en un ZIP.",
             "en": "The logo builds the way the material is extracted: grain falls, the symbol emerges piece by piece and the name settles with weight. 96 frames at 24 fps animated on twos (12 drawings per second, 4 s loop). The player lets you pause, step frame by frame, switch between 5 backgrounds and download the MP4 in 16:9 or 9:16, or all 10 videos as a ZIP."
           },
-          "img": "assets/img/projects/mina-nm/01-logo-animado.jpg"
+          "img": "assets/img/projects/mina-nm/01-logo-animado.webp"
         },
         {
           "h": {
@@ -947,7 +921,7 @@
             "es": "En lugar de solo describir las reglas, el manual deja experimentarlas: alternar entre la construcción geométrica y el sólido, ver el área de protección basada en la unidad X y mover un control deslizante para comprobar en vivo en qué tamaño el imagotipo, la versión simplificada o el isotipo siguen siendo legibles.",
             "en": "Instead of just describing the rules, the manual lets you experience them: toggle between the geometric construction and the solid mark, see the clear space based on unit X, and drag a slider to check live at what size the full logo, the simplified version or the symbol remain legible."
           },
-          "img": "assets/img/projects/mina-nm/03-tamano.jpg"
+          "img": "assets/img/projects/mina-nm/03-tamano.webp"
         },
         {
           "h": {
@@ -958,7 +932,7 @@
             "es": "Cada color se copia con un clic: Ocre #F39D25, Café oscuro #412615, Negro #0C0C0C y Blanco hueso #F5F2E8, cada uno con su significado. Las tipografías ALT Gumbo (titulares) y Montserrat (textos) tienen un probador para escribir cualquier frase y ver todos sus pesos.",
             "en": "Each color copies with one click: Ochre #F39D25, Dark brown #412615, Black #0C0C0C and Bone white #F5F2E8, each with its meaning. The typefaces ALT Gumbo (headlines) and Montserrat (body) include a tester to type any phrase and preview every weight."
           },
-          "img": "assets/img/projects/mina-nm/04-colores.jpg"
+          "img": "assets/img/projects/mina-nm/04-colores.webp"
         },
         {
           "h": {
@@ -969,7 +943,7 @@
             "es": "Seis errores frecuentes: deformar, rotar, cambiar la tipografía, mover los elementos, agregar efectos o redibujar el logo. Al pasar el cursor (o tocar en el celular) cada caso se transforma en su forma correcta, así la regla se entiende en un segundo.",
             "en": "Six common mistakes: stretching, rotating, changing the typeface, moving elements, adding effects or redrawing the logo. Hover (or tap on mobile) and each case turns into its correct form, so the rule is understood in a second."
           },
-          "img": "assets/img/projects/mina-nm/06-usos-incorrectos.jpg"
+          "img": "assets/img/projects/mina-nm/06-usos-incorrectos.webp"
         },
         {
           "h": {
@@ -980,7 +954,7 @@
             "es": "Un configurador reemplaza la carpeta de archivos: eliges versión (6), color (5) y formato (PNG, JPG, SVG o PDF), activas el área de protección y ves el nombre, tamaño y peso del archivo antes de descargarlo. También se puede bajar el kit completo en un ZIP o copiar el código SVG directamente.",
             "en": "A configurator replaces the asset folder: pick a version (6), color (5) and format (PNG, JPG, SVG or PDF), toggle the clear space and preview the file name, size and weight before downloading. You can also grab the full kit as a ZIP or copy the SVG code directly."
           },
-          "img": "assets/img/projects/mina-nm/07-descargas.jpg"
+          "img": "assets/img/projects/mina-nm/07-descargas.webp"
         },
         {
           "h": {
@@ -991,7 +965,7 @@
             "es": "La marca se lleva al entorno de la operación: tarjetas y membrete, casco, guantes, chaleco y uniformes (polo, camisas formales azul y café, y camisa de jean), con vistas ampliables y carrusel.",
             "en": "The brand is taken into the operation: business cards and letterhead, hard hat, gloves, safety vest and uniforms (polo, blue and brown formal shirts, and denim shirt), with zoomable views and a carousel."
           },
-          "img": "assets/img/projects/mina-nm/08-dotacion.jpg"
+          "img": "assets/img/projects/mina-nm/08-dotacion.webp"
         },
         {
           "h": {
@@ -1002,7 +976,7 @@
             "es": "Un brandbook que no se guarda en una carpeta, se usa: 21 láminas navegables con índice, cada recurso listo para descargar en el formato correcto y una experiencia que convierte las reglas de marca en algo que el equipo y los proveedores pueden probar por sí mismos.",
             "en": "A brandbook that isn't filed away but used: 21 navigable slides with an index, every asset ready to download in the right format, and an experience that turns brand rules into something the team and suppliers can test for themselves."
           },
-          "img": "assets/img/projects/mina-nm/09-uniformes.jpg"
+          "img": "assets/img/projects/mina-nm/09-uniformes.webp"
         }
       ]
     },
@@ -1012,7 +986,7 @@
         "es": "Pagos programados · App fintech",
         "en": "Scheduled payments · Fintech app"
       },
-      "cover": "assets/img/projects/multibanca/cover.jpg",
+      "cover": "assets/img/projects/multibanca/cover.webp",
       "meta": {
         "client": {
           "es": "Multibanca · Fintech",
@@ -1073,47 +1047,47 @@
           }
         },
         {
-          "img": "assets/img/projects/multibanca/01.jpg",
+          "img": "assets/img/projects/multibanca/01.webp",
           "h": {
             "es": "El proyecto en pantallas",
             "en": "The project, screen by screen"
           }
         },
         {
-          "img": "assets/img/projects/multibanca/02.jpg"
+          "img": "assets/img/projects/multibanca/02.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/03.jpg"
+          "img": "assets/img/projects/multibanca/03.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/04.jpg"
+          "img": "assets/img/projects/multibanca/04.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/05.jpg"
+          "img": "assets/img/projects/multibanca/05.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/06.jpg"
+          "img": "assets/img/projects/multibanca/06.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/07.jpg"
+          "img": "assets/img/projects/multibanca/07.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/08.jpg"
+          "img": "assets/img/projects/multibanca/08.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/09.jpg"
+          "img": "assets/img/projects/multibanca/09.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/10.jpg"
+          "img": "assets/img/projects/multibanca/10.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/11.jpg"
+          "img": "assets/img/projects/multibanca/11.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/12.jpg"
+          "img": "assets/img/projects/multibanca/12.webp"
         },
         {
-          "img": "assets/img/projects/multibanca/13.jpg"
+          "img": "assets/img/projects/multibanca/13.webp"
         }
       ]
     },
@@ -1123,7 +1097,7 @@
         "es": "Tablero de gestión de candidatos · Plataforma de empleo",
         "en": "Candidate management board · Job platform"
       },
-      "cover": "assets/img/projects/hoytrabajas/cover.jpg",
+      "cover": "assets/img/projects/hoytrabajas/cover.webp",
       "meta": {
         "client": {
           "es": "HoyTrabajas · Empleo y reclutamiento",
@@ -1184,50 +1158,50 @@
           }
         },
         {
-          "img": "assets/img/projects/hoytrabajas/01.jpg",
+          "img": "assets/img/projects/hoytrabajas/01.webp",
           "h": {
             "es": "El proyecto en pantallas",
             "en": "The project, screen by screen"
           }
         },
         {
-          "img": "assets/img/projects/hoytrabajas/02.jpg"
+          "img": "assets/img/projects/hoytrabajas/02.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/03.jpg"
+          "img": "assets/img/projects/hoytrabajas/03.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/04.jpg"
+          "img": "assets/img/projects/hoytrabajas/04.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/05.jpg"
+          "img": "assets/img/projects/hoytrabajas/05.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/06.jpg"
+          "img": "assets/img/projects/hoytrabajas/06.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/07.jpg"
+          "img": "assets/img/projects/hoytrabajas/07.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/08.jpg"
+          "img": "assets/img/projects/hoytrabajas/08.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/09.jpg"
+          "img": "assets/img/projects/hoytrabajas/09.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/10.jpg"
+          "img": "assets/img/projects/hoytrabajas/10.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/11.jpg"
+          "img": "assets/img/projects/hoytrabajas/11.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/12.jpg"
+          "img": "assets/img/projects/hoytrabajas/12.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/13.jpg"
+          "img": "assets/img/projects/hoytrabajas/13.webp"
         },
         {
-          "img": "assets/img/projects/hoytrabajas/14.jpg"
+          "img": "assets/img/projects/hoytrabajas/14.webp"
         }
       ]
     },
@@ -1237,7 +1211,7 @@
         "es": "Sistema de gestión y rastreo de vuelos",
         "en": "Flight management & tracking system"
       },
-      "cover": "assets/img/projects/gestion-vuelos/cover.jpg",
+      "cover": "assets/img/projects/gestion-vuelos/cover.webp",
       "meta": {
         "client": {
           "es": "Gestión aérea · Proyecto conceptual",
@@ -1287,29 +1261,29 @@
           }
         },
         {
-          "img": "assets/img/projects/gestion-vuelos/01.jpg",
+          "img": "assets/img/projects/gestion-vuelos/01.webp",
           "h": {
             "es": "El proyecto en pantallas",
             "en": "The project, screen by screen"
           }
         },
         {
-          "img": "assets/img/projects/gestion-vuelos/02.jpg"
+          "img": "assets/img/projects/gestion-vuelos/02.webp"
         },
         {
-          "img": "assets/img/projects/gestion-vuelos/03.jpg"
+          "img": "assets/img/projects/gestion-vuelos/03.webp"
         },
         {
-          "img": "assets/img/projects/gestion-vuelos/04.jpg"
+          "img": "assets/img/projects/gestion-vuelos/04.webp"
         },
         {
-          "img": "assets/img/projects/gestion-vuelos/05.jpg"
+          "img": "assets/img/projects/gestion-vuelos/05.webp"
         },
         {
-          "img": "assets/img/projects/gestion-vuelos/06.jpg"
+          "img": "assets/img/projects/gestion-vuelos/06.webp"
         },
         {
-          "img": "assets/img/projects/gestion-vuelos/07.jpg"
+          "img": "assets/img/projects/gestion-vuelos/07.webp"
         }
       ]
     },
@@ -1319,7 +1293,7 @@
         "es": "Simulación y solicitud de créditos educativos",
         "en": "Student loan simulation & application"
       },
-      "cover": "assets/img/projects/solicitud-creditos/cover.jpg",
+      "cover": "assets/img/projects/solicitud-creditos/cover.webp",
       "meta": {
         "client": {
           "es": "Credu · Fintech educativa",
@@ -1359,23 +1333,23 @@
           }
         },
         {
-          "img": "assets/img/projects/solicitud-creditos/01.jpg",
+          "img": "assets/img/projects/solicitud-creditos/01.webp",
           "h": {
             "es": "El proyecto en pantallas",
             "en": "The project, screen by screen"
           }
         },
         {
-          "img": "assets/img/projects/solicitud-creditos/02.jpg"
+          "img": "assets/img/projects/solicitud-creditos/02.webp"
         },
         {
-          "img": "assets/img/projects/solicitud-creditos/03.jpg"
+          "img": "assets/img/projects/solicitud-creditos/03.webp"
         },
         {
-          "img": "assets/img/projects/solicitud-creditos/04.jpg"
+          "img": "assets/img/projects/solicitud-creditos/04.webp"
         },
         {
-          "img": "assets/img/projects/solicitud-creditos/05.jpg"
+          "img": "assets/img/projects/solicitud-creditos/05.webp"
         }
       ]
     },
@@ -1385,7 +1359,7 @@
         "es": "App de adopción de mascotas",
         "en": "Pet adoption app"
       },
-      "cover": "assets/img/projects/mascotas-contigo/cover.jpg",
+      "cover": "assets/img/projects/mascotas-contigo/cover.webp",
       "meta": {
         "client": {
           "es": "Proyecto propio · Villavicencio",
@@ -1462,59 +1436,59 @@
           "embedRatio": "mobile"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/01.jpg",
+          "img": "assets/img/projects/mascotas-contigo/01.webp",
           "h": {
             "es": "El proyecto en pantallas",
             "en": "The project, screen by screen"
           }
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/02.jpg"
+          "img": "assets/img/projects/mascotas-contigo/02.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/03.jpg"
+          "img": "assets/img/projects/mascotas-contigo/03.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/04.jpg"
+          "img": "assets/img/projects/mascotas-contigo/04.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/05.jpg"
+          "img": "assets/img/projects/mascotas-contigo/05.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/06.jpg"
+          "img": "assets/img/projects/mascotas-contigo/06.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/07.jpg"
+          "img": "assets/img/projects/mascotas-contigo/07.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/08.jpg"
+          "img": "assets/img/projects/mascotas-contigo/08.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/09.jpg"
+          "img": "assets/img/projects/mascotas-contigo/09.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/10.jpg"
+          "img": "assets/img/projects/mascotas-contigo/10.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/11.jpg"
+          "img": "assets/img/projects/mascotas-contigo/11.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/12.jpg"
+          "img": "assets/img/projects/mascotas-contigo/12.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/13.jpg"
+          "img": "assets/img/projects/mascotas-contigo/13.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/14.jpg"
+          "img": "assets/img/projects/mascotas-contigo/14.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/15.jpg"
+          "img": "assets/img/projects/mascotas-contigo/15.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/16.jpg"
+          "img": "assets/img/projects/mascotas-contigo/16.webp"
         },
         {
-          "img": "assets/img/projects/mascotas-contigo/17.jpg"
+          "img": "assets/img/projects/mascotas-contigo/17.webp"
         }
       ],
       "badge": {
@@ -1528,7 +1502,7 @@
         "es": "Landing page · Proyecto de vivienda",
         "en": "Landing page · Housing development"
       },
-      "cover": "assets/img/projects/verdella/cover.jpg",
+      "cover": "assets/img/projects/verdella/cover.webp",
       "meta": {
         "client": {
           "es": "Arboleda Verdella · Construcción",
@@ -1568,17 +1542,17 @@
           }
         },
         {
-          "img": "assets/img/projects/verdella/01.jpg",
+          "img": "assets/img/projects/verdella/01.webp",
           "h": {
             "es": "El proyecto en pantallas",
             "en": "The project, screen by screen"
           }
         },
         {
-          "img": "assets/img/projects/verdella/02.jpg"
+          "img": "assets/img/projects/verdella/02.webp"
         },
         {
-          "img": "assets/img/projects/verdella/03.jpg"
+          "img": "assets/img/projects/verdella/03.webp"
         }
       ]
     },
@@ -1588,7 +1562,7 @@
         "es": "App del centro comercial · Villavicencio",
         "en": "Shopping mall app · Villavicencio"
       },
-      "cover": "assets/img/projects/primavera-urbana/cover.jpg",
+      "cover": "assets/img/projects/primavera-urbana/cover.webp",
       "meta": {
         "client": {
           "es": "Primavera Urbana · Centro comercial y empresarial",
@@ -1641,14 +1615,14 @@
           "embedRatio": "mobile"
         },
         {
-          "img": "assets/img/projects/primavera-urbana/01.jpg",
+          "img": "assets/img/projects/primavera-urbana/01.webp",
           "h": {
             "es": "Pantallas clave",
             "en": "Key screens"
           }
         },
         {
-          "img": "assets/img/projects/primavera-urbana/02.jpg"
+          "img": "assets/img/projects/primavera-urbana/02.webp"
         }
       ],
       "badge": {
@@ -1662,7 +1636,7 @@
         "es": "App de la emisora · Radio y noticias",
         "en": "Radio station app · Radio & news"
       },
-      "cover": "assets/img/projects/villavofm/cover.jpg",
+      "cover": "assets/img/projects/villavofm/cover.webp",
       "meta": {
         "client": {
           "es": "Villavo FM 97.3 · «La radio que cuenta contigo»",
@@ -1715,7 +1689,7 @@
           "embedRatio": "mobile"
         },
         {
-          "img": "assets/img/projects/villavofm/01.jpg",
+          "img": "assets/img/projects/villavofm/01.webp",
           "h": {
             "es": "Pantallas",
             "en": "Screens"
@@ -1733,7 +1707,7 @@
         "es": "Plataforma de préstamos e inversión · Rediseño web",
         "en": "Lending & investing platform · Web redesign"
       },
-      "cover": "assets/img/projects/borrows/cover.jpg",
+      "cover": "assets/img/projects/borrows/cover.webp",
       "meta": {
         "client": {
           "es": "Borrows · Fintech",
@@ -1786,20 +1760,20 @@
           "embedRatio": "desktop"
         },
         {
-          "img": "assets/img/projects/borrows/01.jpg",
+          "img": "assets/img/projects/borrows/01.webp",
           "h": {
             "es": "Pantallas",
             "en": "Screens"
           }
         },
         {
-          "img": "assets/img/projects/borrows/02.jpg"
+          "img": "assets/img/projects/borrows/02.webp"
         },
         {
-          "img": "assets/img/projects/borrows/03.jpg"
+          "img": "assets/img/projects/borrows/03.webp"
         },
         {
-          "img": "assets/img/projects/borrows/04.jpg"
+          "img": "assets/img/projects/borrows/04.webp"
         }
       ],
       "badge": {
@@ -1813,7 +1787,7 @@
         "es": "Sistema administrativo · Secretaría de Control Físico",
         "en": "Admin system · Urban Development Office"
       },
-      "cover": "assets/img/projects/sec-control-fisico/cover.jpg",
+      "cover": "assets/img/projects/sec-control-fisico/cover.webp",
       "meta": {
         "client": {
           "es": "Alcaldía de Villavicencio · Secretaría de Control Físico",
@@ -1869,23 +1843,23 @@
           "embedRatio": "desktop"
         },
         {
-          "img": "assets/img/projects/sec-control-fisico/01.jpg",
+          "img": "assets/img/projects/sec-control-fisico/01.webp",
           "h": {
             "es": "Pantallas",
             "en": "Screens"
           }
         },
         {
-          "img": "assets/img/projects/sec-control-fisico/02.jpg"
+          "img": "assets/img/projects/sec-control-fisico/02.webp"
         },
         {
-          "img": "assets/img/projects/sec-control-fisico/03.jpg"
+          "img": "assets/img/projects/sec-control-fisico/03.webp"
         },
         {
-          "img": "assets/img/projects/sec-control-fisico/04.jpg"
+          "img": "assets/img/projects/sec-control-fisico/04.webp"
         },
         {
-          "img": "assets/img/projects/sec-control-fisico/05.jpg"
+          "img": "assets/img/projects/sec-control-fisico/05.webp"
         }
       ],
       "badge": {
@@ -1899,7 +1873,7 @@
         "es": "Diseño multimedia · Campaña de co-branding",
         "en": "Multimedia design · Co-branding campaign"
       },
-      "cover": "assets/img/projects/sumer/cover.jpg",
+      "cover": "assets/img/projects/sumer/cover.webp",
       "meta": {
         "client": {
           "es": "Sumer · «La moneda digital de los negocios»",
@@ -1956,17 +1930,17 @@
           }
         },
         {
-          "img": "assets/img/projects/sumer/01.jpg",
+          "img": "assets/img/projects/sumer/01.webp",
           "h": {
             "es": "El proyecto en pantallas",
             "en": "The project, screen by screen"
           }
         },
         {
-          "img": "assets/img/projects/sumer/02.jpg"
+          "img": "assets/img/projects/sumer/02.webp"
         },
         {
-          "img": "assets/img/projects/sumer/03.jpg"
+          "img": "assets/img/projects/sumer/03.webp"
         }
       ]
     },
@@ -1976,7 +1950,7 @@
         "es": "Motion graphics · Marketplace de insumos",
         "en": "Motion graphics · Supplies marketplace"
       },
-      "cover": "assets/img/projects/tipsco/cover.jpg",
+      "cover": "assets/img/projects/tipsco/cover.webp",
       "meta": {
         "client": {
           "es": "Tipsco · Marketplace",
@@ -2004,7 +1978,7 @@
             "en": "A short ad piece: in 20 seconds it introduces the marketplace and its categories (building materials, farm supplies and home appliances)."
           },
           "video": "assets/video/tipsco-spot.mp4",
-          "poster": "assets/img/projects/tipsco/poster-spot.jpg"
+          "poster": "assets/img/projects/tipsco/poster-spot.webp"
         },
         {
           "h": {
@@ -2016,7 +1990,7 @@
             "en": "A two-and-a-half-minute explainer that walks through how Tipsco works step by step, from finding what you need to getting it delivered, carried by the brand message “Your best ally”."
           },
           "video": "assets/video/tipsco-explicativo.mp4",
-          "poster": "assets/img/projects/tipsco/poster-explicativo.jpg"
+          "poster": "assets/img/projects/tipsco/poster-explicativo.webp"
         },
         {
           "h": {
@@ -2089,5 +2063,46 @@
       "es": "Hola Thomas, vi el proyecto «{proyecto}» en tu portafolio y me gustaría hablar contigo.",
       "en": "Hi Thomas, I saw the «{proyecto}» project in your portfolio and I'd like to talk with you."
     }
+  },
+  "thumbs": {
+    "assets/img/conoceme-poster-vertical.webp": "assets/img/conoceme-poster-vertical-sm.webp",
+    "assets/img/conoceme-poster.webp": "assets/img/conoceme-poster-sm.webp",
+    "assets/img/me-01.webp": "assets/img/me-01-sm.webp",
+    "assets/img/me-02.webp": "assets/img/me-02-sm.webp",
+    "assets/img/projects/borrows/cover.webp": "assets/img/projects/borrows/cover-sm.webp",
+    "assets/img/projects/emsa/cover.webp": "assets/img/projects/emsa/cover-sm.webp",
+    "assets/img/projects/fergo/cover.webp": "assets/img/projects/fergo/cover-sm.webp",
+    "assets/img/projects/foto/foto-01.webp": "assets/img/projects/foto/foto-01-sm.webp",
+    "assets/img/projects/foto/foto-02.webp": "assets/img/projects/foto/foto-02-sm.webp",
+    "assets/img/projects/foto/foto-03.webp": "assets/img/projects/foto/foto-03-sm.webp",
+    "assets/img/projects/foto/foto-04.webp": "assets/img/projects/foto/foto-04-sm.webp",
+    "assets/img/projects/foto/foto-05.webp": "assets/img/projects/foto/foto-05-sm.webp",
+    "assets/img/projects/foto/foto-06.webp": "assets/img/projects/foto/foto-06-sm.webp",
+    "assets/img/projects/gestion-vuelos/cover.webp": "assets/img/projects/gestion-vuelos/cover-sm.webp",
+    "assets/img/projects/hoytrabajas/cover.webp": "assets/img/projects/hoytrabajas/cover-sm.webp",
+    "assets/img/projects/hunter-track/cover.webp": "assets/img/projects/hunter-track/cover-sm.webp",
+    "assets/img/projects/mascotas-contigo/cover.webp": "assets/img/projects/mascotas-contigo/cover-sm.webp",
+    "assets/img/projects/mina-nm/cover.webp": "assets/img/projects/mina-nm/cover-sm.webp",
+    "assets/img/projects/monchef/cover.webp": "assets/img/projects/monchef/cover-sm.webp",
+    "assets/img/projects/motion/motion-02.webp": "assets/img/projects/motion/motion-02-sm.webp",
+    "assets/img/projects/motion/motion-03.webp": "assets/img/projects/motion/motion-03-sm.webp",
+    "assets/img/projects/multibanca/cover.webp": "assets/img/projects/multibanca/cover-sm.webp",
+    "assets/img/projects/nas-cellano/cover.webp": "assets/img/projects/nas-cellano/cover-sm.webp",
+    "assets/img/projects/primavera-urbana/cover.webp": "assets/img/projects/primavera-urbana/cover-sm.webp",
+    "assets/img/projects/sec-control-fisico/cover.webp": "assets/img/projects/sec-control-fisico/cover-sm.webp",
+    "assets/img/projects/social/post-01.webp": "assets/img/projects/social/post-01-sm.webp",
+    "assets/img/projects/social/post-02.webp": "assets/img/projects/social/post-02-sm.webp",
+    "assets/img/projects/social/post-03.webp": "assets/img/projects/social/post-03-sm.webp",
+    "assets/img/projects/social/post-04.webp": "assets/img/projects/social/post-04-sm.webp",
+    "assets/img/projects/social/post-05.webp": "assets/img/projects/social/post-05-sm.webp",
+    "assets/img/projects/social/post-06.webp": "assets/img/projects/social/post-06-sm.webp",
+    "assets/img/projects/solicitud-creditos/cover.webp": "assets/img/projects/solicitud-creditos/cover-sm.webp",
+    "assets/img/projects/sumer/cover.webp": "assets/img/projects/sumer/cover-sm.webp",
+    "assets/img/projects/tesis/cover.webp": "assets/img/projects/tesis/cover-sm.webp",
+    "assets/img/projects/tipsco/cover.webp": "assets/img/projects/tipsco/cover-sm.webp",
+    "assets/img/projects/tipsco/poster-explicativo.webp": "assets/img/projects/tipsco/poster-explicativo-sm.webp",
+    "assets/img/projects/tipsco/poster-spot.webp": "assets/img/projects/tipsco/poster-spot-sm.webp",
+    "assets/img/projects/verdella/cover.webp": "assets/img/projects/verdella/cover-sm.webp",
+    "assets/img/projects/villavofm/cover.webp": "assets/img/projects/villavofm/cover-sm.webp"
   }
 }

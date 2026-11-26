@@ -7,7 +7,7 @@
   "use strict";
   let D;
   try {
-    const r = await fetch("content/data.json", { cache: "no-cache" });
+    const r = await fetch("content/data.json"); // el servidor fuerza revalidación (no-cache)
     if (!r.ok) throw new Error(r.status);
     D = await r.json();
   } catch (err) {
@@ -63,6 +63,8 @@
   };
   const TH = Object.assign({ showIntro: true, showNotification: true, showSticky: true }, D.theme || {});
 
+  // Miniatura liviana (640 px) para tarjetas e íconos, si existe
+  const sm = (src) => (D.thumbs && D.thumbs[src]) || src;
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const isMobile = () => matchMedia("(max-width: 760px)").matches;
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -292,8 +294,8 @@
       case "folder": return svgFolder(item.color);
       case "note": return svgNote();
       case "pdf": return svgPdf();
-      case "photo": return `<span class="thumb-photo"><img src="${esc(item.src)}" alt="" loading="lazy" draggable="false"></span>`;
-      case "video": return `<span class="thumb-video">${item.poster ? `<img src="${esc(item.poster)}" alt="" draggable="false">` : ""}</span>`;
+      case "photo": return `<span class="thumb-photo"><img src="${esc(sm(item.src))}" alt="" loading="lazy" decoding="async" draggable="false"></span>`;
+      case "video": return `<span class="thumb-video">${item.poster ? `<img src="${esc(sm(item.poster))}" alt="" decoding="async" draggable="false">` : ""}</span>`;
       default: return svgNote();
     }
   }
@@ -511,7 +513,7 @@
     const vid = w.el.querySelector(".win-body video[poster]");
     const src = img ? img.currentSrc || img.src : vid ? vid.getAttribute("poster") : "";
     const title = typeof w.title === "function" ? w.title() : t(w.title);
-    return `<span class="mini"><i class="mini-bar"><b></b><b></b><b></b></i>${src ? `<img src="${esc(src)}" alt="" draggable="false">` : `<em>${esc(title)}</em>`}</span><span class="tip">${esc(title)}</span>`;
+    return `<span class="mini"><i class="mini-bar"><b></b><b></b><b></b></i>${src ? `<img src="${esc(sm(src))}" alt="" draggable="false">` : `<em>${esc(title)}</em>`}</span><span class="tip">${esc(title)}</span>`;
   }
   function renderMin() {
     const tiles = $$(".dk-min", dock);
@@ -717,13 +719,13 @@
       const c = D.cases[it.case];
       if (!c) return "";
       return `<button class="tile is-case" data-idx="${i}" style="--i:${i}">
-        <img src="${esc(c.cover)}" alt="${esc(c.title)}" loading="lazy" draggable="false">
+        <img src="${esc(sm(c.cover))}" alt="${esc(c.title)}" loading="lazy" decoding="async" draggable="false">
         <span class="badge${c.badge && t(c.badge) ? " special" : ""}">${esc((c.badge && t(c.badge)) || ui("caseBadge"))}</span>
         <span class="cap"><strong>${esc(c.title)}</strong><span>${esc(t(c.subtitle))}</span></span></button>`;
     }
     const src = it.type === "video" ? it.poster : it.src;
     return `<button class="tile" data-idx="${i}" style="--i:${i}">
-      <img src="${esc(src)}" alt="${esc(t(it.title))}" loading="lazy" draggable="false">
+      <img src="${esc(sm(src))}" alt="${esc(t(it.title))}" loading="lazy" decoding="async" draggable="false">
       ${it.type === "video" ? `<span class="badge">${ui("video")}</span>` : ""}</button>`;
   }
 
@@ -758,7 +760,7 @@
     // Los videos se muestran listos para ver (sin el paso de "abrir")
     if (video || s.autoload) return `<div class="case-embed on r-${ratio}"><iframe src="${esc(url.replace("&autoplay=1", ""))}" loading="lazy" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${esc(c.title)}"></iframe></div>`;
     return `<div class="case-embed r-${ratio}" data-embed="${esc(url)}" role="button" tabindex="0" aria-label="${esc(label)}">
-      ${c.cover ? `<img class="ce-bg" src="${esc(c.cover)}" alt="" aria-hidden="true">` : ""}
+      ${c.cover ? `<img class="ce-bg" src="${esc(sm(c.cover))}" alt="" aria-hidden="true" loading="lazy">` : ""}
       <span class="mac-btn primary ce-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg>${esc(label)}</span>
       <small class="ce-note">${note}</small>
     </div>`;
@@ -791,7 +793,7 @@
         const next = state.order[(idx + 1) % state.order.length];
         body.innerHTML = `
           <article class="case">
-            <img class="case-cover" src="${esc(c.cover)}" alt="${esc(c.title)}">
+            <img class="case-cover" src="${esc(c.cover)}" alt="${esc(c.title)}" fetchpriority="high" decoding="async">
             <div class="case-inner">
               <div class="case-tags">${(c.tags || []).map((g) => `<span class="chip">${esc(t(g))}</span>`).join("")}</div>
               <h1>${esc(c.title)}</h1>
@@ -804,8 +806,8 @@
                 <section>
                   ${s.h ? `<h2>${esc(t(s.h))}</h2>` : ""}
                   ${s.p ? `<p>${esc(t(s.p))}</p>` : ""}
-                  ${s.img ? `<img src="${esc(s.img)}" alt="${esc(t(s.h) || c.title)}" loading="lazy" data-zoom>` : ""}
-                  ${s.video ? `<video class="case-video" src="${esc(s.video)}" ${s.poster ? `poster="${esc(s.poster)}"` : ""} controls playsinline preload="metadata"></video>` : ""}
+                  ${s.img ? `<img src="${esc(s.img)}" alt="${esc(t(s.h) || c.title)}" loading="lazy" decoding="async" data-zoom>` : ""}
+                  ${s.video ? `<video class="case-video" src="${esc(s.video)}" ${s.poster ? `poster="${esc(s.poster)}"` : ""} controls controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback playsinline preload="none"></video>` : ""}
                   ${embedHtml(s, c)}
                 </section>`).join("")}
               ${c.link && c.link.url ? `<div class="case-cta-end">${ctaHtml(c)}</div>` : ""}
@@ -877,7 +879,7 @@
       title, origin, w: 880, h: 533, hash: hashId || "",
       render(body) {
         if ($("video", body)) return; // no reiniciar el video al cambiar idioma
-        body.innerHTML = `<div class="viewer"><video src="${esc(src)}" ${poster ? `poster="${esc(poster)}"` : ""} controls autoplay playsinline></video></div>`;
+        body.innerHTML = `<div class="viewer"><video src="${esc(src)}" ${poster ? `poster="${esc(poster)}"` : ""} controls controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback autoplay playsinline></video></div>`;
       },
     });
   }
@@ -1014,6 +1016,9 @@
       document.addEventListener("visibilitychange", () => clearTimeout(fallback), { once: true });
     }
   });
+  // Videos: sin menú contextual ("Guardar video como…") ni arrastrar el archivo
+  document.addEventListener("contextmenu", (e) => { if (e.target.closest && e.target.closest("video")) e.preventDefault(); });
+  document.addEventListener("dragstart", (e) => { if (e.target.closest && e.target.closest("video")) e.preventDefault(); });
   // Liquid Glass: el brillo especular sigue al cursor
   document.addEventListener("pointermove", (e) => {
     const g = e.target.closest && e.target.closest(".mac-btn, .dock, .seg, .notification, .case-talk");

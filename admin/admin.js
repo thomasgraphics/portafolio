@@ -189,7 +189,7 @@
   // ---------- Subida de archivos ----------
   async function upload(file, f) {
     if (mode !== "github") { toast("Conecta tu GitHub para subir archivos. En modo local escribe la ruta a mano.", "warn"); return null; }
-    let blob = file;
+    let blob = file, thumbJob = null;
     let ext = (file.name.split(".").pop() || "bin").toLowerCase();
     if (f.type === "image" && !f.keepFormat && /^image\/(jpeg|png|webp)$/.test(file.type)) {
       try {
@@ -200,14 +200,28 @@
         const ctx = c.getContext("2d");
         ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, c.width, c.height);
         ctx.drawImage(bmp, 0, 0, c.width, c.height);
-        blob = await new Promise((r) => c.toBlob(r, "image/jpeg", 0.85));
-        ext = "jpg";
+        // WebP (más liviano); si el navegador no lo genera, JPEG
+        const enc = async (canvas, q) => { const b = await new Promise((r) => canvas.toBlob(r, "image/webp", q)); return b && b.type === "image/webp" ? [b, "webp"] : [await new Promise((r) => canvas.toBlob(r, "image/jpeg", q + 0.04)), "jpg"]; };
+        [blob, ext] = await enc(c, 0.8);
+        // Miniatura de 640 px para tarjetas e íconos (carga más rápido)
+        if (c.width > 760) {
+          const tw = 640, th = Math.round(c.height * tw / c.width);
+          const t = h("canvas", { width: tw, height: th }); t.getContext("2d").drawImage(c, 0, 0, tw, th);
+          const [tb, tx] = await enc(t, 0.74);
+          thumbJob = { blob: tb, ext: tx };
+        }
       } catch { /* si falla, se sube el original */ }
     }
     if (blob.size > 25 * 1024 * 1024) { toast("El archivo pesa más de 25 MB. Comprímelo antes de subirlo.", "error"); return null; }
     const path = `assets/uploads/${stamp()}-${slug(file.name.replace(/\.[^.]+$/, "")) || "archivo"}.${ext}`;
     const b64 = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(",")[1]); r.onerror = rej; r.readAsDataURL(blob); });
     pending[path] = { b64, url: URL.createObjectURL(blob) };
+    if (thumbJob) {
+      const tpath = path.replace(/\.[a-z]+$/, "") + "-sm." + thumbJob.ext;
+      const tb64 = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(",")[1]); r.onerror = rej; r.readAsDataURL(thumbJob.blob); });
+      pending[tpath] = { b64: tb64, url: URL.createObjectURL(thumbJob.blob) };
+      (D.thumbs = D.thumbs || {})[path] = tpath;
+    }
     return path;
   }
   const resolve = (p) => (pending[p] ? pending[p].url : p ? (/^(https?:|\/)/.test(p) ? p : "/" + p) : "");
