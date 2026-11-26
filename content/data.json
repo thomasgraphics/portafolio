@@ -2300,5 +2300,52 @@
     "assets/img/projects/verdella/cover.webp": "assets/img/projects/verdella/cover-sm.webp",
     "assets/img/projects/villavofm/cover.webp": "assets/img/projects/villavofm/cover-sm.webp",
     "assets/img/projects/monchef/portada.webp": "assets/img/projects/monchef/portada-sm.webp"
+  },
+  "trash": {
+    "enabled": true,
+    "items": [
+      {
+        "name": {
+          "es": "Mi ex que jugó conmigo",
+          "en": "The ex who played me"
+        },
+        "note": {
+          "es": "Prometía ser un proyecto a largo plazo y terminó siendo un prototipo sin terminar. Archivo dañado: no se puede recuperar.",
+          "en": "It promised to be a long-term project and ended up an unfinished prototype. File damaged: cannot be recovered."
+        },
+        "date": {
+          "es": "Hace mucho",
+          "en": "Long ago"
+        }
+      },
+      {
+        "name": {
+          "es": "La mala vibra",
+          "en": "Bad vibes"
+        },
+        "note": {
+          "es": "Formato no compatible con este sistema. Aquí solo corre buena energía.",
+          "en": "Format not supported on this system. Only good energy runs here."
+        },
+        "date": {
+          "es": "Ayer",
+          "en": "Yesterday"
+        }
+      },
+      {
+        "name": {
+          "es": "La venganza",
+          "en": "Revenge"
+        },
+        "note": {
+          "es": "Cancelada. La mejor respuesta fue hacer un buen portafolio.",
+          "en": "Cancelled. The best comeback was building a great portfolio."
+        },
+        "date": {
+          "es": "Hace un año",
+          "en": "A year ago"
+        }
+      }
+    ]
   }
 }

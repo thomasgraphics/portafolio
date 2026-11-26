@@ -402,6 +402,7 @@
     { id: "intro", name: "Intro", color: "#ff5f6d", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M5 3.5v9l7-4.5z"/></svg>` },
     { id: "desktop", name: "Escritorio e íconos", color: "#34aadc", icon: `<svg viewBox="0 0 16 16" fill="#fff"><rect x="2" y="3" width="12" height="8" rx="1.5"/><rect x="6" y="12" width="4" height="1.6" rx=".8"/></svg>` },
     { id: "folders", name: "Carpetas", color: "#0a84ff", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M1.5 4a1.5 1.5 0 0 1 1.5-1.5h3l1.5 1.5H13A1.5 1.5 0 0 1 14.5 5.5v6A1.5 1.5 0 0 1 13 13H3a1.5 1.5 0 0 1-1.5-1.5z"/></svg>` },
+    { id: "trash", name: "Papelera", color: "#8e8e93", icon: `<svg viewBox="0 0 16 16" fill="#fff"><rect x="2.5" y="3" width="11" height="1.8" rx=".9"/><path d="M3.8 5.6h8.4l-.8 7.6a1.2 1.2 0 0 1-1.2 1.1H5.8a1.2 1.2 0 0 1-1.2-1.1z"/></svg>` },
     { id: "seo", name: "SEO y compartir", color: "#30b0c7", icon: `<svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 14 14"/></svg>` },
     { id: "look", name: "Diseño y apariencia", color: "#ff9500", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M8 1.5a6.5 6.5 0 1 0 0 13c.9 0 1.3-.6 1.3-1.2 0-.8-.6-1-.6-1.7 0-.6.5-1.1 1.2-1.1h1.6a3 3 0 0 0 3-3c0-3.3-2.9-6-6.5-6z"/><circle cx="4.8" cy="7.5" r="1" fill="#ff9500"/><circle cx="7" cy="4.6" r="1" fill="#ff9500"/><circle cx="10.4" cy="5.2" r="1" fill="#ff9500"/></svg>` },
     { id: "texts", name: "Textos de la interfaz", color: "#5856d6", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M3 3h10v2.2h-1.4V4.4H8.7v7.2h1.5V13H5.8v-1.4h1.5V4.4H4.4v.8H3z"/></svg>` },
@@ -846,6 +847,25 @@
           { key: "date", type: "i18n", label: "Fecha de la nota" },
           { key: "paragraphs", type: "list", label: "Párrafos", addLabel: "Agregar párrafo", item: { type: "i18nArea", rows: 3, noun: "Párrafo" } },
           { key: "skills", type: "list", label: "Habilidades (etiquetas)", addLabel: "Agregar habilidad", item: { type: "text", noun: "Habilidad" } },
+        ]),
+      ];
+    },
+
+    trash() {
+      D.trash = D.trash || { enabled: true, items: [] };
+      D.trash.items = D.trash.items || [];
+      return [
+        group("Papelera del Dock", "Carpetas «eliminadas» que aparecen en la Papelera, al final del Dock. Al abrir una, sale un aviso estilo macOS con su mensaje.", D.trash, [
+          { key: "enabled", type: "toggle", label: "Mostrar la Papelera en el Dock" },
+          { key: "items", type: "list", label: "Carpetas eliminadas", addLabel: "Agregar carpeta", item: {
+            title: (it, i) => t(it.name) || `Carpeta ${i + 1}`,
+            make: () => ({ name: { es: "", en: "" }, note: { es: "", en: "" }, date: { es: "Ayer", en: "Yesterday" } }),
+            fields: [
+              { key: "hidden", type: "visible", label: "Visible" },
+              { key: "name", type: "i18n", label: "Nombre de la carpeta" },
+              { key: "note", type: "i18nArea", label: "Mensaje al intentar abrirla" },
+              { key: "date", type: "i18n", label: "Fecha que se muestra", hint: "Ej: Ayer, Hace un año" },
+            ] } },
         ]),
       ];
     },

@@ -788,3 +788,42 @@ html.dark .win-share:hover { background: rgba(255, 255, 255, 0.1); }
 /* Intro sin imagen: ventana vacía */
 .intro-blank { width: 100%; aspect-ratio: 9 / 11; background: linear-gradient(160deg, #f4f3f1, #e7e5e1); }
 html.dark .intro-blank { background: linear-gradient(160deg, #2c2c2e, #222224); }
+
+/* ---------- Papelera ---------- */
+.dk-trash { padding: 0; background: none; border: 0; cursor: default; }
+.dk-trash svg { overflow: visible; }
+.dk-trash .papers { transform-origin: 50% 40px; animation: tr-pop 0.4s var(--spring); }
+@keyframes tr-pop { from { transform: translateY(6px) scale(0.9); opacity: 0; } }
+.win.trashwin .win-body { display: block; }
+.win.trashwin .win-bar { background: transparent; }
+.trash-main { height: 100%; overflow: auto; padding-top: var(--bar-h); }
+.trash-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.trash-head .mac-btn { flex: none; }
+.trash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px 8px; padding: 8px 20px 28px; }
+.trash-item { display: grid; justify-items: center; align-content: start; gap: 6px; padding: 14px 8px 12px; border-radius: 12px; background: none; border: 0; cursor: default; text-align: center; color: var(--ink);
+  transition: opacity 0.35s var(--ease), transform 0.45s var(--ease), background 0.15s; animation: tr-in 0.4s var(--spring) both; animation-delay: calc(var(--i) * 50ms); }
+@keyframes tr-in { from { opacity: 0; transform: translateY(8px) scale(0.96); } }
+.trash-item:hover { background: rgba(0, 0, 0, 0.05); }
+html.dark .trash-item:hover { background: rgba(255, 255, 255, 0.07); }
+.trash-item.sel .ti-name { background: var(--accent); color: #fff; }
+.trash-item.gone { opacity: 0; transform: translateY(26px) scale(0.6) rotate(-6deg); }
+.ti-art { width: 84px; height: 70px; opacity: 0.88; filter: grayscale(0.25) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.18)); }
+.ti-art svg { width: 100%; height: 100%; display: block; }
+.ti-name { font-size: 13px; font-weight: 500; line-height: 1.25; padding: 2px 7px; border-radius: 5px; max-width: 100%; }
+.trash-item small { font-size: 11px; color: var(--muted); }
+.trash-empty svg { width: 86px; height: 86px; margin-bottom: 6px; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.18)); }
+
+/* Alerta estilo macOS */
+.mac-alert-wrap { position: fixed; inset: 0; z-index: 9900; display: grid; place-items: center; padding: 20px; background: rgba(0, 0, 0, 0.12); animation: ma-fade 0.18s ease; }
+.mac-alert-wrap.out { opacity: 0; transition: opacity 0.18s; }
+@keyframes ma-fade { from { opacity: 0; } }
+.mac-alert { width: min(300px, 100%); padding: 22px 18px 16px; border-radius: 22px; text-align: center; display: grid; justify-items: center; gap: 8px;
+  background: color-mix(in srgb, var(--win-bg) 82%, transparent); backdrop-filter: var(--lg-filter-soft); -webkit-backdrop-filter: var(--lg-filter-soft);
+  box-shadow: var(--lg-spec), 0 30px 70px -20px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(0, 0, 0, 0.14); animation: ma-in 0.28s var(--spring); }
+@keyframes ma-in { from { opacity: 0; transform: scale(0.9); } }
+.mac-alert .ma-icon { width: 64px; height: 56px; margin-bottom: 4px; }
+.mac-alert .ma-icon svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.18)); }
+.mac-alert strong { font-size: 14px; line-height: 1.3; color: var(--ink); }
+.mac-alert p { font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+.mac-alert .ma-btns { display: flex; gap: 8px; width: 100%; margin-top: 8px; }
+.mac-alert .ma-btns .mac-btn { flex: 1; justify-content: center; }

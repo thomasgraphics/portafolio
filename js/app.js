@@ -47,7 +47,7 @@
       client: "Cliente", role: "Rol", year: "Año", tools: "Herramientas", prev: "← Anterior", next: "Siguiente →",
       pdfMobile: "Toca el botón para ver el PDF.", desktop: "Escritorio", contact: "Contacto",
       whatsapp: "WhatsApp", instagram: "Instagram", linkedin: "LinkedIn", behance: "Behance", email: "Correo",
-      favorites: "Favoritos", more: "Más", about: "Sobre mí", rotate: "Gira tu teléfono para ver el portafolio",
+      favorites: "Favoritos", more: "Más", about: "Sobre mí", trash: "Papelera", rotate: "Gira tu teléfono para ver el portafolio",
     },
     en: {
       info: "Info", skip: "Skip intro", now: "now", all: "All", cases: "Cases", photos: "Photos", videos: "Videos",
@@ -56,7 +56,7 @@
       client: "Client", role: "Role", year: "Year", tools: "Tools", prev: "← Previous", next: "Next →",
       pdfMobile: "Tap the button to view the PDF.", desktop: "Desktop", contact: "Contact",
       whatsapp: "WhatsApp", instagram: "Instagram", linkedin: "LinkedIn", behance: "Behance", email: "Email",
-      favorites: "Favorites", more: "More", about: "About me", rotate: "Rotate your phone to view the portfolio",
+      favorites: "Favorites", more: "More", about: "About me", trash: "Trash", rotate: "Rotate your phone to view the portfolio",
     },
   };
   // Textos de la interfaz: se pueden reemplazar desde el admin (D.uiText)
@@ -520,8 +520,11 @@
     const title = typeof w.title === "function" ? w.title() : t(w.title);
     return `<span class="mini"><i class="mini-bar"><b></b><b></b><b></b></i>${src ? `<img src="${esc(sm(src))}" alt="" draggable="false">` : `<em>${esc(title)}</em>`}</span><span class="tip">${esc(title)}</span>`;
   }
+  // Agrega un elemento al Dock antes de la Papelera (como en macOS)
+  const dockAdd = (el) => { const tr = $(".dk-trash", dock); tr ? dock.insertBefore(el, tr) : dock.appendChild(el); };
   function renderMin() {
     const tiles = $$(".dk-min", dock);
+    if ($(".dk-trash", dock)) { const s0 = $(".min-sep", dock); if (s0) s0.remove(); return; }
     let sep = $(".min-sep", dock);
     if (tiles.length && !sep) { sep = document.createElement("span"); sep.className = "sep min-sep"; dock.insertBefore(sep, tiles[0]); }
     if (!tiles.length && sep) sep.remove();
@@ -537,7 +540,7 @@
     tile.dataset.restore = key;
     tile.setAttribute("aria-label", (lang === "es" ? "Restaurar: " : "Restore: ") + title);
     tile.innerHTML = miniThumb(w);
-    dock.appendChild(tile); renderMin();
+    dockAdd(tile); renderMin();
     w.minimized = true;
     w.el.style.animation = "none"; // que no se repita la animación de apertura al restaurar
     w.el.style.zIndex = 5000; // la ventana que se minimiza pasa por encima de las demás
@@ -614,6 +617,7 @@
     if (kind === "case" && D.cases[id]) openCase(id);
     else if (itemById(kind)) openItem(kind);
     else if (D.folders[kind]) openFolder(kind);
+    else if (kind === "papelera" && TRASH_ON()) openTrash();
     routing = false;
     const top = topWin();
     if (top) setHash(top.hash);
@@ -1021,8 +1025,8 @@
   const dismissNotif = () => { notif.classList.remove("show"); setTimeout(() => (notif.hidden = true), 500); };
   notif.addEventListener("click", (e) => {
     if (e.target.closest(".n-close")) { e.stopPropagation(); dismissNotif(); return; }
+    // Abre lo que indica el mensaje, pero el mensaje sigue en el escritorio (solo se cierra con la ✕)
     if (D.notification.opens) openItem(D.notification.opens, notif);
-    dismissNotif();
   });
   notif.addEventListener("keydown", (e) => { if (e.key === "Enter") notif.click(); });
 
@@ -1079,8 +1083,8 @@
         ${custom ? `<img src="${esc(custom)}" alt="" draggable="false">` : DOCK_ICONS[k]()}<span class="tip">${ui(k)}</span></a>`;
     });
     const mins = $$(".dk-min", dock);
-    dock.innerHTML = links.join("");
-    mins.forEach((m) => dock.appendChild(m));
+    dock.innerHTML = links.join("") + (TRASH_ON() ? `<span class="sep trash-sep"></span><button class="dk dk-trash${trashFull() ? " full" : ""}" type="button" data-trash aria-label="${ui("trash")}">${TRASH_SVG()}<span class="tip">${ui("trash")}</span><span class="dot"></span></button>` : "");
+    mins.forEach((m) => dockAdd(m));
     renderMin();
     updateDock();
   }
@@ -1093,6 +1097,115 @@
     const b = e.target.closest("[data-open]");
     if (b) openItem(b.dataset.open, b);
   });
+
+  // =========================================================================
+  // Papelera: carpetas "eliminadas" (un guiño de humor)
+  // =========================================================================
+  const TRASH_ON = () => !!(D.trash && D.trash.enabled !== false && (D.trash.items || []).length);
+  let trashEmptied = false;
+  const trashItems = () => (trashEmptied ? [] : (D.trash.items || []).filter((it) => !it.hidden && t(it.name)));
+  const trashFull = () => trashItems().length > 0;
+  // Ícono propio: bote de vidrio esmerilado con estrías; lleno muestra papeles arrugados
+  function TRASH_SVG() {
+    const a = uid(), b = uid(), c = uid();
+    const papers = trashFull() ? `<g class="papers"><path d="M30 33c3-6 11-8 16-4 4-5 13-4 15 3 6-2 11 3 9 8H31c-4-2-4-5-1-7z" fill="#fff"/><path d="M38 31l5 4M52 29l-3 5M61 33l-4 3" stroke="#c9c9cc" stroke-width="1.6" stroke-linecap="round"/><path d="M44 28c3-3 8-3 10 0" fill="none" stroke="#dcdcde" stroke-width="1.4"/></g>` : "";
+    return `<svg viewBox="0 0 100 100" aria-hidden="true"><defs>
+      <linearGradient id="${a}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d9dbe0"/><stop offset=".45" stop-color="#f7f8fa"/><stop offset="1" stop-color="#c3c6cd"/></linearGradient>
+      <linearGradient id="${b}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fafbfc"/><stop offset="1" stop-color="#b8bcc4"/></linearGradient>
+      <clipPath id="${c}"><path d="M22 40h56l-6 46a6 6 0 0 1-6 5H34a6 6 0 0 1-6-5z"/></clipPath></defs>
+      ${papers}
+      <path d="M22 40h56l-6 46a6 6 0 0 1-6 5H34a6 6 0 0 1-6-5z" fill="url(#${a})" opacity=".94"/>
+      <g clip-path="url(#${c})" stroke="#9ea3ad" stroke-opacity=".55" stroke-width="1.4">
+        <path d="M33 44l2.6 44M41 44l1.2 45M50 44v45M59 44l-1.2 45M67 44l-2.6 44"/></g>
+      <path d="M28 86a6 6 0 0 0 6 5h32a6 6 0 0 0 6-5" fill="none" stroke="#000" stroke-opacity=".12" stroke-width="1.2"/>
+      <rect x="18" y="35" width="64" height="8" rx="4" fill="url(#${b})"/>
+      <rect x="18.5" y="35.5" width="63" height="7" rx="3.5" fill="none" stroke="#000" stroke-opacity=".14"/>
+    </svg>`;
+  }
+  const TRASH_TXT = {
+    title: { es: "Papelera", en: "Trash" },
+    sub: { es: "Cosas que eliminé para hacerle espacio a lo bueno.", en: "Things I deleted to make room for the good stuff." },
+    empty: { es: "Vaciar", en: "Empty" },
+    emptied: { es: "La papelera está vacía", en: "Trash is empty" },
+    emptiedSub: { es: "Ahora sí: espacio libre para buenos proyectos.", en: "Now there's free space for great projects." },
+    cantOpen: { es: "No se puede abrir «{x}» porque está en la Papelera.", en: "“{x}” can't be opened because it's in the Trash." },
+    restore: { es: "Recuperar", en: "Put back" },
+    noRestore: { es: "Mejor no. Hay cosas que se quedan en la papelera.", en: "Better not. Some things belong in the trash." },
+    askEmpty: { es: "¿Seguro que quieres eliminar para siempre los elementos de la Papelera?", en: "Are you sure you want to permanently erase the items in the Trash?" },
+    askEmptySub: { es: "No se puede deshacer (y tampoco hace falta).", en: "You can't undo this (and you won't need to)." },
+  };
+  const tt = (k) => t(TRASH_TXT[k]);
+  // Alerta estilo macOS
+  function macAlert({ title, text, icon, buttons }) {
+    const ov = document.createElement("div");
+    ov.className = "mac-alert-wrap";
+    ov.innerHTML = `<div class="mac-alert" role="alertdialog" aria-modal="true">
+      <div class="ma-icon">${icon || ""}</div><strong>${esc(title)}</strong>${text ? `<p>${esc(text)}</p>` : ""}
+      <div class="ma-btns">${buttons.map((b, i) => `<button type="button" class="mac-btn ${b.primary ? "primary" : "secondary"}" data-i="${i}">${esc(b.label)}</button>`).join("")}</div></div>`;
+    document.body.appendChild(ov);
+    const close = () => { ov.classList.add("out"); setTimeout(() => ov.remove(), 180); document.removeEventListener("keydown", onKey, true); };
+    const onKey = (e) => { if (e.key === "Escape") { e.stopImmediatePropagation(); close(); } if (e.key === "Enter") { e.preventDefault(); const p = buttons.findIndex((b) => b.primary); $(`[data-i="${p < 0 ? 0 : p}"]`, ov).click(); } };
+    document.addEventListener("keydown", onKey, true);
+    ov.addEventListener("click", (e) => { const bt = e.target.closest("[data-i]"); if (!bt) return; const b = buttons[+bt.dataset.i]; close(); if (b.run) setTimeout(b.run, 200); });
+    setTimeout(() => { const p = $(".mac-btn.primary", ov) || $(".mac-btn", ov); p && p.focus(); }, 30);
+  }
+  function refreshTrashIcon() {
+    const b = $(".dk-trash", dock);
+    if (!b) return;
+    b.classList.toggle("full", trashFull());
+    b.innerHTML = `${TRASH_SVG()}<span class="tip">${ui("trash")}</span><span class="dot"></span>`;
+    b.classList.toggle("open", wins.has("trash"));
+  }
+  function openTrash(origin) {
+    track("open", { id: "trash" });
+    openWindow("trash", {
+      origin, w: 720, h: 460, hash: "papelera", cls: "finder trashwin",
+      title: () => tt("title"),
+      render(body) {
+        const items = trashItems();
+        body.innerHTML = `<div class="main trash-main">
+          <div class="folder-head trash-head">
+            <div><h1>${esc(tt("title"))}</h1><p>${esc(tt("sub"))}</p></div>
+            ${items.length ? `<button type="button" class="mac-btn secondary" data-empty>${esc(tt("empty"))}</button>` : ""}
+          </div>
+          ${items.length ? `<div class="trash-grid">${items.map((it, i) => `<button type="button" class="trash-item" data-ti="${i}" style="--i:${i}">
+              <span class="ti-art">${svgFolder("gray")}</span><span class="ti-name">${esc(t(it.name))}</span>${t(it.date) ? `<small>${esc(t(it.date))}</small>` : ""}</button>`).join("")}</div>`
+            : `<div class="folder-empty trash-empty">${TRASH_SVG()}<strong>${esc(tt("emptied"))}</strong><span>${esc(tt("emptiedSub"))}</span></div>`}
+        </div>`;
+        body.onclick = (e) => {
+          const ti = e.target.closest("[data-ti]");
+          if (ti) {
+            $$(".trash-item", body).forEach((x) => x.classList.toggle("sel", x === ti));
+            const it = items[+ti.dataset.ti];
+            track("open", { id: "trash:" + String(t(it.name)).toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40) });
+            macAlert({
+              icon: svgFolder("gray"), title: tt("cantOpen").replace("{x}", t(it.name)), text: t(it.note),
+              buttons: [
+                { label: tt("restore"), run: () => macAlert({ icon: TRASH_SVG(), title: tt("noRestore"), buttons: [{ label: "OK", primary: true }] }) },
+                { label: "OK", primary: true },
+              ],
+            });
+            return;
+          }
+          if (e.target.closest("[data-empty]")) {
+            macAlert({
+              icon: TRASH_SVG(), title: tt("askEmpty"), text: tt("askEmptySub"),
+              buttons: [
+                { label: lang === "es" ? "Cancelar" : "Cancel" },
+                { label: lang === "es" ? "Vaciar papelera" : "Empty Trash", primary: true, run: () => {
+                  track("open", { id: "trash:empty" });
+                  $$(".trash-item", body).forEach((x, i) => { x.style.transitionDelay = i * 60 + "ms"; x.classList.add("gone"); });
+                  setTimeout(() => { trashEmptied = true; const w = wins.get("trash"); if (w) paint(w); refreshTrashIcon(); }, 520);
+                } },
+              ],
+            });
+          }
+        };
+      },
+    });
+    refreshTrashIcon();
+  }
+  dock.addEventListener("click", (e) => { const b = e.target.closest("[data-trash]"); if (b) openTrash(b); });
 
   // ---------- En el celular: abrir la app de la red social si está instalada ----------
   // Android: enlace "intent" con el paquete de la app y regreso al navegador si no está instalada.
