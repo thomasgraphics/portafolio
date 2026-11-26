@@ -153,7 +153,7 @@ body.no-noise .noise { display: none; }
 
 /* ---------- Nota adhesiva ---------- */
 .sticky {
-  position: absolute; left: 28%; top: 9%;
+  position: absolute; left: 54%; top: 22px;
   width: 240px; padding: 14px 16px 16px;
   background: var(--sticky-bg, var(--glass-strong));
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -172,7 +172,7 @@ body.booted .sticky { opacity: 1; }
 
 /* ---------- Notificación ---------- */
 .notification {
-  position: absolute; top: 22px; left: 54%; z-index: 40;
+  position: absolute; top: 9%; left: 28%; z-index: 40;
   width: 272px; padding: 11px 13px 12px;
   background: var(--glass-strong);
   backdrop-filter: blur(30px) saturate(1.8); -webkit-backdrop-filter: blur(30px) saturate(1.8);
@@ -400,10 +400,11 @@ body.booted .dock { transform: translate(-50%, 0); }
   .menubar { font-size: 12px; padding: 0 12px; padding-top: env(safe-area-inset-top); height: calc(var(--menubar-h) + env(safe-area-inset-top)); }
   .menubar .mb-hide-sm { display: none; }
   .desktop { top: calc(var(--menubar-h) + env(safe-area-inset-top)); overflow-y: auto; padding-bottom: 110px; }
-  .sticky { position: relative; left: auto; top: auto; margin: 14px auto 0; width: calc(100% - 32px); transform: none; cursor: default; }
-  .notification { position: relative; top: auto; right: auto; left: auto; margin: 12px auto 0; width: calc(100% - 32px); transform: translateY(-20px); }
+  .sticky { position: relative; left: auto; top: auto; margin: 12px auto 0; width: calc(100% - 32px); transform: none; cursor: default; }
+  .notification { position: relative; top: auto; right: auto; left: auto; margin: 14px auto 0; width: calc(100% - 32px); transform: translateY(-20px); }
   .notification.show { transform: none; }
   .notification[hidden] { display: none; }
+  .notification.pending[hidden] { display: block; visibility: hidden; } /* guarda su espacio para que el recordatorio no salte */
   .icons { position: relative; inset: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px 4px; padding: 22px 12px; }
   .icon { position: relative; left: auto; top: auto; transform: none; width: auto; animation-name: icon-in-sm; }
   @keyframes icon-in-sm { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: none; } }

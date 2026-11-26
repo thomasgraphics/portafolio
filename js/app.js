@@ -1353,7 +1353,8 @@
     const opened = openFromHash();
     setTimeout(() => renderSticky(true), 700);
     if (D.notification && TH.showNotification) {
-      setTimeout(() => { notif.hidden = false; requestAnimationFrame(() => notif.classList.add("show")); }, 1100);
+      notif.classList.add("pending");
+      setTimeout(() => { notif.hidden = false; notif.classList.remove("pending"); requestAnimationFrame(() => notif.classList.add("show")); }, 1100);
     }
   }
 
