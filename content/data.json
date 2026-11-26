@@ -29,7 +29,12 @@
     "behance": "",
     "email": "thomasfelipeh20@gmail.com"
   },
-  "dockIcons": {},
+  "dockIcons": {
+    "whatsapp": "assets/icons/dock-whatsapp.png",
+    "email": "assets/icons/dock-email.png",
+    "linkedin": "assets/icons/dock-linkedin.png",
+    "instagram": "assets/icons/dock-instagram.png"
+  },
   "intro": [
     {
       "src": "assets/img/intro/intro-1.jpg",
