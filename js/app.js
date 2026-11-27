@@ -913,14 +913,20 @@
       return u ? "https://www.figma.com/embed?embed_host=thomgraphics&url=" + encodeURIComponent(u) : "";
     }
     if (type === "xd" && /^[A-Za-z0-9-]+$/.test(id)) return `https://xd.adobe.com/embed/${id}/`;
+    // Sitios propios publicados en GitHub Pages (mapas, manuales interactivos…)
+    if (type === "web") {
+      const path = id.replace(/^https:\/\/thomasgraphics\.github\.io\//, "");
+      return /^[A-Za-z0-9_\-\/.]+$/.test(path) && !path.includes("..") ? "https://thomasgraphics.github.io/" + path : "";
+    }
     return "";
   }
   function embedHtml(s, c) {
     const url = embedUrl(s.embedType, s.embedId);
     if (!url) return "";
     const video = s.embedType === "youtube";
-    const label = video ? (lang === "es" ? "Reproducir video" : "Play video") : (lang === "es" ? "Abrir prototipo interactivo" : "Open interactive prototype");
-    const note = s.embedType === "xd" ? "Adobe XD" : s.embedType === "figma" ? "Figma" : "YouTube";
+    const web = s.embedType === "web";
+    const label = (s.embedLabel && t(s.embedLabel)) || (video ? (lang === "es" ? "Reproducir video" : "Play video") : web ? (lang === "es" ? "Explorar en vivo" : "Explore live") : (lang === "es" ? "Abrir prototipo interactivo" : "Open interactive prototype"));
+    const note = s.embedType === "xd" ? "Adobe XD" : s.embedType === "figma" ? "Figma" : web ? (lang === "es" ? "Sitio en vivo" : "Live site") : "YouTube";
     const ratio = ["mobile", "desktop", "video"].includes(s.embedRatio) ? s.embedRatio : video ? "video" : "desktop";
     // Los videos se muestran listos para ver (sin el paso de "abrir")
     if (video || s.autoload) return `<div class="case-embed on r-${ratio}"><iframe src="${esc(url.replace("&autoplay=1", ""))}" loading="lazy" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${esc(c.title)}"></iframe></div>`;
@@ -936,7 +942,7 @@
     f.src = el.dataset.embed; f.loading = "lazy"; f.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
     f.allowFullscreen = true; f.referrerPolicy = "strict-origin-when-cross-origin"; f.title = el.getAttribute("aria-label") || "";
     el.innerHTML = ""; el.appendChild(f); el.classList.add("on"); el.removeAttribute("role"); el.removeAttribute("tabindex");
-    track("open", { id: "embed:" + (el.dataset.embed.match(/youtube|figma|xd\.adobe/) || ["x"])[0] });
+    track("open", { id: "embed:" + (el.dataset.embed.match(/youtube|figma|xd\.adobe|github\.io/) || ["x"])[0] });
   }
   document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches("[data-embed]")) { e.preventDefault(); loadEmbed(e.target); } });
 

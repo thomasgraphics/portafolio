@@ -217,6 +217,14 @@
       "items": [
         {
           "type": "case",
+          "case": "torneo-joropo-2026",
+          "category": {
+            "es": "Web",
+            "en": "Web"
+          }
+        },
+        {
+          "type": "case",
           "case": "multibanca",
           "category": {
             "es": "Fintech",
@@ -3897,6 +3905,105 @@
         }
       ],
       "shareImage": "assets/img/share/dona-jaky.jpg"
+    },
+    "torneo-joropo-2026": {
+      "title": "Zonificación Torneo del Joropo 2026",
+      "subtitle": {
+        "es": "Mapa interactivo 3D · Evento internacional",
+        "en": "Interactive 3D map · International event"
+      },
+      "badge": {
+        "es": "Sitio en vivo",
+        "en": "Live site"
+      },
+      "link": {
+        "url": "https://thomasgraphics.github.io/zonificacion-torneo-joropo-2026/",
+        "label": {
+          "es": "Abrir el mapa",
+          "en": "Open the map"
+        }
+      },
+      "cover": "assets/img/projects/torneo-joropo-2026/cover.webp",
+      "meta": {
+        "client": {
+          "es": "58.° Torneo Internacional del Joropo · Villavicencio",
+          "en": "58th International Joropo Tournament · Villavicencio"
+        },
+        "role": {
+          "es": "Diseño UX/UI y desarrollo front-end",
+          "en": "UX/UI design and front-end development"
+        },
+        "year": "2026",
+        "tools": "MapLibre GL · OpenStreetMap · Google Earth (KML) · HTML/CSS/JS"
+      },
+      "tags": [
+        {
+          "es": "UX/UI",
+          "en": "UX/UI"
+        },
+        {
+          "es": "Mapa interactivo",
+          "en": "Interactive map"
+        },
+        "Web",
+        {
+          "es": "Eventos",
+          "en": "Events"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Orientarse en un evento de miles de personas",
+            "en": "Finding your way in an event of thousands"
+          },
+          "p": {
+            "es": "El Torneo Internacional del Joropo convierte el Joropódromo de Villavicencio en un recorrido de tarimas, graderías, carpas y zonas de descanso. Diseñé y desarrollé un visor web que muestra las 16 zonas del 58.° torneo sobre un mapa interactivo, para que público, prensa y organizadores sepan dónde está cada cosa antes de llegar y durante el evento.",
+            "en": "The International Joropo Tournament turns Villavicencio's Joropódromo into a route of stages, stands, tents and rest areas. I designed and built a web viewer that shows the 16 zones of the 58th tournament on an interactive map, so the public, press and organizers know where everything is before they arrive and during the event."
+          },
+          "embedType": "web",
+          "embedId": "zonificacion-torneo-joropo-2026/",
+          "embedRatio": "desktop",
+          "embedLabel": {
+            "es": "Explorar el mapa en vivo",
+            "en": "Explore the live map"
+          }
+        },
+        {
+          "h": {
+            "es": "Recorrido paso a paso",
+            "en": "Step-by-step route"
+          },
+          "p": {
+            "es": "En lugar de mostrar 16 marcadores de golpe, el mapa cuenta el recorrido: con «Adelante» y «Atrás» se avanza zona por zona, la cámara se desplaza a cada punto y una tarjeta muestra su nombre y categoría. La línea naranja traza el trayecto del desfile, de la partida a la meta.",
+            "en": "Instead of showing 16 markers at once, the map tells the route: «Next» and «Back» move zone by zone, the camera glides to each point and a card shows its name and category. The orange line traces the parade route from start to finish."
+          },
+          "img": "assets/img/projects/torneo-joropo-2026/01-recorrido.webp"
+        },
+        {
+          "h": {
+            "es": "Vista 3D y 2D",
+            "en": "3D and 2D views"
+          },
+          "p": {
+            "es": "Con un botón el mapa se inclina para ver el entorno en 3D, con edificios en volumen, y con otro vuelve a la vista plana o centra todo el recorrido. Funciona en el celular, sin instalar nada, y la interfaz usa los colores del afiche oficial del torneo.",
+            "en": "One button tilts the map to see the surroundings in 3D, with extruded buildings, and another returns to the flat view or centers the whole route. It works on a phone with nothing to install, and the interface uses the colors of the tournament's official poster."
+          },
+          "img": "assets/img/projects/torneo-joropo-2026/02-vista-3d.webp"
+        },
+        {
+          "h": {
+            "es": "Las 16 zonas",
+            "en": "The 16 zones"
+          },
+          "p": {
+            "es": "Cada zona tiene su ícono, número y categoría: tarimas, graderías, carpas, actividades deportivas y culturales, patrocinadores y alimentación. Los datos salen de un KML trazado en Google Earth, así que la zonificación se actualiza sin rediseñar el mapa.",
+            "en": "Each zone has its icon, number and category: stages, stands, tents, sports and cultural activities, sponsors and food. The data comes from a KML drawn in Google Earth, so the zoning can be updated without redesigning the map."
+          },
+          "img": "assets/img/projects/torneo-joropo-2026/03-zonas.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/torneo-joropo-2026.jpg"
     }
   },
   "about": {
@@ -4020,7 +4127,8 @@
     "assets/img/projects/camilo-botero/cover.webp": "assets/img/projects/camilo-botero/cover-sm.webp",
     "assets/img/projects/magazin-guayoyo/cover.webp": "assets/img/projects/magazin-guayoyo/cover-sm.webp",
     "assets/img/projects/sebastian-cruz/cover.webp": "assets/img/projects/sebastian-cruz/cover-sm.webp",
-    "assets/img/projects/dona-jaky/cover.webp": "assets/img/projects/dona-jaky/cover-sm.webp"
+    "assets/img/projects/dona-jaky/cover.webp": "assets/img/projects/dona-jaky/cover-sm.webp",
+    "assets/img/projects/torneo-joropo-2026/cover.webp": "assets/img/projects/torneo-joropo-2026/cover-sm.webp"
   },
   "trash": {
     "enabled": true,
