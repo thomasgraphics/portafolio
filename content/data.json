@@ -403,6 +403,14 @@
         },
         {
           "type": "case",
+          "case": "xcaly",
+          "category": {
+            "es": "Manuales",
+            "en": "Manuals"
+          }
+        },
+        {
+          "type": "case",
           "case": "emsa",
           "category": {
             "es": "Identidad",
@@ -4291,6 +4299,191 @@
         }
       ],
       "shareImage": "assets/img/share/tailorednets.jpg"
+    },
+    "xcaly": {
+      "title": "Xcaly",
+      "subtitle": {
+        "es": "Manual de marca interactivo · Tecnología",
+        "en": "Interactive brand manual · Technology"
+      },
+      "badge": {
+        "es": "Manual interactivo",
+        "en": "Interactive guidelines"
+      },
+      "link": {
+        "url": "https://thomasgraphics.github.io/xcaly-manual/",
+        "label": {
+          "es": "Ver manual interactivo",
+          "en": "View interactive manual"
+        }
+      },
+      "cover": "assets/img/projects/xcaly/portada.webp",
+      "meta": {
+        "client": "Xcaly",
+        "role": {
+          "es": "Diseño y desarrollo del manual de marca interactivo, 3D, texturas e intros animadas",
+          "en": "Design and development of the interactive brand manual, 3D, textures and animated intros"
+        },
+        "year": "2026",
+        "tools": "Branding · Diseño web interactivo · 3D · Motion"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Tecnología",
+          "en": "Technology"
+        },
+        {
+          "es": "Manual interactivo",
+          "en": "Interactive manual"
+        },
+        "Motion"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Un manual que funciona como un sistema",
+            "en": "A manual that works like a system"
+          },
+          "p": {
+            "es": "Convertí el brandbook Basic Use de Xcaly en un manual web de 16 láminas con interfaz tipo HUD: coordenadas, retícula y títulos que se decodifican. Se avanza girando una perilla, con flechas o deslizando, y cada lámina carga un módulo. En la portada, el logotipo está armado por partículas que reaccionan al cursor y lanzan un pulso con cada clic.",
+            "en": "I turned Xcaly's Basic Use brandbook into a 16-page web manual with a HUD-style interface: coordinates, a grid and titles that decode themselves. You move forward by turning a knob, with arrow keys or by swiping, and each page loads a module. On the cover, the logotype is built from particles that react to the cursor and send out a pulse on every click."
+          },
+          "img": "assets/img/projects/xcaly/01-portada.webp"
+        },
+        {
+          "h": {
+            "es": "Mapa del sistema",
+            "en": "System map"
+          },
+          "p": {
+            "es": "Un índice organiza el manual en cuatro módulos: identidad, sistema visual, protocolo y despliegue. Desde ahí se salta a cualquier lámina.",
+            "en": "An index organizes the manual into four modules: identity, visual system, protocol and deployment. From there you can jump to any page."
+          },
+          "img": "assets/img/projects/xcaly/02-sistema.webp"
+        },
+        {
+          "h": {
+            "es": "Isotipo",
+            "en": "Symbol"
+          },
+          "p": {
+            "es": "Una X dibujada con una sola línea continua: una barra diagonal hueca cruza el plano y dos brazos se afinan hasta terminar en punta, como un circuito que entra, recorre y sale. La lámina muestra el trazo, la retícula de construcción y el sólido.",
+            "en": "An X drawn with a single continuous line: a hollow diagonal bar crosses the plane and two arms taper to a point, like a circuit that goes in, runs through and comes out. The page shows the stroke, the construction grid and the solid shape."
+          },
+          "img": "assets/img/projects/xcaly/03-isotipo.webp"
+        },
+        {
+          "h": {
+            "es": "Dark y Light, para probar",
+            "en": "Dark and Light, to try out"
+          },
+          "p": {
+            "es": "El modo oficial es Dark: isotipo verde y logotipo blanco sobre navy; la versión secundaria es Light, para fondos claros. Un playground deja cambiar la versión (horizontal, vertical o isotipo), el fondo y el color, con lectura de contraste en vivo, zona de protección, tamaño mínimo y retícula.",
+            "en": "The official mode is Dark: green symbol and white logotype on navy; the secondary version is Light, for light backgrounds. A playground lets you switch the version (horizontal, vertical or symbol), the background and the color, with a live contrast readout, clear space, minimum size and grid."
+          },
+          "img": "assets/img/projects/xcaly/04-versiones.webp"
+        },
+        {
+          "h": {
+            "es": "Isotipo en 3D",
+            "en": "3D symbol"
+          },
+          "p": {
+            "es": "Las tres variantes del isotipo (verde, blanco y dentro de un círculo blanco) se pueden girar en 3D y cambiar de acabado: neón, metal u holograma, para ver cómo vive la X fuera de la pantalla.",
+            "en": "The three symbol variants (green, white and inside a white circle) can be spun in 3D with different finishes: neon, metal or hologram, to see how the X lives off-screen."
+          },
+          "img": "assets/img/projects/xcaly/05-isotipo-3d.webp"
+        },
+        {
+          "h": {
+            "es": "Color",
+            "en": "Color"
+          },
+          "p": {
+            "es": "Tres colores sostienen la identidad: el verde que enciende la marca, el navy que la contiene y el negro de las piezas más sobrias. Cada valor se copia con un clic en HEX, RGB, HSL o CMYK.",
+            "en": "Three colors hold the identity together: the green that lights up the brand, the navy that contains it and the black for the most understated pieces. Each value copies with one click in HEX, RGB, HSL or CMYK."
+          },
+          "img": "assets/img/projects/xcaly/06-color.webp"
+        },
+        {
+          "img": "assets/img/projects/xcaly/07-degradado.webp"
+        },
+        {
+          "h": {
+            "es": "Tipografía y jerarquía",
+            "en": "Typography and hierarchy"
+          },
+          "p": {
+            "es": "Poppins en sus 18 estilos, con mapa de caracteres, probador de peso y tamaño, y un decodificador de texto. La jerarquía define cuatro niveles con una sola familia y se ve aplicada en escritorio y celular.",
+            "en": "Poppins in its 18 styles, with a character map, a weight and size tester and a text decoder. The hierarchy defines four levels with a single family and is shown applied on desktop and mobile."
+          },
+          "img": "assets/img/projects/xcaly/08-poppins.webp"
+        },
+        {
+          "img": "assets/img/projects/xcaly/09-jerarquia.webp"
+        },
+        {
+          "h": {
+            "es": "Ícono de app",
+            "en": "App icon"
+          },
+          "p": {
+            "es": "Tres fondos para el ícono (negro, blanco y verde) que se abren en un teléfono para verlos entre otras apps, con las medidas para App Store, Google Play, iPhone, Android y web.",
+            "en": "Three backgrounds for the icon (black, white and green) that open on a phone to see them among other apps, with sizes for the App Store, Google Play, iPhone, Android and web."
+          },
+          "img": "assets/img/projects/xcaly/10-icono-app.webp"
+        },
+        {
+          "h": {
+            "es": "Usos no correctos y validación",
+            "en": "Misuses and validation"
+          },
+          "p": {
+            "es": "Cada error de la marca aparece como una falla del sistema que se puede corregir para ver la versión válida. Después, un quiz pone seis piezas a prueba: aprobar o rechazar.",
+            "en": "Each brand misuse shows up as a system error you can fix to see the correct version. Then a quiz puts six pieces to the test: approve or reject."
+          },
+          "img": "assets/img/projects/xcaly/11-usos.webp"
+        },
+        {
+          "img": "assets/img/projects/xcaly/12-validacion.webp"
+        },
+        {
+          "h": {
+            "es": "Texturas generativas",
+            "en": "Generative textures"
+          },
+          "p": {
+            "es": "Cuatro texturas nacidas de la X y la retícula (malla, circuito, puntos y flujo de datos) para fondos, presentaciones y redes. Se generan, se ajustan en densidad y movimiento y se descargan en SVG o PNG.",
+            "en": "Four textures born from the X and the grid (mesh, circuit, dots and data flow) for backgrounds, presentations and social media. You generate them, adjust density and motion and download them as SVG or PNG."
+          },
+          "img": "assets/img/projects/xcaly/13-texturas.webp"
+        },
+        {
+          "h": {
+            "es": "Intros animadas",
+            "en": "Animated intros"
+          },
+          "p": {
+            "es": "Tres entradas de cinco segundos (ensamble, circuito y escáner) para video, reels y presentaciones, en 16:9 y 9:16, con fondo navy o degradado.",
+            "en": "Three five-second openers (assembly, circuit and scanner) for video, reels and presentations, in 16:9 and 9:16, on a navy or gradient background."
+          },
+          "video": "assets/video/xcaly-intros.mp4",
+          "poster": "assets/img/projects/xcaly/intros-poster.webp"
+        },
+        {
+          "h": {
+            "es": "Todo listo para descargar",
+            "en": "Everything ready to download"
+          },
+          "p": {
+            "es": "Logos en SVG, PDF, PNG y JPG; texturas; paleta en ASE, CSS, JSON y tokens; la tipografía y las intros. Los kits en ZIP se arman en el propio navegador.",
+            "en": "Logos in SVG, PDF, PNG and JPG; textures; the palette as ASE, CSS, JSON and tokens; the typeface and the intros. ZIP kits are assembled right in the browser."
+          },
+          "img": "assets/img/projects/xcaly/14-descargas.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/xcaly.jpg"
     }
   },
   "about": {
@@ -4424,7 +4617,8 @@
     "assets/img/projects/bevgo/portada.webp": "assets/img/projects/bevgo/portada-sm.webp",
     "assets/img/projects/english-with-purpose/portada.webp": "assets/img/projects/english-with-purpose/portada-sm.webp",
     "assets/img/projects/komercia-web/portada.webp": "assets/img/projects/komercia-web/portada-sm.webp",
-    "assets/img/projects/tailorednets/portada.webp": "assets/img/projects/tailorednets/portada-sm.webp"
+    "assets/img/projects/tailorednets/portada.webp": "assets/img/projects/tailorednets/portada-sm.webp",
+    "assets/img/projects/xcaly/portada.webp": "assets/img/projects/xcaly/portada-sm.webp"
   },
   "trash": {
     "enabled": true,
