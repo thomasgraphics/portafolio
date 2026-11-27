@@ -217,6 +217,14 @@
       "items": [
         {
           "type": "case",
+          "case": "el-presi",
+          "category": {
+            "es": "Apps",
+            "en": "Apps"
+          }
+        },
+        {
+          "type": "case",
           "case": "torneo-joropo-2026",
           "category": {
             "es": "Web",
@@ -3875,6 +3883,102 @@
         }
       ],
       "shareImage": "assets/img/share/camilo-botero-burgues-pub.jpg"
+    },
+    "el-presi": {
+      "title": "La Batalla del Presi",
+      "subtitle": {
+        "es": "App de votación gastronómica · Ni el Presidente",
+        "en": "Food voting app · Ni el Presidente"
+      },
+      "cover": "assets/img/projects/el-presi/portada.webp",
+      "meta": {
+        "client": {
+          "es": "Ni el Presidente · Villavicencio",
+          "en": "Ni el Presidente · Villavicencio"
+        },
+        "role": {
+          "es": "Diseño UX/UI de la app (celular y tablet) y piezas para tiendas",
+          "en": "UX/UI design of the app (phone and tablet) and store assets"
+        },
+        "year": "2025–2026",
+        "tools": "Figma"
+      },
+      "tags": [
+        {
+          "es": "UX/UI",
+          "en": "UX/UI"
+        },
+        "App",
+        {
+          "es": "Comunidad",
+          "en": "Community"
+        },
+        {
+          "es": "Gastronomía",
+          "en": "Food"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "La comunidad más grande de ¡Tragones!",
+            "en": "The biggest community of foodies"
+          },
+          "p": {
+            "es": "«Ni el Presidente» es un creador de contenido gastronómico de Villavicencio que organiza «La Batalla del Presi»: una competencia en la que los restaurantes de la ciudad compiten con su mejor plato y el público vota. Diseñé la app que lleva la batalla al celular: ver a los participantes, seguir la ruta, votar y descubrir los mejores sitios. Ya pasaron por ella la edición de Perro Caliente 2025 y la de Hamburguesa 2026.",
+            "en": "“Ni el Presidente” is a food content creator from Villavicencio who runs “La Batalla del Presi”: a competition where the city's restaurants put their best dish forward and the public votes. I designed the app that brings the battle to the phone: browse the contestants, follow the route, vote and discover the best spots. The Hot Dog 2025 and Burger 2026 editions have already run on it."
+          },
+          "img": "assets/img/projects/el-presi/01-tienda.webp"
+        },
+        {
+          "h": {
+            "es": "Del anuncio al voto",
+            "en": "From announcement to vote"
+          },
+          "p": {
+            "es": "El flujo principal acompaña cada edición: la pantalla de inicio con la marca, el aviso «Ya viene» para la próxima batalla, la portada del evento con patrocinadores y participantes, la ficha de cada restaurante con su plato, dirección, horario y WhatsApp, y el voto, que se confirma con un código al celular para que cada persona vote una sola vez.",
+            "en": "The main flow follows each edition: the branded splash, the “Coming soon” notice for the next battle, the event home with sponsors and contestants, each restaurant's page with its dish, address, hours and WhatsApp, and the vote, confirmed with a code sent to the phone so each person votes only once."
+          },
+          "img": "assets/img/projects/el-presi/02-flujo.webp"
+        },
+        {
+          "h": {
+            "es": "La ruta y Los top",
+            "en": "The route and the top picks"
+          },
+          "p": {
+            "es": "Un mapa traza la ruta de la batalla con todos los participantes para ir de uno a otro, y la sección «Los top del Presi» reúne en video las reseñas de los mejores sitios. La barra inferior deja todo a un toque: Inicio, Batalla, Los top, Aliados y Perfil.",
+            "en": "A map traces the battle route with every contestant so people can go from one to the next, and “Los top del Presi” gathers video reviews of the best spots. The bottom bar keeps everything one tap away: Home, Battle, Top, Partners and Profile."
+          },
+          "img": "assets/img/projects/el-presi/03-ruta-top.webp"
+        },
+        {
+          "h": {
+            "es": "La ruleta del Presi",
+            "en": "The Presi roulette"
+          },
+          "p": {
+            "es": "Un juego para la mesa: entre 2 y 6 amigos escogen un número, ponen el celular en el centro y la ruleta decide quién paga la cuenta. Con reglas claras, ilustraciones 3D y un tono divertido, la app sirve también para el momento de comer.",
+            "en": "A table game: 2 to 6 friends pick a number, put the phone in the middle and the roulette decides who pays the bill. With clear rules, 3D illustrations and a playful tone, the app also works at mealtime."
+          },
+          "img": "assets/img/projects/el-presi/04-ruleta.webp"
+        },
+        {
+          "h": {
+            "es": "Tablet y tiendas de apps",
+            "en": "Tablet and app stores"
+          },
+          "p": {
+            "es": "La interfaz se adapta a tablet y la acompañan las piezas para Google Play y App Store, con el negro, el amarillo y el verde lima de la marca y la firma de «Ni el Presidente».",
+            "en": "The interface adapts to tablet, alongside the Google Play and App Store assets, in the brand's black, yellow and lime green with the “Ni el Presidente” signature."
+          },
+          "img": "assets/img/projects/el-presi/05-tablet.webp"
+        },
+        {
+          "img": "assets/img/projects/el-presi/06-promo.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/el-presi.jpg"
     }
   },
   "about": {
@@ -4003,7 +4107,8 @@
     "assets/img/projects/camilo-botero/portada-logo.webp": "assets/img/projects/camilo-botero/portada-logo-sm.webp",
     "assets/img/projects/magazin-guayoyo/portada-logo.webp": "assets/img/projects/magazin-guayoyo/portada-logo-sm.webp",
     "assets/img/projects/sebastian-cruz/portada-logo.webp": "assets/img/projects/sebastian-cruz/portada-logo-sm.webp",
-    "assets/img/projects/dona-jaky/portada-logo.webp": "assets/img/projects/dona-jaky/portada-logo-sm.webp"
+    "assets/img/projects/dona-jaky/portada-logo.webp": "assets/img/projects/dona-jaky/portada-logo-sm.webp",
+    "assets/img/projects/el-presi/portada.webp": "assets/img/projects/el-presi/portada-sm.webp"
   },
   "trash": {
     "enabled": true,
