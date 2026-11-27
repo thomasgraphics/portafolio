@@ -21,9 +21,9 @@
     "showIntro": true,
     "showNotification": true,
     "showSticky": true,
-    "wallpaperBlur": 0,
     "darkDim": false,
-    "forceDark": true
+    "forceDark": true,
+    "focusIn": false
   },
   "links": {
     "whatsapp": "https://wa.me/573112221511",
@@ -96,8 +96,8 @@
       "id": "ux",
       "type": "folder",
       "color": "blue",
-      "x": 12,
-      "y": 31,
+      "x": 47,
+      "y": 44,
       "label": {
         "es": "UX/UI & Producto",
         "en": "UX/UI & Product"
@@ -107,8 +107,8 @@
       "id": "branding",
       "type": "folder",
       "color": "pink",
-      "x": 23,
-      "y": 37,
+      "x": 18,
+      "y": 30,
       "label": {
         "es": "Branding",
         "en": "Branding"
@@ -118,8 +118,8 @@
       "id": "motion",
       "type": "folder",
       "color": "purple",
-      "x": 35,
-      "y": 45,
+      "x": 61,
+      "y": 56,
       "label": {
         "es": "Motion & Video",
         "en": "Motion & Video"
@@ -129,8 +129,8 @@
       "id": "foto",
       "type": "folder",
       "color": "teal",
-      "x": 13,
-      "y": 52,
+      "x": 28,
+      "y": 46,
       "label": {
         "es": "Fotografía",
         "en": "Photography"
@@ -140,8 +140,8 @@
       "id": "social",
       "type": "folder",
       "color": "orange",
-      "x": 25,
-      "y": 58,
+      "x": 73,
+      "y": 47,
       "label": {
         "es": "Redes sociales",
         "en": "Social media"
@@ -150,8 +150,8 @@
     {
       "id": "about",
       "type": "note",
-      "x": 39,
-      "y": 63,
+      "x": 54,
+      "y": 73,
       "label": {
         "es": "Sobre mí",
         "en": "About me"
@@ -160,8 +160,8 @@
     {
       "id": "cv",
       "type": "pdf",
-      "x": 38,
-      "y": 29,
+      "x": 58,
+      "y": 38,
       "label": {
         "es": "CV",
         "en": "CV"
@@ -171,8 +171,8 @@
     {
       "id": "showreel",
       "type": "video",
-      "x": 18,
-      "y": 75,
+      "x": 68,
+      "y": 73,
       "label": {
         "es": "Conóceme en 45s.mp4",
         "en": "Meet me in 45s.mp4"
@@ -185,8 +185,8 @@
     {
       "id": "me1",
       "type": "photo",
-      "x": 31,
-      "y": 77,
+      "x": 74,
+      "y": 29,
       "label": {
         "es": "IMG_0418.jpg",
         "en": "IMG_0418.jpg"
@@ -197,8 +197,8 @@
     {
       "id": "me2",
       "type": "photo",
-      "x": 7,
-      "y": 68,
+      "x": 34,
+      "y": 64,
       "label": {
         "es": "IMG_0552.jpg",
         "en": "IMG_0552.jpg"
@@ -4796,10 +4796,10 @@
       }
     ]
   },
-  "wallpaperBaked": "assets/img/wallpaper-thomas-4k.webp",
+  "wallpaperBaked": "assets/img/wallpaper-thomas-desk-baked.webp",
   "wallpaperBakedFrom": "assets/img/wallpaper-thomas-4k.webp",
-  "wallpaperBakedMobile": "assets/img/wallpaper-thomas-4k-m.webp",
+  "wallpaperBakedMobile": "assets/img/wallpaper-thomas-mob-baked.webp",
   "wallpaperBakedMobileFrom": "assets/img/wallpaper-thomas-4k-m.webp",
-  "wallpaperBakedBlur": 0,
+  "wallpaperBakedBlur": 4,
   "themeColor": "#0d0d0d"
 }

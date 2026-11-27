@@ -1437,7 +1437,7 @@
     const stack = $("#intro-stack");
     const skipBtn = $("#skip-intro");
     skipBtn.textContent = ui("skip");
-    intro.style.backgroundImage = `url("${effectiveWallpaper()}")`;
+    intro.style.backgroundImage = `url("${wallpaperUrl()}")`; // en la intro la foto se ve nítida; al entrar queda desenfocada detrás del escritorio
     let finished = false;
     const timers = [];
     const finish = () => {
