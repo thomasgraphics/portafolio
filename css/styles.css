@@ -79,6 +79,8 @@ body.wp-baked .wallpaper { --wp-blur: 0px; }
 body.wp-baked .wallpaper-dof { display: none; }
 body.wp-settled .wallpaper { filter: none; transition: none; }
 html.dark body.wp-settled .wallpaper { filter: brightness(0.62) saturate(0.9); }
+html.dark body.no-dark-dim .wallpaper { --wp-br: 1; --wp-sat: 1; }
+html.dark body.no-dark-dim.wp-settled .wallpaper { filter: none; }
 /* Grano ligero: una imagen pequeña con transparencia, sin modo de fusión sobre toda la pantalla */
 body.grain-lite .noise { inset: 0; mix-blend-mode: normal; opacity: calc(var(--noise-o, 0.22) / 0.22); background-image: url("../assets/img/grain.png"); background-size: 96px 96px; }
 html.dark body.grain-lite .noise { mix-blend-mode: normal; opacity: calc(var(--noise-o, 0.22) / 0.22 * 0.7); }

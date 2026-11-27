@@ -119,6 +119,7 @@
     b.toggle("noise-anim", T.noiseAnimated === true && !reducedMotion);
     b.toggle("grain-lite", !(T.noiseAnimated === true && !reducedMotion));
     b.toggle("no-focus-in", T.focusIn === false);
+    b.toggle("no-dark-dim", T.darkDim === false); // fondo ya oscuro: no se oscurece más de noche
   }
   // ---------- Modo oscuro automático (de noche, según la hora del visitante) ----------
   // Prueba manual: tudominio.com/?modo=oscuro  o  ?modo=claro
@@ -128,6 +129,7 @@
     if (forced === "oscuro" || forced === "dark") return true;
     if (forced === "claro" || forced === "light") return false;
     const T = D.theme || {};
+    if (T.forceDark === true) return true; // fondo oscuro: interfaz siempre en modo oscuro
     if (T.autoDark === false) return false;
     const from = Number.isFinite(+T.darkFrom) && T.darkFrom !== "" ? +T.darkFrom : 18;
     const to = Number.isFinite(+T.darkTo) && T.darkTo !== "" ? +T.darkTo : 6;
@@ -152,7 +154,7 @@
     html.classList.toggle("dark", dark);
     applyColors(D.theme || {});
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = dark ? "#1c1c1e" : "#cfd2bf";
+    if (meta) meta.content = dark ? "#1c1c1e" : (D.themeColor || "#cfd2bf");
     if (!first) setWallpaper();
   }
   function setWallpaper() {
@@ -167,12 +169,18 @@
   // Rendimiento: si existe una versión del fondo con el desenfoque y la profundidad de campo ya
   // aplicados (y corresponde a la foto actual con los ajustes por defecto), se usa esa y el navegador
   // no tiene que desenfocar la pantalla completa en cada cuadro.
+  function bakedFor(url) {
+    if (D.wallpaperBakedMobile && (url === D.wallpaperBakedMobileFrom || (isMobile() && !D.wallpaperMobile && url === D.wallpaperBakedFrom))) return D.wallpaperBakedMobile;
+    if (D.wallpaperBaked && url === D.wallpaperBakedFrom) return D.wallpaperBaked;
+    return "";
+  }
   function bakedOk() {
     const T = D.theme || {};
-    const blurDefault = T.wallpaperBlur === undefined || T.wallpaperBlur === "" || +T.wallpaperBlur === 4;
-    return !!(D.wallpaperBaked && D.wallpaperBakedFrom && wallpaperUrl() === D.wallpaperBakedFrom && T.dof !== false && blurDefault);
+    const bakedBlur = Number.isFinite(+D.wallpaperBakedBlur) && D.wallpaperBakedBlur !== "" && D.wallpaperBakedBlur !== undefined ? +D.wallpaperBakedBlur : 4;
+    const blur = T.wallpaperBlur === undefined || T.wallpaperBlur === "" ? 4 : +T.wallpaperBlur;
+    return !!(bakedFor(wallpaperUrl()) && T.dof !== false && blur === bakedBlur);
   }
-  const effectiveWallpaper = () => (bakedOk() ? (isMobile() && D.wallpaperBakedMobile ? D.wallpaperBakedMobile : D.wallpaperBaked) : wallpaperUrl());
+  const effectiveWallpaper = () => (bakedOk() ? bakedFor(wallpaperUrl()) : wallpaperUrl());
 
   // =========================================================================
   // Íconos SVG (genéricos, dibujados a mano)

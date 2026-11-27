@@ -571,7 +571,7 @@
 
   // ---------- Diseño: fuentes y vista previa ----------
   const FONTS = ["Inter", "DM Sans", "Manrope", "Plus Jakarta Sans", "Outfit", "Space Grotesk", "Poppins", "Montserrat", "Work Sans", "IBM Plex Sans", "Sora", "Urbanist", "Figtree", "Geist", "Instrument Sans", "Onest", "Lexend", "Rubik", "Nunito Sans", "Raleway", "Playfair Display", "Fraunces", "DM Serif Display", "Instrument Serif", "Libre Baskerville", "Space Mono", "JetBrains Mono"];
-  const DESIGN_KEYS = ["autoDark", "darkFrom", "darkTo", "focusIn", "wallpaperBlur", "dof", "noise", "noiseOpacity", "noiseAnimated", "font", "fontHead", "headWeight", "accent", "ink", "ink2", "muted", "winBg", "winBar", "noteBg", "stickyBg", "labelInk", "menubarInk", "menubarBg", "menubarOpacity", "dockBg", "dockOpacity", "radius", "iconScale", "dockSize"];
+  const DESIGN_KEYS = ["forceDark", "darkDim", "autoDark", "darkFrom", "darkTo", "focusIn", "wallpaperBlur", "dof", "noise", "noiseOpacity", "noiseAnimated", "font", "fontHead", "headWeight", "accent", "ink", "ink2", "muted", "winBg", "winBar", "noteBg", "stickyBg", "labelInk", "menubarInk", "menubarBg", "menubarOpacity", "dockBg", "dockOpacity", "radius", "iconScale", "dockSize"];
   const loadedFonts = new Set();
   function loadFont(f) {
     if (!FONTS.includes(f) || loadedFonts.has(f)) return;
@@ -774,6 +774,8 @@
           { key: "noiseAnimated", type: "toggle", label: "Grano animado", on: "Efecto de película", def: false },
         ]),
         group("Modo oscuro automático", "De noche el portafolio cambia solo a modo oscuro, según la hora de quien lo visita. Tus colores personalizados aplican de día; de noche se usa la paleta oscura (el acento se mantiene). Para probarlo: tudominio.com/?modo=oscuro", T, [
+          { key: "forceDark", type: "toggle", label: "Interfaz siempre oscura", on: "Activado", def: false, hint: "Recomendado con un fondo oscuro" },
+          { key: "darkDim", type: "toggle", label: "Oscurecer el fondo en modo oscuro", on: "Activado", hint: "Apágalo si el fondo ya es oscuro" },
           { key: "autoDark", type: "toggle", label: "Modo oscuro de noche", on: "Activado" },
           { key: "darkFrom", type: "number", label: "Empieza a las (hora 0–23)", min: 0, max: 23, step: 1, ph: "18" },
           { key: "darkTo", type: "number", label: "Termina a las (hora 0–23)", min: 0, max: 23, step: 1, ph: "6" },
