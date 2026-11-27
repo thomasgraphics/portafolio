@@ -1335,7 +1335,7 @@
           "en": "View interactive manual"
         }
       },
-      "cover": "assets/img/projects/mina-nm/cover.webp",
+      "cover": "assets/img/projects/mina-nm/portada.webp",
       "meta": {
         "client": {
           "es": "Mina NM Agregados Pétreos",
@@ -1367,7 +1367,7 @@
             "es": "Un manual en PDF se descarga una vez, se desactualiza y obliga a pedir los logos cada vez que alguien los necesita. Mina NM necesitaba lo contrario: una herramienta de uso diario. Por eso el brandbook es un sitio web de 21 láminas que se abre con un enlace, funciona en computador y celular, y permite probar, copiar y descargar la marca en el mismo lugar donde se explica cómo usarla. Menos errores de aplicación, cero archivos perdidos y una sola versión vigente (V 1.0 · 2026).",
             "en": "A PDF manual gets downloaded once, goes out of date and forces people to ask for the logos every time. Mina NM needed the opposite: an everyday tool. So the brandbook is a 21-slide website that opens from a single link, works on desktop and mobile, and lets anyone test, copy and download the brand in the same place where its rules are explained. Fewer application errors, no lost files and one current version (V 1.0 · 2026)."
           },
-          "img": "assets/img/projects/mina-nm/cover.webp"
+          "img": "assets/img/projects/mina-nm/portada.webp"
         },
         {
           "h": {
@@ -2880,7 +2880,7 @@
         "es": "Identidad visual · Juguería",
         "en": "Visual identity · Juice shop"
       },
-      "cover": "assets/img/projects/jugos-carolina/cover.webp",
+      "cover": "assets/img/projects/jugos-carolina/portada.webp",
       "meta": {
         "client": "Jugos Carolina",
         "role": {
@@ -2932,7 +2932,7 @@
         "es": "Identidad visual y etiqueta · Miel 100% natural",
         "en": "Visual identity and label · 100% natural honey"
       },
-      "cover": "assets/img/projects/apicola-san-angel/cover.webp",
+      "cover": "assets/img/projects/apicola-san-angel/portada.webp",
       "meta": {
         "client": "Apícola San Ángel",
         "role": {
@@ -3006,7 +3006,7 @@
         "es": "Identidad visual · Medio de noticias",
         "en": "Visual identity · News outlet"
       },
-      "cover": "assets/img/projects/villavo-al-dia/cover.webp",
+      "cover": "assets/img/projects/villavo-al-dia/portada.webp",
       "meta": {
         "client": "Villavo al Día",
         "role": {
@@ -3058,7 +3058,7 @@
         "es": "Identidad visual · Clínica odontológica",
         "en": "Visual identity · Dental clinic"
       },
-      "cover": "assets/img/projects/mosso-family-dental/cover.webp",
+      "cover": "assets/img/projects/mosso-family-dental/portada.webp",
       "meta": {
         "client": "Mosso Family Dental",
         "role": {
@@ -3110,7 +3110,7 @@
         "es": "Identidad visual · Aseguradora",
         "en": "Visual identity · Insurance"
       },
-      "cover": "assets/img/projects/omega-seguros/cover.webp",
+      "cover": "assets/img/projects/omega-seguros/portada.webp",
       "meta": {
         "client": "Omega Pólizas y Seguros",
         "role": {
@@ -3162,7 +3162,7 @@
         "es": "Identidad visual · Sándwiches gourmet",
         "en": "Visual identity · Gourmet sandwiches"
       },
-      "cover": "assets/img/projects/macadamia/cover.webp",
+      "cover": "assets/img/projects/macadamia/portada.webp",
       "meta": {
         "client": "Macadamia Sandwich Gourmet",
         "role": {
@@ -3214,7 +3214,7 @@
         "es": "Identidad visual · Envíos internacionales",
         "en": "Visual identity · International shipping"
       },
-      "cover": "assets/img/projects/miabox/cover.webp",
+      "cover": "assets/img/projects/miabox/portada.webp",
       "meta": {
         "client": "MiaBox",
         "role": {
@@ -3266,7 +3266,7 @@
         "es": "Marca personal · Músico",
         "en": "Personal brand · Musician"
       },
-      "cover": "assets/img/projects/camilo-botero/cover.webp",
+      "cover": "assets/img/projects/camilo-botero/portada.webp",
       "meta": {
         "client": "Camilo Botero",
         "role": {
@@ -3318,7 +3318,7 @@
         "es": "Identidad visual · Programa magazín",
         "en": "Visual identity · Magazine show"
       },
-      "cover": "assets/img/projects/magazin-guayoyo/cover.webp",
+      "cover": "assets/img/projects/magazin-guayoyo/portada.webp",
       "meta": {
         "client": "Magazín Guayoyo",
         "role": {
@@ -3370,7 +3370,7 @@
         "es": "Marca personal · Monograma",
         "en": "Personal brand · Monogram"
       },
-      "cover": "assets/img/projects/sebastian-cruz/cover.webp",
+      "cover": "assets/img/projects/sebastian-cruz/portada.webp",
       "meta": {
         "client": "Sebastián Cruz",
         "role": {
@@ -3422,7 +3422,7 @@
         "es": "Identidad visual · Comidas típicas del Llano",
         "en": "Visual identity · Traditional food from the Llanos"
       },
-      "cover": "assets/img/projects/dona-jaky/cover.webp",
+      "cover": "assets/img/projects/dona-jaky/portada.webp",
       "meta": {
         "client": "Doña Jaky",
         "role": {
@@ -3949,7 +3949,6 @@
     "assets/img/projects/hoytrabajas/cover.webp": "assets/img/projects/hoytrabajas/cover-sm.webp",
     "assets/img/projects/hunter-track/cover.webp": "assets/img/projects/hunter-track/cover-sm.webp",
     "assets/img/projects/mascotas-contigo/cover.webp": "assets/img/projects/mascotas-contigo/cover-sm.webp",
-    "assets/img/projects/mina-nm/cover.webp": "assets/img/projects/mina-nm/cover-sm.webp",
     "assets/img/projects/motion/motion-02.webp": "assets/img/projects/motion/motion-02-sm.webp",
     "assets/img/projects/motion/motion-03.webp": "assets/img/projects/motion/motion-03-sm.webp",
     "assets/img/projects/multibanca/cover.webp": "assets/img/projects/multibanca/cover-sm.webp",
@@ -3985,24 +3984,25 @@
     "assets/img/projects/foto/producto-02.webp": "assets/img/projects/foto/producto-02-sm.webp",
     "assets/img/projects/foto/producto-03.webp": "assets/img/projects/foto/producto-03-sm.webp",
     "assets/img/projects/foto/producto-04.webp": "assets/img/projects/foto/producto-04-sm.webp",
-    "assets/img/projects/jugos-carolina/cover.webp": "assets/img/projects/jugos-carolina/cover-sm.webp",
-    "assets/img/projects/apicola-san-angel/cover.webp": "assets/img/projects/apicola-san-angel/cover-sm.webp",
-    "assets/img/projects/villavo-al-dia/cover.webp": "assets/img/projects/villavo-al-dia/cover-sm.webp",
-    "assets/img/projects/mosso-family-dental/cover.webp": "assets/img/projects/mosso-family-dental/cover-sm.webp",
-    "assets/img/projects/omega-seguros/cover.webp": "assets/img/projects/omega-seguros/cover-sm.webp",
-    "assets/img/projects/macadamia/cover.webp": "assets/img/projects/macadamia/cover-sm.webp",
-    "assets/img/projects/miabox/cover.webp": "assets/img/projects/miabox/cover-sm.webp",
-    "assets/img/projects/camilo-botero/cover.webp": "assets/img/projects/camilo-botero/cover-sm.webp",
-    "assets/img/projects/magazin-guayoyo/cover.webp": "assets/img/projects/magazin-guayoyo/cover-sm.webp",
-    "assets/img/projects/sebastian-cruz/cover.webp": "assets/img/projects/sebastian-cruz/cover-sm.webp",
-    "assets/img/projects/dona-jaky/cover.webp": "assets/img/projects/dona-jaky/cover-sm.webp",
     "assets/img/projects/torneo-joropo-2026/cover.webp": "assets/img/projects/torneo-joropo-2026/cover-sm.webp",
     "assets/img/projects/candy-gold/cover.webp": "assets/img/projects/candy-gold/cover-sm.webp",
     "assets/img/projects/frupi/cover.webp": "assets/img/projects/frupi/cover-sm.webp",
     "assets/img/projects/laura-romero/cover.webp": "assets/img/projects/laura-romero/cover-sm.webp",
     "assets/img/projects/nico-vega/cover.webp": "assets/img/projects/nico-vega/cover-sm.webp",
     "assets/img/projects/kaliwa/cover.webp": "assets/img/projects/kaliwa/cover-sm.webp",
-    "assets/img/projects/camilo-botero-burgues-pub/cover.webp": "assets/img/projects/camilo-botero-burgues-pub/cover-sm.webp"
+    "assets/img/projects/camilo-botero-burgues-pub/cover.webp": "assets/img/projects/camilo-botero-burgues-pub/cover-sm.webp",
+    "assets/img/projects/jugos-carolina/portada.webp": "assets/img/projects/jugos-carolina/portada-sm.webp",
+    "assets/img/projects/apicola-san-angel/portada.webp": "assets/img/projects/apicola-san-angel/portada-sm.webp",
+    "assets/img/projects/villavo-al-dia/portada.webp": "assets/img/projects/villavo-al-dia/portada-sm.webp",
+    "assets/img/projects/mosso-family-dental/portada.webp": "assets/img/projects/mosso-family-dental/portada-sm.webp",
+    "assets/img/projects/omega-seguros/portada.webp": "assets/img/projects/omega-seguros/portada-sm.webp",
+    "assets/img/projects/macadamia/portada.webp": "assets/img/projects/macadamia/portada-sm.webp",
+    "assets/img/projects/miabox/portada.webp": "assets/img/projects/miabox/portada-sm.webp",
+    "assets/img/projects/camilo-botero/portada.webp": "assets/img/projects/camilo-botero/portada-sm.webp",
+    "assets/img/projects/magazin-guayoyo/portada.webp": "assets/img/projects/magazin-guayoyo/portada-sm.webp",
+    "assets/img/projects/sebastian-cruz/portada.webp": "assets/img/projects/sebastian-cruz/portada-sm.webp",
+    "assets/img/projects/dona-jaky/portada.webp": "assets/img/projects/dona-jaky/portada-sm.webp",
+    "assets/img/projects/mina-nm/portada.webp": "assets/img/projects/mina-nm/portada-sm.webp"
   },
   "trash": {
     "enabled": true,
