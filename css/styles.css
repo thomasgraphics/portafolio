@@ -324,7 +324,7 @@ body.booted .dock { transform: translate(-50%, 0); }
 
 /* ---------- Caso de estudio ---------- */
 .case { padding-bottom: 48px; }
-.case-cover { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; }
+.case-cover { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
 .case-inner { max-width: 760px; margin: 0 auto; padding: 32px 32px 0; }
 .case-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
 .chip { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: rgba(0,0,0,.06); color: var(--ink-2); }
