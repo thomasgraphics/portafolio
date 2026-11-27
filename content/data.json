@@ -4598,5 +4598,8 @@
         }
       }
     ]
-  }
+  },
+  "wallpaperBaked": "assets/img/wallpaper-baked.webp",
+  "wallpaperBakedFrom": "assets/img/wallpaper.webp",
+  "wallpaperBakedMobile": "assets/img/wallpaper-baked-m.webp"
 }

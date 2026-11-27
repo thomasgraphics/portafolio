@@ -117,6 +117,7 @@
     b.toggle("no-dof", T.dof === false);
     b.toggle("no-noise", T.noise === false);
     b.toggle("noise-anim", T.noiseAnimated === true && !reducedMotion);
+    b.toggle("grain-lite", !(T.noiseAnimated === true && !reducedMotion));
     b.toggle("no-focus-in", T.focusIn === false);
   }
   // ---------- Modo oscuro automático (de noche, según la hora del visitante) ----------
@@ -155,13 +156,23 @@
     if (!first) setWallpaper();
   }
   function setWallpaper() {
-    let src = String(wallpaperUrl() || "").replace(/["\\\n]/g, "");
+    document.body.classList.toggle("wp-baked", bakedOk());
+    let src = String(effectiveWallpaper() || "").replace(/["\\\n]/g, "");
     if (src && !/^(https?:|data:|blob:|\/)/i.test(src)) src = "/" + src;
     const url = `url("${src}")`;
     document.querySelectorAll(".wallpaper").forEach((el) => el.style.setProperty("--wp", url));
   }
   const wallpaperUrl = () =>
     document.documentElement.classList.contains("dark") && D.wallpaperDark ? D.wallpaperDark : (isMobile() && D.wallpaperMobile ? D.wallpaperMobile : D.wallpaper);
+  // Rendimiento: si existe una versión del fondo con el desenfoque y la profundidad de campo ya
+  // aplicados (y corresponde a la foto actual con los ajustes por defecto), se usa esa y el navegador
+  // no tiene que desenfocar la pantalla completa en cada cuadro.
+  function bakedOk() {
+    const T = D.theme || {};
+    const blurDefault = T.wallpaperBlur === undefined || T.wallpaperBlur === "" || +T.wallpaperBlur === 4;
+    return !!(D.wallpaperBaked && D.wallpaperBakedFrom && wallpaperUrl() === D.wallpaperBakedFrom && T.dof !== false && blurDefault);
+  }
+  const effectiveWallpaper = () => (bakedOk() ? (isMobile() && D.wallpaperBakedMobile ? D.wallpaperBakedMobile : D.wallpaperBaked) : wallpaperUrl());
 
   // =========================================================================
   // Íconos SVG (genéricos, dibujados a mano)
@@ -580,14 +591,19 @@
     let d = null;
     bar.addEventListener("pointerdown", (e) => {
       if (isMobile() || e.target.closest("button,a") || el.classList.contains("maximized")) return;
-      d = { sx: e.clientX, sy: e.clientY, l: el.offsetLeft, t: el.offsetTop };
+      d = { sx: e.clientX, sy: e.clientY, l: el.offsetLeft, t: el.offsetTop, maxL: layer.clientWidth - 80, maxT: layer.clientHeight - 60, minL: 80 - el.offsetWidth, x: 0, y: 0, raf: 0 };
       bar.setPointerCapture(e.pointerId);
     });
     bar.addEventListener("pointermove", (e) => {
       if (!d) return;
-      const maxL = layer.clientWidth - 80, maxT = layer.clientHeight - 60;
-      el.style.left = Math.min(maxL, Math.max(80 - el.offsetWidth, d.l + e.clientX - d.sx)) + "px";
-      el.style.top = Math.min(maxT, Math.max(0, d.t + e.clientY - d.sy)) + "px";
+      d.x = e.clientX; d.y = e.clientY;
+      if (d.raf) return;
+      const cur = d;
+      cur.raf = requestAnimationFrame(() => {
+        cur.raf = 0;
+        el.style.left = Math.min(cur.maxL, Math.max(cur.minL, cur.l + cur.x - cur.sx)) + "px";
+        el.style.top = Math.min(cur.maxT, Math.max(0, cur.t + cur.y - cur.sy)) + "px";
+      });
     });
     const stop = () => (d = null);
     bar.addEventListener("pointerup", stop);
@@ -1303,24 +1319,40 @@
   document.addEventListener("contextmenu", (e) => { if (e.target.closest && e.target.closest("video")) e.preventDefault(); });
   document.addEventListener("dragstart", (e) => { if (e.target.closest && e.target.closest("video")) e.preventDefault(); });
   // Liquid Glass: el brillo especular sigue al cursor
+  let glassEv = null, glassRaf = 0;
   document.addEventListener("pointermove", (e) => {
-    const g = e.target.closest && e.target.closest(".mac-btn, .dock, .seg, .notification, .case-talk");
-    if (!g) return;
-    const r = g.getBoundingClientRect();
-    g.style.setProperty("--mx", (e.clientX - r.left).toFixed(0) + "px");
-    g.style.setProperty("--my", (e.clientY - r.top).toFixed(0) + "px");
+    if (e.pointerType === "touch") return;
+    glassEv = e;
+    if (glassRaf) return;
+    glassRaf = requestAnimationFrame(() => {
+      glassRaf = 0;
+      const ev = glassEv;
+      const g = ev && ev.target.closest && ev.target.closest(".mac-btn, .dock, .seg, .notification, .case-talk");
+      if (!g) return;
+      const r = g.getBoundingClientRect();
+      g.style.setProperty("--mx", (ev.clientX - r.left).toFixed(0) + "px");
+      g.style.setProperty("--my", (ev.clientY - r.top).toFixed(0) + "px");
+    });
   }, { passive: true });
   // Magnificación del dock al pasar el mouse (como en macOS)
+  // Se leen las posiciones base una sola vez por cuadro y luego se escribe (sin forzar reflujos)
+  let dockX = null, dockRaf = 0;
   dock.addEventListener("mousemove", (e) => {
     if (isMobile() || reducedMotion) return;
-    $$(".dk", dock).forEach((el) => {
-      const r = el.getBoundingClientRect();
-      const d = Math.abs(e.clientX - (r.left + r.width / 2));
-      const k = Math.max(0, 1 - d / 120);
-      el.style.setProperty("--mag", (1 + 0.5 * k * k).toFixed(3));
+    dockX = e.clientX;
+    if (dockRaf) return;
+    dockRaf = requestAnimationFrame(() => {
+      dockRaf = 0;
+      if (dockX === null) return;
+      const els = $$(".dk", dock);
+      const centers = els.map((el) => { const r = el.getBoundingClientRect(); return r.left + r.width / 2; });
+      els.forEach((el, i) => {
+        const k = Math.max(0, 1 - Math.abs(dockX - centers[i]) / 120);
+        el.style.setProperty("--mag", (1 + 0.5 * k * k).toFixed(3));
+      });
     });
   });
-  dock.addEventListener("mouseleave", () => $$(".dk", dock).forEach((el) => el.style.setProperty("--mag", 1)));
+  dock.addEventListener("mouseleave", () => { dockX = null; $$(".dk", dock).forEach((el) => el.style.setProperty("--mag", 1)); });
 
   // =========================================================================
   // Cambio de idioma
@@ -1351,11 +1383,15 @@
   // =========================================================================
   function boot() {
     // El fondo arranca desenfocado y se enfoca cuando la foto ya cargó
-    const reveal = () => requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("booted")));
+    const reveal = () => requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.body.classList.add("booted");
+      // Cuando termina el enfoque de entrada, el fondo pre-horneado queda sin filtro CSS
+      if (document.body.classList.contains("wp-baked")) setTimeout(() => document.body.classList.add("wp-settled"), 1900);
+    }));
     const pre = new Image();
     let shown = false;
     const go = () => { if (!shown) { shown = true; reveal(); } };
-    pre.onload = go; pre.onerror = go; pre.src = wallpaperUrl();
+    pre.onload = go; pre.onerror = go; pre.src = effectiveWallpaper();
     setTimeout(go, 1500);
     // Orden de entrada: primero el mensaje, luego el recordatorio y por último las carpetas e íconos
     const hasNotif = !!(D.notification && TH.showNotification);
@@ -1393,7 +1429,7 @@
     const stack = $("#intro-stack");
     const skipBtn = $("#skip-intro");
     skipBtn.textContent = ui("skip");
-    intro.style.backgroundImage = `url("${wallpaperUrl()}")`;
+    intro.style.backgroundImage = `url("${effectiveWallpaper()}")`;
     let finished = false;
     const timers = [];
     const finish = () => {
@@ -1412,7 +1448,7 @@
 
     const offsets = [[-22, -64], [16, -18], [-10, 26], [8, 6], [-16, -30], [20, 30]];
     photos.forEach((p) => { if (p.src) { const im = new Image(); im.src = p.src; } });
-    const start = 500, step = 650;
+    const start = 300, step = 420;
     photos.forEach((p, i) => {
       timers.push(setTimeout(() => {
         const [dx, dy] = offsets[i % offsets.length];
@@ -1424,7 +1460,7 @@
         stack.appendChild(w);
       }, start + i * step));
     });
-    timers.push(setTimeout(finish, start + photos.length * step + 900));
+    timers.push(setTimeout(finish, start + photos.length * step + 650));
   }
 
 
