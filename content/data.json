@@ -2796,10 +2796,10 @@
             "es": "Del boceto a lápiz al logotipo final, con sus versiones a color, en negativo y monocromática.",
             "en": "From pencil sketch to the final logo, with its full-color, reversed and single-color versions."
           },
-          "img": "assets/img/projects/komercia/marca-boceto.webp"
+          "img": "assets/img/projects/komercia/marca-lapiz.webp"
         },
         {
-          "img": "assets/img/projects/komercia/marca-versiones.webp"
+          "img": "assets/img/projects/komercia/marca-color.webp"
         }
       ],
       "shareImage": "assets/img/share/komercia.jpg"
@@ -2866,10 +2866,10 @@
             "es": "Del boceto a lápiz al logotipo final, con sus versiones a color, en negativo y monocromática.",
             "en": "From pencil sketch to the final logo, with its full-color, reversed and single-color versions."
           },
-          "img": "assets/img/projects/nuestro-llano-tv/marca-boceto.webp"
+          "img": "assets/img/projects/nuestro-llano-tv/marca-lapiz.webp"
         },
         {
-          "img": "assets/img/projects/nuestro-llano-tv/marca-versiones.webp"
+          "img": "assets/img/projects/nuestro-llano-tv/marca-color.webp"
         }
       ],
       "shareImage": "assets/img/share/nuestro-llano-tv.jpg"
@@ -2880,7 +2880,7 @@
         "es": "Identidad visual · Juguería",
         "en": "Visual identity · Juice shop"
       },
-      "cover": "assets/img/projects/jugos-carolina/portada.webp",
+      "cover": "assets/img/projects/jugos-carolina/portada-logo.webp",
       "meta": {
         "client": "Jugos Carolina",
         "role": {
@@ -2910,7 +2910,7 @@
             "es": "Carolina, una niña de gafas y coletas, es la mascota de la marca: cercana, alegre y fácil de recordar. Las hojas y el verde vivo hablan de fruta fresca, y la tipografía redondeada mantiene el tono amable que buscan las familias.",
             "en": "Carolina, a girl with glasses and pigtails, is the brand mascot: friendly, cheerful and easy to remember. The leaves and vivid green speak of fresh fruit, and the rounded lettering keeps the warm tone families look for."
           },
-          "img": "assets/img/projects/jugos-carolina/01-boceto.webp"
+          "img": "assets/img/projects/jugos-carolina/01-lapiz.webp"
         },
         {
           "h": {
@@ -2921,7 +2921,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/jugos-carolina/02-versiones.webp"
+          "img": "assets/img/projects/jugos-carolina/02-color.webp"
         }
       ],
       "shareImage": "assets/img/share/jugos-carolina.jpg"
@@ -2932,7 +2932,7 @@
         "es": "Identidad visual y etiqueta · Miel 100% natural",
         "en": "Visual identity and label · 100% natural honey"
       },
-      "cover": "assets/img/projects/apicola-san-angel/portada.webp",
+      "cover": "assets/img/projects/apicola-san-angel/portada-logo.webp",
       "meta": {
         "client": "Apícola San Ángel",
         "role": {
@@ -2962,7 +2962,7 @@
             "es": "Para una miel 100% natural, la marca tenía que transmitir pureza y origen. Un sello negro con borde dorado enmarca un panal y una abeja, como las etiquetas de productos artesanales que pasan de generación en generación.",
             "en": "For 100% natural honey, the brand had to convey purity and origin. A black seal with a gold edge frames a honeycomb and a bee, like the labels of artisan products passed down through generations."
           },
-          "img": "assets/img/projects/apicola-san-angel/01-boceto.webp"
+          "img": "assets/img/projects/apicola-san-angel/01-lapiz.webp"
         },
         {
           "h": {
@@ -2973,7 +2973,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/apicola-san-angel/02-versiones.webp"
+          "img": "assets/img/projects/apicola-san-angel/02-color.webp"
         },
         {
           "h": {
@@ -3006,7 +3006,7 @@
         "es": "Identidad visual · Medio de noticias",
         "en": "Visual identity · News outlet"
       },
-      "cover": "assets/img/projects/villavo-al-dia/portada.webp",
+      "cover": "assets/img/projects/villavo-al-dia/portada-logo.webp",
       "meta": {
         "client": "Villavo al Día",
         "role": {
@@ -3036,7 +3036,7 @@
             "es": "Un medio digital de Villavicencio necesitaba una marca que funcionara sobre todo en pantalla. Tres trazos de color forman una V que se lee como un destello o una señal que se transmite, y la tipografía pesada y compacta se mantiene legible incluso como foto de perfil.",
             "en": "A digital news outlet from Villavicencio needed a brand that works mostly on screens. Three colored strokes form a V that reads like a flash or a broadcast signal, and the heavy, compact type stays legible even as a profile picture."
           },
-          "img": "assets/img/projects/villavo-al-dia/01-boceto.webp"
+          "img": "assets/img/projects/villavo-al-dia/01-lapiz.webp"
         },
         {
           "h": {
@@ -3047,7 +3047,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/villavo-al-dia/02-versiones.webp"
+          "img": "assets/img/projects/villavo-al-dia/02-color.webp"
         }
       ],
       "shareImage": "assets/img/share/villavo-al-dia.jpg"
@@ -3058,7 +3058,7 @@
         "es": "Identidad visual · Clínica odontológica",
         "en": "Visual identity · Dental clinic"
       },
-      "cover": "assets/img/projects/mosso-family-dental/portada.webp",
+      "cover": "assets/img/projects/mosso-family-dental/portada-logo.webp",
       "meta": {
         "client": "Mosso Family Dental",
         "role": {
@@ -3088,7 +3088,7 @@
             "es": "La M del logotipo dibuja un diente en un solo trazo caligráfico. El dorado y la tipografía fina la alejan del azul clínico de siempre y la acercan a una experiencia más cálida y de confianza, pensada para toda la familia.",
             "en": "The M in the logotype draws a tooth in a single calligraphic stroke. The gold and the fine type move it away from the usual clinical blue and toward a warmer, more trustworthy experience designed for the whole family."
           },
-          "img": "assets/img/projects/mosso-family-dental/01-boceto.webp"
+          "img": "assets/img/projects/mosso-family-dental/01-lapiz.webp"
         },
         {
           "h": {
@@ -3099,7 +3099,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/mosso-family-dental/02-versiones.webp"
+          "img": "assets/img/projects/mosso-family-dental/02-color.webp"
         }
       ],
       "shareImage": "assets/img/share/mosso-family-dental.jpg"
@@ -3110,7 +3110,7 @@
         "es": "Identidad visual · Aseguradora",
         "en": "Visual identity · Insurance"
       },
-      "cover": "assets/img/projects/omega-seguros/portada.webp",
+      "cover": "assets/img/projects/omega-seguros/portada-logo.webp",
       "meta": {
         "client": "Omega Pólizas y Seguros",
         "role": {
@@ -3140,7 +3140,7 @@
             "es": "La omega funciona como un techo que cubre, y su forma de arco remite a protección. El rojo da energía y cercanía a un sector que suele verse frío, y el «¡Para Todos!» escrito a mano cierra la promesa de la marca.",
             "en": "The omega works as a roof that covers, and its arch shape suggests protection. Red brings energy and warmth to a sector that often feels cold, and the handwritten “¡Para Todos!” closes the brand promise."
           },
-          "img": "assets/img/projects/omega-seguros/01-boceto.webp"
+          "img": "assets/img/projects/omega-seguros/01-lapiz.webp"
         },
         {
           "h": {
@@ -3151,7 +3151,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/omega-seguros/02-versiones.webp"
+          "img": "assets/img/projects/omega-seguros/02-color.webp"
         }
       ],
       "shareImage": "assets/img/share/omega-seguros.jpg"
@@ -3162,7 +3162,7 @@
         "es": "Identidad visual · Sándwiches gourmet",
         "en": "Visual identity · Gourmet sandwiches"
       },
-      "cover": "assets/img/projects/macadamia/portada.webp",
+      "cover": "assets/img/projects/macadamia/portada-logo.webp",
       "meta": {
         "client": "Macadamia Sandwich Gourmet",
         "role": {
@@ -3192,7 +3192,7 @@
             "es": "Una corona sobre un cojín rojo convierte al sándwich en algo gourmet, con un tono divertido. El emblema circular y la cinta con el nombre funcionan como un sello de calidad en empaques, menú y fachada.",
             "en": "A crown on a red cushion turns the sandwich into something gourmet, with a playful tone. The circular emblem and the name ribbon work as a quality seal on packaging, menus and the storefront."
           },
-          "img": "assets/img/projects/macadamia/01-boceto.webp"
+          "img": "assets/img/projects/macadamia/01-lapiz.webp"
         },
         {
           "h": {
@@ -3203,7 +3203,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/macadamia/02-versiones.webp"
+          "img": "assets/img/projects/macadamia/02-color.webp"
         }
       ],
       "shareImage": "assets/img/share/macadamia.jpg"
@@ -3214,7 +3214,7 @@
         "es": "Identidad visual · Envíos internacionales",
         "en": "Visual identity · International shipping"
       },
-      "cover": "assets/img/projects/miabox/portada.webp",
+      "cover": "assets/img/projects/miabox/portada-logo.webp",
       "meta": {
         "client": "MiaBox",
         "role": {
@@ -3244,7 +3244,7 @@
             "es": "Para un servicio de casillero y envíos desde Miami, el avión que despega sobre el nombre resume la promesa: rapidez y alcance internacional. El azul da confianza y el rojo de «BOX» señala el paquete que llega.",
             "en": "For a Miami mailbox and shipping service, the plane taking off over the name sums up the promise: speed and international reach. Blue conveys trust and the red “BOX” points to the package that arrives."
           },
-          "img": "assets/img/projects/miabox/01-boceto.webp"
+          "img": "assets/img/projects/miabox/01-lapiz.webp"
         },
         {
           "h": {
@@ -3255,7 +3255,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/miabox/02-versiones.webp"
+          "img": "assets/img/projects/miabox/02-color.webp"
         }
       ],
       "shareImage": "assets/img/share/miabox.jpg"
@@ -3266,7 +3266,7 @@
         "es": "Marca personal · Músico",
         "en": "Personal brand · Musician"
       },
-      "cover": "assets/img/projects/camilo-botero/portada.webp",
+      "cover": "assets/img/projects/camilo-botero/portada-logo.webp",
       "meta": {
         "client": "Camilo Botero",
         "role": {
@@ -3296,7 +3296,7 @@
             "es": "Para el músico de Villavicencio diseñé un lettering a mano con letras que rebotan y se apilan, como su música: fresca, cercana y con mucha personalidad. Funciona en afiches, redes y merch, y lo usamos en sus presentaciones en vivo.",
             "en": "For this Villavicencio musician I designed hand lettering that bounces and stacks, like his music: fresh, warm and full of personality. It works on posters, social media and merch, and we used it for his live shows."
           },
-          "img": "assets/img/projects/camilo-botero/01-boceto.webp"
+          "img": "assets/img/projects/camilo-botero/01-lapiz.webp"
         },
         {
           "h": {
@@ -3307,7 +3307,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/camilo-botero/02-versiones.webp"
+          "img": "assets/img/projects/camilo-botero/02-color.webp"
         }
       ],
       "shareImage": "assets/img/share/camilo-botero.jpg"
@@ -3318,7 +3318,7 @@
         "es": "Identidad visual · Programa magazín",
         "en": "Visual identity · Magazine show"
       },
-      "cover": "assets/img/projects/magazin-guayoyo/portada.webp",
+      "cover": "assets/img/projects/magazin-guayoyo/portada-logo.webp",
       "meta": {
         "client": "Magazín Guayoyo",
         "role": {
@@ -3348,7 +3348,7 @@
             "es": "El guayoyo es el café suave que acompaña la conversación de la mañana. Por eso el logo mezcla bloques de color como un set de televisión, una tipografía juguetona y una taza humeante: un programa ligero, variado y para toda la familia.",
             "en": "A guayoyo is the mild coffee that goes with morning conversation. That is why the logo mixes color blocks like a TV set, playful lettering and a steaming cup: a light, varied show for the whole family."
           },
-          "img": "assets/img/projects/magazin-guayoyo/01-boceto.webp"
+          "img": "assets/img/projects/magazin-guayoyo/01-lapiz.webp"
         },
         {
           "h": {
@@ -3359,7 +3359,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/magazin-guayoyo/02-versiones.webp"
+          "img": "assets/img/projects/magazin-guayoyo/02-color.webp"
         }
       ],
       "shareImage": "assets/img/share/magazin-guayoyo.jpg"
@@ -3370,7 +3370,7 @@
         "es": "Marca personal · Monograma",
         "en": "Personal brand · Monogram"
       },
-      "cover": "assets/img/projects/sebastian-cruz/portada.webp",
+      "cover": "assets/img/projects/sebastian-cruz/portada-logo.webp",
       "meta": {
         "client": "Sebastián Cruz",
         "role": {
@@ -3400,7 +3400,7 @@
             "es": "Un monograma que entrelaza la S y la C en un solo trazo, con el nombre completo en mayúsculas espaciadas debajo. Una marca personal sobria y elegante que se ve bien grabada, impresa o como foto de perfil.",
             "en": "A monogram that intertwines the S and the C in a single stroke, with the full name in widely spaced capitals below. A sober, elegant personal brand that looks good engraved, printed or as a profile picture."
           },
-          "img": "assets/img/projects/sebastian-cruz/01-boceto.webp"
+          "img": "assets/img/projects/sebastian-cruz/01-lapiz.webp"
         },
         {
           "h": {
@@ -3411,7 +3411,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/sebastian-cruz/02-versiones.webp"
+          "img": "assets/img/projects/sebastian-cruz/02-color.webp"
         }
       ],
       "shareImage": "assets/img/share/sebastian-cruz.jpg"
@@ -3422,7 +3422,7 @@
         "es": "Identidad visual · Comidas típicas del Llano",
         "en": "Visual identity · Traditional food from the Llanos"
       },
-      "cover": "assets/img/projects/dona-jaky/portada.webp",
+      "cover": "assets/img/projects/dona-jaky/portada-logo.webp",
       "meta": {
         "client": "Doña Jaky",
         "role": {
@@ -3452,7 +3452,7 @@
             "es": "La marca es la propia Doña Jaky: un retrato ilustrado con flor en el cabello, sonrisa y blusa típica, enmarcado en un círculo como un sello de la casa. Un vino tinto profundo y una tipografía manuscrita transmiten tradición, hogar y sabor llanero.",
             "en": "The brand is Doña Jaky herself: an illustrated portrait with a flower in her hair, a smile and a traditional blouse, framed in a circle like a house seal. A deep wine red and handwritten lettering convey tradition, home and the flavor of the Llanos."
           },
-          "img": "assets/img/projects/dona-jaky/01-boceto.webp"
+          "img": "assets/img/projects/dona-jaky/01-lapiz.webp"
         },
         {
           "h": {
@@ -3463,7 +3463,7 @@
             "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
             "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/dona-jaky/02-versiones.webp"
+          "img": "assets/img/projects/dona-jaky/02-color.webp"
         }
       ],
       "shareImage": "assets/img/share/dona-jaky.jpg"
@@ -3628,7 +3628,8 @@
           "img": "assets/img/projects/candy-gold/03-empaque.webp"
         }
       ],
-      "shareImage": "assets/img/share/candy-gold.jpg"
+      "shareImage": "assets/img/share/candy-gold.jpg",
+      "hidden": true
     },
     "frupi": {
       "title": "Frupi",
@@ -3669,7 +3670,7 @@
             "es": "Frupi es la piña fresca de Agropiña, de Villavicencio. El logotipo es una caligrafía amarilla con la corona de la piña saliendo de la «i», el trazo de la fruta detrás y la etiqueta «Piña fresca»: alegre, natural y con sabor local.",
             "en": "Frupi is Agropiña's fresh pineapple, from Villavicencio. The logo is a yellow script with the pineapple crown sprouting from the “i”, a fruit sketch behind it and a “Piña fresca” tag: cheerful, natural and with local flavor."
           },
-          "img": "assets/img/projects/frupi/01-logo.webp"
+          "img": "assets/img/projects/frupi/01-marca.webp"
         },
         {
           "h": {
@@ -3991,18 +3992,18 @@
     "assets/img/projects/nico-vega/cover.webp": "assets/img/projects/nico-vega/cover-sm.webp",
     "assets/img/projects/kaliwa/cover.webp": "assets/img/projects/kaliwa/cover-sm.webp",
     "assets/img/projects/camilo-botero-burgues-pub/cover.webp": "assets/img/projects/camilo-botero-burgues-pub/cover-sm.webp",
-    "assets/img/projects/jugos-carolina/portada.webp": "assets/img/projects/jugos-carolina/portada-sm.webp",
-    "assets/img/projects/apicola-san-angel/portada.webp": "assets/img/projects/apicola-san-angel/portada-sm.webp",
-    "assets/img/projects/villavo-al-dia/portada.webp": "assets/img/projects/villavo-al-dia/portada-sm.webp",
-    "assets/img/projects/mosso-family-dental/portada.webp": "assets/img/projects/mosso-family-dental/portada-sm.webp",
-    "assets/img/projects/omega-seguros/portada.webp": "assets/img/projects/omega-seguros/portada-sm.webp",
-    "assets/img/projects/macadamia/portada.webp": "assets/img/projects/macadamia/portada-sm.webp",
-    "assets/img/projects/miabox/portada.webp": "assets/img/projects/miabox/portada-sm.webp",
-    "assets/img/projects/camilo-botero/portada.webp": "assets/img/projects/camilo-botero/portada-sm.webp",
-    "assets/img/projects/magazin-guayoyo/portada.webp": "assets/img/projects/magazin-guayoyo/portada-sm.webp",
-    "assets/img/projects/sebastian-cruz/portada.webp": "assets/img/projects/sebastian-cruz/portada-sm.webp",
-    "assets/img/projects/dona-jaky/portada.webp": "assets/img/projects/dona-jaky/portada-sm.webp",
-    "assets/img/projects/mina-nm/portada.webp": "assets/img/projects/mina-nm/portada-sm.webp"
+    "assets/img/projects/mina-nm/portada.webp": "assets/img/projects/mina-nm/portada-sm.webp",
+    "assets/img/projects/jugos-carolina/portada-logo.webp": "assets/img/projects/jugos-carolina/portada-logo-sm.webp",
+    "assets/img/projects/apicola-san-angel/portada-logo.webp": "assets/img/projects/apicola-san-angel/portada-logo-sm.webp",
+    "assets/img/projects/villavo-al-dia/portada-logo.webp": "assets/img/projects/villavo-al-dia/portada-logo-sm.webp",
+    "assets/img/projects/mosso-family-dental/portada-logo.webp": "assets/img/projects/mosso-family-dental/portada-logo-sm.webp",
+    "assets/img/projects/omega-seguros/portada-logo.webp": "assets/img/projects/omega-seguros/portada-logo-sm.webp",
+    "assets/img/projects/macadamia/portada-logo.webp": "assets/img/projects/macadamia/portada-logo-sm.webp",
+    "assets/img/projects/miabox/portada-logo.webp": "assets/img/projects/miabox/portada-logo-sm.webp",
+    "assets/img/projects/camilo-botero/portada-logo.webp": "assets/img/projects/camilo-botero/portada-logo-sm.webp",
+    "assets/img/projects/magazin-guayoyo/portada-logo.webp": "assets/img/projects/magazin-guayoyo/portada-logo-sm.webp",
+    "assets/img/projects/sebastian-cruz/portada-logo.webp": "assets/img/projects/sebastian-cruz/portada-logo-sm.webp",
+    "assets/img/projects/dona-jaky/portada-logo.webp": "assets/img/projects/dona-jaky/portada-logo-sm.webp"
   },
   "trash": {
     "enabled": true,
