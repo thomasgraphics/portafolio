@@ -225,6 +225,14 @@
         },
         {
           "type": "case",
+          "case": "bevgo",
+          "category": {
+            "es": "Web",
+            "en": "Web"
+          }
+        },
+        {
+          "type": "case",
           "case": "torneo-joropo-2026",
           "category": {
             "es": "Web",
@@ -3979,6 +3987,93 @@
         }
       ],
       "shareImage": "assets/img/share/el-presi.jpg"
+    },
+    "bevgo": {
+      "title": "Bevgo",
+      "subtitle": {
+        "es": "E-commerce · Tienda de licores",
+        "en": "E-commerce · Liquor store"
+      },
+      "cover": "assets/img/projects/bevgo/portada.webp",
+      "meta": {
+        "client": "Bevgo",
+        "role": {
+          "es": "Diseño UX/UI del e-commerce (escritorio y celular) y componentes",
+          "en": "UX/UI design of the e-commerce (desktop and mobile) and components"
+        },
+        "year": "2026",
+        "tools": "Figma"
+      },
+      "tags": [
+        {
+          "es": "UX/UI",
+          "en": "UX/UI"
+        },
+        "E-commerce",
+        "Web",
+        {
+          "es": "Design system",
+          "en": "Design system"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Comprar licor en 30 minutos",
+            "en": "Buy liquor in 30 minutes"
+          },
+          "p": {
+            "es": "Bevgo es una tienda de licores con entrega en menos de 30 minutos. Diseñé el home del e-commerce para que vender sea lo principal: promociones grandes arriba, accesos rápidos por categoría (vinos, whisky, tequilas, vodkas y cervezas), ofertas con descuento visible, el catálogo por pestañas, beneficios, marcas, la cotización de eventos y el newsletter, todo con una barra de búsqueda que habla como el cliente: «¿Qué vamos a tomar hoy?».",
+            "en": "Bevgo is a liquor store that delivers in under 30 minutes. I designed the e-commerce home so selling comes first: big promotions up top, quick access by category (wine, whisky, tequila, vodka and beer), deals with visible discounts, a tabbed catalog, benefits, brands, event quotes and the newsletter, all with a search bar that talks like the customer: “What are we drinking today?”."
+          },
+          "img": "assets/img/projects/bevgo/01-home.webp"
+        },
+        {
+          "h": {
+            "es": "Menú por categorías",
+            "en": "Category menu"
+          },
+          "p": {
+            "es": "Cada categoría abre un menú con sus subcategorías y un producto destacado. Lo diseñé en dos versiones, clara y oscura, para que funcione sobre cualquier banner.",
+            "en": "Each category opens a menu with its subcategories and a featured product. I designed it in two versions, light and dark, so it works over any banner."
+          },
+          "img": "assets/img/projects/bevgo/02-menu.webp"
+        },
+        {
+          "h": {
+            "es": "En el celular",
+            "en": "On mobile"
+          },
+          "p": {
+            "es": "La versión móvil mantiene la ubicación de la tienda siempre visible, agrupa todo en un menú lateral con Club Bevgo y Cotiza tu evento, y resuelve la compra con un carrito que suma, resta y muestra el subtotal sin salir de la página.",
+            "en": "The mobile version keeps the store location always visible, groups everything into a side menu with Club Bevgo and event quotes, and handles checkout with a cart that adds, removes and shows the subtotal without leaving the page."
+          },
+          "img": "assets/img/projects/bevgo/03-mobile.webp"
+        },
+        {
+          "h": {
+            "es": "Ubicación y carrito",
+            "en": "Location and cart"
+          },
+          "p": {
+            "es": "Como los precios y el inventario cambian según la tienda, el usuario elige su ciudad y su punto de venta antes de comprar, con un aviso claro de que al cambiar de tienda se vacía el carrito. El carrito lateral permite seguir comprando o ir directo a pagar.",
+            "en": "Since prices and stock change by store, users pick their city and outlet before buying, with a clear warning that switching stores empties the cart. The side cart lets them keep shopping or go straight to checkout."
+          },
+          "img": "assets/img/projects/bevgo/04-modales.webp"
+        },
+        {
+          "h": {
+            "es": "Componentes",
+            "en": "Components"
+          },
+          "p": {
+            "es": "Tarjetas de producto, precios, etiquetas de promoción, accesos rápidos, botones y menús construidos como componentes con variantes en Figma, listos para desarrollo.",
+            "en": "Product cards, prices, promo tags, shortcuts, buttons and menus built as components with variants in Figma, ready for development."
+          },
+          "img": "assets/img/projects/bevgo/05-componentes.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/bevgo.jpg"
     }
   },
   "about": {
@@ -4108,7 +4203,8 @@
     "assets/img/projects/magazin-guayoyo/portada-logo.webp": "assets/img/projects/magazin-guayoyo/portada-logo-sm.webp",
     "assets/img/projects/sebastian-cruz/portada-logo.webp": "assets/img/projects/sebastian-cruz/portada-logo-sm.webp",
     "assets/img/projects/dona-jaky/portada-logo.webp": "assets/img/projects/dona-jaky/portada-logo-sm.webp",
-    "assets/img/projects/el-presi/portada.webp": "assets/img/projects/el-presi/portada-sm.webp"
+    "assets/img/projects/el-presi/portada.webp": "assets/img/projects/el-presi/portada-sm.webp",
+    "assets/img/projects/bevgo/portada.webp": "assets/img/projects/bevgo/portada-sm.webp"
   },
   "trash": {
     "enabled": true,
