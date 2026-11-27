@@ -1436,12 +1436,6 @@
     const stack = $("#intro-stack");
     const skipBtn = $("#skip-intro");
     skipBtn.textContent = ui("skip");
-    // En la intro la foto se ve nítida; al entrar se desenfoca y se funde con el fondo del escritorio.
-    // La capa usa la misma geometría que el fondo (.wallpaper) para que no haya salto al cruzarse.
-    const introBg = document.createElement("div");
-    introBg.className = "intro-bg";
-    introBg.style.backgroundImage = `url("${wallpaperUrl()}")`;
-    intro.prepend(introBg);
     let finished = false;
     const timers = [];
     const finish = () => {
@@ -1459,10 +1453,22 @@
 
     const photos = D.intro || [];
     if (!TH.showIntro || !photos.length || sess.get("introSeen", false) || reducedMotion || location.hash.length > 2) { intro.remove(); boot(); return; }
+    // En la intro la foto se ve nítida; al entrar se desenfoca y se funde con el fondo del escritorio.
+    // La capa usa la misma geometría que el fondo (.wallpaper) para que no haya salto al cruzarse.
+    const introBg = document.createElement("div");
+    introBg.className = "intro-bg";
+    const introSrc = wallpaperUrl();
+    introBg.style.backgroundImage = `url("${introSrc}")`;
+    intro.prepend(introBg);
+    // Aparece con un fundido cuando la foto ya cargó (nunca a medio dibujar)
+    let bgShown = false;
+    const showBg = () => { if (!bgShown) { bgShown = true; requestAnimationFrame(() => requestAnimationFrame(() => introBg.classList.add("in"))); } };
+    const bgImg = new Image(); bgImg.onload = showBg; bgImg.onerror = showBg; bgImg.src = introSrc;
+    setTimeout(showBg, 1500);
 
     const offsets = [[-22, -64], [16, -18], [-10, 26], [8, 6], [-16, -30], [20, 30]];
     photos.forEach((p) => { if (p.src) { const im = new Image(); im.src = p.src; } });
-    const start = 300, step = 420;
+    const start = 750, step = 420; // las tarjetas entran cuando la foto ya se está enfocando
     photos.forEach((p, i) => {
       timers.push(setTimeout(() => {
         const [dx, dy] = offsets[i % offsets.length];
