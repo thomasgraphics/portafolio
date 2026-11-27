@@ -233,6 +233,22 @@
         },
         {
           "type": "case",
+          "case": "english-with-purpose",
+          "category": {
+            "es": "Web",
+            "en": "Web"
+          }
+        },
+        {
+          "type": "case",
+          "case": "komercia-web",
+          "category": {
+            "es": "Web",
+            "en": "Web"
+          }
+        },
+        {
+          "type": "case",
           "case": "torneo-joropo-2026",
           "category": {
             "es": "Web",
@@ -4074,6 +4090,112 @@
         }
       ],
       "shareImage": "assets/img/share/bevgo.jpg"
+    },
+    "english-with-purpose": {
+      "title": "English With Purpose",
+      "subtitle": {
+        "es": "Sitio web · Comunidad para aprender inglés",
+        "en": "Website · Community to learn English"
+      },
+      "cover": "assets/img/projects/english-with-purpose/portada.webp",
+      "meta": {
+        "client": {
+          "es": "English With Purpose · un proyecto de Diego Komercia",
+          "en": "English With Purpose · a Diego Komercia project"
+        },
+        "role": {
+          "es": "Diseño UX/UI del sitio web",
+          "en": "UX/UI design of the website"
+        },
+        "year": "2023",
+        "tools": "Figma"
+      },
+      "tags": [
+        {
+          "es": "UX/UI",
+          "en": "UX/UI"
+        },
+        "Web",
+        {
+          "es": "Comunidad",
+          "en": "Community"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Aprender inglés en comunidad",
+            "en": "Learning English as a community"
+          },
+          "p": {
+            "es": "English With Purpose es una comunidad sin ánimo de lucro que ayuda a sus miembros a mejorar su inglés a través de contenido cristiano, reuniéndose en casas de anfitriones. Diseñé su sitio web con una estética editorial: titulares grandes que mezclan serif itálica y sans, fotografía en blanco y negro con gradientes de color y llamados claros a unirse.",
+            "en": "English With Purpose is a non-profit community that helps its members improve their English through Christian content, meeting in hosts' homes. I designed its website with an editorial look: big headlines mixing italic serif and sans, black-and-white photography with color gradients and clear calls to join."
+          },
+          "img": "assets/img/projects/english-with-purpose/01-home.webp"
+        },
+        {
+          "h": {
+            "es": "Dos formas de participar",
+            "en": "Two ways to take part"
+          },
+          "p": {
+            "es": "El home guía a dos públicos: quienes quieren ser anfitriones y abrir su casa, y quienes quieren unirse como miembros. Cada uno tiene su tarjeta con requisitos y botón propio. Después vienen la visión, las iglesias aliadas, las donaciones y una invitación final: «We're expecting you!». El menú a pantalla completa se diseñó en naranja y azul, los colores de acento de la marca.",
+            "en": "The home guides two audiences: those who want to host and open their home, and those who want to join as crew members, each with its own card, requirements and button. Then come the vision, partner churches, donations and a final invitation: “We're expecting you!”. The full-screen menu was designed in orange and blue, the brand's accent colors."
+          },
+          "img": "assets/img/projects/english-with-purpose/02-menu.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/english-with-purpose.jpg"
+    },
+    "komercia-web": {
+      "title": "Komercia · Sitio web",
+      "subtitle": {
+        "es": "Landing page · Plataforma de tiendas online",
+        "en": "Landing page · Online store platform"
+      },
+      "cover": "assets/img/projects/komercia-web/portada.webp",
+      "meta": {
+        "client": "Komercia",
+        "role": {
+          "es": "Diseño UX/UI de la landing (escritorio y celular)",
+          "en": "UX/UI design of the landing page (desktop and mobile)"
+        },
+        "year": "2021",
+        "tools": "Figma"
+      },
+      "tags": [
+        {
+          "es": "UX/UI",
+          "en": "UX/UI"
+        },
+        "Web",
+        "Landing page"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Crea y administra tu propia tienda online",
+            "en": "Create and run your own online store"
+          },
+          "p": {
+            "es": "Para la plataforma Komercia diseñé una nueva landing que explica en un solo recorrido qué es y por qué elegirla: crear la tienda desde el primer campo, vender por la web, WhatsApp o Instagram, los 3 pasos para empezar, casos de éxito en video, las funciones clave, tiendas reales, integraciones de pago, logística y marketing, prensa y la cifra que da confianza: más de 18.000 emprendedores vendiendo por internet.",
+            "en": "For the Komercia platform I designed a new landing page that explains in one scroll what it is and why to choose it: creating the store from the very first field, selling on the web, WhatsApp or Instagram, the 3 steps to start, video success stories, key features, real stores, payment, logistics and marketing integrations, press and the figure that builds trust: over 18,000 entrepreneurs selling online."
+          },
+          "img": "assets/img/projects/komercia-web/01-landing.webp"
+        },
+        {
+          "h": {
+            "es": "Primero el celular",
+            "en": "Mobile first"
+          },
+          "p": {
+            "es": "La versión móvil lleva el mensaje a lo esencial («Tu tienda online conectada a WhatsApp») con los botones de iniciar sesión y crear tienda siempre a mano. Este proyecto pasó por varios conceptos y moodboards antes de llegar a la versión final de mayo de 2021.",
+            "en": "The mobile version boils the message down (“Your online store connected to WhatsApp”) with sign-in and create-store buttons always at hand. The project went through several concepts and moodboards before the final version in May 2021."
+          },
+          "img": "assets/img/projects/komercia-web/02-mobile.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/komercia-web.jpg"
     }
   },
   "about": {
@@ -4204,7 +4326,9 @@
     "assets/img/projects/sebastian-cruz/portada-logo.webp": "assets/img/projects/sebastian-cruz/portada-logo-sm.webp",
     "assets/img/projects/dona-jaky/portada-logo.webp": "assets/img/projects/dona-jaky/portada-logo-sm.webp",
     "assets/img/projects/el-presi/portada.webp": "assets/img/projects/el-presi/portada-sm.webp",
-    "assets/img/projects/bevgo/portada.webp": "assets/img/projects/bevgo/portada-sm.webp"
+    "assets/img/projects/bevgo/portada.webp": "assets/img/projects/bevgo/portada-sm.webp",
+    "assets/img/projects/english-with-purpose/portada.webp": "assets/img/projects/english-with-purpose/portada-sm.webp",
+    "assets/img/projects/komercia-web/portada.webp": "assets/img/projects/komercia-web/portada-sm.webp"
   },
   "trash": {
     "enabled": true,
