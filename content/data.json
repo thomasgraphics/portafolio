@@ -249,6 +249,14 @@
         },
         {
           "type": "case",
+          "case": "tailorednets",
+          "category": {
+            "es": "Web",
+            "en": "Web"
+          }
+        },
+        {
+          "type": "case",
           "case": "torneo-joropo-2026",
           "category": {
             "es": "Web",
@@ -4196,6 +4204,93 @@
         }
       ],
       "shareImage": "assets/img/share/komercia-web.jpg"
+    },
+    "tailorednets": {
+      "title": "TN Mallas y Gramas",
+      "subtitle": {
+        "es": "Sitio web · Fabricante de mallas a la medida",
+        "en": "Website · Custom-made nets manufacturer"
+      },
+      "cover": "assets/img/projects/tailorednets/portada.webp",
+      "meta": {
+        "client": "Tailored Nets / TN Mallas y Gramas",
+        "role": {
+          "es": "Diseño UX/UI del sitio web, UI kit y evolución de la marca",
+          "en": "UX/UI design of the website, UI kit and brand evolution"
+        },
+        "year": "2023",
+        "tools": "Figma"
+      },
+      "tags": [
+        {
+          "es": "UX/UI",
+          "en": "UX/UI"
+        },
+        "Web",
+        {
+          "es": "UI kit",
+          "en": "UI kit"
+        },
+        "Branding"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Una fábrica que necesitaba vender en línea",
+            "en": "A factory that needed to sell online"
+          },
+          "p": {
+            "es": "Tailored Nets fabrica mallas de nylon a la medida en Bogotá: deportivas, de seguridad en alturas, tipo catamarán y cerramientos. Diseñé su sitio para que en una sola visita el cliente entienda qué hacen, vea en qué se usan sus mallas y pida una cotización. El home abre con la promesa «Protección y calidad a tu alcance», muestra las marcas que confían en ellos, explica el proceso en tres pasos y lleva a los productos.",
+            "en": "Tailored Nets makes custom nylon nets in Bogotá: sports, fall protection, catamaran-style and enclosures. I designed their site so that in one visit a customer understands what they do, sees where the nets are used and asks for a quote. The home opens with the promise “Protection and quality within reach”, shows the brands that trust them, explains the process in three steps and leads to the products."
+          },
+          "img": "assets/img/projects/tailorednets/01-home.webp"
+        },
+        {
+          "h": {
+            "es": "Productos explicados para cotizar",
+            "en": "Products explained to get a quote"
+          },
+          "p": {
+            "es": "Cada línea de producto tiene su bloque con foto, especificaciones técnicas en lenguaje claro (calibre, tipo de cordón, filtro UV) e íconos de usos: tenis, voleibol, baloncesto, fútbol, balcones, terrazas y construcción. Así el cliente llega a la cotización sabiendo qué necesita.",
+            "en": "Each product line has its own block with a photo, technical specs in plain language (gauge, cord type, UV filter) and use icons: tennis, volleyball, basketball, football, balconies, terraces and construction. Customers reach the quote knowing what they need."
+          },
+          "img": "assets/img/projects/tailorednets/02-productos.webp"
+        },
+        {
+          "h": {
+            "es": "UI kit",
+            "en": "UI kit"
+          },
+          "p": {
+            "es": "Armé el UI kit del proyecto: librería de íconos, escalas de color de amarillo y azul petróleo con su tono principal, y botones primario y secundario. Todo el sitio se construyó con estos componentes para que crezca sin perder consistencia.",
+            "en": "I built the project's UI kit: an icon library, yellow and petrol-blue color scales with their main tone, and primary and secondary buttons. The whole site is built from these components so it can grow without losing consistency."
+          },
+          "img": "assets/img/projects/tailorednets/03-uikit.webp"
+        },
+        {
+          "h": {
+            "es": "De Tailored Nets a TN Mallas y Gramas",
+            "en": "From Tailored Nets to TN Mallas y Gramas"
+          },
+          "p": {
+            "es": "Cuando la empresa sumó gramas deportivas y sintéticas, el nombre en inglés ya no la representaba. Evolucioné la marca a TN Mallas y Gramas con el lema «Hechas a la medida»: conservé el metro como símbolo y los colores, y en una versión el metro pasa a ser la línea que subraya el nombre.",
+            "en": "When the company added sports and synthetic turf, the English name no longer represented it. I evolved the brand into TN Mallas y Gramas with the tagline “Made to measure”: I kept the tape measure as the symbol and the colors, and in one version the tape becomes the line under the name."
+          },
+          "img": "assets/img/projects/tailorednets/04-marca.webp"
+        },
+        {
+          "h": {
+            "es": "El sitio con la nueva marca",
+            "en": "The site with the new brand"
+          },
+          "p": {
+            "es": "Rediseñé el sitio para la nueva etapa: home, TN Mallas, TN Gramas y Otros productos (láminas perforadas), con un menú desplegable de productos y fotos reales de instalaciones.",
+            "en": "I redesigned the site for the new stage: home, TN Mallas, TN Gramas and Other products (perforated sheets), with a products dropdown menu and real installation photos."
+          },
+          "img": "assets/img/projects/tailorednets/05-tn-mallas-y-gramas.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/tailorednets.jpg"
     }
   },
   "about": {
@@ -4328,7 +4423,8 @@
     "assets/img/projects/el-presi/portada.webp": "assets/img/projects/el-presi/portada-sm.webp",
     "assets/img/projects/bevgo/portada.webp": "assets/img/projects/bevgo/portada-sm.webp",
     "assets/img/projects/english-with-purpose/portada.webp": "assets/img/projects/english-with-purpose/portada-sm.webp",
-    "assets/img/projects/komercia-web/portada.webp": "assets/img/projects/komercia-web/portada-sm.webp"
+    "assets/img/projects/komercia-web/portada.webp": "assets/img/projects/komercia-web/portada-sm.webp",
+    "assets/img/projects/tailorednets/portada.webp": "assets/img/projects/tailorednets/portada-sm.webp"
   },
   "trash": {
     "enabled": true,
