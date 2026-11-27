@@ -1436,7 +1436,12 @@
     const stack = $("#intro-stack");
     const skipBtn = $("#skip-intro");
     skipBtn.textContent = ui("skip");
-    intro.style.backgroundImage = `url("${wallpaperUrl()}")`; // en la intro la foto se ve nítida; al entrar queda desenfocada detrás del escritorio
+    // En la intro la foto se ve nítida; al entrar se desenfoca y se funde con el fondo del escritorio.
+    // La capa usa la misma geometría que el fondo (.wallpaper) para que no haya salto al cruzarse.
+    const introBg = document.createElement("div");
+    introBg.className = "intro-bg";
+    introBg.style.backgroundImage = `url("${wallpaperUrl()}")`;
+    intro.prepend(introBg);
     let finished = false;
     const timers = [];
     const finish = () => {
@@ -1445,7 +1450,7 @@
       timers.forEach(clearTimeout);
       sess.set("introSeen", true);
       intro.classList.add("done");
-      setTimeout(() => intro.remove(), 800);
+      setTimeout(() => intro.remove(), 1500);
       boot();
     };
     skipBtn.addEventListener("click", finish);
