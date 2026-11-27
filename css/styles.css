@@ -906,6 +906,6 @@ html.dark .trash-item:hover { background: rgba(255, 255, 255, 0.07); }
 html.dark .sticky, html.dark .notification { background: rgba(22, 22, 24, 0.8); }
 html.dark .sticky h2, html.dark .notification .n-title { color: #fff; }
 html.dark .sticky p { color: rgba(255, 255, 255, 0.92); }
-html.dark .sticky p + p { color: rgba(235, 235, 245, 0.76); border-top-color: rgba(255, 255, 255, 0.14); }
+html.dark .sticky p + p { color: rgba(245, 245, 250, 0.88); border-top-color: rgba(255, 255, 255, 0.14); }
 html.dark .notification .n-body { color: rgba(255, 255, 255, 0.86); }
-html.dark .notification .n-head { color: rgba(235, 235, 245, 0.62); }
+html.dark .notification .n-head { color: rgba(245, 245, 250, 0.8); }
