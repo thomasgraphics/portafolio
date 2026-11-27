@@ -378,12 +378,16 @@ body.booted .dock { transform: translate(-50%, 0); }
   background-size: cover; background-position: center;
   transition: opacity 0.7s var(--ease), visibility 0.7s;
 }
-.intro.done { opacity: 0; visibility: hidden; transition: opacity 1.15s cubic-bezier(0.4, 0, 0.2, 1) 0.15s, visibility 0s linear 1.3s; }
+.intro.done { opacity: 0; visibility: hidden; transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.45s, visibility 0s linear 1.6s; }
 /* Fondo de la intro: misma posición y escala que .wallpaper; al salir se desenfoca suave mientras se funde */
-.intro-bg { position: absolute; inset: -24px; background-size: cover; background-position: center; transform: scale(1.02); transition: filter 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.intro-bg { position: absolute; inset: -24px; background-size: cover; background-position: center; transform: scale(1.02); transition: filter 1.3s cubic-bezier(0.4, 0, 0.2, 1) 0.25s; }
 .intro.done .intro-bg { filter: blur(6px); }
-.intro-stack { transition: opacity 0.45s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-.intro.done .intro-stack { opacity: 0; transform: scale(0.96); }
+/* Salida de las tarjetas: una por una (la de arriba primero), bajan un poco, se encogen, se desenfocan y se desvanecen */
+.intro.done .intro-win { animation: pop-out 0.75s cubic-bezier(0.4, 0, 0.2, 1) var(--od, 0ms) both; }
+@keyframes pop-out {
+  from { opacity: 1; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1); filter: blur(0); }
+  to { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) + 26px)) scale(0.9); filter: blur(6px); }
+}
 .intro-stack { position: absolute; inset: 0; z-index: 1; }
 .intro-win {
   position: absolute; left: 50%; top: 48%;

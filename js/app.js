@@ -1449,9 +1449,11 @@
       finished = true;
       timers.forEach(clearTimeout);
       sess.set("introSeen", true);
+      // Las tarjetas salen escalonadas, empezando por la de arriba
+      [...stack.children].reverse().forEach((w, i) => w.style.setProperty("--od", i * 80 + "ms"));
       intro.classList.add("done");
-      setTimeout(() => intro.remove(), 1500);
-      boot();
+      setTimeout(() => intro.remove(), 1800);
+      setTimeout(boot, 350); // el escritorio entra mientras la intro se funde
     };
     skipBtn.addEventListener("click", finish);
 
