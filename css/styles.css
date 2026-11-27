@@ -900,3 +900,12 @@ html.dark .trash-item:hover { background: rgba(255, 255, 255, 0.07); }
   .notification, .sticky { backdrop-filter: blur(12px) saturate(160%); -webkit-backdrop-filter: blur(12px) saturate(160%); }
   .dock { backdrop-filter: blur(14px) saturate(170%); -webkit-backdrop-filter: blur(14px) saturate(170%); }
 }
+
+/* Contraste en modo oscuro: vidrio más denso para que el texto no compita con la luz del fondo
+   (WCAG AA: texto secundario ≥ 4.5:1 sobre el peor caso del halo) */
+html.dark .sticky, html.dark .notification { background: rgba(22, 22, 24, 0.8); }
+html.dark .sticky h2, html.dark .notification .n-title { color: #fff; }
+html.dark .sticky p { color: rgba(255, 255, 255, 0.92); }
+html.dark .sticky p + p { color: rgba(235, 235, 245, 0.76); border-top-color: rgba(255, 255, 255, 0.14); }
+html.dark .notification .n-body { color: rgba(255, 255, 255, 0.86); }
+html.dark .notification .n-head { color: rgba(235, 235, 245, 0.62); }
