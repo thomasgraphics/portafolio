@@ -387,14 +387,6 @@
         },
         {
           "type": "case",
-          "case": "etiquetas",
-          "category": {
-            "es": "Empaques",
-            "en": "Packaging"
-          }
-        },
-        {
-          "type": "case",
           "case": "jugos-carolina",
           "category": {
             "es": "Identidad",
@@ -405,8 +397,8 @@
           "type": "case",
           "case": "apicola-san-angel",
           "category": {
-            "es": "Identidad",
-            "en": "Identity"
+            "es": "Empaques",
+            "en": "Packaging"
           }
         },
         {
@@ -479,6 +471,22 @@
           "category": {
             "es": "Identidad",
             "en": "Identity"
+          }
+        },
+        {
+          "type": "case",
+          "case": "candy-gold",
+          "category": {
+            "es": "Empaques",
+            "en": "Packaging"
+          }
+        },
+        {
+          "type": "case",
+          "case": "frupi",
+          "category": {
+            "es": "Empaques",
+            "en": "Packaging"
           }
         }
       ],
@@ -774,10 +782,34 @@
         },
         {
           "type": "case",
-          "case": "afiches-eventos",
+          "case": "laura-romero",
           "category": {
-            "es": "Eventos",
-            "en": "Events"
+            "es": "Artistas",
+            "en": "Artists"
+          }
+        },
+        {
+          "type": "case",
+          "case": "nico-vega",
+          "category": {
+            "es": "Artistas",
+            "en": "Artists"
+          }
+        },
+        {
+          "type": "case",
+          "case": "kaliwa",
+          "category": {
+            "es": "Artistas",
+            "en": "Artists"
+          }
+        },
+        {
+          "type": "case",
+          "case": "camilo-botero-burgues-pub",
+          "category": {
+            "es": "Artistas",
+            "en": "Artists"
           }
         }
       ],
@@ -2761,75 +2793,16 @@
             "en": "The brand"
           },
           "p": {
-            "es": "El logotipo en sus versiones a color, negativo y monocromática, con su paleta y aplicaciones en papelería.",
-            "en": "The logo in full-color, reversed and single-color versions, with its palette and stationery applications."
+            "es": "Del boceto a lápiz al logotipo final, con sus versiones a color, en negativo y monocromática.",
+            "en": "From pencil sketch to the final logo, with its full-color, reversed and single-color versions."
           },
-          "img": "assets/img/projects/komercia/marca-versiones.webp"
+          "img": "assets/img/projects/komercia/marca-boceto.webp"
         },
         {
-          "img": "assets/img/projects/komercia/marca-papeleria.webp"
+          "img": "assets/img/projects/komercia/marca-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/komercia.jpg"
-    },
-    "afiches-eventos": {
-      "title": "Afiches para artistas y eventos",
-      "subtitle": {
-        "es": "Diseño publicitario · Música en vivo",
-        "en": "Advertising design · Live music"
-      },
-      "cover": "assets/img/projects/afiches-eventos/cover.webp",
-      "meta": {
-        "client": {
-          "es": "Laura Romero, Nico Vega, Kaliwa, Camilo Botero y El Burgués Pub",
-          "en": "Laura Romero, Nico Vega, Kaliwa, Camilo Botero and El Burgués Pub"
-        },
-        "role": {
-          "es": "Diseñador publicitario",
-          "en": "Advertising designer"
-        },
-        "year": "2019–2020",
-        "tools": "Photoshop · Illustrator"
-      },
-      "tags": [
-        {
-          "es": "Diseño publicitario",
-          "en": "Advertising design"
-        },
-        {
-          "es": "Música",
-          "en": "Music"
-        },
-        {
-          "es": "Eventos",
-          "en": "Events"
-        }
-      ],
-      "sections": [
-        {
-          "h": {
-            "es": "Cada artista, su propio lenguaje",
-            "en": "Each artist, their own language"
-          },
-          "p": {
-            "es": "Afiches para conciertos virtuales y presentaciones en vivo de artistas de Villavicencio. Cada uno parte de la personalidad del músico: el romanticismo de «Amores virtuales» de Laura Romero o la noche íntima de su show sin cover.",
-            "en": "Posters for virtual concerts and live shows by Villavicencio artists. Each one starts from the musician's personality: the romance of Laura Romero's «Amores virtuales» or the intimate night of her no-cover show."
-          },
-          "img": "assets/img/projects/afiches-eventos/01.webp"
-        },
-        {
-          "h": {
-            "es": "Información clara, aunque haya mucha",
-            "en": "Clear information, even when there is a lot"
-          },
-          "p": {
-            "es": "Fecha, hora, boletería, aliados y redes en una sola pieza. Ordené la jerarquía para que primero se vea el artista, después el cuándo y por último los logos de los patrocinadores, como en «Desconectado» de Nico Vega, el concierto de Amor y Amistad de Kaliwa o el Día del Padre con Camilo Botero en El Burgués Pub.",
-            "en": "Date, time, tickets, partners and social handles in one piece. I ordered the hierarchy so you see the artist first, then the when and finally the sponsor logos, as in Nico Vega's «Desconectado», Kaliwa's Love and Friendship concert or Father's Day with Camilo Botero at El Burgués Pub."
-          },
-          "img": "assets/img/projects/afiches-eventos/02.webp"
-        }
-      ],
-      "shareImage": "assets/img/share/afiches-eventos.jpg"
     },
     "nuestro-llano-tv": {
       "title": "Nuestro Llano Televisión",
@@ -2890,86 +2863,16 @@
             "en": "The brand"
           },
           "p": {
-            "es": "El logotipo en sus versiones a color, negativo y monocromática, con su paleta y aplicaciones en papelería.",
-            "en": "The logo in full-color, reversed and single-color versions, with its palette and stationery applications."
+            "es": "Del boceto a lápiz al logotipo final, con sus versiones a color, en negativo y monocromática.",
+            "en": "From pencil sketch to the final logo, with its full-color, reversed and single-color versions."
           },
-          "img": "assets/img/projects/nuestro-llano-tv/marca-versiones.webp"
+          "img": "assets/img/projects/nuestro-llano-tv/marca-boceto.webp"
         },
         {
-          "img": "assets/img/projects/nuestro-llano-tv/marca-papeleria.webp"
+          "img": "assets/img/projects/nuestro-llano-tv/marca-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/nuestro-llano-tv.jpg"
-    },
-    "etiquetas": {
-      "title": "Etiquetas y empaques",
-      "subtitle": {
-        "es": "Diseño de etiquetas · Productos del Llano",
-        "en": "Label design · Products from the Llanos"
-      },
-      "cover": "assets/img/projects/etiquetas/cover.webp",
-      "meta": {
-        "client": {
-          "es": "Candy Gold, Apícola San Ángel y Agropiña (Frupi)",
-          "en": "Candy Gold, Apícola San Ángel and Agropiña (Frupi)"
-        },
-        "role": {
-          "es": "Diseñador de empaques",
-          "en": "Packaging designer"
-        },
-        "year": {
-          "es": "Varios años",
-          "en": "Several years"
-        },
-        "tools": "Illustrator"
-      },
-      "tags": [
-        "Branding",
-        {
-          "es": "Empaques",
-          "en": "Packaging"
-        },
-        {
-          "es": "Etiquetas",
-          "en": "Labels"
-        }
-      ],
-      "sections": [
-        {
-          "h": {
-            "es": "Candy Gold",
-            "en": "Candy Gold"
-          },
-          "p": {
-            "es": "Etiquetas para piña en dos sabores, ginger y pepper. Las franjas de color diferencian el sabor a primera vista en la góndola y la tabla nutricional va en sellos fáciles de leer.",
-            "en": "Labels for pineapple in two flavors, ginger and pepper. Colored stripes tell the flavors apart at a glance on the shelf, and nutrition facts sit in easy-to-read badges."
-          },
-          "img": "assets/img/projects/etiquetas/01.webp"
-        },
-        {
-          "h": {
-            "es": "Apícola San Ángel",
-            "en": "Apícola San Ángel"
-          },
-          "p": {
-            "es": "Etiqueta frontal y posterior para miel 100% natural: el panal como fondo, un sello negro y dorado que transmite calidad y la información técnica (composición, recomendaciones y sellos de confianza) organizada atrás.",
-            "en": "Front and back label for 100% natural honey: the honeycomb as background, a black-and-gold seal that conveys quality, and the technical information (composition, recommendations and trust seals) organized on the back."
-          },
-          "img": "assets/img/projects/etiquetas/02.webp"
-        },
-        {
-          "h": {
-            "es": "Frupi · Piña llanera",
-            "en": "Frupi · Pineapple from the Llanos"
-          },
-          "p": {
-            "es": "Empaque para piña fresca procesada por Agropiña: un magenta que salta en la nevera, la marca con frutas en movimiento y toda la información regulatoria (INVIMA, tabla nutricional y contenidos) sin perder frescura.",
-            "en": "Packaging for fresh pineapple processed by Agropiña: a magenta that pops in the fridge, a brand with fruit in motion and all the regulatory information (health registry, nutrition facts and net contents) without losing freshness."
-          },
-          "img": "assets/img/projects/etiquetas/03.webp"
-        }
-      ],
-      "shareImage": "assets/img/share/etiquetas.jpg"
     },
     "jugos-carolina": {
       "title": "Jugos Carolina",
@@ -3007,40 +2910,7 @@
             "es": "Carolina, una niña de gafas y coletas, es la mascota de la marca: cercana, alegre y fácil de recordar. Las hojas y el verde vivo hablan de fruta fresca, y la tipografía redondeada mantiene el tono amable que buscan las familias.",
             "en": "Carolina, a girl with glasses and pigtails, is the brand mascot: friendly, cheerful and easy to remember. The leaves and vivid green speak of fresh fruit, and the rounded lettering keeps the warm tone families look for."
           },
-          "img": "assets/img/projects/jugos-carolina/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "Papelería",
-            "en": "Stationery"
-          },
-          "p": {
-            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
-            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
-          },
-          "img": "assets/img/projects/jugos-carolina/02-papeleria.webp"
-        },
-        {
-          "h": {
-            "es": "Para llevar",
-            "en": "To go"
-          },
-          "p": {
-            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
-            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
-          },
-          "img": "assets/img/projects/jugos-carolina/03-merch.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/jugos-carolina/04-redes.webp"
+          "img": "assets/img/projects/jugos-carolina/01-boceto.webp"
         },
         {
           "h": {
@@ -3048,10 +2918,10 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/jugos-carolina/05-versiones.webp"
+          "img": "assets/img/projects/jugos-carolina/02-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/jugos-carolina.jpg"
@@ -3059,8 +2929,8 @@
     "apicola-san-angel": {
       "title": "Apícola San Ángel",
       "subtitle": {
-        "es": "Identidad visual · Miel 100% natural",
-        "en": "Visual identity · 100% natural honey"
+        "es": "Identidad visual y etiqueta · Miel 100% natural",
+        "en": "Visual identity and label · 100% natural honey"
       },
       "cover": "assets/img/projects/apicola-san-angel/cover.webp",
       "meta": {
@@ -3078,8 +2948,8 @@
           "en": "Visual identity"
         },
         {
-          "es": "Logotipo",
-          "en": "Logo"
+          "es": "Etiquetas",
+          "en": "Labels"
         }
       ],
       "sections": [
@@ -3089,43 +2959,10 @@
             "en": "A seal that builds trust"
           },
           "p": {
-            "es": "Para una miel 100% natural, la marca tenía que transmitir pureza y origen. Un sello negro con borde dorado enmarca un panal y una abeja, como las etiquetas de productos artesanales que pasan de generación en generación. La misma identidad vive en su etiqueta (ver «Etiquetas y empaques»).",
-            "en": "For 100% natural honey, the brand had to convey purity and origin. A black seal with a gold edge frames a honeycomb and a bee, like the labels of artisan products passed down through generations. The same identity lives on its label (see “Labels and packaging”)."
+            "es": "Para una miel 100% natural, la marca tenía que transmitir pureza y origen. Un sello negro con borde dorado enmarca un panal y una abeja, como las etiquetas de productos artesanales que pasan de generación en generación.",
+            "en": "For 100% natural honey, the brand had to convey purity and origin. A black seal with a gold edge frames a honeycomb and a bee, like the labels of artisan products passed down through generations."
           },
-          "img": "assets/img/projects/apicola-san-angel/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "Papelería",
-            "en": "Stationery"
-          },
-          "p": {
-            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
-            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
-          },
-          "img": "assets/img/projects/apicola-san-angel/02-papeleria.webp"
-        },
-        {
-          "h": {
-            "es": "Para llevar",
-            "en": "To go"
-          },
-          "p": {
-            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
-            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
-          },
-          "img": "assets/img/projects/apicola-san-angel/03-merch.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/apicola-san-angel/04-redes.webp"
+          "img": "assets/img/projects/apicola-san-angel/01-boceto.webp"
         },
         {
           "h": {
@@ -3133,10 +2970,32 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/apicola-san-angel/05-versiones.webp"
+          "img": "assets/img/projects/apicola-san-angel/02-versiones.webp"
+        },
+        {
+          "h": {
+            "es": "La etiqueta",
+            "en": "The label"
+          },
+          "p": {
+            "es": "Al frente, el sello sobre un fondo de panal dorado y el contenido de 375 cc. Atrás, la composición de la miel, las recomendaciones de uso, los contactos de venta en Restrepo y Bogotá y los sellos de confianza, todo sobre el mismo gris carbón del logo.",
+            "en": "On the front, the seal over a golden honeycomb background and the 375 cc content. On the back, the honey's composition, usage recommendations, sales contacts in Restrepo and Bogotá and the trust seals, all on the logo's charcoal gray."
+          },
+          "img": "assets/img/projects/apicola-san-angel/03-etiqueta.webp"
+        },
+        {
+          "h": {
+            "es": "En el frasco",
+            "en": "On the jar"
+          },
+          "p": {
+            "es": "Aplicada sobre el frasco, la etiqueta deja ver el color de la miel alrededor y el sello queda centrado, como una marca artesanal de confianza.",
+            "en": "Applied to the jar, the label lets the honey's color show around it and the seal sits centered, like a trusted artisan brand."
+          },
+          "img": "assets/img/projects/apicola-san-angel/04-frasco.webp"
         }
       ],
       "shareImage": "assets/img/share/apicola-san-angel.jpg"
@@ -3177,40 +3036,7 @@
             "es": "Un medio digital de Villavicencio necesitaba una marca que funcionara sobre todo en pantalla. Tres trazos de color forman una V que se lee como un destello o una señal que se transmite, y la tipografía pesada y compacta se mantiene legible incluso como foto de perfil.",
             "en": "A digital news outlet from Villavicencio needed a brand that works mostly on screens. Three colored strokes form a V that reads like a flash or a broadcast signal, and the heavy, compact type stays legible even as a profile picture."
           },
-          "img": "assets/img/projects/villavo-al-dia/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/villavo-al-dia/02-redes.webp"
-        },
-        {
-          "h": {
-            "es": "Papelería",
-            "en": "Stationery"
-          },
-          "p": {
-            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
-            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
-          },
-          "img": "assets/img/projects/villavo-al-dia/03-papeleria.webp"
-        },
-        {
-          "h": {
-            "es": "La marca en el espacio",
-            "en": "The brand in space"
-          },
-          "p": {
-            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
-            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
-          },
-          "img": "assets/img/projects/villavo-al-dia/04-aviso.webp"
+          "img": "assets/img/projects/villavo-al-dia/01-boceto.webp"
         },
         {
           "h": {
@@ -3218,10 +3044,10 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/villavo-al-dia/05-versiones.webp"
+          "img": "assets/img/projects/villavo-al-dia/02-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/villavo-al-dia.jpg"
@@ -3262,40 +3088,7 @@
             "es": "La M del logotipo dibuja un diente en un solo trazo caligráfico. El dorado y la tipografía fina la alejan del azul clínico de siempre y la acercan a una experiencia más cálida y de confianza, pensada para toda la familia.",
             "en": "The M in the logotype draws a tooth in a single calligraphic stroke. The gold and the fine type move it away from the usual clinical blue and toward a warmer, more trustworthy experience designed for the whole family."
           },
-          "img": "assets/img/projects/mosso-family-dental/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "Papelería",
-            "en": "Stationery"
-          },
-          "p": {
-            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
-            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
-          },
-          "img": "assets/img/projects/mosso-family-dental/02-papeleria.webp"
-        },
-        {
-          "h": {
-            "es": "La marca en el espacio",
-            "en": "The brand in space"
-          },
-          "p": {
-            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
-            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
-          },
-          "img": "assets/img/projects/mosso-family-dental/03-aviso.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/mosso-family-dental/04-redes.webp"
+          "img": "assets/img/projects/mosso-family-dental/01-boceto.webp"
         },
         {
           "h": {
@@ -3303,10 +3096,10 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/mosso-family-dental/05-versiones.webp"
+          "img": "assets/img/projects/mosso-family-dental/02-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/mosso-family-dental.jpg"
@@ -3347,40 +3140,7 @@
             "es": "La omega funciona como un techo que cubre, y su forma de arco remite a protección. El rojo da energía y cercanía a un sector que suele verse frío, y el «¡Para Todos!» escrito a mano cierra la promesa de la marca.",
             "en": "The omega works as a roof that covers, and its arch shape suggests protection. Red brings energy and warmth to a sector that often feels cold, and the handwritten “¡Para Todos!” closes the brand promise."
           },
-          "img": "assets/img/projects/omega-seguros/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "Papelería",
-            "en": "Stationery"
-          },
-          "p": {
-            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
-            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
-          },
-          "img": "assets/img/projects/omega-seguros/02-papeleria.webp"
-        },
-        {
-          "h": {
-            "es": "La marca en el espacio",
-            "en": "The brand in space"
-          },
-          "p": {
-            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
-            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
-          },
-          "img": "assets/img/projects/omega-seguros/03-aviso.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/omega-seguros/04-redes.webp"
+          "img": "assets/img/projects/omega-seguros/01-boceto.webp"
         },
         {
           "h": {
@@ -3388,10 +3148,10 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/omega-seguros/05-versiones.webp"
+          "img": "assets/img/projects/omega-seguros/02-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/omega-seguros.jpg"
@@ -3432,40 +3192,7 @@
             "es": "Una corona sobre un cojín rojo convierte al sándwich en algo gourmet, con un tono divertido. El emblema circular y la cinta con el nombre funcionan como un sello de calidad en empaques, menú y fachada.",
             "en": "A crown on a red cushion turns the sandwich into something gourmet, with a playful tone. The circular emblem and the name ribbon work as a quality seal on packaging, menus and the storefront."
           },
-          "img": "assets/img/projects/macadamia/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "Para llevar",
-            "en": "To go"
-          },
-          "p": {
-            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
-            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
-          },
-          "img": "assets/img/projects/macadamia/02-merch.webp"
-        },
-        {
-          "h": {
-            "es": "La marca en el espacio",
-            "en": "The brand in space"
-          },
-          "p": {
-            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
-            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
-          },
-          "img": "assets/img/projects/macadamia/03-aviso.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/macadamia/04-redes.webp"
+          "img": "assets/img/projects/macadamia/01-boceto.webp"
         },
         {
           "h": {
@@ -3473,10 +3200,10 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/macadamia/05-versiones.webp"
+          "img": "assets/img/projects/macadamia/02-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/macadamia.jpg"
@@ -3517,40 +3244,7 @@
             "es": "Para un servicio de casillero y envíos desde Miami, el avión que despega sobre el nombre resume la promesa: rapidez y alcance internacional. El azul da confianza y el rojo de «BOX» señala el paquete que llega.",
             "en": "For a Miami mailbox and shipping service, the plane taking off over the name sums up the promise: speed and international reach. Blue conveys trust and the red “BOX” points to the package that arrives."
           },
-          "img": "assets/img/projects/miabox/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "Papelería",
-            "en": "Stationery"
-          },
-          "p": {
-            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
-            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
-          },
-          "img": "assets/img/projects/miabox/02-papeleria.webp"
-        },
-        {
-          "h": {
-            "es": "La marca en el espacio",
-            "en": "The brand in space"
-          },
-          "p": {
-            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
-            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
-          },
-          "img": "assets/img/projects/miabox/03-aviso.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/miabox/04-redes.webp"
+          "img": "assets/img/projects/miabox/01-boceto.webp"
         },
         {
           "h": {
@@ -3558,10 +3252,10 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/miabox/05-versiones.webp"
+          "img": "assets/img/projects/miabox/02-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/miabox.jpg"
@@ -3599,43 +3293,10 @@
             "en": "A signature with rhythm"
           },
           "p": {
-            "es": "Para el músico de Villavicencio diseñé un lettering a mano con letras que rebotan y se apilan, como su música: fresca, cercana y con mucha personalidad. Funciona en afiches, redes y merch, y lo usamos en sus presentaciones en vivo (ver «Afiches para artistas y eventos»).",
-            "en": "For this Villavicencio musician I designed hand lettering that bounces and stacks, like his music: fresh, warm and full of personality. It works on posters, social media and merch, and we used it for his live shows (see “Posters for artists and events”)."
+            "es": "Para el músico de Villavicencio diseñé un lettering a mano con letras que rebotan y se apilan, como su música: fresca, cercana y con mucha personalidad. Funciona en afiches, redes y merch, y lo usamos en sus presentaciones en vivo.",
+            "en": "For this Villavicencio musician I designed hand lettering that bounces and stacks, like his music: fresh, warm and full of personality. It works on posters, social media and merch, and we used it for his live shows."
           },
-          "img": "assets/img/projects/camilo-botero/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "Para llevar",
-            "en": "To go"
-          },
-          "p": {
-            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
-            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
-          },
-          "img": "assets/img/projects/camilo-botero/02-merch.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/camilo-botero/03-redes.webp"
-        },
-        {
-          "h": {
-            "es": "Papelería",
-            "en": "Stationery"
-          },
-          "p": {
-            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
-            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
-          },
-          "img": "assets/img/projects/camilo-botero/04-papeleria.webp"
+          "img": "assets/img/projects/camilo-botero/01-boceto.webp"
         },
         {
           "h": {
@@ -3643,10 +3304,10 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/camilo-botero/05-versiones.webp"
+          "img": "assets/img/projects/camilo-botero/02-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/camilo-botero.jpg"
@@ -3687,40 +3348,7 @@
             "es": "El guayoyo es el café suave que acompaña la conversación de la mañana. Por eso el logo mezcla bloques de color como un set de televisión, una tipografía juguetona y una taza humeante: un programa ligero, variado y para toda la familia.",
             "en": "A guayoyo is the mild coffee that goes with morning conversation. That is why the logo mixes color blocks like a TV set, playful lettering and a steaming cup: a light, varied show for the whole family."
           },
-          "img": "assets/img/projects/magazin-guayoyo/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/magazin-guayoyo/02-redes.webp"
-        },
-        {
-          "h": {
-            "es": "Para llevar",
-            "en": "To go"
-          },
-          "p": {
-            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
-            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
-          },
-          "img": "assets/img/projects/magazin-guayoyo/03-merch.webp"
-        },
-        {
-          "h": {
-            "es": "Papelería",
-            "en": "Stationery"
-          },
-          "p": {
-            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
-            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
-          },
-          "img": "assets/img/projects/magazin-guayoyo/04-papeleria.webp"
+          "img": "assets/img/projects/magazin-guayoyo/01-boceto.webp"
         },
         {
           "h": {
@@ -3728,10 +3356,10 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/magazin-guayoyo/05-versiones.webp"
+          "img": "assets/img/projects/magazin-guayoyo/02-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/magazin-guayoyo.jpg"
@@ -3772,40 +3400,7 @@
             "es": "Un monograma que entrelaza la S y la C en un solo trazo, con el nombre completo en mayúsculas espaciadas debajo. Una marca personal sobria y elegante que se ve bien grabada, impresa o como foto de perfil.",
             "en": "A monogram that intertwines the S and the C in a single stroke, with the full name in widely spaced capitals below. A sober, elegant personal brand that looks good engraved, printed or as a profile picture."
           },
-          "img": "assets/img/projects/sebastian-cruz/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "Papelería",
-            "en": "Stationery"
-          },
-          "p": {
-            "es": "Hoja membrete y tarjetas de presentación: la marca a color sobre papel claro y en negativo sobre su color principal.",
-            "en": "Letterhead and business cards: the full-color mark on light paper and reversed out on its main color."
-          },
-          "img": "assets/img/projects/sebastian-cruz/02-papeleria.webp"
-        },
-        {
-          "h": {
-            "es": "Para llevar",
-            "en": "To go"
-          },
-          "p": {
-            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
-            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
-          },
-          "img": "assets/img/projects/sebastian-cruz/03-merch.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/sebastian-cruz/04-redes.webp"
+          "img": "assets/img/projects/sebastian-cruz/01-boceto.webp"
         },
         {
           "h": {
@@ -3813,10 +3408,10 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/sebastian-cruz/05-versiones.webp"
+          "img": "assets/img/projects/sebastian-cruz/02-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/sebastian-cruz.jpg"
@@ -3857,40 +3452,7 @@
             "es": "La marca es la propia Doña Jaky: un retrato ilustrado con flor en el cabello, sonrisa y blusa típica, enmarcado en un círculo como un sello de la casa. Un vino tinto profundo y una tipografía manuscrita transmiten tradición, hogar y sabor llanero.",
             "en": "The brand is Doña Jaky herself: an illustrated portrait with a flower in her hair, a smile and a traditional blouse, framed in a circle like a house seal. A deep wine red and handwritten lettering convey tradition, home and the flavor of the Llanos."
           },
-          "img": "assets/img/projects/dona-jaky/01-hero.webp"
-        },
-        {
-          "h": {
-            "es": "Para llevar",
-            "en": "To go"
-          },
-          "p": {
-            "es": "Bolsa de tela y vaso con la marca: piezas que salen del local y la hacen circular.",
-            "en": "Canvas bag and cup with the brand: pieces that leave the store and keep it moving."
-          },
-          "img": "assets/img/projects/dona-jaky/02-merch.webp"
-        },
-        {
-          "h": {
-            "es": "La marca en el espacio",
-            "en": "The brand in space"
-          },
-          "p": {
-            "es": "Aviso para la fachada o la recepción, pensado para leerse de lejos y con buena luz.",
-            "en": "Sign for the storefront or reception desk, designed to read from a distance and in good light."
-          },
-          "img": "assets/img/projects/dona-jaky/03-aviso.webp"
-        },
-        {
-          "h": {
-            "es": "En redes",
-            "en": "On social"
-          },
-          "p": {
-            "es": "Foto de perfil, publicaciones y una retícula que alterna la marca con sus colores para que el perfil se reconozca de un vistazo.",
-            "en": "Profile picture, posts and a grid that alternates the mark with its colors so the profile is recognizable at a glance."
-          },
-          "img": "assets/img/projects/dona-jaky/04-redes.webp"
+          "img": "assets/img/projects/dona-jaky/01-boceto.webp"
         },
         {
           "h": {
@@ -3898,10 +3460,10 @@
             "en": "Versions and color"
           },
           "p": {
-            "es": "Versión a color, en negativo y monocromática para que funcione sobre cualquier fondo, con la paleta en HEX.",
-            "en": "Full-color, reversed and single-color versions so it works on any background, with the palette in HEX."
+            "es": "La marca a color, en negativo sobre su color principal y en versión monocromática clara y oscura, para que funcione sobre cualquier fondo. Debajo, la paleta en HEX.",
+            "en": "The mark in full color, reversed out of its main color and in light and dark single-color versions, so it works on any background. Below, the palette in HEX."
           },
-          "img": "assets/img/projects/dona-jaky/05-versiones.webp"
+          "img": "assets/img/projects/dona-jaky/02-versiones.webp"
         }
       ],
       "shareImage": "assets/img/share/dona-jaky.jpg"
@@ -4004,6 +3566,314 @@
         }
       ],
       "shareImage": "assets/img/share/torneo-joropo-2026.jpg"
+    },
+    "candy-gold": {
+      "title": "Candy Gold",
+      "subtitle": {
+        "es": "Marca y etiquetas · Piña deshidratada",
+        "en": "Brand and labels · Dried pineapple"
+      },
+      "cover": "assets/img/projects/candy-gold/cover.webp",
+      "meta": {
+        "client": "Candy Gold",
+        "role": {
+          "es": "Diseñador de marca y empaques",
+          "en": "Brand and packaging designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Empaques",
+          "en": "Packaging"
+        },
+        {
+          "es": "Etiquetas",
+          "en": "Labels"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Una marca que se antoja",
+            "en": "A brand you crave"
+          },
+          "p": {
+            "es": "Candy Gold vende piña para disfrutar asada, picada o en jugo. El logotipo usa letras infladas con brillo, como dulces, y la O de «Gold» es una rodaja de piña: en un vistazo se entiende qué es y que es para darse un gusto.",
+            "en": "Candy Gold sells pineapple to enjoy grilled, chopped or as juice. The logo uses puffy, glossy letters like candy, and the O in “Gold” is a pineapple slice: at a glance you get what it is and that it is a treat."
+          },
+          "img": "assets/img/projects/candy-gold/01-logo.webp"
+        },
+        {
+          "h": {
+            "es": "Dos sabores, un sistema",
+            "en": "Two flavors, one system"
+          },
+          "p": {
+            "es": "Las etiquetas de los sabores ginger y pepper comparten la misma estructura. Lo que cambia es el color de las franjas, verde o coral, para distinguirlos en la góndola sin leer. Abajo van los sellos nutricionales y el peso, fáciles de encontrar.",
+            "en": "The ginger and pepper labels share the same structure. Only the stripe color changes, green or coral, so you can tell them apart on the shelf without reading. Nutrition badges and net weight sit at the bottom, easy to find."
+          },
+          "img": "assets/img/projects/candy-gold/02-etiquetas.webp"
+        },
+        {
+          "h": {
+            "es": "En el empaque",
+            "en": "On the pack"
+          },
+          "p": {
+            "es": "Aplicadas sobre la bolsa doypack de 900 g, las franjas y la piña llenan el frente y la marca queda en el centro, a la altura de los ojos.",
+            "en": "Applied to the 900 g stand-up pouch, the stripes and pineapples fill the front and the brand sits in the center, at eye level."
+          },
+          "img": "assets/img/projects/candy-gold/03-empaque.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/candy-gold.jpg"
+    },
+    "frupi": {
+      "title": "Frupi",
+      "subtitle": {
+        "es": "Marca y empaque · Piña fresca llanera",
+        "en": "Brand and packaging · Fresh pineapple from the Llanos"
+      },
+      "cover": "assets/img/projects/frupi/cover.webp",
+      "meta": {
+        "client": {
+          "es": "Agropiña S.A.S.",
+          "en": "Agropiña S.A.S."
+        },
+        "role": {
+          "es": "Diseñador de marca y empaques",
+          "en": "Brand and packaging designer"
+        },
+        "tools": "Illustrator · Photoshop"
+      },
+      "tags": [
+        "Branding",
+        {
+          "es": "Empaques",
+          "en": "Packaging"
+        },
+        {
+          "es": "Etiquetas",
+          "en": "Labels"
+        }
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Fresca, llanera y fácil de abrir",
+            "en": "Fresh, local and easy to open"
+          },
+          "p": {
+            "es": "Frupi es la piña fresca de Agropiña, de Villavicencio. El logotipo es una caligrafía amarilla con la corona de la piña saliendo de la «i», el trazo de la fruta detrás y la etiqueta «Piña fresca»: alegre, natural y con sabor local.",
+            "en": "Frupi is Agropiña's fresh pineapple, from Villavicencio. The logo is a yellow script with the pineapple crown sprouting from the “i”, a fruit sketch behind it and a “Piña fresca” tag: cheerful, natural and with local flavor."
+          },
+          "img": "assets/img/projects/frupi/01-logo.webp"
+        },
+        {
+          "h": {
+            "es": "La etiqueta",
+            "en": "The label"
+          },
+          "p": {
+            "es": "Un magenta que salta en la nevera, la marca dentro de un círculo blanco y, abajo, toda la información regulatoria (INVIMA, tabla nutricional, contenidos de 250 y 500 g y datos del productor) ordenada para no quitarle frescura al frente.",
+            "en": "A magenta that pops in the fridge, the brand inside a white circle and, below, all the regulatory information (health registry, nutrition facts, 250 and 500 g contents and producer details) organized so it doesn't take freshness away from the front."
+          },
+          "img": "assets/img/projects/frupi/02-etiqueta.webp"
+        },
+        {
+          "h": {
+            "es": "En el empaque",
+            "en": "On the pack"
+          },
+          "p": {
+            "es": "La bolsa con cierre «Abre fácil» lleva la etiqueta a todo el frente para que el producto se reconozca desde lejos en el punto de venta.",
+            "en": "The “easy open” bag carries the label across the whole front so the product is recognizable from a distance at the point of sale."
+          },
+          "img": "assets/img/projects/frupi/03-empaque.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/frupi.jpg"
+    },
+    "laura-romero": {
+      "title": "Laura Romero",
+      "subtitle": {
+        "es": "Afiches · Cantante",
+        "en": "Posters · Singer"
+      },
+      "cover": "assets/img/projects/laura-romero/cover.webp",
+      "meta": {
+        "client": "Laura Romero",
+        "role": {
+          "es": "Diseñador publicitario",
+          "en": "Advertising designer"
+        },
+        "tools": "Photoshop · Illustrator"
+      },
+      "tags": [
+        {
+          "es": "Diseño publicitario",
+          "en": "Advertising design"
+        },
+        {
+          "es": "Música",
+          "en": "Music"
+        },
+        {
+          "es": "Eventos",
+          "en": "Events"
+        }
+      ],
+      "sections": [
+        {
+          "img": "assets/img/projects/laura-romero/01.webp",
+          "h": {
+            "es": "Una imagen para cada show",
+            "en": "An image for every show"
+          },
+          "p": {
+            "es": "Para la cantante Laura Romero diseñé los afiches de sus presentaciones. «Amores virtuales» es un concierto en línea: rosas, corazones y su foto en primer plano, con la fecha y la boletería a la vista. Para su show en vivo sin cover el tono cambia a una noche íntima, con fondo oscuro, luz cálida y el micrófono como protagonista.",
+            "en": "For singer Laura Romero I designed the posters for her shows. «Amores virtuales» is an online concert: roses, hearts and her photo up front, with the date and tickets in sight. For her no-cover live show the tone shifts to an intimate night, with a dark background, warm light and the microphone as the star."
+          }
+        },
+        {
+          "img": "assets/img/projects/laura-romero/02.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/laura-romero.jpg"
+    },
+    "nico-vega": {
+      "title": "Nico Vega",
+      "subtitle": {
+        "es": "Afiche · Concierto «Desconectado»",
+        "en": "Poster · «Desconectado» concert"
+      },
+      "cover": "assets/img/projects/nico-vega/cover.webp",
+      "meta": {
+        "client": "Nico Vega",
+        "role": {
+          "es": "Diseñador publicitario",
+          "en": "Advertising designer"
+        },
+        "tools": "Photoshop · Illustrator"
+      },
+      "tags": [
+        {
+          "es": "Diseño publicitario",
+          "en": "Advertising design"
+        },
+        {
+          "es": "Música",
+          "en": "Music"
+        },
+        {
+          "es": "Eventos",
+          "en": "Events"
+        }
+      ],
+      "sections": [
+        {
+          "img": "assets/img/projects/nico-vega/01.webp",
+          "h": {
+            "es": "Desconectado",
+            "en": "Unplugged"
+          },
+          "p": {
+            "es": "Para el concierto «Desconectado» de Nico Vega el afiche toma los tonos ocres del otoño y una tipografía hecha a mano que acompaña su estilo acústico. La foto del artista manda, y la fecha, las redes y los aliados quedan ordenados abajo.",
+            "en": "For Nico Vega's «Desconectado» concert the poster takes autumn's ochre tones and hand-drawn lettering that matches his acoustic style. The artist's photo leads, and the date, social handles and partners are organized below."
+          }
+        }
+      ],
+      "shareImage": "assets/img/share/nico-vega.jpg"
+    },
+    "kaliwa": {
+      "title": "Kaliwa",
+      "subtitle": {
+        "es": "Afiche · Concierto virtual de Amor y Amistad",
+        "en": "Poster · Virtual Love & Friendship concert"
+      },
+      "cover": "assets/img/projects/kaliwa/cover.webp",
+      "meta": {
+        "client": "Kaliwa",
+        "role": {
+          "es": "Diseñador publicitario",
+          "en": "Advertising designer"
+        },
+        "tools": "Photoshop · Illustrator"
+      },
+      "tags": [
+        {
+          "es": "Diseño publicitario",
+          "en": "Advertising design"
+        },
+        {
+          "es": "Música",
+          "en": "Music"
+        },
+        {
+          "es": "Eventos",
+          "en": "Events"
+        }
+      ],
+      "sections": [
+        {
+          "img": "assets/img/projects/kaliwa/01.webp",
+          "h": {
+            "es": "Amor y Amistad en línea",
+            "en": "Love & Friendship, online"
+          },
+          "p": {
+            "es": "Afiche para el concierto virtual de Amor y Amistad de Kaliwa: rosa, corazones y la estética de una pantalla de computador para dejar claro que el plan es desde casa. El precio de la boleta y la fecha van grandes para que se vendan solos.",
+            "en": "Poster for Kaliwa's virtual Love & Friendship concert: pink, hearts and a computer-screen look to make it clear the plan is from home. The ticket price and date go big so they sell themselves."
+          }
+        }
+      ],
+      "shareImage": "assets/img/share/kaliwa.jpg"
+    },
+    "camilo-botero-burgues-pub": {
+      "title": "Camilo Botero en El Burgués Pub",
+      "subtitle": {
+        "es": "Afiche · Día del Padre",
+        "en": "Poster · Father's Day"
+      },
+      "cover": "assets/img/projects/camilo-botero-burgues-pub/cover.webp",
+      "meta": {
+        "client": "Camilo Botero en El Burgués Pub",
+        "role": {
+          "es": "Diseñador publicitario",
+          "en": "Advertising designer"
+        },
+        "tools": "Photoshop · Illustrator"
+      },
+      "tags": [
+        {
+          "es": "Diseño publicitario",
+          "en": "Advertising design"
+        },
+        {
+          "es": "Música",
+          "en": "Music"
+        },
+        {
+          "es": "Eventos",
+          "en": "Events"
+        }
+      ],
+      "sections": [
+        {
+          "img": "assets/img/projects/camilo-botero-burgues-pub/01.webp",
+          "h": {
+            "es": "Día del Padre con música en vivo",
+            "en": "Father's Day with live music"
+          },
+          "p": {
+            "es": "Afiche para la celebración del Día del Padre en El Burgués Pub con Camilo Botero como artista invitado. El naranja cálido, la foto del músico en un círculo de luz y su logotipo (que también diseñé) hacen que la pieza funcione igual para el bar y para el artista.",
+            "en": "Poster for the Father's Day celebration at El Burgués Pub with Camilo Botero as guest artist. Warm orange, the musician's photo in a circle of light and his logo (which I also designed) make the piece work for both the bar and the artist."
+          }
+        }
+      ],
+      "shareImage": "assets/img/share/camilo-botero-burgues-pub.jpg"
     }
   },
   "about": {
@@ -4106,9 +3976,7 @@
     "assets/img/projects/deportivo-meta/cover.webp": "assets/img/projects/deportivo-meta/cover-sm.webp",
     "assets/img/projects/arimena/cover.webp": "assets/img/projects/arimena/cover-sm.webp",
     "assets/img/projects/komercia/cover.webp": "assets/img/projects/komercia/cover-sm.webp",
-    "assets/img/projects/afiches-eventos/cover.webp": "assets/img/projects/afiches-eventos/cover-sm.webp",
     "assets/img/projects/nuestro-llano-tv/cover.webp": "assets/img/projects/nuestro-llano-tv/cover-sm.webp",
-    "assets/img/projects/etiquetas/cover.webp": "assets/img/projects/etiquetas/cover-sm.webp",
     "assets/img/projects/foto/street-01.webp": "assets/img/projects/foto/street-01-sm.webp",
     "assets/img/projects/foto/street-02.webp": "assets/img/projects/foto/street-02-sm.webp",
     "assets/img/projects/foto/street-03.webp": "assets/img/projects/foto/street-03-sm.webp",
@@ -4128,7 +3996,13 @@
     "assets/img/projects/magazin-guayoyo/cover.webp": "assets/img/projects/magazin-guayoyo/cover-sm.webp",
     "assets/img/projects/sebastian-cruz/cover.webp": "assets/img/projects/sebastian-cruz/cover-sm.webp",
     "assets/img/projects/dona-jaky/cover.webp": "assets/img/projects/dona-jaky/cover-sm.webp",
-    "assets/img/projects/torneo-joropo-2026/cover.webp": "assets/img/projects/torneo-joropo-2026/cover-sm.webp"
+    "assets/img/projects/torneo-joropo-2026/cover.webp": "assets/img/projects/torneo-joropo-2026/cover-sm.webp",
+    "assets/img/projects/candy-gold/cover.webp": "assets/img/projects/candy-gold/cover-sm.webp",
+    "assets/img/projects/frupi/cover.webp": "assets/img/projects/frupi/cover-sm.webp",
+    "assets/img/projects/laura-romero/cover.webp": "assets/img/projects/laura-romero/cover-sm.webp",
+    "assets/img/projects/nico-vega/cover.webp": "assets/img/projects/nico-vega/cover-sm.webp",
+    "assets/img/projects/kaliwa/cover.webp": "assets/img/projects/kaliwa/cover-sm.webp",
+    "assets/img/projects/camilo-botero-burgues-pub/cover.webp": "assets/img/projects/camilo-botero-burgues-pub/cover-sm.webp"
   },
   "trash": {
     "enabled": true,

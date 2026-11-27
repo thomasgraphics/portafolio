@@ -406,7 +406,7 @@
     { id: "seo", name: "SEO y compartir", color: "#30b0c7", icon: `<svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 14 14"/></svg>` },
     { id: "look", name: "Diseño y apariencia", color: "#ff9500", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M8 1.5a6.5 6.5 0 1 0 0 13c.9 0 1.3-.6 1.3-1.2 0-.8-.6-1-.6-1.7 0-.6.5-1.1 1.2-1.1h1.6a3 3 0 0 0 3-3c0-3.3-2.9-6-6.5-6z"/><circle cx="4.8" cy="7.5" r="1" fill="#ff9500"/><circle cx="7" cy="4.6" r="1" fill="#ff9500"/><circle cx="10.4" cy="5.2" r="1" fill="#ff9500"/></svg>` },
     { id: "texts", name: "Textos de la interfaz", color: "#5856d6", icon: `<svg viewBox="0 0 16 16" fill="#fff"><path d="M3 3h10v2.2h-1.4V4.4H8.7v7.2h1.5V13H5.8v-1.4h1.5V4.4H4.4v.8H3z"/></svg>` },
-    { id: "cases", name: "Casos de estudio", color: "#af52de", icon: `<svg viewBox="0 0 16 16" fill="#fff"><rect x="2" y="2.5" width="12" height="11" rx="1.6"/><rect x="4" y="5" width="8" height="1.4" rx=".7" fill="#af52de"/><rect x="4" y="8" width="5" height="1.4" rx=".7" fill="#af52de"/></svg>` },
+    { id: "cases", name: "Proyectos", color: "#af52de", icon: `<svg viewBox="0 0 16 16" fill="#fff"><rect x="2" y="2.5" width="12" height="11" rx="1.6"/><rect x="4" y="5" width="8" height="1.4" rx=".7" fill="#af52de"/><rect x="4" y="8" width="5" height="1.4" rx=".7" fill="#af52de"/></svg>` },
   ];
 
 
@@ -507,7 +507,7 @@
 
     const opensNames = (k) => {
       const [type, id] = k.split(":");
-      if (type === "case") return `Caso · ${(D.cases[id] || {}).title || id}`;
+      if (type === "case") return `Proyecto · ${(D.cases[id] || {}).title || id}`;
       if (type === "folder") return `Carpeta · ${t((D.folders[id] || {}).title) || id}`;
       const it = D.desktop.find((d) => d.id === id);
       return `${it ? t(it.label) : id}`;
@@ -626,7 +626,7 @@
       <div class="dp-sticky"><b>Recordatorio:</b><span>Diseña para personas</span></div>
       <div class="dp-icon"><i></i><span>Branding</span></div>
       <div class="dp-win"><div class="dp-bar"><em></em><em></em><em></em><span>UX/UI &amp; Producto</span></div>
-        <div class="dp-body"><h4>UX/UI &amp; Producto</h4><p>Productos digitales diseñados de punta a punta.</p><div class="dp-chip">Caso de estudio</div><a>Ver caso →</a></div></div>
+        <div class="dp-body"><h4>UX/UI &amp; Producto</h4><p>Productos digitales diseñados de punta a punta.</p><div class="dp-chip">Manual interactivo</div><a>Ver proyecto →</a></div></div>
       <div class="dp-dock"><i></i><i></i><i></i><i></i></div>` });
     requestAnimationFrame(paintPreview);
     return h("section", { class: "group" }, h("h3", {}, "Vista previa"), h("p", {}, "Se actualiza mientras editas. El sitio cambia al publicar."), previewEl);
@@ -639,7 +639,7 @@
     ["skip", "Botón saltar intro", "Saltar intro", "Skip intro"], ["now", "Hora de la notificación", "ahora", "now"],
     ["info", "Menú «Info»", "Info", "Info"], ["instagram", "Menú «Instagram» / dock", "Instagram", "Instagram"],
     ["all", "Filtro «Todo»", "Todo", "All"], ["cases", "Filtro «Casos»", "Casos", "Cases"], ["photos", "Filtro «Fotos»", "Fotos", "Photos"], ["videos", "Filtro «Videos»", "Videos", "Videos"],
-    ["items", "Contador de elementos ({n} = número)", "{n} elementos", "{n} items"], ["caseBadge", "Etiqueta de caso", "Caso de estudio", "Case study"], ["video", "Etiqueta de video", "Video", "Video"],
+    ["items", "Contador de elementos ({n} = número)", "{n} elementos", "{n} items"], ["video", "Etiqueta de video", "Video", "Video"],
     ["client", "Ficha: Cliente", "Cliente", "Client"], ["role", "Ficha: Rol", "Rol", "Role"], ["year", "Ficha: Año", "Año", "Year"], ["tools", "Ficha: Herramientas", "Herramientas", "Tools"],
     ["prev", "Botón caso anterior", "← Anterior", "← Previous"], ["next", "Botón caso siguiente", "Siguiente →", "Next →"],
     ["favorites", "Barra lateral: Favoritos", "Favoritos", "Favorites"], ["more", "Barra lateral: Más", "Más", "More"],
@@ -926,10 +926,10 @@
           { key: "intro", type: "i18nArea", label: "Descripción" },
           { key: "shareImage", type: "image", label: "Portada al compartir (clic derecho → compartir)", hint: "1200×630 px", max: 1200 },
           { key: "items", type: "list", label: "Contenido", addLabel: "Agregar elemento", item: {
-            title: (it) => it.type === "case" ? `Caso · ${(D.cases[it.case] || {}).title || it.case || "—"}` : `${it.type === "video" ? "Video" : "Imagen"} · ${t(it.title) || (it.src || "").split("/").pop()}`,
+            title: (it) => it.type === "case" ? `Proyecto · ${(D.cases[it.case] || {}).title || it.case || "—"}` : `${it.type === "video" ? "Video" : "Imagen"} · ${t(it.title) || (it.src || "").split("/").pop()}`,
             make: () => ({ type: "image", src: "", title: { es: "", en: "" } }),
             fields: [
-              { key: "type", type: "select", label: "Tipo", options: [["case", "Caso de estudio"], ["image", "Imagen"], ["video", "Video"]], rerender: true },
+              { key: "type", type: "select", label: "Tipo", options: [["case", "Proyecto"], ["image", "Imagen"], ["video", "Video"]], rerender: true },
               { key: "case", type: "select", label: "Caso", options: caseOpts, when: (o) => o.type === "case" },
               { key: "src", type: "image", label: "Imagen", when: (o) => o.type === "image" },
               { key: "src", type: "file", label: "Video (MP4)", accept: "video/mp4", when: (o) => o.type === "video" },
@@ -986,7 +986,7 @@
           add(c.meta, { key: "role", type: "i18n", label: "Tu rol" });
           add(c.meta, { key: "year", type: "text", label: "Año" });
           add(c.meta, { key: "tools", type: "text", label: "Herramientas" });
-          add(c, { key: "badge", type: "i18n", label: "Etiqueta de la tarjeta", hint: "Ej: Manual interactivo. Vacío = «Caso de estudio»" });
+          add(c, { key: "badge", type: "i18n", label: "Etiqueta de la tarjeta", hint: "Ej: Manual interactivo. Vacío = sin etiqueta" });
           c.link = c.link || {};
           add(c.link, { key: "url", type: "text", label: "Enlace del botón", ph: "https://…", hint: "Opcional: muestra un botón para ver el proyecto en vivo" });
           add(c.link, { key: "label", type: "i18n", label: "Texto del botón", ph: { es: "Ver proyecto", en: "View project" } });

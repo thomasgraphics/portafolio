@@ -41,7 +41,7 @@
   const t = (v) => (v == null ? "" : typeof v === "object" && !Array.isArray(v) ? v[lang] ?? v.es ?? v.en ?? "" : v);
   const UI = {
     es: {
-      info: "Info", skip: "Saltar intro", now: "ahora", all: "Todo", cases: "Casos", photos: "Fotos", videos: "Videos",
+      info: "Info", skip: "Saltar intro", now: "ahora", all: "Todo", cases: "Proyectos", photos: "Fotos", videos: "Videos",
       items: (n) => `${n} ${n === 1 ? "elemento" : "elementos"}`, caseBadge: "Caso de estudio", video: "Video",
       close: "Cerrar", min: "Minimizar", max: "Maximizar", download: "Descargar", openTab: "Abrir en pestaña nueva",
       client: "Cliente", role: "Rol", year: "Año", tools: "Herramientas", prev: "← Anterior", next: "Siguiente →",
@@ -50,7 +50,7 @@
       favorites: "Favoritos", more: "Más", about: "Sobre mí", trash: "Papelera", rotate: "Gira tu teléfono para ver el portafolio",
     },
     en: {
-      info: "Info", skip: "Skip intro", now: "now", all: "All", cases: "Cases", photos: "Photos", videos: "Videos",
+      info: "Info", skip: "Skip intro", now: "now", all: "All", cases: "Projects", photos: "Photos", videos: "Videos",
       items: (n) => `${n} ${n === 1 ? "item" : "items"}`, caseBadge: "Case study", video: "Video",
       close: "Close", min: "Minimize", max: "Zoom", download: "Download", openTab: "Open in new tab",
       client: "Client", role: "Role", year: "Year", tools: "Tools", prev: "← Previous", next: "Next →",
@@ -733,7 +733,7 @@
       if (!c) return "";
       return `<button class="tile is-case" data-idx="${i}" data-case="${esc(it.case)}" style="--i:${i}">
         <img src="${esc(sm(c.cover))}" alt="${esc(c.title)}" loading="lazy" decoding="async" draggable="false">
-        <span class="badge${c.badge && t(c.badge) ? " special" : ""}">${esc((c.badge && t(c.badge)) || ui("caseBadge"))}</span>
+        ${c.badge && t(c.badge) ? `<span class="badge special">${esc(t(c.badge))}</span>` : ""}
         <span class="cap"><strong>${esc(c.title)}</strong><span>${esc(t(c.subtitle))}</span></span></button>`;
     }
     const src = it.type === "video" ? it.poster : it.src;
