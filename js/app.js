@@ -165,7 +165,7 @@
     if (!wpShown) {
       const im = new Image();
       const show = () => { if (!wpShown) { wpShown = true; requestAnimationFrame(() => document.body.classList.add("wp-in")); } };
-      im.onload = show; im.onerror = show; im.src = src; setTimeout(show, 2500);
+      im.onload = show; im.onerror = show; im.src = src; // sin plazo fijo: nunca se muestra a medio cargar
     }
     if (src && !/^(https?:|data:|blob:|\/)/i.test(src)) src = "/" + src;
     const url = `url("${src}")`;
@@ -1171,6 +1171,13 @@
     mins.forEach((m) => dockAdd(m));
     renderMin();
     updateDock();
+    // El dock sube cuando sus íconos ya cargaron (máximo 3 s de espera)
+    if (!dock.classList.contains("ready")) {
+      const ready = () => dock.classList.add("ready");
+      // decode(): espera a que estén descargados y listos para pintarse
+      Promise.all($$("img", dock).map((im) => (im.decode ? im.decode() : Promise.resolve()).catch(() => {}))).then(ready);
+      setTimeout(ready, 3000);
+    }
   }
   function updateDock() {
     $$("[data-win]", dock).forEach((b) => b.classList.toggle("open", wins.has(b.dataset.win)));
@@ -1468,26 +1475,32 @@
     introBg.style.backgroundImage = `url("${introSrc}")`;
     intro.prepend(introBg);
     // Aparece con un fundido cuando la foto ya cargó (nunca a medio dibujar)
-    let bgShown = false;
-    const showBg = () => { if (!bgShown) { bgShown = true; requestAnimationFrame(() => requestAnimationFrame(() => introBg.classList.add("in"))); } };
-    const bgImg = new Image(); bgImg.onload = showBg; bgImg.onerror = showBg; bgImg.src = introSrc;
-    setTimeout(showBg, 1500);
+    // Las tarjetas arrancan cuando la foto ya está lista (o a los 2,5 s en conexiones lentas: entonces
+    // la intro sigue sobre negro y la foto solo aparece si llega a tiempo, siempre con fundido)
+    let bgShown = false, cardsStarted = false;
+    const showBg = () => { if (!bgShown && !finished) { bgShown = true; requestAnimationFrame(() => requestAnimationFrame(() => introBg.classList.add("in"))); } startCards(); };
+    const bgImg = new Image(); bgImg.onload = showBg; bgImg.onerror = startCards; bgImg.src = introSrc;
+    timers.push(setTimeout(startCards, 2500));
 
     const offsets = [[-22, -64], [16, -18], [-10, 26], [8, 6], [-16, -30], [20, 30]];
     photos.forEach((p) => { if (p.src) { const im = new Image(); im.src = p.src; } });
-    const start = 750, step = 420; // las tarjetas entran cuando la foto ya se está enfocando
-    photos.forEach((p, i) => {
-      timers.push(setTimeout(() => {
-        const [dx, dy] = offsets[i % offsets.length];
-        const w = document.createElement("div");
-        w.className = "intro-win";
-        w.style.setProperty("--dx", dx + "px");
-        w.style.setProperty("--dy", dy + "px");
-        w.innerHTML = `<div class="bar"><i></i><i></i><i></i><span>${esc(p.name || "")}</span></div>${p.src ? `<img src="${esc(p.src)}" alt="">` : `<div class="intro-blank"></div>`}`;
-        stack.appendChild(w);
-      }, start + i * step));
-    });
-    timers.push(setTimeout(finish, start + photos.length * step + 650));
+    function startCards() {
+      if (cardsStarted || finished) return;
+      cardsStarted = true;
+      const start = 450, step = 420; // las tarjetas entran cuando la foto ya se está enfocando
+      photos.forEach((p, i) => {
+        timers.push(setTimeout(() => {
+          const [dx, dy] = offsets[i % offsets.length];
+          const w = document.createElement("div");
+          w.className = "intro-win";
+          w.style.setProperty("--dx", dx + "px");
+          w.style.setProperty("--dy", dy + "px");
+          w.innerHTML = `<div class="bar"><i></i><i></i><i></i><span>${esc(p.name || "")}</span></div>${p.src ? `<img src="${esc(p.src)}" alt="">` : `<div class="intro-blank"></div>`}`;
+          stack.appendChild(w);
+        }, start + i * step));
+      });
+      timers.push(setTimeout(finish, start + photos.length * step + 650));
+    }
   }
 
 
