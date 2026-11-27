@@ -157,9 +157,16 @@
     if (meta) meta.content = dark ? "#1c1c1e" : (D.themeColor || "#cfd2bf");
     if (!first) setWallpaper();
   }
+  let wpShown = false;
   function setWallpaper() {
     document.body.classList.toggle("wp-baked", bakedOk());
     let src = String(effectiveWallpaper() || "").replace(/["\\\n]/g, "");
+    // Aparece con un fundido cuando la imagen ya está lista (una sola vez)
+    if (!wpShown) {
+      const im = new Image();
+      const show = () => { if (!wpShown) { wpShown = true; requestAnimationFrame(() => document.body.classList.add("wp-in")); } };
+      im.onload = show; im.onerror = show; im.src = src; setTimeout(show, 2500);
+    }
     if (src && !/^(https?:|data:|blob:|\/)/i.test(src)) src = "/" + src;
     const url = `url("${src}")`;
     document.querySelectorAll(".wallpaper").forEach((el) => el.style.setProperty("--wp", url));

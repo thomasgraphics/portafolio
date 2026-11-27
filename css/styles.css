@@ -27,7 +27,7 @@ html, body { height: 100%; margin: 0; }
 body {
   font-family: var(--font);
   color: var(--ink);
-  background: #cfd2bf;
+  background: #0d0d0d; /* mismo tono del fondo: sin destello claro al cargar */
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
   user-select: none;
@@ -78,6 +78,12 @@ body.no-noise .noise { display: none; }
 body.wp-baked .wallpaper { --wp-blur: 0px; }
 body.wp-baked .wallpaper-dof { display: none; }
 body.wp-settled .wallpaper { filter: none; transition: none; }
+/* Fondo pre-horneado: la misma escala y nitidez antes y después de entrar (sin zoom ni desenfoque que salte);
+   solo aparece con un fundido desde negro cuando la imagen ya cargó */
+body.wp-baked .wallpaper, body.wp-baked:not(.booted) .wallpaper { --wp-b: 0px; transform: scale(1.02); }
+body.wp-baked .wallpaper { opacity: 0; transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
+body.wp-baked.wp-in .wallpaper { opacity: 1; }
+body.wp-baked.wp-settled .wallpaper { transition: none; }
 html.dark body.wp-settled .wallpaper { filter: brightness(0.62) saturate(0.9); }
 html.dark body.no-dark-dim .wallpaper { --wp-br: 1; --wp-sat: 1; }
 html.dark body.no-dark-dim.wp-settled .wallpaper { filter: none; }
