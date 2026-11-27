@@ -7,8 +7,8 @@
   },
   "location": "Bogotá, Colombia",
   "defaultLang": "es",
-  "wallpaper": "assets/img/wallpaper-thomas-4k.webp",
-  "wallpaperMobile": "assets/img/wallpaper-thomas-4k-m.webp",
+  "wallpaper": "assets/img/wallpaper-thomas-centro-4k.webp",
+  "wallpaperMobile": "assets/img/wallpaper-thomas-centro-4k-m.webp",
   "seo": {
     "siteUrl": "https://www.thomgraphics.com",
     "title": "Thomgraphics · Portafolio",
@@ -4797,9 +4797,9 @@
     ]
   },
   "wallpaperBaked": "assets/img/wallpaper-thomas-desk-baked.webp",
-  "wallpaperBakedFrom": "assets/img/wallpaper-thomas-4k.webp",
+  "wallpaperBakedFrom": "assets/img/wallpaper-thomas-centro-4k.webp",
   "wallpaperBakedMobile": "assets/img/wallpaper-thomas-mob-baked.webp",
-  "wallpaperBakedMobileFrom": "assets/img/wallpaper-thomas-4k-m.webp",
+  "wallpaperBakedMobileFrom": "assets/img/wallpaper-thomas-centro-4k-m.webp",
   "wallpaperBakedBlur": 4,
   "themeColor": "#0d0d0d"
 }
