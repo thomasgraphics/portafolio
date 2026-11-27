@@ -275,7 +275,6 @@
       <button class="mb-item mb-brand" data-open="about">${esc(D.brand)}</button>
       <span class="mb-item mb-app mb-hide-sm" id="mb-app"></span>
       <button class="mb-item mb-hide-sm" data-open="about">${ui("info")}</button>
-      ${D.links.instagram ? `<a class="mb-item mb-hide-sm" href="${esc(D.links.instagram)}" data-net="instagram" target="_blank" rel="noopener">${esc(ui("instagram"))}</a>` : ""}
       <span class="mb-spacer"></span>
       <span class="mb-lang">
         <button data-lang="es" aria-pressed="${lang === "es"}"><span class="long">Español</span><span class="short">ES</span></button>/
