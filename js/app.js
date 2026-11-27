@@ -1461,7 +1461,7 @@
       [...stack.children].reverse().forEach((w, i) => w.style.setProperty("--od", i * 80 + "ms"));
       intro.classList.add("done");
       setTimeout(() => intro.remove(), 1800);
-      setTimeout(boot, 350); // el escritorio entra mientras la intro se funde
+      setTimeout(boot, isMobile() ? 700 : 350); // el escritorio entra mientras la intro se funde (en celular, un poco después para que se vea el deslizamiento del mensaje y el recordatorio)
     };
     skipBtn.addEventListener("click", finish);
 
