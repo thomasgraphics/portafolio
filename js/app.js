@@ -1935,6 +1935,177 @@
     bar.style.transform = `scaleX(${max > 0 ? Math.min(1, b.scrollTop / max) : 0})`;
   }, { capture: true, passive: true });
 
+  // =========================================================================
+  // Gestos del trackpad (MacBook): deslizar con dos dedos, pellizcar, Mission Control y Vista Rápida
+  // Nota: los gestos de 3 y 4 dedos los reserva macOS y no llegan al navegador.
+  // =========================================================================
+  // --- Deslizar con dos dedos (izquierda/derecha): proyecto o carpeta anterior / siguiente, como en Safari ---
+  {
+    let acc = 0, fired = false, endT = 0, ind = null, indWin = null;
+    const TH = 150;
+    const navTargets = (win) => {
+      if (win.classList.contains("casewin")) {
+        const b = $$(".case-nav [data-go]", win);
+        return b.length >= 2 ? { prev: b[0], next: b[1] } : null;
+      }
+      if (win.classList.contains("finder")) {
+        const items = $$(".sb-item[data-folder]", win), i = items.findIndex((x) => x.getAttribute("aria-current") === "true");
+        return i < 0 ? null : { prev: items[i - 1] || null, next: items[i + 1] || null };
+      }
+      return null;
+    };
+    const showInd = (win, dir, p) => {
+      if (!ind || indWin !== win) { ind && ind.remove(); ind = document.createElement("div"); ind.className = "swipe-ind"; ind.innerHTML = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`; win.appendChild(ind); indWin = win; }
+      ind.dataset.dir = dir;
+      ind.style.setProperty("--p", p.toFixed(3));
+      ind.classList.toggle("ready", p >= 1);
+    };
+    const hideInd = () => { if (ind) { const el = ind; ind = null; indWin = null; el.classList.add("out"); setTimeout(() => el.remove(), 250); } };
+    const slide = (win, dir) => { const body = $(".win-body", win); if (!body) return; body.classList.remove("slide-l", "slide-r"); void body.offsetWidth; body.classList.add(dir === "next" ? "slide-l" : "slide-r"); setTimeout(() => body.classList.remove("slide-l", "slide-r"), 600); };
+    layer.addEventListener("wheel", (e) => {
+      if (e.ctrlKey || mc) return;
+      if (Math.abs(e.deltaX) < Math.abs(e.deltaY) * 1.4 || Math.abs(e.deltaX) < 1) return;
+      const win = e.target.closest(".win"); if (!win || e.target.closest(".viewer.zoomable.zoomed")) return;
+      const tg = navTargets(win); if (!tg) return;
+      // Evita que el navegador lo tome como "atrás/adelante"
+      e.preventDefault();
+      clearTimeout(endT);
+      endT = setTimeout(() => { acc = 0; fired = false; hideInd(); }, 260);
+      if (fired) return;
+      acc += e.deltaX;
+      const dir = acc > 0 ? "next" : "prev";
+      if (!tg[dir]) { showInd(win, dir, Math.min(0.35, Math.abs(acc) / TH)); return; } // no hay a dónde ir: se queda a medias
+      const p = Math.min(1, Math.abs(acc) / TH);
+      showInd(win, dir, p);
+      if (p >= 1) { fired = true; tg[dir].click(); slide(win, dir); setTimeout(hideInd, 180); }
+    }, { passive: false });
+    // Celular: deslizar con el dedo en la ventana del proyecto
+    let ts = null;
+    layer.addEventListener("touchstart", (e) => { if (e.touches.length === 1 && !e.target.closest(".viewer.zoomable, .seg, .case-embed")) ts = { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() }; else ts = null; }, { passive: true });
+    layer.addEventListener("touchend", (e) => {
+      if (!ts) return;
+      const t0 = ts; ts = null;
+      const c = e.changedTouches[0], dx = c.clientX - t0.x, dy = c.clientY - t0.y;
+      if (Math.abs(dx) < 90 || Math.abs(dx) < Math.abs(dy) * 2 || Date.now() - t0.t > 700) return;
+      const win = e.target.closest(".win.casewin"); if (!win) return;
+      const tg = navTargets(win); const dir = dx < 0 ? "next" : "prev";
+      if (tg && tg[dir]) { tg[dir].click(); slide(win, dir); }
+    }, { passive: true });
+  }
+
+  // --- Mission Control: pellizcar hacia adentro (o F3) muestra todas las ventanas abiertas ---
+  let mc = null;
+  function missionOn() {
+    const list = [...wins.values()].filter((w) => !w.minimized);
+    if (!list.length || mc || isMobile()) return;
+    closeSpotlight(); closeCtx();
+    const lr = layer.getBoundingClientRect();
+    const top = 56, bottom = 120, side = 40;
+    const W = lr.width - side * 2, H = lr.height - top - bottom;
+    const n = list.length, cols = Math.ceil(Math.sqrt(n * (W / H) / 1.4)), rows = Math.ceil(n / cols);
+    const cw = W / cols, ch = H / rows;
+    const dim = document.createElement("div"); dim.className = "mc-dim"; layer.prepend(dim);
+    mc = { list, dim };
+    document.body.classList.add("mission");
+    list.forEach((w, i) => {
+      const r = w.el.getBoundingClientRect();
+      const col = i % cols, row = Math.floor(i / cols);
+      const inRow = row === rows - 1 ? n - row * cols : cols;
+      const offset = (cols - inRow) * cw / 2;
+      const cx = lr.left + side + offset + col * cw + cw / 2, cy = lr.top + top + row * ch + ch / 2;
+      const sc = Math.min(1, (cw * 0.86) / r.width, (ch * 0.78) / r.height);
+      w.el.dataset.mcTitle = $(".win-title", w.el) ? $(".win-title", w.el).textContent : "";
+      w.el.classList.add("mc-win");
+      w.el.style.transform = `translate(${cx - (r.left + r.width / 2)}px, ${cy - (r.top + r.height / 2)}px) scale(${sc})`;
+    });
+    track("open", { id: "mission-control" });
+  }
+  function missionOff(focusKey) {
+    if (!mc) return;
+    const { list, dim } = mc; mc = null;
+    document.body.classList.remove("mission");
+    dim.classList.add("out");
+    list.forEach((w) => { w.el.style.transform = ""; });
+    if (focusKey) focusWin(focusKey);
+    setTimeout(() => { list.forEach((w) => w.el.classList.remove("mc-win")); dim.remove(); }, 420);
+  }
+  layer.addEventListener("pointerdown", (e) => {
+    if (!mc) return;
+    e.preventDefault(); e.stopPropagation();
+    const win = e.target.closest(".win");
+    missionOff(win ? win.dataset.key : null);
+  }, true);
+  {
+    let pinch = 0, pt = 0;
+    document.addEventListener("wheel", (e) => {
+      if (!e.ctrlKey || isMobile()) return;
+      if (e.target.closest && e.target.closest(".viewer.zoomable, .spot-wrap")) return; // en las fotos el pellizco es zoom
+      e.preventDefault(); // el pellizco no agranda toda la página: se usa como gesto
+      clearTimeout(pt); pt = setTimeout(() => (pinch = 0), 300);
+      pinch += e.deltaY;
+      if (pinch > 60 && !mc) { pinch = 0; missionOn(); }
+      else if (pinch < -60 && mc) { pinch = 0; missionOff(); }
+    }, { passive: false });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "F3" || (e.ctrlKey && e.key === "ArrowUp")) { e.preventDefault(); mc ? missionOff() : missionOn(); }
+      if (e.key === "Escape" && mc) { e.stopImmediatePropagation(); missionOff(); }
+    }, true);
+  }
+
+  // --- Vista Rápida (Quick Look): barra espaciadora sobre una tarjeta o una foto seleccionada ---
+  {
+    let hovered = null, ql = null;
+    const full = {}; Object.entries(D.thumbs || {}).forEach(([big, small]) => (full[small] = big));
+    const big = (src) => full[src] || src;
+    layer.addEventListener("pointerover", (e) => { const t = e.target.closest && e.target.closest(".tile"); if (t) hovered = t; });
+    layer.addEventListener("pointerout", (e) => { if (hovered && !hovered.contains(e.relatedTarget)) hovered = null; });
+    const infoOf = (el) => {
+      if (el.classList.contains("tile")) {
+        const img = $("img", el); const c = el.dataset.case && D.cases[el.dataset.case];
+        return { src: c && c.cover ? c.cover : big(img.getAttribute("src")), title: c ? c.title : img.alt, sub: c ? t(c.subtitle) : "", el };
+      }
+      const it = itemById(el.dataset.id);
+      if (it && it.type === "photo") return { src: it.src, title: t(it.label), sub: "", el };
+      return null;
+    };
+    const siblings = (el) => (el.classList.contains("tile") ? $$(".tile", el.parentElement) : []);
+    function qlOpen(info) {
+      qlClose(true);
+      const wrap = document.createElement("div");
+      wrap.className = "ql-wrap";
+      wrap.innerHTML = `<figure class="ql"><figcaption><b>${esc(info.title)}</b>${info.sub ? `<small>${esc(info.sub)}</small>` : ""}<button class="ql-open">${lang === "es" ? "Abrir" : "Open"}</button></figcaption><img src="${esc(info.src)}" alt="${esc(info.title)}"></figure>`;
+      document.body.appendChild(wrap);
+      // Crece desde la miniatura, como en macOS
+      const r = info.el.getBoundingClientRect(), fig = $(".ql", wrap);
+      fig.style.setProperty("--fx", r.left + r.width / 2 - innerWidth / 2 + "px");
+      fig.style.setProperty("--fy", r.top + r.height / 2 - innerHeight / 2 + "px");
+      requestAnimationFrame(() => requestAnimationFrame(() => wrap.classList.add("in")));
+      ql = { wrap, info };
+      wrap.addEventListener("click", (e) => {
+        if (e.target.closest(".ql-open")) { const el = info.el; qlClose(); el.click(); return; }
+        if (!e.target.closest(".ql")) qlClose();
+      });
+    }
+    function qlClose(instant) {
+      if (!ql) return;
+      const w = ql.wrap; ql = null;
+      if (instant) { w.remove(); return; }
+      w.classList.remove("in"); w.classList.add("out"); setTimeout(() => w.remove(), 260);
+    }
+    document.addEventListener("keydown", (e) => {
+      if (e.target.closest && e.target.closest("input, textarea, [contenteditable]")) return;
+      if (e.key === " " || e.code === "Space") {
+        if (ql) { e.preventDefault(); qlClose(); return; }
+        const el = hovered || $(".icon.selected");
+        const info = el && infoOf(el);
+        if (info) { e.preventDefault(); qlOpen(info); }
+      } else if (ql && (e.key === "ArrowRight" || e.key === "ArrowLeft")) {
+        const sib = siblings(ql.info.el), i = sib.indexOf(ql.info.el), n = sib[i + (e.key === "ArrowRight" ? 1 : -1)];
+        if (n) { e.preventDefault(); hovered = n; qlOpen(infoOf(n)); }
+      } else if (ql && e.key === "Escape") { e.stopImmediatePropagation(); qlClose(); }
+    }, true);
+  }
+
   // ---------- Inicio ----------
   document.documentElement.lang = lang;
   if (D.seo && t(D.seo.title)) document.title = t(D.seo.title);
