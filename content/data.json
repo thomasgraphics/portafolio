@@ -52,7 +52,7 @@
       "name": "IMG_2113.jpg"
     },
     {
-      "src": "assets/img/intro/intro-4.webp?v=2",
+      "src": "assets/img/intro/intro-4.webp?v=3",
       "name": "IMG_2190.jpg"
     }
   ],
@@ -264,6 +264,14 @@
           "category": {
             "es": "Web",
             "en": "Web"
+          }
+        },
+        {
+          "type": "case",
+          "case": "mundo-negocios",
+          "category": {
+            "es": "Fintech",
+            "en": "Fintech"
           }
         },
         {
@@ -4487,6 +4495,118 @@
         }
       ],
       "shareImage": "assets/img/share/xcaly.jpg"
+    },
+    "mundo-negocios": {
+      "title": "Mundo Negocios",
+      "subtitle": {
+        "es": "Plataforma de crédito · Solicitud en línea, portal y panel de aprobación",
+        "en": "Lending platform · Online application, client portal and approval dashboard"
+      },
+      "cover": "assets/img/projects/mundo-negocios/portada.webp",
+      "meta": {
+        "client": {
+          "es": "Mundo Negocios SAS · Servicios financieros",
+          "en": "Mundo Negocios SAS · Financial services"
+        },
+        "role": {
+          "es": "Diseño UX/UI de punta a punta: flujos, landing, solicitud, portal del cliente, panel administrativo y design system",
+          "en": "End-to-end UX/UI design: flows, landing, application, client portal, admin dashboard and design system"
+        },
+        "year": "2022",
+        "tools": "Figma"
+      },
+      "tags": [
+        {
+          "es": "UX/UI",
+          "en": "UX/UI"
+        },
+        "Fintech",
+        {
+          "es": "Mobile first",
+          "en": "Mobile first"
+        },
+        "Design system"
+      ],
+      "sections": [
+        {
+          "h": {
+            "es": "Crédito para emprendedores en menos de 24 horas",
+            "en": "Credit for entrepreneurs in under 24 hours"
+          },
+          "p": {
+            "es": "Mundo Negocios presta capital a pequeños negocios y emprendedores. El reto era llevar a digital un proceso que dependía de papeles y visitas: que una persona pida su crédito desde el celular, sepa cuánto pagará antes de comprometerse y reciba respuesta en menos de 24 horas hábiles. Diseñé la experiencia mobile first, porque es desde donde llega la mayoría de los clientes.",
+            "en": "Mundo Negocios lends capital to small businesses and entrepreneurs. The challenge was to take a paper-and-visit process online: let people apply from their phone, know what they will pay before committing and get an answer in under 24 business hours. I designed the experience mobile first, since that is where most customers come from."
+          },
+          "img": "assets/img/projects/mundo-negocios/01-landing-movil.webp"
+        },
+        {
+          "h": {
+            "es": "Simular antes de pedir",
+            "en": "Simulate before applying"
+          },
+          "p": {
+            "es": "La landing abre con la pregunta del cliente —«¿Necesitas capital para tu negocio?»— y lo pone a simular de inmediato: elige entre Crédito Rápido (menos de $1.500.000) o Crédito Fácil (más de $1.500.000), mueve el monto y el plazo y ve el valor a desembolsar. La solicitud vive en la misma pantalla como un acordeón por pasos: información personal, laboral, financiera, referencias y firma. Cada paso completado se marca y el siguiente se abre, así el formulario largo se siente corto.",
+            "en": "The landing opens with the customer's own question — “Need capital for your business?” — and gets them simulating right away: choose Crédito Rápido (under $1,500,000) or Crédito Fácil (over $1,500,000), adjust amount and term and see the amount to be disbursed. The application lives on the same screen as a step accordion: personal, employment, financial, references and signature. Each completed step is checked and the next one opens, so a long form feels short."
+          },
+          "img": "assets/img/projects/mundo-negocios/02-solicitud.webp"
+        },
+        {
+          "h": {
+            "es": "Confianza y respuestas en la misma página",
+            "en": "Trust and answers on the same page"
+          },
+          "p": {
+            "es": "Debajo del simulador: la consulta por cédula para saber el estado del crédito, los beneficios, quiénes somos, el producto de libre inversión con sus condiciones claras (monto mínimo, plazo de 6 a 36 meses, cuota fija), preguntas frecuentes y contacto. En escritorio el simulador se expande y desglosa la cuota —capital, intereses, seguro, administración e IVA— antes de solicitar.",
+            "en": "Below the simulator: status lookup by ID number, benefits, about us, the free-use loan with clear terms (minimum amount, 6 to 36 month term, fixed installment), FAQs and contact. On desktop the simulator expands to break down the installment — principal, interest, insurance, admin fee and VAT — before applying."
+          },
+          "img": "assets/img/projects/mundo-negocios/03-web.webp"
+        },
+        {
+          "h": {
+            "es": "Panel administrativo para aprobar en horas",
+            "en": "Admin dashboard to approve in hours"
+          },
+          "p": {
+            "es": "Para el equipo diseñé el panel: un dashboard con créditos activos, por confirmar y recaudo, y la actividad reciente con estados de color (aprobado, en estudio, preaprobado, rechazado) para leer la cola de un vistazo.",
+            "en": "For the team I designed the dashboard: active credits, pending confirmation and collections, plus recent activity with color-coded statuses (approved, under review, pre-approved, rejected) so the queue reads at a glance."
+          },
+          "img": "assets/img/projects/mundo-negocios/04-panel.webp"
+        },
+        {
+          "h": {
+            "es": "Decidir con toda la información",
+            "en": "Deciding with the full picture"
+          },
+          "p": {
+            "es": "El detalle de cada solicitud reúne lo que el analista necesita para decidir: datos de contacto, tiempo transcurrido contra la meta de 24 horas, puntaje de data crédito, actualización de tasas, información del usuario y del crédito, con aprobar y rechazar siempre visibles. Se suman la tabla de tasas por rangos y la vista de créditos en mora.",
+            "en": "Each application's detail brings together what the analyst needs to decide: contact data, elapsed time against the 24-hour goal, credit bureau score, rate updates, user and loan information, with approve and reject always in view. Add the rate table by ranges and the overdue credits view."
+          },
+          "img": "assets/img/projects/mundo-negocios/04b-credito.webp"
+        },
+        {
+          "h": {
+            "es": "Correos que cierran el ciclo",
+            "en": "Emails that close the loop"
+          },
+          "p": {
+            "es": "Cada cambio de estado llega al cliente por correo —aprobado, rechazado, desembolsado— en versiones de escritorio y móvil, con un mensaje claro y el siguiente paso.",
+            "en": "Each status change reaches the customer by email — approved, rejected, disbursed — in desktop and mobile versions, with a clear message and the next step."
+          },
+          "img": "assets/img/projects/mundo-negocios/05-correos.webp"
+        },
+        {
+          "h": {
+            "es": "Design system atómico",
+            "en": "Atomic design system"
+          },
+          "p": {
+            "es": "Todo se construyó sobre un design system atómico en Figma: escala tipográfica, paleta de marca (amarillo #FDDA24, azul #0046A8, negro #222222 y grises), botones, inputs y componentes del sistema, para que web, móvil y panel hablen el mismo idioma.",
+            "en": "Everything is built on an atomic design system in Figma: type scale, brand palette (yellow #FDDA24, blue #0046A8, black #222222 and grays), buttons, inputs and system components, so web, mobile and dashboard speak the same language."
+          },
+          "img": "assets/img/projects/mundo-negocios/06-design-system.webp"
+        }
+      ],
+      "shareImage": "assets/img/share/mundo-negocios.jpg"
     }
   },
   "about": {
@@ -4621,7 +4741,8 @@
     "assets/img/projects/english-with-purpose/portada.webp": "assets/img/projects/english-with-purpose/portada-sm.webp",
     "assets/img/projects/komercia-web/portada.webp": "assets/img/projects/komercia-web/portada-sm.webp",
     "assets/img/projects/tailorednets/portada.webp": "assets/img/projects/tailorednets/portada-sm.webp",
-    "assets/img/projects/xcaly/portada.webp": "assets/img/projects/xcaly/portada-sm.webp"
+    "assets/img/projects/xcaly/portada.webp": "assets/img/projects/xcaly/portada-sm.webp",
+    "assets/img/projects/mundo-negocios/portada.webp": "assets/img/projects/mundo-negocios/portada-sm.webp"
   },
   "trash": {
     "enabled": true,
