@@ -276,19 +276,19 @@
   // Barra de menú y reloj
   // =========================================================================
   // Extras de la barra (herramientas que uso). Si un ítem trae "icon" (SVG oficial en assets/img/menubar/)
-  // se pinta como máscara monocroma; si no, un glifo genérico propio.
+  // se pinta como imagen (íconos enviados por Thomas); si no, un glifo genérico propio.
   const TOOL_GLYPH = {
     design: `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 12.6 7 8 14.5 3.4 7z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8" cy="8.2" r="1.4" fill="currentColor"/><path d="M8 1.5v5.3" stroke="currentColor" stroke-width="1.2"/></svg>`,
     cloud: `<svg viewBox="0 0 18 14" aria-hidden="true"><path d="M5 12.5h8.3a3.3 3.3 0 0 0 .4-6.6A4.6 4.6 0 0 0 4.9 5 3.8 3.8 0 0 0 5 12.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>`,
     spark: `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 1.8c.5 2.9 1.6 4 4.5 4.5-2.9.5-4 1.6-4.5 4.5-.5-2.9-1.6-4-4.5-4.5 2.9-.5 4-1.6 4.5-4.5z" fill="currentColor"/><path d="M12.4 9.6c.25 1.4.8 1.95 2.2 2.2-1.4.25-1.95.8-2.2 2.2-.25-1.4-.8-1.95-2.2-2.2 1.4-.25 1.95-.8 2.2-2.2z" fill="currentColor"/></svg>`,
   };
   const TOOLS = D.menuTools && D.menuTools.length ? D.menuTools : [
-    { id: "figma", name: "Figma", glyph: "design", open: "ux", desc: { es: "UX/UI, prototipos y design systems", en: "UX/UI, prototypes and design systems" }, cta: { es: "Ver proyectos UX/UI", en: "See UX/UI projects" } },
-    { id: "adobe", name: "Adobe Creative Cloud", glyph: "cloud", open: "branding", desc: { es: "Illustrator, Photoshop, After Effects y Premiere", en: "Illustrator, Photoshop, After Effects and Premiere" }, cta: { es: "Ver branding", en: "See branding" } },
-    { id: "chatgpt", name: "ChatGPT", glyph: "spark", open: "about", desc: { es: "IA para investigación, ideación y copy", en: "AI for research, ideation and copy" }, cta: { es: "Sobre mí", en: "About me" } },
+    { id: "figma", icon: "assets/img/menubar/figma.png", size: 14, name: "Figma", glyph: "design", open: "ux", desc: { es: "UX/UI, prototipos y design systems", en: "UX/UI, prototypes and design systems" }, cta: { es: "Ver proyectos UX/UI", en: "See UX/UI projects" } },
+    { id: "adobe", icon: "assets/img/menubar/adobe.png", size: 21, name: "Adobe Creative Cloud", glyph: "cloud", open: "branding", desc: { es: "Illustrator, Photoshop, After Effects y Premiere", en: "Illustrator, Photoshop, After Effects and Premiere" }, cta: { es: "Ver branding", en: "See branding" } },
+    { id: "chatgpt", icon: "assets/img/menubar/chatgpt.png", size: 18, name: "ChatGPT", glyph: "spark", open: "about", desc: { es: "IA para investigación, ideación y copy", en: "AI for research, ideation and copy" }, cta: { es: "Sobre mí", en: "About me" } },
   ];
   const toolIcon = (x) => x.icon
-    ? `<i class="mb-tool-ic" style="-webkit-mask-image:url('${esc(x.icon)}');mask-image:url('${esc(x.icon)}')"></i>`
+    ? `<img class="mb-tool-img" src="${esc(x.icon)}" alt="" width="${+x.size || 16}" height="${+x.size || 16}" draggable="false">`
     : (TOOL_GLYPH[x.glyph] || TOOL_GLYPH.spark);
   const menubar = $("#menubar");
   function renderMenubar() {
