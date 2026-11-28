@@ -1116,3 +1116,23 @@ html.dark .seg-pill { background: #636366; box-shadow: 0 1px 3px rgba(0, 0, 0, 0
   .tile.tilt, .tile img, .icon-art, .seg-pill, .read-progress { transition: none !important; }
   .reveal-on .case-inner > section:not(.seen) { opacity: 1; transform: none; }
 }
+
+/* Zoom de fotos (estilo Vista Previa / Fotos de macOS) */
+.viewer.zoomable { position: relative; overflow: hidden; touch-action: none; cursor: zoom-in; outline: none; user-select: none; -webkit-user-select: none; }
+.viewer.zoomable img { transform-origin: 50% 50%; will-change: transform; }
+.viewer.zoomable img.z-anim { transition: transform 0.38s cubic-bezier(0.25, 1, 0.3, 1); }
+.viewer.zoomable.zoomed { cursor: grab; }
+.viewer.zoomable.zoomed.panning { cursor: grabbing; }
+.zoom-hud { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 999px; z-index: 2;
+  background: rgba(28, 28, 30, 0.62); color: #fff; backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.2), 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  opacity: 0; transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.3, 1.3, 0.5, 1); cursor: default; }
+.viewer.zoomable:hover .zoom-hud, .viewer.zoomable:focus-within .zoom-hud, .viewer.zoomable.zoomed .zoom-hud { opacity: 1; }
+.zoom-hud button { height: 30px; min-width: 30px; display: grid; place-items: center; border-radius: 999px; color: inherit; font: 600 12px var(--font); padding: 0 8px; transition: background 0.15s, transform 0.15s; }
+.zoom-hud button:hover { background: rgba(255, 255, 255, 0.14); }
+.zoom-hud button:active { transform: scale(0.92); }
+.zoom-hud svg { width: 17px; height: 17px; }
+.zoom-hud .z-pct { min-width: 54px; font-variant-numeric: tabular-nums; }
+.zoom-hud .z-pct.on { color: #fff; background: rgba(255, 255, 255, 0.1); }
+@media (hover: none) { .zoom-hud { opacity: 1; bottom: calc(16px + env(safe-area-inset-bottom)); } }
+@media (prefers-reduced-motion: reduce) { .viewer.zoomable img.z-anim { transition: none; } }

@@ -1093,10 +1093,115 @@
       const { w, h } = img.naturalWidth ? fitSize(img.naturalWidth, img.naturalHeight) : { w: 720, h: 560 };
       openWindow(key, {
         title: title || src.split("/").pop(), origin, w, h, hash: hashId || "",
-        render(body) { body.innerHTML = `<div class="viewer"><img src="${esc(src)}" alt="${esc(t(title))}" draggable="false"></div>`; },
+        render(body) {
+          body.innerHTML = `<div class="viewer zoomable" tabindex="0"><img src="${esc(src)}" alt="${esc(t(title))}" draggable="false">
+            <div class="zoom-hud" role="group" aria-label="Zoom">
+              <button data-z="out" aria-label="${lang === "es" ? "Alejar" : "Zoom out"}">${ZM_OUT}</button>
+              <button data-z="fit" class="z-pct" title="${lang === "es" ? "Ajustar a la ventana" : "Fit to window"}">100%</button>
+              <button data-z="in" aria-label="${lang === "es" ? "Acercar" : "Zoom in"}">${ZM_IN}</button>
+            </div></div>`;
+          makeZoom($(".viewer", body), $("img", body));
+        },
       });
     };
     img.onload = go; img.onerror = go; img.src = src;
+  }
+
+  // ---------- Zoom de fotos estilo Vista Previa / Fotos de macOS ----------
+  // Pellizcar (trackpad o pantalla táctil), doble clic o doble toque, rueda con ⌘/Ctrl, botones − % +,
+  // teclas + − 0, y arrastrar para moverse cuando está ampliada.
+  const ZM_OUT = `<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6 8.5h5M12.6 12.6l4.3 4.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`;
+  const ZM_IN = `<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6 8.5h5M8.5 6v5M12.6 12.6l4.3 4.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`;
+  function makeZoom(view, img) {
+    let s = 1, tx = 0, ty = 0;
+    const pct = $(".z-pct", view);
+    const maxS = () => { const nw = img.naturalWidth || 1, dw = img.clientWidth || 1; return Math.min(10, Math.max(4, (nw / dw) * 2)); };
+    const clamp = () => {
+      const vw = view.clientWidth, vh = view.clientHeight, iw = img.clientWidth * s, ih = img.clientHeight * s;
+      const mx = Math.max(0, (iw - vw) / 2), my = Math.max(0, (ih - vh) / 2);
+      tx = Math.min(mx, Math.max(-mx, tx)); ty = Math.min(my, Math.max(-my, ty));
+    };
+    const apply = (smooth) => {
+      img.classList.toggle("z-anim", !!smooth);
+      clamp();
+      img.style.transform = `translate(${tx}px, ${ty}px) scale(${s})`;
+      view.classList.toggle("zoomed", s > 1.01);
+      const real = img.naturalWidth ? Math.round((img.clientWidth * s / img.naturalWidth) * 100) : Math.round(s * 100);
+      pct.textContent = real + "%";
+      pct.classList.toggle("on", s > 1.01);
+    };
+    // Acercar o alejar manteniendo fijo el punto bajo el cursor (o el dedo)
+    const zoomAt = (ns, cx, cy, smooth) => {
+      ns = Math.min(maxS(), Math.max(1, ns));
+      const r = view.getBoundingClientRect();
+      const px = cx - (r.left + r.width / 2), py = cy - (r.top + r.height / 2);
+      tx = px - (px - tx) * (ns / s); ty = py - (py - ty) * (ns / s);
+      s = ns;
+      if (s === 1) { tx = 0; ty = 0; }
+      apply(smooth);
+    };
+    const center = () => { const r = view.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+    view.addEventListener("wheel", (e) => {
+      if (e.ctrlKey || e.metaKey) { e.preventDefault(); zoomAt(s * Math.exp(-e.deltaY * 0.012), e.clientX, e.clientY, false); }
+      else if (s > 1) { e.preventDefault(); tx -= e.deltaX; ty -= e.deltaY; apply(false); }
+    }, { passive: false });
+    let lastType = "mouse";
+    view.addEventListener("pointerdown", (e) => { lastType = e.pointerType; }, true);
+    view.addEventListener("dblclick", (e) => {
+      if (e.target.closest(".zoom-hud") || lastType === "touch") return; // en táctil lo maneja el doble toque
+      zoomAt(s > 1.01 ? 1 : Math.min(2.5, maxS()), e.clientX, e.clientY, true);
+    });
+    // Arrastrar y pellizcar (Pointer Events: mouse, trackpad y dedos)
+    const pts = new Map(); let pan = null, pinch = null, lastTap = 0;
+    view.addEventListener("pointerdown", (e) => {
+      if (e.target.closest(".zoom-hud")) return;
+      pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      view.setPointerCapture(e.pointerId);
+      if (pts.size === 2) {
+        const [a, b] = [...pts.values()];
+        pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), s }; pan = null;
+      } else if (pts.size === 1) {
+        pan = { x: e.clientX, y: e.clientY, tx, ty, moved: false };
+        if (e.pointerType === "touch") { // doble toque
+          const now = Date.now();
+          if (now - lastTap < 300) { zoomAt(s > 1.01 ? 1 : Math.min(2.5, maxS()), e.clientX, e.clientY, true); lastTap = 0; } else lastTap = now;
+        }
+      }
+    });
+    view.addEventListener("pointermove", (e) => {
+      if (!pts.has(e.pointerId)) return;
+      pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pinch && pts.size >= 2) {
+        const [a, b] = [...pts.values()];
+        zoomAt(pinch.s * (Math.hypot(a.x - b.x, a.y - b.y) / pinch.d), (a.x + b.x) / 2, (a.y + b.y) / 2, false);
+      } else if (pan && s > 1) {
+        tx = pan.tx + e.clientX - pan.x; ty = pan.ty + e.clientY - pan.y; pan.moved = true;
+        view.classList.add("panning"); apply(false);
+      }
+    });
+    const up = (e) => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (!pts.size) { pan = null; view.classList.remove("panning"); } };
+    view.addEventListener("pointerup", up); view.addEventListener("pointercancel", up);
+    // Gesto de pellizco de Safari en Mac (trackpad)
+    let gs = 1;
+    view.addEventListener("gesturestart", (e) => { e.preventDefault(); gs = s; });
+    view.addEventListener("gesturechange", (e) => { e.preventDefault(); zoomAt(gs * e.scale, e.clientX, e.clientY, false); });
+    // Botones y teclado
+    view.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-z]"); if (!b) return;
+      const [cx, cy] = center();
+      if (b.dataset.z === "in") zoomAt(s * 1.6, cx, cy, true);
+      if (b.dataset.z === "out") zoomAt(s / 1.6, cx, cy, true);
+      if (b.dataset.z === "fit") zoomAt(1, cx, cy, true);
+    });
+    view.addEventListener("keydown", (e) => {
+      const [cx, cy] = center();
+      if (e.key === "+" || e.key === "=") { e.preventDefault(); zoomAt(s * 1.6, cx, cy, true); }
+      if (e.key === "-") { e.preventDefault(); zoomAt(s / 1.6, cx, cy, true); }
+      if (e.key === "0") { e.preventDefault(); zoomAt(1, cx, cy, true); }
+    });
+    const ro = new ResizeObserver(() => apply(false)); ro.observe(view);
+    if (img.complete) apply(false); else img.addEventListener("load", () => apply(false), { once: true });
+    setTimeout(() => view.focus({ preventScroll: true }), 50);
   }
   function openVideo(src, title, poster, origin, hashId, item) {
     // En el celular se usa la versión vertical (formato reel) si existe
