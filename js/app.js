@@ -283,6 +283,7 @@
       <span class="mb-item mb-app mb-hide-sm" id="mb-app"></span>
       <button class="mb-item mb-hide-sm" data-open="about">${ui("info")}</button>
       <span class="mb-spacer"></span>
+      <button class="mb-item mb-search" data-spot aria-label="${lang === "es" ? "Buscar" : "Search"}" title="${lang === "es" ? "Buscar (⌘K)" : "Search (⌘K)"}">${SEARCH_SVG}</button>
       <span class="mb-lang">
         <button data-lang="es" aria-pressed="${lang === "es"}"><span class="long">Español</span><span class="short">ES</span></button>/
         <button data-lang="en" aria-pressed="${lang === "en"}"><span class="long">English</span><span class="short">EN</span></button>
@@ -297,6 +298,7 @@
     if (o) openItem(o.dataset.open, o);
     const l = e.target.closest("[data-lang]");
     if (l) setLang(l.dataset.lang);
+    if (e.target.closest("[data-spot]")) openSpotlight();
   });
   function tick() {
     const el = $("#clock");
@@ -605,7 +607,13 @@
     let d = null;
     bar.addEventListener("pointerdown", (e) => {
       if (isMobile() || e.target.closest("button,a") || el.classList.contains("maximized")) return;
-      d = { sx: e.clientX, sy: e.clientY, l: el.offsetLeft, t: el.offsetTop, maxL: layer.clientWidth - 80, maxT: layer.clientHeight - 60, minL: 80 - el.offsetWidth, x: 0, y: 0, raf: 0 };
+      // Si estaba acomodada a media pantalla, recupera su tamaño y queda bajo el cursor
+      if (el.classList.contains("snap-left") || el.classList.contains("snap-right")) {
+        const lr = layer.getBoundingClientRect();
+        el.classList.remove("snap-left", "snap-right");
+        el.style.left = Math.max(0, e.clientX - lr.left - el.offsetWidth / 2) + "px";
+      }
+      d = { sx: e.clientX, sy: e.clientY, l: el.offsetLeft, t: el.offsetTop, maxL: layer.clientWidth - 80, maxT: layer.clientHeight - 60, minL: 80 - el.offsetWidth, x: 0, y: 0, raf: 0, snap: null };
       bar.setPointerCapture(e.pointerId);
     });
     bar.addEventListener("pointermove", (e) => {
@@ -617,9 +625,23 @@
         cur.raf = 0;
         el.style.left = Math.min(cur.maxL, Math.max(cur.minL, cur.l + cur.x - cur.sx)) + "px";
         el.style.top = Math.min(cur.maxT, Math.max(0, cur.t + cur.y - cur.sy)) + "px";
+        // Bordes: izquierda/derecha = media pantalla, arriba = pantalla completa (con vista previa)
+        const lr = layer.getBoundingClientRect();
+        const zone = cur.x - lr.left < 14 ? "left" : lr.right - cur.x < 14 ? "right" : cur.y - lr.top < 10 ? "max" : null;
+        if (zone !== cur.snap) { cur.snap = zone; snapPreview(zone); }
       });
     });
-    const stop = () => (d = null);
+    const stop = () => {
+      if (d && d.snap) {
+        const zone = d.snap;
+        el.classList.add("snapping");
+        if (zone === "max") el.classList.add("maximized");
+        else el.classList.add(zone === "left" ? "snap-left" : "snap-right");
+        setTimeout(() => el.classList.remove("snapping"), 450);
+      }
+      snapPreview(null);
+      d = null;
+    };
     bar.addEventListener("pointerup", stop);
     bar.addEventListener("pointercancel", stop);
   }
@@ -1529,6 +1551,209 @@
     </aside>`;
   }
   document.addEventListener("click", (e) => { const a = e.target.closest("a[data-talk]"); if (a) track("open", { id: "talk:" + a.dataset.talk }); });
+
+  // =========================================================================
+  // Interacciones estilo macOS
+  // =========================================================================
+  const SEARCH_SVG = `<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.6" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="m12.7 12.7 4.6 4.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>`;
+  const L = (es, en) => (lang === "es" ? es : en);
+
+  // ---------- Vista previa al acomodar una ventana en un borde ----------
+  let snapEl = null;
+  function snapPreview(zone) {
+    if (!zone) { if (snapEl) { snapEl.classList.remove("on"); } return; }
+    if (!snapEl) { snapEl = document.createElement("div"); snapEl.className = "snap-preview"; layer.appendChild(snapEl); }
+    snapEl.dataset.zone = zone;
+    requestAnimationFrame(() => snapEl.classList.add("on"));
+  }
+
+  // ---------- Spotlight: buscar proyectos, carpetas y archivos (⌘K / Ctrl+K / ⌘+Espacio) ----------
+  const norm = (v) => String(v || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  function spotIndex() {
+    const out = [], seen = new Set();
+    Object.entries(D.folders || {}).forEach(([fid, f]) => {
+      const desk = itemById(fid);
+      out.push({ kind: "folder", id: fid, title: t(f.title), sub: L("Carpeta", "Folder"), art: desk ? iconArt(desk) : "", words: norm(t(f.title) + " " + t(f.intro)) });
+      const list = (f.items || []).filter((it) => it.type === "case" && D.cases[it.case] && !D.cases[it.case].hidden).map((it) => it.case);
+      (f.items || []).forEach((it) => {
+        if (it.type !== "case" || seen.has(it.case)) return;
+        const c = D.cases[it.case];
+        if (!c || c.hidden) return;
+        seen.add(it.case);
+        const tags = (c.tags || []).map(t).join(" ");
+        out.push({ kind: "case", id: it.case, list, title: c.title, sub: t(f.title) + (it.category ? " · " + t(it.category) : ""), img: c.cover ? sm(c.cover) : "",
+          words: norm([c.title, t(c.subtitle), tags, t(f.title), t(it.category), c.meta && t(c.meta.client)].join(" ")) });
+      });
+    });
+    D.desktop.filter((d) => d.type !== "folder" && d.type !== "photo").forEach((d) => {
+      out.push({ kind: "file", id: d.id, title: t(d.label), sub: L("Archivo", "File"), art: iconArt(d), words: norm(t(d.label) + " " + d.type) });
+    });
+    return out;
+  }
+  function spotSearch(q, idx) {
+    const words = norm(q).split(/\s+/).filter(Boolean);
+    if (!words.length) return idx.filter((r) => r.kind !== "case").concat(idx.filter((r) => r.kind === "case").slice(0, 6));
+    return idx.map((r) => {
+      const tl = norm(r.title);
+      if (!words.every((w) => r.words.includes(w) || tl.includes(w))) return null;
+      const score = (tl.startsWith(words[0]) ? 6 : 0) + words.reduce((s, w) => s + (tl.includes(w) ? 3 : 1), 0) + (r.kind === "folder" ? 1 : 0);
+      return { r, score };
+    }).filter(Boolean).sort((a, b) => b.score - a.score).slice(0, 12).map((x) => x.r);
+  }
+  let spot = null;
+  function openSpotlight() {
+    if (spot) { $("input", spot.el).focus(); return; }
+    closeCtx();
+    const idx = spotIndex();
+    const wrap = document.createElement("div");
+    wrap.className = "spot-wrap";
+    wrap.innerHTML = `<div class="spot" role="dialog" aria-label="Spotlight">
+      <label class="spot-field">${SEARCH_SVG}<input type="text" autocomplete="off" spellcheck="false" placeholder="${esc(L("Buscar proyectos, carpetas, archivos…", "Search projects, folders, files…"))}"><kbd>esc</kbd></label>
+      <div class="spot-list" role="listbox"></div></div>`;
+    document.body.appendChild(wrap);
+    const input = $("input", wrap), list = $(".spot-list", wrap);
+    spot = { el: wrap, items: [], active: 0 };
+    const GROUP = { case: L("Proyectos", "Projects"), folder: L("Carpetas", "Folders"), file: L("Archivos", "Files") };
+    const draw = () => {
+      const res = spotSearch(input.value, idx);
+      spot.items = res; spot.active = 0;
+      if (!res.length) { list.innerHTML = `<p class="spot-empty">${esc(L("Sin resultados para", "No results for"))} «${esc(input.value)}»</p>`; wrap.classList.add("has-list"); return; }
+      let last = "";
+      list.innerHTML = res.map((r, i) => {
+        const head = r.kind !== last ? `<div class="spot-group">${GROUP[r.kind]}</div>` : "";
+        last = r.kind;
+        const thumb = r.img ? `<img src="${esc(r.img)}" alt="" loading="lazy">` : `<span class="spot-art">${r.art || ""}</span>`;
+        return `${head}<button class="spot-item${i === 0 ? " on" : ""}" data-i="${i}" role="option"><span class="spot-thumb">${thumb}</span><span class="spot-txt"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span><span class="spot-go">↩</span></button>`;
+      }).join("");
+      wrap.classList.add("has-list");
+    };
+    const setActive = (i) => {
+      const btns = $$(".spot-item", list); if (!btns.length) return;
+      spot.active = (i + btns.length) % btns.length;
+      btns.forEach((b, k) => b.classList.toggle("on", k === spot.active));
+      btns[spot.active].scrollIntoView({ block: "nearest" });
+    };
+    const go = (i) => {
+      const r = spot.items[i]; if (!r) return;
+      closeSpotlight();
+      if (r.kind === "case") openCase(r.id, null, r.list);
+      else openItem(r.id, null);
+    };
+    input.addEventListener("input", draw);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); setActive(spot.active + 1); }
+      if (e.key === "ArrowUp") { e.preventDefault(); setActive(spot.active - 1); }
+      if (e.key === "Enter") { e.preventDefault(); go(spot.active); }
+    });
+    list.addEventListener("mousemove", (e) => { const b = e.target.closest(".spot-item"); if (b && +b.dataset.i !== spot.active) setActive(+b.dataset.i); });
+    list.addEventListener("click", (e) => { const b = e.target.closest(".spot-item"); if (b) go(+b.dataset.i); });
+    wrap.addEventListener("pointerdown", (e) => { if (e.target === wrap) closeSpotlight(); });
+    draw();
+    requestAnimationFrame(() => { wrap.classList.add("in"); input.focus(); });
+    track("open", { id: "spotlight" });
+  }
+  function closeSpotlight() {
+    if (!spot) return;
+    const el = spot.el; spot = null;
+    el.classList.remove("in"); el.classList.add("out");
+    setTimeout(() => el.remove(), 200);
+  }
+  document.addEventListener("keydown", (e) => {
+    const k = e.key.toLowerCase();
+    if ((e.metaKey || e.ctrlKey) && (k === "k" || (e.metaKey && k === " "))) { e.preventDefault(); spot ? closeSpotlight() : openSpotlight(); return; }
+    if (e.key === "Escape" && spot) { e.stopImmediatePropagation(); closeSpotlight(); }
+  }, true);
+
+  // ---------- Menú contextual del escritorio (clic derecho sobre el fondo) ----------
+  let ctx = null;
+  function closeCtx() { if (ctx) { const m = ctx; ctx = null; m.classList.add("out"); setTimeout(() => m.remove(), 150); } }
+  function openCtx(x, y) {
+    closeCtx();
+    const m = document.createElement("div");
+    m.className = "ctx-menu";
+    const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+    m.innerHTML = `
+      <button data-c="spot">${esc(L("Buscar en el portafolio", "Search the portfolio"))}<kbd>${isMac ? "⌘K" : "Ctrl K"}</kbd></button>
+      <button data-c="about">${esc(L("Sobre mí", "About me"))}</button>
+      <hr>
+      <button data-c="arrange">${esc(L("Organizar íconos", "Clean up icons"))}</button>
+      <button data-c="copy">${esc(L("Copiar enlace del portafolio", "Copy portfolio link"))}</button>
+      <hr>
+      <button data-c="lang">${lang === "es" ? "View in English" : "Ver en español"}</button>`;
+    document.body.appendChild(m);
+    const r = m.getBoundingClientRect();
+    m.style.left = Math.min(x, innerWidth - r.width - 8) + "px";
+    m.style.top = Math.min(y, innerHeight - r.height - 8) + "px";
+    ctx = m;
+    m.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-c]"); if (!b) return;
+      const c = b.dataset.c;
+      b.classList.add("flash");
+      setTimeout(() => {
+        closeCtx();
+        if (c === "spot") openSpotlight();
+        if (c === "about") openItem("about", null);
+        if (c === "lang") setLang(lang === "es" ? "en" : "es");
+        if (c === "arrange") arrangeIcons();
+        if (c === "copy") { const u = location.origin + "/"; (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => miniToast(L("Enlace copiado", "Link copied"))).catch(() => {}); }
+      }, 140); // parpadeo de confirmación, como en macOS
+    });
+  }
+  document.addEventListener("contextmenu", (e) => {
+    if (isMobile() || matchMedia("(pointer: coarse)").matches) return;
+    const onDesk = e.target.closest && e.target.closest("#desktop") && !e.target.closest(".icon, .notification, .sticky, a, button, input");
+    if (!onDesk) return;
+    e.preventDefault();
+    openCtx(e.clientX, e.clientY);
+  });
+  document.addEventListener("pointerdown", (e) => { if (ctx && !e.target.closest(".ctx-menu")) closeCtx(); }, true);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && ctx) { e.stopImmediatePropagation(); closeCtx(); } }, true);
+  window.addEventListener("blur", closeCtx);
+
+  function arrangeIcons() {
+    Object.keys(positions).forEach((k) => delete positions[k]);
+    store.set("positions", positions);
+    iconsEl.classList.add("arranging");
+    $$(".icon", iconsEl).forEach((el) => {
+      const it = itemById(el.dataset.id);
+      if (it) { el.style.setProperty("--x", it.x); el.style.setProperty("--y", it.y); }
+    });
+    setTimeout(() => iconsEl.classList.remove("arranging"), 700);
+  }
+  function miniToast(text) {
+    const tEl = document.createElement("div");
+    tEl.className = "mini-toast"; tEl.textContent = text;
+    document.body.appendChild(tEl);
+    requestAnimationFrame(() => tEl.classList.add("in"));
+    setTimeout(() => { tEl.classList.remove("in"); setTimeout(() => tEl.remove(), 300); }, 1600);
+  }
+
+  // ---------- Selección con recuadro sobre el escritorio (arrastrar en un espacio vacío) ----------
+  {
+    let band = null;
+    $("#desktop").addEventListener("pointerdown", (e) => {
+      if (isMobile() || e.button !== 0 || e.pointerType !== "mouse") return;
+      if (e.target.closest(".icon, .notification, .sticky, a, button")) return;
+      band = { sx: e.clientX, sy: e.clientY, el: null, icons: $$(".icon", iconsEl).map((el) => ({ el, r: el.getBoundingClientRect() })) };
+    });
+    window.addEventListener("pointermove", (e) => {
+      if (!band) return;
+      const x1 = Math.min(band.sx, e.clientX), y1 = Math.min(band.sy, e.clientY), x2 = Math.max(band.sx, e.clientX), y2 = Math.max(band.sy, e.clientY);
+      if (!band.el) { if (Math.hypot(e.clientX - band.sx, e.clientY - band.sy) < 4) return; band.el = document.createElement("div"); band.el.className = "marquee"; document.body.appendChild(band.el); }
+      Object.assign(band.el.style, { left: x1 + "px", top: y1 + "px", width: x2 - x1 + "px", height: y2 - y1 + "px" });
+      band.icons.forEach(({ el, r }) => el.classList.toggle("selected", r.right > x1 && r.left < x2 && r.bottom > y1 && r.top < y2));
+    });
+    const end = () => { if (band && band.el) band.el.remove(); band = null; };
+    window.addEventListener("pointerup", end);
+    window.addEventListener("pointercancel", end);
+  }
+
+  // ---------- Dock: el ícono rebota al abrir, como una app que arranca ----------
+  dock.addEventListener("click", (e) => {
+    const d = e.target.closest(".dk"); if (!d || d.classList.contains("dk-min") || reducedMotion) return;
+    d.classList.remove("bounce"); void d.offsetWidth; d.classList.add("bounce");
+    setTimeout(() => d.classList.remove("bounce"), 1300);
+  });
 
   // ---------- Inicio ----------
   document.documentElement.lang = lang;
