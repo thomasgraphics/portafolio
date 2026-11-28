@@ -1194,7 +1194,7 @@ body.mission .icons, body.mission .notification, body.mission .sticky { opacity:
 .mb-tools { display: flex; align-items: center; gap: 2px; margin-right: 4px; }
 .menubar .mb-tool { display: grid; place-items: center; padding: 2px 7px; }
 .mb-tool svg { width: 15px; height: 15px; display: block; }
-.mb-tool-img { display: block; height: 16px; width: auto; pointer-events: none; -webkit-user-drag: none; } /* misma altura para todos */
+.mb-tool-img { display: block; height: 16px; width: auto; pointer-events: none; -webkit-user-drag: none; }
 .menubar .mb-tool.on { background: rgba(255, 255, 255, 0.24); }
 .menubar .mb-tool svg { transition: transform 0.25s cubic-bezier(0.3, 1.5, 0.5, 1); }
 .menubar .mb-tool:hover svg, .menubar .mb-tool:hover .mb-tool-img { transform: scale(1.12); }
@@ -1206,4 +1206,7 @@ body.mission .icons, body.mission .notification, body.mission .sticky { opacity:
 .tool-menu .tm-ic svg { width: 13px; height: 13px; display: block; }
 .tool-menu .tm-ic .mb-tool-img { height: 13px; width: auto; max-width: 16px; }
 .tool-menu .tm-desc { margin: 2px 10px 6px 41px; font-size: 12px; line-height: 1.35; color: rgba(255, 255, 255, 0.7); }
-.menubar .mb-tool[data-tool="figma"] .mb-tool-img { height: 18.5px; margin-top: -2.5px; } /* el punto sobresale; el cuerpo del ícono queda a 16px como los demás */
+/* Escala tomada de la captura de la barra del Mac de Thomas (pixeles de la captura / 2, ajustado a nuestro tamaño de texto) */
+.menubar .mb-tool[data-tool="figma"] .mb-tool-img { height: 15.75px; }
+.menubar .mb-tool[data-tool="adobe"] .mb-tool-img { height: 16.8px; }
+.menubar .mb-tool[data-tool="chatgpt"] .mb-tool-img { height: 17.85px; }
