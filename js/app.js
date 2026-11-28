@@ -310,6 +310,7 @@
     const mon = clean(d.toLocaleDateString(loc, { month: "short" }));
     const time = d.toLocaleTimeString(loc, { hour: "2-digit", minute: "2-digit", hour12: false });
     el.textContent = isMobile() ? time : lang === "es" ? `${wd} ${d.getDate()} ${mon} ${time}` : `${wd} ${mon} ${d.getDate()} ${time}`;
+    el.title = d.toLocaleDateString(loc, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   }
   setInterval(tick, 15000);
 
@@ -405,6 +406,7 @@
     }
     const el = document.createElement("section");
     el.className = "win " + (opts.cls || "");
+    el.dataset.key = key;
     el.setAttribute("role", "dialog");
     el.innerHTML = `
       <div class="win-bar">
@@ -1231,7 +1233,7 @@
       <g clip-path="url(#${c})" stroke="#9ea3ad" stroke-opacity=".55" stroke-width="1.4">
         <path d="M33 44l2.6 44M41 44l1.2 45M50 44v45M59 44l-1.2 45M67 44l-2.6 44"/></g>
       <path d="M28 86a6 6 0 0 0 6 5h32a6 6 0 0 0 6-5" fill="none" stroke="#000" stroke-opacity=".12" stroke-width="1.2"/>
-      <rect x="18" y="35" width="64" height="8" rx="4" fill="url(#${b})"/>
+      <rect class="trash-lid" x="18" y="35" width="64" height="8" rx="4" fill="url(#${b})"/>
       <rect x="18.5" y="35.5" width="63" height="7" rx="3.5" fill="none" stroke="#000" stroke-opacity=".14"/>
     </svg>`;
   }
@@ -1623,7 +1625,7 @@
         const head = r.kind !== last ? `<div class="spot-group">${GROUP[r.kind]}</div>` : "";
         last = r.kind;
         const thumb = r.img ? `<img src="${esc(r.img)}" alt="" loading="lazy">` : `<span class="spot-art">${r.art || ""}</span>`;
-        return `${head}<button class="spot-item${i === 0 ? " on" : ""}" data-i="${i}" role="option"><span class="spot-thumb">${thumb}</span><span class="spot-txt"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span><span class="spot-go">↩</span></button>`;
+        return `${head}<button class="spot-item${i === 0 ? " on" : ""}" data-i="${i}" role="option" style="--k:${Math.min(i, 10)}"><span class="spot-thumb">${thumb}</span><span class="spot-txt"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span><span class="spot-go">↩</span></button>`;
       }).join("");
       wrap.classList.add("has-list");
     };
@@ -1754,6 +1756,79 @@
     d.classList.remove("bounce"); void d.offsetWidth; d.classList.add("bounce");
     setTimeout(() => d.classList.remove("bounce"), 1300);
   });
+
+  // =========================================================================
+  // Microinteracciones
+  // =========================================================================
+  const fineHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  // Tarjetas de proyecto: se inclinan en 3D siguiendo el cursor, con un brillo que se mueve (como Apple TV)
+  if (fineHover && !reducedMotion) {
+    let cur = null, ev = null, raf = 0;
+    const reset = (el) => { el.classList.remove("tilt"); el.style.removeProperty("--rx"); el.style.removeProperty("--ry"); };
+    layer.addEventListener("pointermove", (e) => {
+      ev = e;
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const el = ev.target.closest && ev.target.closest(".tile");
+        if (cur && cur !== el) reset(cur);
+        cur = el;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        const px = (ev.clientX - r.left) / r.width, py = (ev.clientY - r.top) / r.height;
+        el.classList.add("tilt");
+        el.style.setProperty("--ry", ((px - 0.5) * 7).toFixed(2) + "deg");
+        el.style.setProperty("--rx", ((0.5 - py) * 6).toFixed(2) + "deg");
+        el.style.setProperty("--gx", (px * 100).toFixed(1) + "%");
+        el.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
+      });
+    }, { passive: true });
+    layer.addEventListener("pointerleave", () => { if (cur) reset(cur); cur = null; });
+  }
+
+  // Control segmentado (Todo / Apps / Web…): la cápsula se desliza hasta la opción elegida
+  const segPos = new Map();
+  function placeSeg(seg) {
+    const on = $('button[aria-pressed="true"]', seg); if (!on) return;
+    let pill = $(".seg-pill", seg);
+    const key = (seg.closest(".win") && seg.closest(".win").dataset.key) || "seg";
+    const to = { x: on.offsetLeft, w: on.offsetWidth };
+    if (!pill) {
+      pill = document.createElement("span"); pill.className = "seg-pill"; seg.prepend(pill);
+      const from = segPos.get(key) || to;
+      pill.style.transition = "none";
+      pill.style.transform = `translateX(${from.x}px)`; pill.style.width = from.w + "px";
+      void pill.offsetWidth; pill.style.transition = "";
+    }
+    pill.style.transform = `translateX(${to.x}px)`; pill.style.width = to.w + "px";
+    seg.classList.add("has-pill");
+    segPos.set(key, to);
+  }
+  new MutationObserver((muts) => {
+    muts.forEach((m) => m.addedNodes.forEach((n) => {
+      if (n.nodeType !== 1) return;
+      (n.matches(".seg") ? [n] : $$(".seg", n)).forEach((seg) => requestAnimationFrame(() => placeSeg(seg)));
+      // Proyecto abierto: las secciones aparecen suavemente al hacer scroll
+      $$(".case-inner > section", n).forEach((sec) => revealIO && revealIO.observe(sec));
+    }));
+  }).observe(layer, { childList: true, subtree: true });
+
+  const revealIO = !reducedMotion && "IntersectionObserver" in window
+    ? new IntersectionObserver((ents) => ents.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("seen"); revealIO.unobserve(en.target); } }), { rootMargin: "0px 0px -8% 0px", threshold: 0.08 })
+    : null;
+  if (revealIO) document.body.classList.add("reveal-on");
+
+  // Proyecto abierto: barra de progreso de lectura bajo la barra de la ventana
+  layer.addEventListener("scroll", (e) => {
+    const b = e.target;
+    if (!b.classList || !b.classList.contains("win-body")) return;
+    const win = b.closest(".casewin"); if (!win) return;
+    let bar = $(".read-progress", win);
+    if (!bar) { bar = document.createElement("i"); bar.className = "read-progress"; $(".win-bar", win).appendChild(bar); }
+    const max = b.scrollHeight - b.clientHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, b.scrollTop / max) : 0})`;
+  }, { capture: true, passive: true });
 
   // ---------- Inicio ----------
   document.documentElement.lang = lang;

@@ -1065,3 +1065,54 @@ html.dark .notification .n-head { color: rgba(245, 245, 250, 0.8); }
 @media (prefers-reduced-motion: reduce) {
   .spot, .ctx-menu, .mini-toast, .snap-preview, .win.snapping, .icons.arranging .icon { transition: none !important; animation: none !important; }
 }
+
+/* =========================================================================
+   MICROINTERACCIONES
+   ========================================================================= */
+/* Tarjetas de proyecto: inclinación 3D + brillo que sigue al cursor + leve zoom de la portada */
+@media (hover: hover) and (pointer: fine) {
+  .tile img { transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .tile:hover img { transform: scale(1.045); }
+  .tile.tilt { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px); transition: transform 0.12s ease-out, box-shadow 0.3s; box-shadow: 0 18px 34px -14px rgba(0, 0, 0, 0.55); }
+  .tile::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; opacity: 0; transition: opacity 0.3s;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, 0.28), transparent 55%); mix-blend-mode: soft-light; }
+  .tile.tilt::after { opacity: 1; }
+  /* Íconos del escritorio: se elevan un poco al pasar el mouse */
+  .icon:hover:not(.dragging) .icon-art { transform: translateY(-3px); }
+  .icon-art { transition: transform 0.3s cubic-bezier(0.3, 1.5, 0.5, 1), filter 0.3s; }
+  .icon:hover:not(.dragging) .icon-art { filter: drop-shadow(0 9px 10px rgba(0, 0, 0, 0.32)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.14)); }
+  /* Papelera: la tapa se levanta al pasar el mouse */
+  .dk-trash .trash-lid { transform-box: fill-box; transform-origin: 8% 100%; transition: transform 0.35s cubic-bezier(0.3, 1.5, 0.5, 1); }
+  .dk-trash:hover .trash-lid { transform: translateY(-3px) rotate(-14deg); }
+  /* Barra lateral: el ícono de la carpeta se asoma al pasar */
+  .sb-item svg { transition: transform 0.25s cubic-bezier(0.3, 1.5, 0.5, 1); }
+  .sb-item:hover svg { transform: translateX(2px) scale(1.08); }
+}
+
+/* Control segmentado: cápsula que se desliza entre opciones */
+.seg.has-pill button[aria-pressed="true"] { background: transparent !important; box-shadow: none !important; }
+.seg-pill { position: absolute; top: 3px; bottom: 3px; left: 0; z-index: 3; border-radius: 999px; pointer-events: none;
+  background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+  transition: transform 0.38s cubic-bezier(0.3, 1.25, 0.5, 1), width 0.38s cubic-bezier(0.3, 1.25, 0.5, 1); }
+html.dark .seg-pill { background: #636366; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); }
+.seg button { transition: color 0.2s; }
+
+/* Proyecto abierto: las secciones aparecen con un fundido al llegar a ellas */
+.reveal-on .case-inner > section:not(.seen) { opacity: 0; transform: translateY(22px); }
+.reveal-on .case-inner > section.seen { opacity: 1; transform: none; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* Barra de progreso de lectura en la ventana del proyecto */
+.read-progress { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent, #0a64d8); transform-origin: 0 50%; transform: scaleX(0); transition: transform 0.12s linear; pointer-events: none; }
+
+/* Spotlight: resultados que entran escalonados */
+.spot-wrap.in .spot-item { animation: spot-item-in 0.32s cubic-bezier(0.2, 0.9, 0.3, 1) both; animation-delay: calc(var(--k, 0) * 18ms); }
+@keyframes spot-item-in { from { opacity: 0; transform: translateY(6px); } }
+
+/* Botones de la barra superior: brillo suave al pasar */
+.menubar .mb-search:hover svg { transform: scale(1.12) rotate(-8deg); }
+.menubar .mb-search svg { transition: transform 0.25s cubic-bezier(0.3, 1.5, 0.5, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tile.tilt, .tile img, .icon-art, .seg-pill, .read-progress { transition: none !important; }
+  .reveal-on .case-inner > section:not(.seen) { opacity: 1; transform: none; }
+}
