@@ -283,7 +283,7 @@
     spark: `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 1.8c.5 2.9 1.6 4 4.5 4.5-2.9.5-4 1.6-4.5 4.5-.5-2.9-1.6-4-4.5-4.5 2.9-.5 4-1.6 4.5-4.5z" fill="currentColor"/><path d="M12.4 9.6c.25 1.4.8 1.95 2.2 2.2-1.4.25-1.95.8-2.2 2.2-.25-1.4-.8-1.95-2.2-2.2 1.4-.25 1.95-.8 2.2-2.2z" fill="currentColor"/></svg>`,
   };
   const TOOLS = D.menuTools && D.menuTools.length ? D.menuTools : [
-    { id: "figma", icon: "assets/img/menubar/figma.png", size: 14, name: "Figma", glyph: "design", open: "ux", desc: { es: "UX/UI, prototipos y design systems", en: "UX/UI, prototypes and design systems" }, cta: { es: "Ver proyectos UX/UI", en: "See UX/UI projects" } },
+    { id: "figma", icon: "assets/img/menubar/figma.png?v=2", size: 16, name: "Figma", glyph: "design", open: "ux", desc: { es: "UX/UI, prototipos y design systems", en: "UX/UI, prototypes and design systems" }, cta: { es: "Ver proyectos UX/UI", en: "See UX/UI projects" } },
     { id: "adobe", icon: "assets/img/menubar/adobe.png", size: 21, name: "Adobe Creative Cloud", glyph: "cloud", open: "branding", desc: { es: "Illustrator, Photoshop, After Effects y Premiere", en: "Illustrator, Photoshop, After Effects and Premiere" }, cta: { es: "Ver branding", en: "See branding" } },
     { id: "chatgpt", icon: "assets/img/menubar/chatgpt.png", size: 18, name: "ChatGPT", glyph: "spark", open: "about", desc: { es: "IA para investigación, ideación y copy", en: "AI for research, ideation and copy" }, cta: { es: "Sobre mí", en: "About me" } },
   ];
